@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/OneOfTitleAssetImageAssetVideoAsset', 'model/Transition'], factory);
+    define(['ApiClient', 'model/Asset', 'model/Transition'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./OneOfTitleAssetImageAssetVideoAsset'), require('./Transition'));
+    module.exports = factory(require('../ApiClient'), require('./Asset'), require('./Transition'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.OneOfTitleAssetImageAssetVideoAsset, root.ShotstackSdk.Transition);
+    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Asset, root.ShotstackSdk.Transition);
   }
-}(this, function(ApiClient, OneOfTitleAssetImageAssetVideoAsset, Transition) {
+}(this, function(ApiClient, Asset, Transition) {
   'use strict';
 
 
@@ -43,7 +43,7 @@
    * A clip is a container for a specific type of asset, i.e. a title, photo or video. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions and effects to apply to it. 
    * @alias module:model/Clip
    * @class
-   * @param asset {module:model/OneOfTitleAssetImageAssetVideoAsset} The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
+   * @param asset {module:model/Asset} The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
    * @param start {Number} The start position of the Clip on the timeline, in seconds.
    * @param length {Number} The length, in seconds, the Clip should play for.
    */
@@ -66,7 +66,7 @@
     if (data) {
       obj = obj || new exports();
       if (data.hasOwnProperty('asset')) {
-        obj['asset'] = ApiClient.convertToType(data['asset'], OneOfTitleAssetImageAssetVideoAsset);
+        obj['asset'] = ApiClient.convertToType(data['asset'], Asset);
       }
       if (data.hasOwnProperty('start')) {
         obj['start'] = ApiClient.convertToType(data['start'], 'Number');
@@ -89,7 +89,7 @@
 
   /**
    * The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
-   * @member {module:model/OneOfTitleAssetImageAssetVideoAsset} asset
+   * @member {module:model/Asset} asset
    */
   exports.prototype['asset'] = undefined;
   /**
@@ -120,7 +120,7 @@
 
   /**
    * Returns The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
-   * @return {module:model/OneOfTitleAssetImageAssetVideoAsset}
+   * @return {module:model/Asset}
    */
   exports.prototype.getAsset = function() {
     return this['asset'];
@@ -128,7 +128,7 @@
 
   /**
    * Sets The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
-   * @param {module:model/OneOfTitleAssetImageAssetVideoAsset} asset The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
+   * @param {module:model/Asset} asset The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>. 
    */
   exports.prototype.setAsset = function(asset) {
     this['asset'] = asset;

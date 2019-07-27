@@ -16,12 +16,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Clip', 'model/Edit', 'model/ImageAsset', 'model/Offset', 'model/Output', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/RenderResponse', 'model/RenderResponseData', 'model/Soundtrack', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transition', 'model/VideoAsset', 'api/DefaultApi'], factory);
+    define(['ApiClient', 'model/Asset', 'model/Clip', 'model/Edit', 'model/ImageAsset', 'model/Offset', 'model/Output', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/RenderResponse', 'model/RenderResponseData', 'model/Soundtrack', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transition', 'model/VideoAsset', 'api/DefaultApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Clip'), require('./model/Edit'), require('./model/ImageAsset'), require('./model/Offset'), require('./model/Output'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/Soundtrack'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/DefaultApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/Clip'), require('./model/Edit'), require('./model/ImageAsset'), require('./model/Offset'), require('./model/Output'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/Soundtrack'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/DefaultApi'));
   }
-}(function(ApiClient, Clip, Edit, ImageAsset, Offset, Output, QueuedResponse, QueuedResponseData, RenderResponse, RenderResponseData, Soundtrack, Timeline, TitleAsset, Track, Transition, VideoAsset, DefaultApi) {
+}(function(ApiClient, Asset, Clip, Edit, ImageAsset, Offset, Output, QueuedResponse, QueuedResponseData, RenderResponse, RenderResponseData, Soundtrack, Timeline, TitleAsset, Track, Transition, VideoAsset, DefaultApi) {
   'use strict';
 
   /**
@@ -61,6 +61,11 @@
      * @property {module:ApiClient}
      */
     ApiClient: ApiClient,
+    /**
+     * The Asset model constructor.
+     * @property {module:model/Asset}
+     */
+    Asset: Asset,
     /**
      * The Clip model constructor.
      * @property {module:model/Clip}
