@@ -58,59 +58,8 @@
     exports.constructFromObject = function(data, obj) {
       if (data) {
         obj = obj || new exports();
-        if (data.hasOwnProperty('x')) {
-          obj['x'] = ApiClient.convertToType(data['x'], 'Number');
-        }
-        if (data.hasOwnProperty('y')) {
-          obj['y'] = ApiClient.convertToType(data['y'], 'Number');
-        }
       }
       return obj;
-    }
-  
-    /**
-     * Offset an asset on the horizontal axis (left or right), range varies from -1 to 1.
-     * @member {Number} x
-     */
-    exports.prototype['x'] = undefined;
-    /**
-     * Offset an asset on the vertical axis (up or down), range varies from -1 to 1.
-     * @member {Number} y
-     */
-    exports.prototype['y'] = undefined;
-  
-  
-    /**
-     * Returns Offset an asset on the horizontal axis (left or right), range varies from -1 to 1.
-     * @return {Number}
-     */
-    exports.prototype.getX = function() {
-      return this['x'];
-    }
-  
-    /**
-     * Sets Offset an asset on the horizontal axis (left or right), range varies from -1 to 1.
-     * @param {Number} x Offset an asset on the horizontal axis (left or right), range varies from -1 to 1.
-     */
-    exports.prototype.setX = function(x) {
-      this['x'] = x;
-    }
-  
-  
-    /**
-     * Returns Offset an asset on the vertical axis (up or down), range varies from -1 to 1.
-     * @return {Number}
-     */
-    exports.prototype.getY = function() {
-      return this['y'];
-    }
-  
-    /**
-     * Sets Offset an asset on the vertical axis (up or down), range varies from -1 to 1.
-     * @param {Number} y Offset an asset on the vertical axis (up or down), range varies from -1 to 1.
-     */
-    exports.prototype.setY = function(y) {
-      this['y'] = y;
     }
 
     return exports;

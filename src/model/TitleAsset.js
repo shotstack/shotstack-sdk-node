@@ -46,7 +46,7 @@
    * @param type {String} The type of asset - set to <b>title</b> for titles.
    * @param text {String} The title text string - i.e. \"My Title\".
    */
-  var exports = function(type, text) {
+  var exports = function(type = 'title', text) {
     var _this = this;
 
     _this['type'] = type;

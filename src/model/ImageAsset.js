@@ -46,7 +46,7 @@
    * @param type {String} The type of asset - set to <b>image</b> for images.
    * @param src {String} The image source URL. The URL must be publicly accessible or include credentials. 
    */
-  var exports = function(type, src) {
+  var exports = function(type = 'image', src) {
     var _this = this;
 
     _this['type'] = type;

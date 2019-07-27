@@ -46,7 +46,7 @@
    * @param type {String} The type of asset - set to <b>video</b> for videos.
    * @param src {String} The video source URL. The URL must be publicly accessible or include credentials. 
    */
-  var exports = function(type, src) {
+  var exports = function(type = 'video', src) {
     var _this = this;
 
     _this['type'] = type;
