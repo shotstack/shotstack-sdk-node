@@ -47,21 +47,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getRender operation.
-     * @callback module:api/DefaultApi~getRenderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/RenderResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get the rendering status, video url and details of a timeline by ID.
      * @param {String} id The id of the timeline render task in UUID format
-     * @param {module:api/DefaultApi~getRenderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/RenderResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RenderResponse} and HTTP response
      */
-    this.getRender = function(id, callback) {
+    this.getRenderWithHttpInfo = function(id) {
       var postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
@@ -87,25 +79,29 @@
       return this.apiClient.callApi(
         '/render/{id}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Callback function to receive the result of the postRender operation.
-     * @callback module:api/DefaultApi~postRenderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/QueuedResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the rendering status, video url and details of a timeline by ID.
+     * @param {String} id The id of the timeline render task in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RenderResponse}
      */
+    this.getRender = function(id) {
+      return this.getRenderWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Render the contents of a timeline as a video file.
      * @param {module:model/Edit} edit 
-     * @param {module:api/DefaultApi~postRenderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/QueuedResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
      */
-    this.postRender = function(edit, callback) {
+    this.postRenderWithHttpInfo = function(edit) {
       var postBody = edit;
       // verify the required parameter 'edit' is set
       if (edit === undefined || edit === null) {
@@ -130,8 +126,20 @@
       return this.apiClient.callApi(
         '/render', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null
       );
+    }
+
+    /**
+     * Render the contents of a timeline as a video file.
+     * @param {module:model/Edit} edit 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
+     */
+    this.postRender = function(edit) {
+      return this.postRenderWithHttpInfo(edit)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 
