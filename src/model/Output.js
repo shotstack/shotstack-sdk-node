@@ -95,6 +95,7 @@
    */
   exports.prototype.setFormat = function(format) {
     this['format'] = format;
+    return this;
   }
 
 
@@ -110,6 +111,7 @@
    */
   exports.prototype.setResolution = function(resolution) {
     this['resolution'] = resolution;
+    return this;
   }
 
 

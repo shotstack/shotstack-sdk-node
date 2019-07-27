@@ -98,6 +98,7 @@
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;
+    return this;
   }
 
 
@@ -115,6 +116,7 @@
    */
   exports.prototype.setId = function(id) {
     this['id'] = id;
+    return this;
   }
 
 

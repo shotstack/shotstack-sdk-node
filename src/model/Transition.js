@@ -95,6 +95,7 @@
    */
   exports.prototype.setIn = function(_in) {
     this['in'] = _in;
+    return this;
   }
 
 
@@ -112,6 +113,7 @@
    */
   exports.prototype.setOut = function(out) {
     this['out'] = out;
+    return this;
   }
 
 

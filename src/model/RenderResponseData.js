@@ -145,6 +145,7 @@
    */
   exports.prototype.setStatus = function(status) {
     this['status'] = status;
+    return this;
   }
 
 
@@ -162,6 +163,7 @@
    */
   exports.prototype.setId = function(id) {
     this['id'] = id;
+    return this;
   }
 
 
@@ -179,6 +181,7 @@
    */
   exports.prototype.setOwner = function(owner) {
     this['owner'] = owner;
+    return this;
   }
 
 
@@ -196,6 +199,7 @@
    */
   exports.prototype.setUrl = function(url) {
     this['url'] = url;
+    return this;
   }
 
 
@@ -211,6 +215,7 @@
    */
   exports.prototype.setData = function(data) {
     this['data'] = data;
+    return this;
   }
 
 
@@ -228,6 +233,7 @@
    */
   exports.prototype.setCreated = function(created) {
     this['created'] = created;
+    return this;
   }
 
 
@@ -245,6 +251,7 @@
    */
   exports.prototype.setUpdated = function(updated) {
     this['updated'] = updated;
+    return this;
   }
 
 

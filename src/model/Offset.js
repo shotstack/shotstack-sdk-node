@@ -95,6 +95,7 @@
    */
   exports.prototype.setX = function(x) {
     this['x'] = x;
+    return this;
   }
 
 
@@ -112,6 +113,7 @@
    */
   exports.prototype.setY = function(y) {
     this['y'] = y;
+    return this;
   }
 
 

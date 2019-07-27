@@ -150,6 +150,7 @@
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
+    return this;
   }
 
 
@@ -167,6 +168,7 @@
    */
   exports.prototype.setText = function(text) {
     this['text'] = text;
+    return this;
   }
 
 
@@ -184,6 +186,7 @@
    */
   exports.prototype.setStyle = function(style) {
     this['style'] = style;
+    return this;
   }
 
 
@@ -201,6 +204,7 @@
    */
   exports.prototype.setColor = function(color) {
     this['color'] = color;
+    return this;
   }
 
 
@@ -218,6 +222,7 @@
    */
   exports.prototype.setSize = function(size) {
     this['size'] = size;
+    return this;
   }
 
 
@@ -235,6 +240,7 @@
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;
+    return this;
   }
 
 
@@ -252,6 +258,7 @@
    */
   exports.prototype.setPosition = function(position) {
     this['position'] = position;
+    return this;
   }
 
 
@@ -267,6 +274,7 @@
    */
   exports.prototype.setOffset = function(offset) {
     this['offset'] = offset;
+    return this;
   }
 
 

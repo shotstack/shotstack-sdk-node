@@ -97,6 +97,7 @@
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
+    return this;
   }
 
 
@@ -114,6 +115,7 @@
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
+    return this;
   }
 
 

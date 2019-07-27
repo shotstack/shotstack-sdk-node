@@ -103,6 +103,7 @@
    */
   exports.prototype.setSuccess = function(success) {
     this['success'] = success;
+    return this;
   }
 
 
@@ -118,6 +119,7 @@
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;
+    return this;
   }
 
 
@@ -133,6 +135,7 @@
    */
   exports.prototype.setResponse = function(response) {
     this['response'] = response;
+    return this;
   }
 
 

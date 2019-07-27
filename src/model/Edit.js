@@ -95,6 +95,7 @@
    */
   exports.prototype.setTimeline = function(timeline) {
     this['timeline'] = timeline;
+    return this;
   }
 
 
@@ -110,6 +111,7 @@
    */
   exports.prototype.setOutput = function(output) {
     this['output'] = output;
+    return this;
   }
 
 

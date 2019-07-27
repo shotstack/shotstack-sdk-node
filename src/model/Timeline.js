@@ -102,6 +102,7 @@
    */
   exports.prototype.setSoundtrack = function(soundtrack) {
     this['soundtrack'] = soundtrack;
+    return this;
   }
 
 
@@ -119,6 +120,7 @@
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;
+    return this;
   }
 
 
@@ -136,6 +138,7 @@
    */
   exports.prototype.setTracks = function(tracks) {
     this['tracks'] = tracks;
+    return this;
   }
 
 

@@ -100,6 +100,7 @@
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
+    return this;
   }
 
 
@@ -117,6 +118,7 @@
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
+    return this;
   }
 
 

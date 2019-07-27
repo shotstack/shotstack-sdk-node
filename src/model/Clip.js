@@ -132,6 +132,7 @@
    */
   exports.prototype.setAsset = function(asset) {
     this['asset'] = asset;
+    return this;
   }
 
 
@@ -149,6 +150,7 @@
    */
   exports.prototype.setStart = function(start) {
     this['start'] = start;
+    return this;
   }
 
 
@@ -166,6 +168,7 @@
    */
   exports.prototype.setLength = function(length) {
     this['length'] = length;
+    return this;
   }
 
 
@@ -181,6 +184,7 @@
    */
   exports.prototype.setTransition = function(transition) {
     this['transition'] = transition;
+    return this;
   }
 
 
@@ -198,6 +202,7 @@
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
+    return this;
   }
 
 
@@ -215,6 +220,7 @@
    */
   exports.prototype.setFilter = function(filter) {
     this['filter'] = filter;
+    return this;
   }
 
 

@@ -89,6 +89,7 @@
    */
   exports.prototype.setClips = function(clips) {
     this['clips'] = clips;
+    return this;
   }
 
 
