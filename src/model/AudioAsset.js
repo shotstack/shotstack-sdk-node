@@ -25,7 +25,7 @@
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.VideoAsset = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.AudioAsset = factory(root.ShotstackSdk.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -33,20 +33,20 @@
 
 
   /**
-   * The VideoAsset model module.
-   * @module model/VideoAsset
+   * The AudioAsset model module.
+   * @module model/AudioAsset
    * @version v1
    */
 
   /**
-   * Constructs a new <code>VideoAsset</code>.
-   * The VideoAsset is used to create video sequences from video files. The src must be a publicly accesible URL to a video resource such as an mp4 file.
-   * @alias module:model/VideoAsset
+   * Constructs a new <code>AudioAsset</code>.
+   * The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accesible URL to an audio resource such  as an mp3 file.
+   * @alias module:model/AudioAsset
    * @class
-   * @param type {String} The type of asset - set to <b>video</b> for videos.
-   * @param src {String} The video source URL. The URL must be publicly accessible or include credentials. 
+   * @param type {String} The type of asset - set to <b>audio</b> for audio assets.
+   * @param src {String} The audio source URL. The URL must be publicly accessible or include credentials.
    */
-  var exports = function(type = 'video', src) {
+  var exports = function(type = 'audio', src) {
     var _this = this;
 
     _this['type'] = type;
@@ -54,11 +54,11 @@
   };
 
   /**
-   * Constructs a <code>VideoAsset</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>AudioAsset</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/VideoAsset} obj Optional instance to populate.
-   * @return {module:model/VideoAsset} The populated <code>VideoAsset</code> instance.
+   * @param {module:model/AudioAsset} obj Optional instance to populate.
+   * @return {module:model/AudioAsset} The populated <code>AudioAsset</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -80,30 +80,30 @@
   }
 
   /**
-   * The type of asset - set to <b>video</b> for videos.
+   * The type of asset - set to <b>audio</b> for audio assets.
    * @member {String} type
-   * @default 'video'
+   * @default 'audio'
    */
-  exports.prototype['type'] = 'video';
+  exports.prototype['type'] = 'audio';
   /**
-   * The video source URL. The URL must be publicly accessible or include credentials. 
+   * The audio source URL. The URL must be publicly accessible or include credentials.
    * @member {String} src
    */
   exports.prototype['src'] = undefined;
   /**
-   * The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+   * The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
    * @member {Number} trim
    */
   exports.prototype['trim'] = undefined;
   /**
-   * Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
    */
   exports.prototype['volume'] = undefined;
 
 
   /**
-   * Returns The type of asset - set to <b>video</b> for videos.
+   * Returns The type of asset - set to <b>audio</b> for audio assets.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -111,17 +111,16 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>video</b> for videos.
-   * @param {String} type The type of asset - set to <b>video</b> for videos.
+   * Sets The type of asset - set to <b>audio</b> for audio assets.
+   * @param {String} type The type of asset - set to <b>audio</b> for audio assets.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
-    return this;
   }
 
 
   /**
-   * Returns The video source URL. The URL must be publicly accessible or include credentials. 
+   * Returns The audio source URL. The URL must be publicly accessible or include credentials.
    * @return {String}
    */
   exports.prototype.getSrc = function() {
@@ -129,17 +128,16 @@
   }
 
   /**
-   * Sets The video source URL. The URL must be publicly accessible or include credentials. 
-   * @param {String} src The video source URL. The URL must be publicly accessible or include credentials. 
+   * Sets The audio source URL. The URL must be publicly accessible or include credentials.
+   * @param {String} src The audio source URL. The URL must be publicly accessible or include credentials.
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
-    return this;
   }
 
 
   /**
-   * Returns The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+   * Returns The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
    * @return {Number}
    */
   exports.prototype.getTrim = function() {
@@ -147,17 +145,16 @@
   }
 
   /**
-   * Sets The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
-   * @param {Number} trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+   * Sets The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
+   * @param {Number} trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
    */
   exports.prototype.setTrim = function(trim) {
     this['trim'] = trim;
-    return this;
   }
 
 
   /**
-   * Returns Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Returns Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @return {Number}
    */
   exports.prototype.getVolume = function() {
@@ -165,12 +162,11 @@
   }
 
   /**
-   * Sets Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
-   * @param {Number} volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Sets Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   * @param {Number} volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    */
   exports.prototype.setVolume = function(volume) {
     this['volume'] = volume;
-    return this;
   }
 
 
