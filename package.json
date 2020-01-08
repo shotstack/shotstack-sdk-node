@@ -1,6 +1,6 @@
 {
   "name": "shotstack-sdk",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Official Node SDK for the Shotstack Cloud Video Editing API",
   "license": "MIT",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
     "fs": false
   },
   "dependencies": {
-    "superagent": "3.7.0"
+    "superagent": "5.1.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
