@@ -146,6 +146,7 @@
    */
   exports.prototype.setFonts = function(fonts) {
     this['fonts'] = fonts;
+    return this;
   }
 
 
