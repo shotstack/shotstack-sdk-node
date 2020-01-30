@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  *
@@ -115,7 +115,7 @@
    */
   exports.prototype['height'] = undefined;
   /**
-   * Apply a background color behind the HTML bounding box using HTML color notation with support for transparency.
+   * Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    * @member {String} background
    * @default 'transparent'
    */
@@ -219,7 +219,7 @@
 
 
   /**
-   * Returns Apply a background color behind the HTML bounding box using HTML color notation with support for transparency.
+   * Returns Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    * @return {String}
    */
   exports.prototype.getBackground = function() {
@@ -227,8 +227,8 @@
   }
 
   /**
-   * Sets Apply a background color behind the HTML bounding box using HTML color notation with support for transparency.
-   * @param {String} background Apply a background color behind the HTML bounding box using HTML color notation with support for transparency.
+   * Sets Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
+   * @param {String} background Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;

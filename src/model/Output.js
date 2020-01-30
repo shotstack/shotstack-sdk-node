@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  *
@@ -44,7 +44,7 @@
    * @alias module:model/Output
    * @class
    * @param format {module:model/Output.FormatEnum} `mp4` video or animated `gif`
-   * @param resolution {module:model/Output.ResolutionEnum} The output resoltion of the video.
+   * @param resolution {module:model/Output.ResolutionEnum} The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    */
   var exports = function(format, resolution) {
     var _this = this;
@@ -82,7 +82,7 @@
    */
   exports.prototype['format'] = undefined;
   /**
-   * The output resoltion of the video.
+   * The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    * @member {module:model/Output.ResolutionEnum} resolution
    */
   exports.prototype['resolution'] = undefined;
@@ -112,7 +112,7 @@
 
 
   /**
-   * Returns The output resoltion of the video.
+   * Returns The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    * @return {module:model/Output.ResolutionEnum}
    */
   exports.prototype.getResolution = function() {
@@ -120,8 +120,8 @@
   }
 
   /**
-   * Sets The output resoltion of the video.
-   * @param {module:model/Output.ResolutionEnum} resolution The output resoltion of the video.
+   * Sets The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @param {module:model/Output.ResolutionEnum} resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    */
   exports.prototype.setResolution = function(resolution) {
     this['resolution'] = resolution;

@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  *
@@ -82,10 +82,11 @@
    */
   exports.prototype['soundtrack'] = undefined;
   /**
-   * A hexidecimal value for the timeline background colour. Defaults to black (#000000). 
+   * A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
    * @member {String} background
+   * @default '#000000'
    */
-  exports.prototype['background'] = undefined;
+  exports.prototype['background'] = '#000000';
   /**
    * An array of custom fonts to be downloaded for use by the HTML assets.
    * @member {Array.<module:model/Font>} fonts
@@ -115,7 +116,7 @@
 
 
   /**
-   * Returns A hexidecimal value for the timeline background colour. Defaults to black (#000000). 
+   * Returns A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
    * @return {String}
    */
   exports.prototype.getBackground = function() {
@@ -123,8 +124,8 @@
   }
 
   /**
-   * Sets A hexidecimal value for the timeline background colour. Defaults to black (#000000). 
-   * @param {String} background A hexidecimal value for the timeline background colour. Defaults to black (#000000). 
+   * Sets A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
+   * @param {String} background A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;

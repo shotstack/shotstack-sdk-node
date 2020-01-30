@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  *
@@ -25,7 +25,7 @@
   'use strict';
 
   /**
-   * The_Shotstack_API_is_a_video_editing_service_that_allows_for_the_programatic_creation_of_videos_using_JSON__You_can_configure_an_edit_and_POST_it_to_the_Shotstack_API_which_will_render_your_video_and_provide_a_file_location_when_complete__For_more_details_check_https__shotstack_io.<br>
+   * The_Shotstack_API_is_a_video_editing_service_that_allows_for_the_automated_creation_of_videos_using_JSON__You_can_configure_an_edit_and_POST_it_to_the_Shotstack_API_which_will_render_your_video_and_provide_a_file_location_when_complete__For_more_details_check_https__shotstack_io.<br>
    * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:

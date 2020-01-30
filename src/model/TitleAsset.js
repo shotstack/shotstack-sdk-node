@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  *
@@ -103,16 +103,16 @@
    */
   exports.prototype['text'] = undefined;
   /**
-   * Uses a preset to apply font properties and stylng to the title. 
+   * Uses a preset to apply font properties and styling to the title.
    * @member {module:model/TitleAsset.StyleEnum} style
    */
   exports.prototype['style'] = undefined;
   /**
-   * Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5). 
+   * Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    * @member {String} color
-   * @default 'white'
+   * @default '#ffffff'
    */
-  exports.prototype['color'] = 'white';
+  exports.prototype['color'] = '#ffffff';
   /**
    * Set the relative size of the text using predefined sizes from xx-small to xx-large. 
    * @member {module:model/TitleAsset.SizeEnum} size
@@ -120,7 +120,7 @@
    */
   exports.prototype['size'] = 'medium';
   /**
-   * Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles. 
+   * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
    * @member {String} background
    */
   exports.prototype['background'] = undefined;
@@ -173,7 +173,7 @@
 
 
   /**
-   * Returns Uses a preset to apply font properties and stylng to the title. 
+   * Returns Uses a preset to apply font properties and styling to the title.
    * @return {module:model/TitleAsset.StyleEnum}
    */
   exports.prototype.getStyle = function() {
@@ -181,8 +181,8 @@
   }
 
   /**
-   * Sets Uses a preset to apply font properties and stylng to the title. 
-   * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and stylng to the title. 
+   * Sets Uses a preset to apply font properties and styling to the title.
+   * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and styling to the title.
    */
   exports.prototype.setStyle = function(style) {
     this['style'] = style;
@@ -191,7 +191,7 @@
 
 
   /**
-   * Returns Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5). 
+   * Returns Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    * @return {String}
    */
   exports.prototype.getColor = function() {
@@ -199,8 +199,8 @@
   }
 
   /**
-   * Sets Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5). 
-   * @param {String} color Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5). 
+   * Sets Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
+   * @param {String} color Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    */
   exports.prototype.setColor = function(color) {
     this['color'] = color;
@@ -227,7 +227,7 @@
 
 
   /**
-   * Returns Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles. 
+   * Returns Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
    * @return {String}
    */
   exports.prototype.getBackground = function() {
@@ -235,8 +235,8 @@
   }
 
   /**
-   * Sets Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles. 
-   * @param {String} background Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles. 
+   * Sets Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
+   * @param {String} background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;
