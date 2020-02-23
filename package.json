@@ -1,12 +1,25 @@
 {
   "name": "shotstack-sdk",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Official Node SDK for the Shotstack Cloud Video Editing API",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --recursive"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/shotstack/shotstack-sdk-node"
+  },
+  "keywords": [
+    "video",
+    "ffmpeg",
+    "video-editing",
+    "video-editor",
+    "video-api",
+    "cloud-video",
+    "video-processing"
+  ],
   "browser": {
     "fs": false
   },
