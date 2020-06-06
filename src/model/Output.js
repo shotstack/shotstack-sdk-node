@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/Poster', 'model/Thumbnail'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./Poster'), require('./Thumbnail'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Output = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.Output = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Poster, root.ShotstackSdk.Thumbnail);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, Poster, Thumbnail) {
   'use strict';
 
 
@@ -43,8 +43,8 @@
    * The video output format.
    * @alias module:model/Output
    * @class
-   * @param format {module:model/Output.FormatEnum} `mp4` video or animated `gif`
-   * @param resolution {module:model/Output.ResolutionEnum} The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @param format {module:model/Output.FormatEnum} `mp4`, `webm` video or animated `gif`
+   * @param resolution {module:model/Output.ResolutionEnum} The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    */
   var exports = function(format, resolution) {
     var _this = this;
@@ -72,17 +72,26 @@
       if (data.hasOwnProperty('aspectRatio')) {
         obj['aspectRatio'] = ApiClient.convertToType(data['aspectRatio'], 'String');
       }
+      if (data.hasOwnProperty('scaleTo')) {
+        obj['scaleTo'] = ApiClient.convertToType(data['scaleTo'], 'String');
+    }
+      if (data.hasOwnProperty('poster')) {
+        obj['poster'] = Poster.constructFromObject(data['poster']);
+      }
+      if (data.hasOwnProperty('thumbnail')) {
+        obj['thumbnail'] = Thumbnail.constructFromObject(data['thumbnail']);
+      }
     }
     return obj;
   }
 
   /**
-   * `mp4` video or animated `gif`
+   * `mp4`, `webm` video or animated `gif`
    * @member {module:model/Output.FormatEnum} format
    */
   exports.prototype['format'] = undefined;
   /**
-   * The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    * @member {module:model/Output.ResolutionEnum} resolution
    */
   exports.prototype['resolution'] = undefined;
@@ -91,10 +100,23 @@
    * @member {module:model/Output.AspectRatioEnum} aspectRatio
    */
   exports.prototype['aspectRatio'] = undefined;
+  /**
+   * Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @member {module:model/Output.ScaleToEnum} scaleTo
+   */
+  exports.prototype['scaleTo'] = undefined;
+  /**
+   * @member {module:model/Poster} poster
+   */
+  exports.prototype['poster'] = undefined;
+  /**
+   * @member {module:model/Thumbnail} thumbnail
+   */
+  exports.prototype['thumbnail'] = undefined;
 
 
   /**
-   * Returns `mp4` video or animated `gif`
+   * Returns `mp4`, `webm` video or animated `gif`
    * @return {module:model/Output.FormatEnum}
    */
   exports.prototype.getFormat = function() {
@@ -102,8 +124,8 @@
   }
 
   /**
-   * Sets `mp4` video or animated `gif`
-   * @param {module:model/Output.FormatEnum} format `mp4` video or animated `gif`
+   * Sets `mp4`, `webm` video or animated `gif`
+   * @param {module:model/Output.FormatEnum} format `mp4`, `webm` video or animated `gif`
    */
   exports.prototype.setFormat = function(format) {
     this['format'] = format;
@@ -112,7 +134,7 @@
 
 
   /**
-   * Returns The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * Returns The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    * @return {module:model/Output.ResolutionEnum}
    */
   exports.prototype.getResolution = function() {
@@ -120,8 +142,8 @@
   }
 
   /**
-   * Sets The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
-   * @param {module:model/Output.ResolutionEnum} resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * Sets The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * @param {module:model/Output.ResolutionEnum} resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    */
   exports.prototype.setResolution = function(resolution) {
     this['resolution'] = resolution;
@@ -148,6 +170,56 @@
 
 
   /**
+   * Returns Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @return {module:model/Output.ScaleToEnum}
+   */
+  exports.prototype.getScaleTo = function() {
+    return this['scaleTo'];
+  }
+
+  /**
+   * Sets Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @param {module:model/Output.ScaleToEnum} scaleTo Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   */
+  exports.prototype.setScaleTo = function(scaleTo) {
+    this['scaleTo'] = scaleTo;
+    return this;
+  }
+
+
+  /**
+   * @return {module:model/Poster}
+   */
+  exports.prototype.getPoster = function() {
+    return this['poster'];
+  }
+
+  /**
+   * @param {module:model/Poster} poster
+   */
+  exports.prototype.setPoster = function(poster) {
+    this['poster'] = poster;
+    return this;
+  }
+
+
+  /**
+   * @return {module:model/Thumbnail}
+   */
+  exports.prototype.getThumbnail = function() {
+    return this['thumbnail'];
+  }
+
+  /**
+   * @param {module:model/Thumbnail} thumbnail
+   */
+  exports.prototype.setThumbnail = function(thumbnail) {
+    this['thumbnail'] = thumbnail;
+    return this;
+  }
+
+
+  /**
    * Allowed values for the <code>format</code> property.
    * @enum {String}
    * @readonly
@@ -158,6 +230,11 @@
      * @const
      */
     "mp4": "mp4",
+    /**
+     * value: "webm"
+     * @const
+     */
+    "webm": "webm",
     /**
      * value: "gif"
      * @const
@@ -217,6 +294,38 @@
      * @const
      */
     "1:1": "1:1"  };
+
+  /**
+   * Allowed values for the <code>scaleTo</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.ScaleToEnum = {
+    /**
+     * value: "preview"
+     * @const
+     */
+    "preview": "preview",
+    /**
+     * value: "mobile"
+     * @const
+     */
+    "mobile": "mobile",
+    /**
+     * value: "sd"
+     * @const
+     */
+    "sd": "sd",
+    /**
+     * value: "hd"
+     * @const
+     */
+    "hd": "hd",
+    /**
+     * value: "1080"
+     * @const
+     */
+    "1080": "1080"  };
 
 
   return exports;

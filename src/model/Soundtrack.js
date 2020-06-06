@@ -67,6 +67,9 @@
       if (data.hasOwnProperty('effect')) {
         obj['effect'] = ApiClient.convertToType(data['effect'], 'String');
       }
+      if (data.hasOwnProperty('volume')) {
+        obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
+    }
     }
     return obj;
   }
@@ -81,6 +84,11 @@
    * @member {module:model/Soundtrack.EffectEnum} effect
    */
   exports.prototype['effect'] = undefined;
+  /**
+   * Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   * @member {Number} volume
+   */
+  exports.prototype['volume'] = undefined;
 
 
   /**
@@ -115,6 +123,24 @@
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
+    return this;
+  }
+
+
+  /**
+   * Returns Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   * @return {Number}
+   */
+  exports.prototype.getVolume = function() {
+    return this['volume'];
+  }
+
+  /**
+   * Sets Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   * @param {Number} volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   */
+  exports.prototype.setVolume = function(volume) {
+    this['volume'] = volume;
     return this;
   }
 

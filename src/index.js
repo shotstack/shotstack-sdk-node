@@ -16,12 +16,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Asset', 'model/AudioAsset', 'model/Clip', 'model/Edit', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/Offset', 'model/Output', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/RenderResponse', 'model/RenderResponseData', 'model/Soundtrack', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transition', 'model/VideoAsset', 'api/EndpointsApi'], factory);
+    define(['ApiClient','model/Asset',  'model/AudioAsset', 'model/Clip', 'model/Edit', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/LumaAsset', 'model/Offset', 'model/Output', 'model/Poster', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/RenderResponse', 'model/RenderResponseData', 'model/Soundtrack', 'model/Thumbnail', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transition', 'model/VideoAsset', 'api/EndpointsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Edit'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/Offset'), require('./model/Output'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/Soundtrack'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EndpointsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Edit'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/LumaAsset'), require('./model/Offset'), require('./model/Output'), require('./model/Poster'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/Soundtrack'), require('./model/Thumbnail'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EndpointsApi'));
   }
-}(function(ApiClient, Asset, AudioAsset, Clip, Edit, Font, HtmlAsset, ImageAsset, Offset, Output, QueuedResponse, QueuedResponseData, RenderResponse, RenderResponseData, Soundtrack, Timeline, TitleAsset, Track, Transition, VideoAsset, EndpointsApi) {
+}(function(ApiClient, Asset, AudioAsset, Clip, Edit, Font, HtmlAsset, ImageAsset, LumaAsset, Offset, Output, Poster, QueuedResponse, QueuedResponseData, RenderResponse, RenderResponseData, Soundtrack, Thumbnail, Timeline, TitleAsset, Track, Transition, VideoAsset, EndpointsApi) {
   'use strict';
 
   /**
@@ -97,6 +97,11 @@
      */
     ImageAsset: ImageAsset,
     /**
+     * The LumaAsset model constructor.
+     * @property {module:model/LumaAsset}
+     */
+    LumaAsset: LumaAsset,
+    /**
      * The Offset model constructor.
      * @property {module:model/Offset}
      */
@@ -106,6 +111,11 @@
      * @property {module:model/Output}
      */
     Output: Output,
+    /**
+     * The Poster model constructor.
+     * @property {module:model/Poster}
+     */
+    Poster: Poster,
     /**
      * The QueuedResponse model constructor.
      * @property {module:model/QueuedResponse}
@@ -131,6 +141,11 @@
      * @property {module:model/Soundtrack}
      */
     Soundtrack: Soundtrack,
+    /**
+     * The Thumbnail model constructor.
+     * @property {module:model/Thumbnail}
+     */
+    Thumbnail: Thumbnail,
     /**
      * The Timeline model constructor.
      * @property {module:model/Timeline}
