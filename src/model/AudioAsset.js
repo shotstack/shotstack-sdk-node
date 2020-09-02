@@ -116,6 +116,7 @@
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
+    return this;
   }
 
 
@@ -133,6 +134,7 @@
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
+    return this;
   }
 
 
@@ -150,6 +152,7 @@
    */
   exports.prototype.setTrim = function(trim) {
     this['trim'] = trim;
+    return this;
   }
 
 
@@ -167,6 +170,7 @@
    */
   exports.prototype.setVolume = function(volume) {
     this['volume'] = volume;
+    return this;
   }
 
 
