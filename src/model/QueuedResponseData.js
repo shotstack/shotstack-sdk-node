@@ -42,8 +42,8 @@
    * Constructs a new <code>QueuedResponseData</code>.
    * @alias module:model/QueuedResponseData
    * @class
-   * @param message {String} Success response message
-   * @param id {String} The id of the render task in UUID format
+   * @param message {String} Success response message or error details.
+   * @param id {String} The id of the render task in UUID format.
    */
   var exports = function(message, id) {
     var _this = this;
@@ -73,19 +73,19 @@
   }
 
   /**
-   * Success response message
+   * Success response message or error details.
    * @member {String} message
    */
   exports.prototype['message'] = undefined;
   /**
-   * The id of the render task in UUID format
+   * The id of the render task in UUID format.
    * @member {String} id
    */
   exports.prototype['id'] = undefined;
 
 
   /**
-   * Returns Success response message
+   * Returns Success response message or error details.
    * @return {String}
    */
   exports.prototype.getMessage = function() {
@@ -93,8 +93,8 @@
   }
 
   /**
-   * Sets Success response message
-   * @param {String} message Success response message
+   * Sets Success response message or error details.
+   * @param {String} message Success response message or error details.
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;
@@ -103,7 +103,7 @@
 
 
   /**
-   * Returns The id of the render task in UUID format
+   * Returns The id of the render task in UUID format.
    * @return {String}
    */
   exports.prototype.getId = function() {
@@ -111,8 +111,8 @@
   }
 
   /**
-   * Sets The id of the render task in UUID format
-   * @param {String} id The id of the render task in UUID format
+   * Sets The id of the render task in UUID format.
+   * @param {String} id The id of the render task in UUID format.
    */
   exports.prototype.setId = function(id) {
     this['id'] = id;

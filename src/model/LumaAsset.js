@@ -43,7 +43,7 @@
    * The LumaAsset is used to create luma matte transitions between other assets. A luma matte is  a grey scale animated video where the black areas are transparent and the white areas solid. The luma matte animation should be provided as an mp4 video file. The src must be a publicly  accessible URL to the file.
    * @alias module:model/LumaAsset
    * @class
-   * @param type {String} The type of asset - set to <b>luma</b> for luma mattes.
+   * @param type {String} The type of asset - set to `luma` for luma mattes.
    * @param src {String} The luma matte video source URL. The URL must be publicly accessible or include credentials.
    */
   var exports = function(type = 'luma', src) {
@@ -77,7 +77,7 @@
   }
 
   /**
-   * The type of asset - set to <b>luma</b> for luma mattes.
+   * The type of asset - set to `luma` for luma mattes.
    * @member {String} type
    * @default 'luma'
    */
@@ -95,7 +95,7 @@
 
 
   /**
-   * Returns The type of asset - set to <b>luma</b> for luma mattes.
+   * Returns The type of asset - set to `luma` for luma mattes.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -103,8 +103,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>luma</b> for luma mattes.
-   * @param {String} type The type of asset - set to <b>luma</b> for luma mattes.
+   * Sets The type of asset - set to `luma` for luma mattes.
+   * @param {String} type The type of asset - set to `luma` for luma mattes.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;

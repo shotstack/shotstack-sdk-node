@@ -70,19 +70,19 @@
   }
 
   /**
-   * The transition in
+   * The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
    * @member {module:model/Transition.InEnum} in
    */
   exports.prototype['in'] = undefined;
   /**
-   * The transition out
+   * The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
    * @member {module:model/Transition.OutEnum} out
    */
   exports.prototype['out'] = undefined;
 
 
   /**
-   * Returns The transition in
+   * Returns The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
    * @return {module:model/Transition.InEnum}
    */
   exports.prototype.getIn = function() {
@@ -90,8 +90,8 @@
   }
 
   /**
-   * Sets The transition in
-   * @param {module:model/Transition.InEnum} _in The transition in
+   * Sets The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
+   * @param {module:model/Transition.InEnum} _in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
    */
   exports.prototype.setIn = function(_in) {
     this['in'] = _in;
@@ -100,7 +100,7 @@
 
 
   /**
-   * Returns The transition out
+   * Returns The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
    * @return {module:model/Transition.OutEnum}
    */
   exports.prototype.getOut = function() {
@@ -108,8 +108,8 @@
   }
 
   /**
-   * Sets The transition out
-   * @param {module:model/Transition.OutEnum} out The transition out
+   * Sets The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
+   * @param {module:model/Transition.OutEnum} out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
    */
   exports.prototype.setOut = function(out) {
     this['out'] = out;
@@ -142,7 +142,52 @@
      * value: "wipeRight"
      * @const
      */
-    "wipeRight": "wipeRight"  };
+    "wipeRight": "wipeRight",
+    /**
+     * value: "slideLeft"
+     * @const
+     */
+    "slideLeft": "slideLeft",
+    /**
+     * value: "slideRight"
+     * @const
+     */
+    "slideRight": "slideRight",
+    /**
+     * value: "slideUp"
+     * @const
+     */
+    "slideUp": "slideUp",
+    /**
+     * value: "slideDown"
+     * @const
+     */
+    "slideDown": "slideDown",
+    /**
+     * value: "carouselLeft"
+     * @const
+     */
+    "carouselLeft": "carouselLeft",
+    /**
+     * value: "carouselRight"
+     * @const
+     */
+    "carouselRight": "carouselRight",
+    /**
+     * value: "carouselUp"
+     * @const
+     */
+    "carouselUp": "carouselUp",
+    /**
+     * value: "carouselDown"
+     * @const
+     */
+    "carouselDown": "carouselDown",
+    /**
+     * value: "zoom"
+     * @const
+     */
+    "zoom": "zoom"  };
 
   /**
    * Allowed values for the <code>out</code> property.
@@ -169,7 +214,52 @@
      * value: "wipeRight"
      * @const
      */
-    "wipeRight": "wipeRight"  };
+    "wipeRight": "wipeRight",
+    /**
+     * value: "slideLeft"
+     * @const
+     */
+    "slideLeft": "slideLeft",
+    /**
+     * value: "slideRight"
+     * @const
+     */
+    "slideRight": "slideRight",
+    /**
+     * value: "slideUp"
+     * @const
+     */
+    "slideUp": "slideUp",
+    /**
+     * value: "slideDown"
+     * @const
+     */
+    "slideDown": "slideDown",
+    /**
+     * value: "carouselLeft"
+     * @const
+     */
+    "carouselLeft": "carouselLeft",
+    /**
+     * value: "carouselRight"
+     * @const
+     */
+    "carouselRight": "carouselRight",
+    /**
+     * value: "carouselUp"
+     * @const
+     */
+    "carouselUp": "carouselUp",
+    /**
+     * value: "carouselDown"
+     * @const
+     */
+    "carouselDown": "carouselDown",
+    /**
+     * value: "zoom"
+     * @const
+     */
+    "zoom": "zoom"  };
 
 
   return exports;

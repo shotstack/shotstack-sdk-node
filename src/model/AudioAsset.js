@@ -43,7 +43,7 @@
    * The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
    * @alias module:model/AudioAsset
    * @class
-   * @param type {String} The type of asset - set to <b>audio</b> for audio assets.
+   * @param type {String} The type of asset - set to `audio` for audio assets.
    * @param src {String} The audio source URL. The URL must be publicly accessible or include credentials.
    */
   var exports = function(type = 'audio', src) {
@@ -80,7 +80,7 @@
   }
 
   /**
-   * The type of asset - set to <b>audio</b> for audio assets.
+   * The type of asset - set to `audio` for audio assets.
    * @member {String} type
    * @default 'audio'
    */
@@ -98,12 +98,13 @@
   /**
    * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
+   * @default 1
    */
-  exports.prototype['volume'] = undefined;
+  exports.prototype['volume'] = 1;
 
 
   /**
-   * Returns The type of asset - set to <b>audio</b> for audio assets.
+   * Returns The type of asset - set to `audio` for audio assets.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -111,8 +112,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>audio</b> for audio assets.
-   * @param {String} type The type of asset - set to <b>audio</b> for audio assets.
+   * Sets The type of asset - set to `audio` for audio assets.
+   * @param {String} type The type of asset - set to `audio` for audio assets.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;

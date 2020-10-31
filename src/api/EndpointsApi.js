@@ -49,6 +49,7 @@
 
 
     /**
+     * Get Render Status
      * Get the rendering status, video url and details of a timeline by ID.
      * @param {String} id The id of the timeline render task in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RenderResponse} and HTTP response
@@ -84,6 +85,7 @@
     }
 
     /**
+     * Get Render Status
      * Get the rendering status, video url and details of a timeline by ID.
      * @param {String} id The id of the timeline render task in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RenderResponse}
@@ -97,11 +99,15 @@
 
 
     /**
-     * Render the contents of a timeline as a video file.
-     * @param {module:model/Edit} edit 
+     * Render Video
+     * Queue and render the contents of a timeline as a video file.
+     * @param {module:model/Edit} edit The video edit specified using JSON.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xApiQueueId The id of a dedicated queue (enterprise customers only).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
      */
-    this.postRenderWithHttpInfo = function(edit) {
+    this.postRenderWithHttpInfo = function(edit, opts) {
+      opts = opts || {};
       var postBody = edit;
       // verify the required parameter 'edit' is set
       if (edit === undefined || edit === null) {
@@ -115,6 +121,7 @@
       var collectionQueryParams = {
       };
       var headerParams = {
+        'x-api-queue-id': opts['xApiQueueId']
       };
       var formParams = {
       };
@@ -131,12 +138,15 @@
     }
 
     /**
-     * Render the contents of a timeline as a video file.
-     * @param {module:model/Edit} edit 
+     * Render Video
+     * Queue and render the contents of a timeline as a video file.
+     * @param {module:model/Edit} edit The video edit specified using JSON.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.xApiQueueId The id of a dedicated queue (enterprise customers only).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
      */
-    this.postRender = function(edit) {
-      return this.postRenderWithHttpInfo(edit)
+    this.postRender = function(edit, opts) {
+      return this.postRenderWithHttpInfo(edit, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

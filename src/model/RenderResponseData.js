@@ -42,19 +42,19 @@
    * Constructs a new <code>RenderResponseData</code>.
    * @alias module:model/RenderResponseData
    * @class
-   * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task
-   * @param id {String} The id of the render task in UUID format
-   * @param owner {String} The owner id of the render task
+   * @param id {String} The id of the render task in UUID format.
+   * @param owner {String} The owner id of the render task.
+   * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
    * @param data {module:model/Edit} 
-   * @param created {String} The time the render task was initially queued
-   * @param updated {String} The time the render status was last updated
+   * @param created {String} The time the render task was initially queued.
+   * @param updated {String} The time the render status was last updated.
    */
-  var exports = function(status, id, owner, data, created, updated) {
+  var exports = function(id, owner, status, data, created, updated) {
     var _this = this;
 
-    _this['status'] = status;
     _this['id'] = id;
     _this['owner'] = owner;
+    _this['status'] = status;
     _this['data'] = data;
     _this['created'] = created;
     _this['updated'] = updated;
@@ -70,17 +70,35 @@
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = ApiClient.convertToType(data['status'], 'String');
-      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
       if (data.hasOwnProperty('owner')) {
         obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
       }
+      if (data.hasOwnProperty('plan')) {
+        obj['plan'] = ApiClient.convertToType(data['plan'], 'String');
+      }
+      if (data.hasOwnProperty('status')) {
+        obj['status'] = ApiClient.convertToType(data['status'], 'String');
+      }
+      if (data.hasOwnProperty('error')) {
+        obj['error'] = ApiClient.convertToType(data['error'], 'String');
+      }
+      if (data.hasOwnProperty('duration')) {
+        obj['duration'] = ApiClient.convertToType(data['duration'], 'Number');
+      }
+      if (data.hasOwnProperty('renderTime')) {
+        obj['renderTime'] = ApiClient.convertToType(data['renderTime'], 'Number');
+      }
       if (data.hasOwnProperty('url')) {
         obj['url'] = ApiClient.convertToType(data['url'], 'String');
+      }
+      if (data.hasOwnProperty('poster')) {
+        obj['poster'] = ApiClient.convertToType(data['poster'], 'String');
+      }
+      if (data.hasOwnProperty('thumbnail')) {
+        obj['thumbnail'] = ApiClient.convertToType(data['thumbnail'], 'String');
       }
       if (data.hasOwnProperty('data')) {
         obj['data'] = Edit.constructFromObject(data['data']);
@@ -96,61 +114,73 @@
   }
 
   /**
-   * The status of the render task
-   * @member {module:model/RenderResponseData.StatusEnum} status
-   */
-  exports.prototype['status'] = undefined;
-  /**
-   * The id of the render task in UUID format
+   * The id of the render task in UUID format.
    * @member {String} id
    */
   exports.prototype['id'] = undefined;
   /**
-   * The owner id of the render task
+   * The owner id of the render task.
    * @member {String} owner
    */
   exports.prototype['owner'] = undefined;
+  /**
+   * The customer subscription plan.
+   * @member {String} plan
+   */
+  exports.prototype['plan'] = undefined;
+  /**
+   * The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * @member {module:model/RenderResponseData.StatusEnum} status
+   */
+  exports.prototype['status'] = undefined;
+  /**
+   * An error message, only displayed if an error occurred.
+   * @member {String} error
+   */
+  exports.prototype['error'] = undefined;
+  /**
+   * The output video length in seconds.
+   * @member {Number} duration
+   */
+  exports.prototype['duration'] = undefined;
+  /**
+   * The time taken to render the video in milliseconds.
+   * @member {Number} renderTime
+   */
+  exports.prototype['renderTime'] = undefined;
   /**
    * The URL of the final video. This will only be available if status is done.
    * @member {String} url
    */
   exports.prototype['url'] = undefined;
   /**
+   * The URL of the poster image if requested. This will only be available if status is done.
+   * @member {String} poster
+   */
+  exports.prototype['poster'] = undefined;
+  /**
+   * The URL of the thumbnail image if requested. This will only be available if status is done.
+   * @member {String} thumbnail
+   */
+  exports.prototype['thumbnail'] = undefined;
+  /**
    * @member {module:model/Edit} data
    */
   exports.prototype['data'] = undefined;
   /**
-   * The time the render task was initially queued
+   * The time the render task was initially queued.
    * @member {String} created
    */
   exports.prototype['created'] = undefined;
   /**
-   * The time the render status was last updated
+   * The time the render status was last updated.
    * @member {String} updated
    */
   exports.prototype['updated'] = undefined;
 
 
   /**
-   * Returns The status of the render task
-   * @return {module:model/RenderResponseData.StatusEnum}
-   */
-  exports.prototype.getStatus = function() {
-    return this['status'];
-  }
-
-  /**
-   * Sets The status of the render task
-   * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task
-   */
-  exports.prototype.setStatus = function(status) {
-    this['status'] = status;
-    return this;
-  }
-
-
-  /**
-   * Returns The id of the render task in UUID format
+   * Returns The id of the render task in UUID format.
    * @return {String}
    */
   exports.prototype.getId = function() {
@@ -158,8 +188,8 @@
   }
 
   /**
-   * Sets The id of the render task in UUID format
-   * @param {String} id The id of the render task in UUID format
+   * Sets The id of the render task in UUID format.
+   * @param {String} id The id of the render task in UUID format.
    */
   exports.prototype.setId = function(id) {
     this['id'] = id;
@@ -168,7 +198,7 @@
 
 
   /**
-   * Returns The owner id of the render task
+   * Returns The owner id of the render task.
    * @return {String}
    */
   exports.prototype.getOwner = function() {
@@ -176,11 +206,101 @@
   }
 
   /**
-   * Sets The owner id of the render task
-   * @param {String} owner The owner id of the render task
+   * Sets The owner id of the render task.
+   * @param {String} owner The owner id of the render task.
    */
   exports.prototype.setOwner = function(owner) {
     this['owner'] = owner;
+    return this;
+  }
+
+
+  /**
+   * Returns The customer subscription plan.
+   * @return {String}
+   */
+  exports.prototype.getPlan = function() {
+    return this['plan'];
+  }
+
+  /**
+   * Sets The customer subscription plan.
+   * @param {String} plan The customer subscription plan.
+   */
+  exports.prototype.setPlan = function(plan) {
+    this['plan'] = plan;
+    return this;
+  }
+
+
+  /**
+   * Returns The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * @return {module:model/RenderResponseData.StatusEnum}
+   */
+  exports.prototype.getStatus = function() {
+    return this['status'];
+  }
+
+  /**
+   * Sets The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   */
+  exports.prototype.setStatus = function(status) {
+    this['status'] = status;
+    return this;
+  }
+
+
+  /**
+   * Returns An error message, only displayed if an error occurred.
+   * @return {String}
+   */
+  exports.prototype.getError = function() {
+    return this['error'];
+  }
+
+  /**
+   * Sets An error message, only displayed if an error occurred.
+   * @param {String} error An error message, only displayed if an error occurred.
+   */
+  exports.prototype.setError = function(error) {
+    this['error'] = error;
+    return this;
+  }
+
+
+  /**
+   * Returns The output video length in seconds.
+   * @return {Number}
+   */
+  exports.prototype.getDuration = function() {
+    return this['duration'];
+  }
+
+  /**
+   * Sets The output video length in seconds.
+   * @param {Number} duration The output video length in seconds.
+   */
+  exports.prototype.setDuration = function(duration) {
+    this['duration'] = duration;
+    return this;
+  }
+
+
+  /**
+   * Returns The time taken to render the video in milliseconds.
+   * @return {Number}
+   */
+  exports.prototype.getRenderTime = function() {
+    return this['renderTime'];
+  }
+
+  /**
+   * Sets The time taken to render the video in milliseconds.
+   * @param {Number} renderTime The time taken to render the video in milliseconds.
+   */
+  exports.prototype.setRenderTime = function(renderTime) {
+    this['renderTime'] = renderTime;
     return this;
   }
 
@@ -204,6 +324,42 @@
 
 
   /**
+   * Returns The URL of the poster image if requested. This will only be available if status is done.
+   * @return {String}
+   */
+  exports.prototype.getPoster = function() {
+    return this['poster'];
+  }
+
+  /**
+   * Sets The URL of the poster image if requested. This will only be available if status is done.
+   * @param {String} poster The URL of the poster image if requested. This will only be available if status is done.
+   */
+  exports.prototype.setPoster = function(poster) {
+    this['poster'] = poster;
+    return this;
+  }
+
+
+  /**
+   * Returns The URL of the thumbnail image if requested. This will only be available if status is done.
+   * @return {String}
+   */
+  exports.prototype.getThumbnail = function() {
+    return this['thumbnail'];
+  }
+
+  /**
+   * Sets The URL of the thumbnail image if requested. This will only be available if status is done.
+   * @param {String} thumbnail The URL of the thumbnail image if requested. This will only be available if status is done.
+   */
+  exports.prototype.setThumbnail = function(thumbnail) {
+    this['thumbnail'] = thumbnail;
+    return this;
+  }
+
+
+  /**
    * @return {module:model/Edit}
    */
   exports.prototype.getData = function() {
@@ -220,7 +376,7 @@
 
 
   /**
-   * Returns The time the render task was initially queued
+   * Returns The time the render task was initially queued.
    * @return {String}
    */
   exports.prototype.getCreated = function() {
@@ -228,8 +384,8 @@
   }
 
   /**
-   * Sets The time the render task was initially queued
-   * @param {String} created The time the render task was initially queued
+   * Sets The time the render task was initially queued.
+   * @param {String} created The time the render task was initially queued.
    */
   exports.prototype.setCreated = function(created) {
     this['created'] = created;
@@ -238,7 +394,7 @@
 
 
   /**
-   * Returns The time the render status was last updated
+   * Returns The time the render status was last updated.
    * @return {String}
    */
   exports.prototype.getUpdated = function() {
@@ -246,8 +402,8 @@
   }
 
   /**
-   * Sets The time the render status was last updated
-   * @param {String} updated The time the render status was last updated
+   * Sets The time the render status was last updated.
+   * @param {String} updated The time the render status was last updated.
    */
   exports.prototype.setUpdated = function(updated) {
     this['updated'] = updated;

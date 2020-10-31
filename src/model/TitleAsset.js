@@ -40,10 +40,10 @@
 
   /**
    * Constructs a new <code>TitleAsset</code>.
-   * The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning. 
+   * The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
    * @alias module:model/TitleAsset
    * @class
-   * @param type {String} The type of asset - set to <b>title</b> for titles.
+   * @param type {String} The type of asset - set to `title` for titles.
    * @param text {String} The title text string - i.e. \"My Title\".
    */
   var exports = function(type = 'title', text) {
@@ -92,7 +92,7 @@
   }
 
   /**
-   * The type of asset - set to <b>title</b> for titles.
+   * The type of asset - set to `title` for titles.
    * @member {String} type
    * @default 'title'
    */
@@ -103,7 +103,7 @@
    */
   exports.prototype['text'] = undefined;
   /**
-   * Uses a preset to apply font properties and styling to the title.
+   * Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
    * @member {module:model/TitleAsset.StyleEnum} style
    */
   exports.prototype['style'] = undefined;
@@ -114,18 +114,18 @@
    */
   exports.prototype['color'] = '#ffffff';
   /**
-   * Set the relative size of the text using predefined sizes from xx-small to xx-large. 
+   * Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    * @member {module:model/TitleAsset.SizeEnum} size
    * @default 'medium'
    */
   exports.prototype['size'] = 'medium';
   /**
-   * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
+   * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
    * @member {String} background
    */
   exports.prototype['background'] = undefined;
   /**
-   * Place the title in one of nine predefined positions of the viewport. 
+   * Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/TitleAsset.PositionEnum} position
    * @default 'center'
    */
@@ -137,7 +137,7 @@
 
 
   /**
-   * Returns The type of asset - set to <b>title</b> for titles.
+   * Returns The type of asset - set to `title` for titles.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -145,8 +145,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>title</b> for titles.
-   * @param {String} type The type of asset - set to <b>title</b> for titles.
+   * Sets The type of asset - set to `title` for titles.
+   * @param {String} type The type of asset - set to `title` for titles.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
@@ -173,7 +173,7 @@
 
 
   /**
-   * Returns Uses a preset to apply font properties and styling to the title.
+   * Returns Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
    * @return {module:model/TitleAsset.StyleEnum}
    */
   exports.prototype.getStyle = function() {
@@ -181,8 +181,8 @@
   }
 
   /**
-   * Sets Uses a preset to apply font properties and styling to the title.
-   * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and styling to the title.
+   * Sets Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
+   * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
    */
   exports.prototype.setStyle = function(style) {
     this['style'] = style;
@@ -209,7 +209,7 @@
 
 
   /**
-   * Returns Set the relative size of the text using predefined sizes from xx-small to xx-large. 
+   * Returns Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    * @return {module:model/TitleAsset.SizeEnum}
    */
   exports.prototype.getSize = function() {
@@ -217,8 +217,8 @@
   }
 
   /**
-   * Sets Set the relative size of the text using predefined sizes from xx-small to xx-large. 
-   * @param {module:model/TitleAsset.SizeEnum} size Set the relative size of the text using predefined sizes from xx-small to xx-large. 
+   * Sets Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
+   * @param {module:model/TitleAsset.SizeEnum} size Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    */
   exports.prototype.setSize = function(size) {
     this['size'] = size;
@@ -227,7 +227,7 @@
 
 
   /**
-   * Returns Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
+   * Returns Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
    * @return {String}
    */
   exports.prototype.getBackground = function() {
@@ -235,8 +235,8 @@
   }
 
   /**
-   * Sets Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
-   * @param {String} background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
+   * Sets Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+   * @param {String} background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;
@@ -245,7 +245,7 @@
 
 
   /**
-   * Returns Place the title in one of nine predefined positions of the viewport. 
+   * Returns Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @return {module:model/TitleAsset.PositionEnum}
    */
   exports.prototype.getPosition = function() {
@@ -253,8 +253,8 @@
   }
 
   /**
-   * Sets Place the title in one of nine predefined positions of the viewport. 
-   * @param {module:model/TitleAsset.PositionEnum} position Place the title in one of nine predefined positions of the viewport. 
+   * Sets Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+   * @param {module:model/TitleAsset.PositionEnum} position Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    */
   exports.prototype.setPosition = function(position) {
     this['position'] = position;

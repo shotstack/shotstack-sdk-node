@@ -129,7 +129,7 @@
    */
   exports.prototype['scale'] = undefined;
   /**
-   * Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position.
+   * Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/Clip.PositionEnum} position
    * @default 'center'
    */
@@ -143,20 +143,21 @@
    */
   exports.prototype['transition'] = undefined;
   /**
-   * A motion effect to apply to the Clip.
+   * A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
    * @member {module:model/Clip.EffectEnum} effect
    */
   exports.prototype['effect'] = undefined;
   /**
-   * A filter effect to apply to the Clip.
+   * A filter effect to apply to the Clip. <ul>   <li>`blur` - blurs the image or video</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
    * @member {module:model/Clip.FilterEnum} filter
    */
   exports.prototype['filter'] = undefined;
   /**
    * Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
    * @member {Number} opacity
+   * @default 1
    */
-  exports.prototype['opacity'] = undefined;
+  exports.prototype['opacity'] = 1;
 
 
   /**
@@ -250,7 +251,7 @@
 
 
   /**
-   * Returns Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position.
+   * Returns Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @return {module:model/Clip.PositionEnum}
    */
   exports.prototype.getPosition = function() {
@@ -258,8 +259,8 @@
   }
 
   /**
-   * Sets Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position.
-   * @param {module:model/Clip.PositionEnum} position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position.
+   * Sets Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+   * @param {module:model/Clip.PositionEnum} position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    */
   exports.prototype.setPosition = function(position) {
     this['position'] = position;
@@ -300,7 +301,7 @@
 
 
   /**
-   * Returns A motion effect to apply to the Clip.
+   * Returns A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
    * @return {module:model/Clip.EffectEnum}
    */
   exports.prototype.getEffect = function() {
@@ -308,8 +309,8 @@
   }
 
   /**
-   * Sets A motion effect to apply to the Clip.
-   * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip.
+   * Sets A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
+   * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
@@ -318,7 +319,7 @@
 
 
   /**
-   * Returns A filter effect to apply to the Clip.
+   * Returns A filter effect to apply to the Clip. <ul>   <li>`blur` - blurs the image or video</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
    * @return {module:model/Clip.FilterEnum}
    */
   exports.prototype.getFilter = function() {
@@ -326,8 +327,8 @@
   }
 
   /**
-   * Sets A filter effect to apply to the Clip.
-   * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip.
+   * Sets A filter effect to apply to the Clip. <ul>   <li>`blur` - blurs the image or video</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
+   * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip. <ul>   <li>`blur` - blurs the image or video</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
    */
   exports.prototype.setFilter = function(filter) {
     this['filter'] = filter;
@@ -475,6 +476,11 @@
    * @readonly
    */
   exports.FilterEnum = {
+    /**
+     * value: "blur"
+     * @const
+     */
+    "blur": "blur",
     /**
      * value: "boost"
      * @const
