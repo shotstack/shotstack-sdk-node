@@ -40,10 +40,10 @@
 
   /**
    * Constructs a new <code>Soundtrack</code>.
-   * A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest. 
+   * A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
    * @alias module:model/Soundtrack
    * @class
-   * @param src {String} The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. 
+   * @param src {String} The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
    */
   var exports = function(src) {
     var _this = this;
@@ -69,30 +69,31 @@
       }
       if (data.hasOwnProperty('volume')) {
         obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
-    }
+      }
     }
     return obj;
   }
 
   /**
-   * The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. 
+   * The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
    * @member {String} src
    */
   exports.prototype['src'] = undefined;
   /**
-   * The effect to apply to the audio file
+   * The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
    * @member {module:model/Soundtrack.EffectEnum} effect
    */
   exports.prototype['effect'] = undefined;
   /**
    * Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
+   * @default 1
    */
-  exports.prototype['volume'] = undefined;
+  exports.prototype['volume'] = 1;
 
 
   /**
-   * Returns The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. 
+   * Returns The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
    * @return {String}
    */
   exports.prototype.getSrc = function() {
@@ -100,8 +101,8 @@
   }
 
   /**
-   * Sets The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. 
-   * @param {String} src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. 
+   * Sets The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+   * @param {String} src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
@@ -110,7 +111,7 @@
 
 
   /**
-   * Returns The effect to apply to the audio file
+   * Returns The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
    * @return {module:model/Soundtrack.EffectEnum}
    */
   exports.prototype.getEffect = function() {
@@ -118,8 +119,8 @@
   }
 
   /**
-   * Sets The effect to apply to the audio file
-   * @param {module:model/Soundtrack.EffectEnum} effect The effect to apply to the audio file
+   * Sets The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @param {module:model/Soundtrack.EffectEnum} effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;

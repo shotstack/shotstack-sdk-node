@@ -43,7 +43,7 @@
    * The video output format.
    * @alias module:model/Output
    * @class
-   * @param format {module:model/Output.FormatEnum} `mp4`, `webm` video or animated `gif`
+   * @param format {module:model/Output.FormatEnum} `mp4` video or animated `gif`
    * @param resolution {module:model/Output.ResolutionEnum} The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    */
   var exports = function(format, resolution) {
@@ -74,7 +74,7 @@
       }
       if (data.hasOwnProperty('scaleTo')) {
         obj['scaleTo'] = ApiClient.convertToType(data['scaleTo'], 'String');
-    }
+      }
       if (data.hasOwnProperty('poster')) {
         obj['poster'] = Poster.constructFromObject(data['poster']);
       }
@@ -86,7 +86,7 @@
   }
 
   /**
-   * `mp4`, `webm` video or animated `gif`
+   * `mp4` video or animated `gif`
    * @member {module:model/Output.FormatEnum} format
    */
   exports.prototype['format'] = undefined;
@@ -116,7 +116,7 @@
 
 
   /**
-   * Returns `mp4`, `webm` video or animated `gif`
+   * Returns `mp4` video or animated `gif`
    * @return {module:model/Output.FormatEnum}
    */
   exports.prototype.getFormat = function() {
@@ -124,8 +124,8 @@
   }
 
   /**
-   * Sets `mp4`, `webm` video or animated `gif`
-   * @param {module:model/Output.FormatEnum} format `mp4`, `webm` video or animated `gif`
+   * Sets `mp4` video or animated `gif`
+   * @param {module:model/Output.FormatEnum} format `mp4` video or animated `gif`
    */
   exports.prototype.setFormat = function(format) {
     this['format'] = format;
@@ -230,11 +230,6 @@
      * @const
      */
     "mp4": "mp4",
-    /**
-     * value: "webm"
-     * @const
-     */
-    "webm": "webm",
     /**
      * value: "gif"
      * @const

@@ -42,8 +42,8 @@
    * Constructs a new <code>RenderResponse</code>.
    * @alias module:model/RenderResponse
    * @class
-   * @param success {Boolean} 
-   * @param message {String} 
+   * @param success {Boolean} `true` if status available, else `false`.
+   * @param message {String} `OK` or an error message.
    * @param response {module:model/RenderResponseData} 
    */
   var exports = function(success, message, response) {
@@ -78,10 +78,12 @@
   }
 
   /**
+   * `true` if status available, else `false`.
    * @member {Boolean} success
    */
   exports.prototype['success'] = undefined;
   /**
+   * `OK` or an error message.
    * @member {String} message
    */
   exports.prototype['message'] = undefined;
@@ -92,6 +94,7 @@
 
 
   /**
+   * Returns `true` if status available, else `false`.
    * @return {Boolean}
    */
   exports.prototype.getSuccess = function() {
@@ -99,7 +102,8 @@
   }
 
   /**
-   * @param {Boolean} success
+   * Sets `true` if status available, else `false`.
+   * @param {Boolean} success `true` if status available, else `false`.
    */
   exports.prototype.setSuccess = function(success) {
     this['success'] = success;
@@ -108,6 +112,7 @@
 
 
   /**
+   * Returns `OK` or an error message.
    * @return {String}
    */
   exports.prototype.getMessage = function() {
@@ -115,7 +120,8 @@
   }
 
   /**
-   * @param {String} message
+   * Sets `OK` or an error message.
+   * @param {String} message `OK` or an error message.
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;

@@ -43,7 +43,7 @@
    * The ImageAsset is used to create video from images. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
    * @alias module:model/ImageAsset
    * @class
-   * @param type {String} The type of asset - set to <b>image</b> for images.
+   * @param type {String} The type of asset - set to `image` for images.
    * @param src {String} The image source URL. The URL must be publicly accessible or include credentials.
    */
   var exports = function(type = 'image', src) {
@@ -74,7 +74,7 @@
   }
 
   /**
-   * The type of asset - set to <b>image</b> for images.
+   * The type of asset - set to `image` for images.
    * @member {String} type
    * @default 'image'
    */
@@ -87,7 +87,7 @@
 
 
   /**
-   * Returns The type of asset - set to <b>image</b> for images.
+   * Returns The type of asset - set to `image` for images.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -95,8 +95,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>image</b> for images.
-   * @param {String} type The type of asset - set to <b>image</b> for images.
+   * Sets The type of asset - set to `image` for images.
+   * @param {String} type The type of asset - set to `image` for images.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;

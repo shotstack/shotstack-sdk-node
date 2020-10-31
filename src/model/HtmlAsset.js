@@ -43,7 +43,7 @@
    * The HtmlAsset clip type lets you create text based layout and formatting using HTML and CSS. You can also set the height and width of a bounding box for the HTML content to sit within. Text and elements will wrap within the bounding box.
    * @alias module:model/HtmlAsset
    * @class
-   * @param type {String} The type of asset - set to <b>html</b> for HTML.
+   * @param type {String} The type of asset - set to `html` for HTML.
    * @param html {String} The HTML text string.
    */
   var exports = function(type = 'html', html) {
@@ -89,7 +89,7 @@
   }
 
   /**
-   * The type of asset - set to <b>html</b> for HTML.
+   * The type of asset - set to `html` for HTML.
    * @member {String} type
    * @default 'html'
    */
@@ -121,7 +121,7 @@
    */
   exports.prototype['background'] = 'transparent';
   /**
-   * Place the HTML in one of nine predefined positions within the HTML area.
+   * Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/HtmlAsset.PositionEnum} position
    * @default 'center'
    */
@@ -129,7 +129,7 @@
 
 
   /**
-   * Returns The type of asset - set to <b>html</b> for HTML.
+   * Returns The type of asset - set to `html` for HTML.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -137,8 +137,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>html</b> for HTML.
-   * @param {String} type The type of asset - set to <b>html</b> for HTML.
+   * Sets The type of asset - set to `html` for HTML.
+   * @param {String} type The type of asset - set to `html` for HTML.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
@@ -237,7 +237,7 @@
 
 
   /**
-   * Returns Place the HTML in one of nine predefined positions within the HTML area.
+   * Returns Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @return {module:model/HtmlAsset.PositionEnum}
    */
   exports.prototype.getPosition = function() {
@@ -245,8 +245,8 @@
   }
 
   /**
-   * Sets Place the HTML in one of nine predefined positions within the HTML area.
-   * @param {module:model/HtmlAsset.PositionEnum} position Place the HTML in one of nine predefined positions within the HTML area.
+   * Sets Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+   * @param {module:model/HtmlAsset.PositionEnum} position Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    */
   exports.prototype.setPosition = function(position) {
     this['position'] = position;

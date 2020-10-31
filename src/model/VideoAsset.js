@@ -43,8 +43,8 @@
    * The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
    * @alias module:model/VideoAsset
    * @class
-   * @param type {String} The type of asset - set to <b>video</b> for videos.
-   * @param src {String} The video source URL. The URL must be publicly accessible or include credentials. 
+   * @param type {String} The type of asset - set to `video` for videos.
+   * @param src {String} The video source URL. The URL must be publicly accessible or include credentials.
    */
   var exports = function(type = 'video', src) {
     var _this = this;
@@ -80,13 +80,13 @@
   }
 
   /**
-   * The type of asset - set to <b>video</b> for videos.
+   * The type of asset - set to `video` for videos.
    * @member {String} type
    * @default 'video'
    */
   exports.prototype['type'] = 'video';
   /**
-   * The video source URL. The URL must be publicly accessible or include credentials. 
+   * The video source URL. The URL must be publicly accessible or include credentials.
    * @member {String} src
    */
   exports.prototype['src'] = undefined;
@@ -103,7 +103,7 @@
 
 
   /**
-   * Returns The type of asset - set to <b>video</b> for videos.
+   * Returns The type of asset - set to `video` for videos.
    * @return {String}
    */
   exports.prototype.getType = function() {
@@ -111,8 +111,8 @@
   }
 
   /**
-   * Sets The type of asset - set to <b>video</b> for videos.
-   * @param {String} type The type of asset - set to <b>video</b> for videos.
+   * Sets The type of asset - set to `video` for videos.
+   * @param {String} type The type of asset - set to `video` for videos.
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
@@ -121,7 +121,7 @@
 
 
   /**
-   * Returns The video source URL. The URL must be publicly accessible or include credentials. 
+   * Returns The video source URL. The URL must be publicly accessible or include credentials.
    * @return {String}
    */
   exports.prototype.getSrc = function() {
@@ -129,8 +129,8 @@
   }
 
   /**
-   * Sets The video source URL. The URL must be publicly accessible or include credentials. 
-   * @param {String} src The video source URL. The URL must be publicly accessible or include credentials. 
+   * Sets The video source URL. The URL must be publicly accessible or include credentials.
+   * @param {String} src The video source URL. The URL must be publicly accessible or include credentials.
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
