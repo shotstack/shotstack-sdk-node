@@ -111,7 +111,7 @@
    * @member {module:model/Output.FpsEnum} fps
    * @default FpsEnum.25
    */
-  exports.prototype['fps'] = FpsEnum['25'];
+  exports.prototype['fps'] = 25;
   /**
    * Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    * @member {module:model/Output.ScaleToEnum} scaleTo
