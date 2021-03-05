@@ -1,6 +1,6 @@
 {
   "name": "shotstack-sdk",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Official Node SDK for the Shotstack Cloud Video Editing API",
   "license": "MIT",
   "main": "src/index.js",

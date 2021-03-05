@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  *
@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>Font</code>.
-   * Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag.
+   * Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag. See our [custom fonts](https://shotstack.io/learn/html-custom-fonts/) getting started guide for more details.
    * @alias module:model/Font
    * @class
    * @param src {String} The URL of the font file. The URL must be publicly accessible or include credentials.

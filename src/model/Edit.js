@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  *
@@ -72,6 +72,9 @@
       if (data.hasOwnProperty('callback')) {
         obj['callback'] = ApiClient.convertToType(data['callback'], 'String');
       }
+      if (data.hasOwnProperty('disk')) {
+        obj['disk'] = ApiClient.convertToType(data['disk'], 'String');
+      }
     }
     return obj;
   }
@@ -85,10 +88,16 @@
    */
   exports.prototype['output'] = undefined;
   /**
-   * An optional webhook callback URL used to receive status notifications when a render completes or fails.
+   * An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
    * @member {String} callback
    */
   exports.prototype['callback'] = undefined;
+  /**
+   * The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+   * @member {module:model/Edit.DiskEnum} disk
+   * @default 'local'
+   */
+  exports.prototype['disk'] = 'local';
 
 
   /**
@@ -124,7 +133,7 @@
 
 
   /**
-   * Returns An optional webhook callback URL used to receive status notifications when a render completes or fails.
+   * Returns An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
    * @return {String}
    */
   exports.prototype.getCallback = function() {
@@ -132,14 +141,48 @@
   }
 
   /**
-   * Sets An optional webhook callback URL used to receive status notifications when a render completes or fails.
-   * @param {String} callback An optional webhook callback URL used to receive status notifications when a render completes or fails.
+   * Sets An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
+   * @param {String} callback An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
    */
   exports.prototype.setCallback = function(callback) {
     this['callback'] = callback;
     return this;
   }
 
+
+  /**
+   * Returns The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+   * @return {module:model/Edit.DiskEnum}
+   */
+  exports.prototype.getDisk = function() {
+    return this['disk'];
+  }
+
+  /**
+   * Sets The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+   * @param {module:model/Edit.DiskEnum} disk The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+   */
+  exports.prototype.setDisk = function(disk) {
+    this['disk'] = disk;
+  }
+
+
+  /**
+   * Allowed values for the <code>disk</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.DiskEnum = {
+    /**
+     * value: "local"
+     * @const
+     */
+    "local": "local",
+    /**
+     * value: "mount"
+     * @const
+     */
+    "mount": "mount"  };
 
 
   return exports;
