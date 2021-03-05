@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  *
@@ -73,6 +73,9 @@
       if (data.hasOwnProperty('tracks')) {
         obj['tracks'] = ApiClient.convertToType(data['tracks'], [Track]);
       }
+      if (data.hasOwnProperty('cache')) {
+        obj['cache'] = ApiClient.convertToType(data['cache'], 'Boolean');
+      }
     }
     return obj;
   }
@@ -97,6 +100,12 @@
    * @member {Array.<module:model/Track>} tracks
    */
   exports.prototype['tracks'] = undefined;
+  /**
+   * Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.gitbook.io/docs/guides/architecting-an-application/caching) for more details.
+   * @member {Boolean} cache
+   * @default true
+   */
+  exports.prototype['cache'] = true;
 
 
   /**
@@ -166,6 +175,23 @@
   exports.prototype.setTracks = function(tracks) {
     this['tracks'] = tracks;
     return this;
+  }
+
+
+  /**
+   * Returns Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.gitbook.io/docs/guides/architecting-an-application/caching) for more details.
+   * @return {Boolean}
+   */
+  exports.prototype.getCache = function() {
+    return this['cache'];
+  }
+
+  /**
+   * Sets Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.gitbook.io/docs/guides/architecting-an-application/caching) for more details.
+   * @param {Boolean} cache Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.gitbook.io/docs/guides/architecting-an-application/caching) for more details.
+   */
+  exports.prototype.setCache = function(cache) {
+    this['cache'] = cache;
   }
 
 

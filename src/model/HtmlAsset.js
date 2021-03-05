@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  *
@@ -44,7 +44,7 @@
    * @alias module:model/HtmlAsset
    * @class
    * @param type {String} The type of asset - set to `html` for HTML.
-   * @param html {String} The HTML text string.
+   * @param html {String} The HTML text string. See list of [supported HTML tags](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    */
   var exports = function(type, html) {
     var _this = this;
@@ -95,12 +95,12 @@
    */
   exports.prototype['type'] = 'html';
   /**
-   * The HTML text string.
+   * The HTML text string. See list of [supported HTML tags](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    * @member {String} html
    */
   exports.prototype['html'] = undefined;
   /**
-   * The CSS text string to apply styling to the HTML.
+   * The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    * @member {String} css
    */
   exports.prototype['css'] = undefined;
@@ -147,7 +147,7 @@
 
 
   /**
-   * Returns The HTML text string.
+   * Returns The HTML text string. See list of [supported HTML tags](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    * @return {String}
    */
   exports.prototype.getHtml = function() {
@@ -155,8 +155,8 @@
   }
 
   /**
-   * Sets The HTML text string.
-   * @param {String} html The HTML text string.
+   * Sets The HTML text string. See list of [supported HTML tags](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
+   * @param {String} html The HTML text string. See list of [supported HTML tags](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    */
   exports.prototype.setHtml = function(html) {
     this['html'] = html;
@@ -165,7 +165,7 @@
 
 
   /**
-   * Returns The CSS text string to apply styling to the HTML.
+   * Returns The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    * @return {String}
    */
   exports.prototype.getCss = function() {
@@ -173,8 +173,8 @@
   }
 
   /**
-   * Sets The CSS text string to apply styling to the HTML.
-   * @param {String} css The CSS text string to apply styling to the HTML.
+   * Sets The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
+   * @param {String} css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.gitbook.io/docs/guides/architecting-an-application/html-support#supported-html-tags).
    */
   exports.prototype.setCss = function(css) {
     this['css'] = css;

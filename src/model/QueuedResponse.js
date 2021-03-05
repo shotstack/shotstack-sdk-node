@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  *
@@ -107,7 +107,6 @@
    */
   exports.prototype.setSuccess = function(success) {
     this['success'] = success;
-    return this;
   }
 
 
@@ -125,7 +124,6 @@
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;
-    return this;
   }
 
 
