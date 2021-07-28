@@ -13,7 +13,7 @@
  *
  */
 
-(function(root, factory) {
+ (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['ApiClient'], factory);
@@ -43,10 +43,12 @@
    * Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
    * @alias module:model/ShotstackDestination
    * @class
+   * @param provider {String} The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN.
    */
-  var exports = function() {
+  var exports = function(provider) {
     var _this = this;
 
+    _this['provider'] = provider || 'shotstack';
   };
 
   /**
@@ -97,6 +99,7 @@
    */
   exports.prototype.setProvider = function(provider) {
     this['provider'] = provider;
+    return this;
   }
 
 
@@ -114,6 +117,7 @@
    */
   exports.prototype.setExclude = function(exclude) {
     this['exclude'] = exclude;
+    return this;
   }
 
 
