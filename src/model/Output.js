@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  *
@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Poster', 'model/Range', 'model/Thumbnail'], factory);
+    define(['ApiClient', 'model/Destinations', 'model/Poster', 'model/Range', 'model/Size', 'model/Thumbnail'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Poster'), require('./Range'), require('./Thumbnail'));
+    module.exports = factory(require('../ApiClient'), require('./Destinations'), require('./Poster'), require('./Range'), require('./Size'), require('./Thumbnail'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Output = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Poster, root.ShotstackSdk.Range, root.ShotstackSdk.Thumbnail);
+    root.ShotstackSdk.Output = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Destinations, root.ShotstackSdk.Poster, root.ShotstackSdk.Range, root.ShotstackSdk.Size, root.ShotstackSdk.Thumbnail);
   }
-}(this, function(ApiClient, Poster, Range, Thumbnail) {
+}(this, function(ApiClient, Destinations, Poster, Range, Size, Thumbnail) {
   'use strict';
 
 
@@ -43,14 +43,12 @@
    * The output format, render range and type of media to generate.
    * @alias module:model/Output
    * @class
-   * @param format {module:model/Output.FormatEnum} The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
-   * @param resolution {module:model/Output.ResolutionEnum} The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * @param format {module:model/Output.FormatEnum} The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
    */
-  var exports = function(format, resolution) {
+  var exports = function(format) {
     var _this = this;
 
     _this['format'] = format;
-    _this['resolution'] = resolution;
   };
 
   /**
@@ -72,11 +70,17 @@
       if (data.hasOwnProperty('aspectRatio')) {
         obj['aspectRatio'] = ApiClient.convertToType(data['aspectRatio'], 'String');
       }
+      if (data.hasOwnProperty('size')) {
+        obj['size'] = Size.constructFromObject(data['size']);
+      }
       if (data.hasOwnProperty('fps')) {
         obj['fps'] = ApiClient.convertToType(data['fps'], 'Number');
       }
       if (data.hasOwnProperty('scaleTo')) {
         obj['scaleTo'] = ApiClient.convertToType(data['scaleTo'], 'String');
+      }
+      if (data.hasOwnProperty('quality')) {
+        obj['quality'] = ApiClient.convertToType(data['quality'], 'String');
       }
       if (data.hasOwnProperty('range')) {
         obj['range'] = Range.constructFromObject(data['range']);
@@ -87,25 +91,32 @@
       if (data.hasOwnProperty('thumbnail')) {
         obj['thumbnail'] = Thumbnail.constructFromObject(data['thumbnail']);
       }
+      if (data.hasOwnProperty('destinations')) {
+        obj['destinations'] = ApiClient.convertToType(data['destinations'], [Destinations]);
+      }
     }
     return obj;
   }
 
   /**
-   * The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
+   * The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
    * @member {module:model/Output.FormatEnum} format
    */
   exports.prototype['format'] = undefined;
   /**
-   * The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * The output resolution of the video or image. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    * @member {module:model/Output.ResolutionEnum} resolution
    */
   exports.prototype['resolution'] = undefined;
   /**
-   * The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li> </ul>
+   * The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    * @member {module:model/Output.AspectRatioEnum} aspectRatio
    */
   exports.prototype['aspectRatio'] = undefined;
+  /**
+   * @member {module:model/Size} size
+   */
+  exports.prototype['size'] = undefined;
   /**
    * Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`25` - 25fps</li>   <li>`30` - 30fps</li> </ul>
    * @member {module:model/Output.FpsEnum} fps
@@ -113,10 +124,16 @@
    */
   exports.prototype['fps'] = 25;
   /**
-   * Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    * @member {module:model/Output.ScaleToEnum} scaleTo
    */
   exports.prototype['scaleTo'] = undefined;
+  /**
+   * Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * @member {module:model/Output.QualityEnum} quality
+   * @default 'medium'
+   */
+  exports.prototype['quality'] = 'medium';
   /**
    * @member {module:model/Range} range
    */
@@ -129,10 +146,15 @@
    * @member {module:model/Thumbnail} thumbnail
    */
   exports.prototype['thumbnail'] = undefined;
+  /**
+   * A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [DestinationShotstack](/#tocs_shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property.
+   * @member {Array.<module:model/Destinations>} destinations
+   */
+  exports.prototype['destinations'] = undefined;
 
 
   /**
-   * Returns The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
+   * Returns The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
    * @return {module:model/Output.FormatEnum}
    */
   exports.prototype.getFormat = function() {
@@ -140,8 +162,8 @@
   }
 
   /**
-   * Sets The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
-   * @param {module:model/Output.FormatEnum} format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
+   * Sets The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
+   * @param {module:model/Output.FormatEnum} format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
    */
   exports.prototype.setFormat = function(format) {
     this['format'] = format;
@@ -150,7 +172,7 @@
 
 
   /**
-   * Returns The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * Returns The output resolution of the video or image. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    * @return {module:model/Output.ResolutionEnum}
    */
   exports.prototype.getResolution = function() {
@@ -158,8 +180,8 @@
   }
 
   /**
-   * Sets The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
-   * @param {module:model/Output.ResolutionEnum} resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * Sets The output resolution of the video or image. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+   * @param {module:model/Output.ResolutionEnum} resolution The output resolution of the video or image. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
    */
   exports.prototype.setResolution = function(resolution) {
     this['resolution'] = resolution;
@@ -168,7 +190,7 @@
 
 
   /**
-   * Returns The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li> </ul>
+   * Returns The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    * @return {module:model/Output.AspectRatioEnum}
    */
   exports.prototype.getAspectRatio = function() {
@@ -176,11 +198,27 @@
   }
 
   /**
-   * Sets The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li> </ul>
-   * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li> </ul>
+   * Sets The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+   * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    */
   exports.prototype.setAspectRatio = function(aspectRatio) {
     this['aspectRatio'] = aspectRatio;
+    return this;
+  }
+
+
+  /**
+   * @return {module:model/Size}
+   */
+  exports.prototype.getSize = function() {
+    return this['size'];
+  }
+
+  /**
+   * @param {module:model/Size} size
+   */
+  exports.prototype.setSize = function(size) {
+    this['size'] = size;
     return this;
   }
 
@@ -204,7 +242,7 @@
 
 
   /**
-   * Returns Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * Returns Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    * @return {module:model/Output.ScaleToEnum}
    */
   exports.prototype.getScaleTo = function() {
@@ -212,11 +250,29 @@
   }
 
   /**
-   * Sets Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
-   * @param {module:model/Output.ScaleToEnum} scaleTo Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * Sets Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+   * @param {module:model/Output.ScaleToEnum} scaleTo Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
    */
   exports.prototype.setScaleTo = function(scaleTo) {
     this['scaleTo'] = scaleTo;
+    return this;
+  }
+
+
+  /**
+   * Returns Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * @return {module:model/Output.QualityEnum}
+   */
+  exports.prototype.getQuality = function() {
+    return this['quality'];
+  }
+
+  /**
+   * Sets Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * @param {module:model/Output.QualityEnum} quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   */
+  exports.prototype.setQuality = function(quality) {
+    this['quality'] = quality;
     return this;
   }
 
@@ -270,6 +326,24 @@
 
 
   /**
+   * Returns A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [DestinationShotstack](/#tocs_shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property.
+   * @return {Array.<module:model/Destinations>}
+   */
+  exports.prototype.getDestinations = function() {
+    return this['destinations'];
+  }
+
+  /**
+   * Sets A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [DestinationShotstack](/#tocs_shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property.
+   * @param {Array.<module:model/Destinations>} destinations A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [DestinationShotstack](/#tocs_shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property.
+   */
+  exports.prototype.setDestinations = function(destinations) {
+    this['destinations'] = destinations;
+    return this;
+  }
+
+
+  /**
    * Allowed values for the <code>format</code> property.
    * @enum {String}
    * @readonly
@@ -289,7 +363,22 @@
      * value: "mp3"
      * @const
      */
-    "mp3": "mp3"  };
+    "mp3": "mp3",
+    /**
+     * value: "jpg"
+     * @const
+     */
+    "jpg": "jpg",
+    /**
+     * value: "png"
+     * @const
+     */
+    "png": "png",
+    /**
+     * value: "bmp"
+     * @const
+     */
+    "bmp": "bmp"  };
 
   /**
    * Allowed values for the <code>resolution</code> property.
@@ -348,7 +437,12 @@
      * value: "4:5"
      * @const
      */
-    "4:5": "4:5"  };
+    "4:5": "4:5",
+    /**
+     * value: "4:3"
+     * @const
+     */
+    "4:3": "4:3"  };
 
   /**
    * Allowed values for the <code>fps</code> property.
@@ -413,6 +507,28 @@
      * @const
      */
     "1080": "1080"  };
+
+  /**
+   * Allowed values for the <code>quality</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.QualityEnum = {
+    /**
+     * value: "low"
+     * @const
+     */
+    "low": "low",
+    /**
+     * value: "medium"
+     * @const
+     */
+    "medium": "medium",
+    /**
+     * value: "high"
+     * @const
+     */
+    "high": "high"  };
 
 
   return exports;

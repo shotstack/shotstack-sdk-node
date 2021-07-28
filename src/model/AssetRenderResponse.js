@@ -16,80 +16,77 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/AssetResponseData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./AssetResponseData'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Poster = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.AssetRenderResponse = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.AssetResponseData);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, AssetResponseData) {
   'use strict';
 
 
 
   /**
-   * The Poster model module.
-   * @module model/Poster
+   * The AssetRenderResponse model module.
+   * @module model/AssetRenderResponse
    * @version v1
    */
 
   /**
-   * Constructs a new <code>Poster</code>.
-   * Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
-   * @alias module:model/Poster
+   * Constructs a new <code>AssetRenderResponse</code>.
+   * The response returned by the Serve API [get asset by render id](#get-asset-by-render-id) request. The response  is an array of asset resources, including video, image, audio, thumbnail and poster image. The response follows  the [json:api](https://jsonapi.org/) specification.
+   * @alias module:model/AssetRenderResponse
    * @class
-   * @param capture {Number} The point on the timeline in seconds to capture a single frame to use as the poster image.
    */
-  var exports = function(capture) {
+  var exports = function() {
     var _this = this;
 
-    _this['capture'] = capture;
   };
 
   /**
-   * Constructs a <code>Poster</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>AssetRenderResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Poster} obj Optional instance to populate.
-   * @return {module:model/Poster} The populated <code>Poster</code> instance.
+   * @param {module:model/AssetRenderResponse} obj Optional instance to populate.
+   * @return {module:model/AssetRenderResponse} The populated <code>AssetRenderResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('capture')) {
-        obj['capture'] = ApiClient.convertToType(data['capture'], 'Number');
+      if (data.hasOwnProperty('data')) {
+        obj['data'] = ApiClient.convertToType(data['data'], [AssetResponseData]);
       }
     }
     return obj;
   }
 
   /**
-   * The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @member {Number} capture
+   * An array of asset resources grouped by render id.
+   * @member {Array.<module:model/AssetResponseData>} data
    */
-  exports.prototype['capture'] = undefined;
+  exports.prototype['data'] = undefined;
 
 
   /**
-   * Returns The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @return {Number}
+   * Returns An array of asset resources grouped by render id.
+   * @return {Array.<module:model/AssetResponseData>}
    */
-  exports.prototype.getCapture = function() {
-    return this['capture'];
+  exports.prototype.getData = function() {
+    return this['data'];
   }
 
   /**
-   * Sets The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @param {Number} capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+   * Sets An array of asset resources grouped by render id.
+   * @param {Array.<module:model/AssetResponseData>} data An array of asset resources grouped by render id.
    */
-  exports.prototype.setCapture = function(capture) {
-    this['capture'] = capture;
-    return this;
+  exports.prototype.setData = function(data) {
+    this['data'] = data;
   }
 
 

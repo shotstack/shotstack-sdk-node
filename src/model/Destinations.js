@@ -1,6 +1,6 @@
 /**
- * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * shotstack
+ * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. 
  *
  * The version of the OpenAPI document: v1
  *
@@ -25,7 +25,7 @@
       if (!root.ShotstackSdk) {
         root.ShotstackSdk = {};
       }
-      root.ShotstackSdk.Asset = factory(root.ShotstackSdk.ApiClient);
+      root.ShotstackSdk.Destinations = factory(root.ShotstackSdk.ApiClient);
     }
   }(this, function(ApiClient) {
     'use strict';
@@ -33,14 +33,14 @@
   
   
     /**
-     * The Asset model module.
-     * @module model/Asset
+     * The Destinations model module.
+     * @module model/Destinations
      * @version v1
      */
   
     /**
-     * Constructs a new <code>Asset</code>.
-     * @alias module:model/Asset
+     * Constructs a new <code>Destinations</code>.
+     * @alias module:model/Destinations
      * @class
      */
     var exports = function() {
@@ -49,11 +49,11 @@
     };
   
     /**
-     * Constructs a <code>Asset</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>Destinations</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Asset} obj Optional instance to populate.
-     * @return {module:model/Asset} The populated <code>Asset</code> instance.
+     * @param {module:model/Destinations} obj Optional instance to populate.
+     * @return {module:model/Destinations} The populated <code>Destinations</code> instance.
      */
     exports.constructFromObject = function(data, obj) {
       if (data) {

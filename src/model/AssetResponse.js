@@ -16,80 +16,74 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/AssetResponseData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./AssetResponseData'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Poster = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.AssetResponse = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.AssetResponseData);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, AssetResponseData) {
   'use strict';
 
 
 
   /**
-   * The Poster model module.
-   * @module model/Poster
+   * The AssetResponse model module.
+   * @module model/AssetResponse
    * @version v1
    */
 
   /**
-   * Constructs a new <code>Poster</code>.
-   * Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
-   * @alias module:model/Poster
+   * Constructs a new <code>AssetResponse</code>.
+   * The response returned by the Serve API [get asset](#get-asset) request. Includes details of a hosted video, image, audio file, thumbnail or poster image. The response follows the [json:api](https://jsonapi.org/) specification.
+   * @alias module:model/AssetResponse
    * @class
-   * @param capture {Number} The point on the timeline in seconds to capture a single frame to use as the poster image.
    */
-  var exports = function(capture) {
+  var exports = function() {
     var _this = this;
 
-    _this['capture'] = capture;
   };
 
   /**
-   * Constructs a <code>Poster</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>AssetResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Poster} obj Optional instance to populate.
-   * @return {module:model/Poster} The populated <code>Poster</code> instance.
+   * @param {module:model/AssetResponse} obj Optional instance to populate.
+   * @return {module:model/AssetResponse} The populated <code>AssetResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('capture')) {
-        obj['capture'] = ApiClient.convertToType(data['capture'], 'Number');
+      if (data.hasOwnProperty('data')) {
+        obj['data'] = AssetResponseData.constructFromObject(data['data']);
       }
     }
     return obj;
   }
 
   /**
-   * The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @member {Number} capture
+   * @member {module:model/AssetResponseData} data
    */
-  exports.prototype['capture'] = undefined;
+  exports.prototype['data'] = undefined;
 
 
   /**
-   * Returns The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @return {Number}
+   * @return {module:model/AssetResponseData}
    */
-  exports.prototype.getCapture = function() {
-    return this['capture'];
+  exports.prototype.getData = function() {
+    return this['data'];
   }
 
   /**
-   * Sets The point on the timeline in seconds to capture a single frame to use as the poster image.
-   * @param {Number} capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+   * @param {module:model/AssetResponseData} data
    */
-  exports.prototype.setCapture = function(capture) {
-    this['capture'] = capture;
-    return this;
+  exports.prototype.setData = function(data) {
+    this['data'] = data;
   }
 
 
