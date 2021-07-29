@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  *
@@ -40,11 +40,11 @@
 
   /**
    * Constructs a new <code>LumaAsset</code>.
-   * The LumaAsset is used to create luma matte transitions between other assets. A luma matte is  a grey scale animated video where the black areas are transparent and the white areas solid. The luma matte animation should be provided as an mp4 video file. The src must be a publicly  accessible URL to the file.
+   * The LumaAsset is used to create luma matte masks, transitions and effects between other assets. A luma matte is a grey scale image or animated video where the black areas are transparent and the white areas solid. The luma matte animation should be provided as an mp4 video file. The src must be a publicly accessible URL to the file.
    * @alias module:model/LumaAsset
    * @class
    * @param type {String} The type of asset - set to `luma` for luma mattes.
-   * @param src {String} The luma matte video source URL. The URL must be publicly accessible or include credentials.
+   * @param src {String} The luma matte source URL. The URL must be publicly accessible or include credentials.
    */
   var exports = function(type, src) {
     var _this = this;
@@ -83,12 +83,12 @@
    */
   exports.prototype['type'] = 'luma';
   /**
-   * The luma matte video source URL. The URL must be publicly accessible or include credentials.
+   * The luma matte source URL. The URL must be publicly accessible or include credentials.
    * @member {String} src
    */
   exports.prototype['src'] = undefined;
   /**
-   * The start trim point of the luma video clip, in seconds (defaults to 0). Videos will start from the in trim point. The luma matte video will play until the file ends or the Clip length is reached.
+   * The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
    * @member {Number} trim
    */
   exports.prototype['trim'] = undefined;
@@ -113,7 +113,7 @@
 
 
   /**
-   * Returns The luma matte video source URL. The URL must be publicly accessible or include credentials.
+   * Returns The luma matte source URL. The URL must be publicly accessible or include credentials.
    * @return {String}
    */
   exports.prototype.getSrc = function() {
@@ -121,8 +121,8 @@
   }
 
   /**
-   * Sets The luma matte video source URL. The URL must be publicly accessible or include credentials.
-   * @param {String} src The luma matte video source URL. The URL must be publicly accessible or include credentials.
+   * Sets The luma matte source URL. The URL must be publicly accessible or include credentials.
+   * @param {String} src The luma matte source URL. The URL must be publicly accessible or include credentials.
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
@@ -131,7 +131,7 @@
 
 
   /**
-   * Returns The start trim point of the luma video clip, in seconds (defaults to 0). Videos will start from the in trim point. The luma matte video will play until the file ends or the Clip length is reached.
+   * Returns The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
    * @return {Number}
    */
   exports.prototype.getTrim = function() {
@@ -139,8 +139,8 @@
   }
 
   /**
-   * Sets The start trim point of the luma video clip, in seconds (defaults to 0). Videos will start from the in trim point. The luma matte video will play until the file ends or the Clip length is reached.
-   * @param {Number} trim The start trim point of the luma video clip, in seconds (defaults to 0). Videos will start from the in trim point. The luma matte video will play until the file ends or the Clip length is reached.
+   * Sets The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
+   * @param {Number} trim The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
    */
   exports.prototype.setTrim = function(trim) {
     this['trim'] = trim;

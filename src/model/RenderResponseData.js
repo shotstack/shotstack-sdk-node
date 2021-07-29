@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  *
@@ -40,11 +40,12 @@
 
   /**
    * Constructs a new <code>RenderResponseData</code>.
+   * The response data returned with the [RenderResponse](#tocs_renderresponse) including status and URL.
    * @alias module:model/RenderResponseData
    * @class
    * @param id {String} The id of the render task in UUID format.
    * @param owner {String} The owner id of the render task.
-   * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
    * @param data {module:model/Edit} 
    * @param created {String} The time the render task was initially queued.
    * @param updated {String} The time the render status was last updated.
@@ -129,7 +130,7 @@
    */
   exports.prototype['plan'] = undefined;
   /**
-   * The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
    * @member {module:model/RenderResponseData.StatusEnum} status
    */
   exports.prototype['status'] = undefined;
@@ -139,17 +140,17 @@
    */
   exports.prototype['error'] = undefined;
   /**
-   * The output video length in seconds.
+   * The output video or audio length in seconds.
    * @member {Number} duration
    */
   exports.prototype['duration'] = undefined;
   /**
-   * The time taken to render the video in milliseconds.
+   * The time taken to render the asset in milliseconds.
    * @member {Number} renderTime
    */
   exports.prototype['renderTime'] = undefined;
   /**
-   * The URL of the final video. This will only be available if status is done.
+   * The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
    * @member {String} url
    */
   exports.prototype['url'] = undefined;
@@ -234,7 +235,7 @@
 
 
   /**
-   * Returns The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * Returns The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
    * @return {module:model/RenderResponseData.StatusEnum}
    */
   exports.prototype.getStatus = function() {
@@ -242,8 +243,8 @@
   }
 
   /**
-   * Sets The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
-   * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+   * Sets The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+   * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
    */
   exports.prototype.setStatus = function(status) {
     this['status'] = status;
@@ -270,7 +271,7 @@
 
 
   /**
-   * Returns The output video length in seconds.
+   * Returns The output video or audio length in seconds.
    * @return {Number}
    */
   exports.prototype.getDuration = function() {
@@ -278,8 +279,8 @@
   }
 
   /**
-   * Sets The output video length in seconds.
-   * @param {Number} duration The output video length in seconds.
+   * Sets The output video or audio length in seconds.
+   * @param {Number} duration The output video or audio length in seconds.
    */
   exports.prototype.setDuration = function(duration) {
     this['duration'] = duration;
@@ -288,7 +289,7 @@
 
 
   /**
-   * Returns The time taken to render the video in milliseconds.
+   * Returns The time taken to render the asset in milliseconds.
    * @return {Number}
    */
   exports.prototype.getRenderTime = function() {
@@ -296,8 +297,8 @@
   }
 
   /**
-   * Sets The time taken to render the video in milliseconds.
-   * @param {Number} renderTime The time taken to render the video in milliseconds.
+   * Sets The time taken to render the asset in milliseconds.
+   * @param {Number} renderTime The time taken to render the asset in milliseconds.
    */
   exports.prototype.setRenderTime = function(renderTime) {
     this['renderTime'] = renderTime;
@@ -306,7 +307,7 @@
 
 
   /**
-   * Returns The URL of the final video. This will only be available if status is done.
+   * Returns The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
    * @return {String}
    */
   exports.prototype.getUrl = function() {
@@ -314,8 +315,8 @@
   }
 
   /**
-   * Sets The URL of the final video. This will only be available if status is done.
-   * @param {String} url The URL of the final video. This will only be available if status is done.
+   * Sets The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
+   * @param {String} url The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
    */
   exports.prototype.setUrl = function(url) {
     this['url'] = url;
