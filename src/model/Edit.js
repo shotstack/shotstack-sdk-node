@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Output', 'model/Timeline'], factory);
+    define(['ApiClient', 'model/MergeField', 'model/Output', 'model/Timeline'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Output'), require('./Timeline'));
+    module.exports = factory(require('../ApiClient'), require('./MergeField'), require('./Output'), require('./Timeline'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Edit = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Output, root.ShotstackSdk.Timeline);
+    root.ShotstackSdk.Edit = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.MergeField, root.ShotstackSdk.Output, root.ShotstackSdk.Timeline);
   }
-}(this, function(ApiClient, Output, Timeline) {
+}(this, function(ApiClient, MergeField, Output, Timeline) {
   'use strict';
 
 
@@ -69,6 +69,9 @@
       if (data.hasOwnProperty('output')) {
         obj['output'] = Output.constructFromObject(data['output']);
       }
+      if (data.hasOwnProperty('merge')) {
+        obj['merge'] = ApiClient.convertToType(data['merge'], [MergeField]);
+      }
       if (data.hasOwnProperty('callback')) {
         obj['callback'] = ApiClient.convertToType(data['callback'], 'String');
       }
@@ -87,6 +90,11 @@
    * @member {module:model/Output} output
    */
   exports.prototype['output'] = undefined;
+  /**
+   * An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. 
+   * @member {Array.<module:model/MergeField>} merge
+   */
+  exports.prototype['merge'] = undefined;
   /**
    * An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
    * @member {String} callback
@@ -128,6 +136,24 @@
    */
   exports.prototype.setOutput = function(output) {
     this['output'] = output;
+    return this;
+  }
+
+
+  /**
+   * Returns An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. 
+   * @return {Array.<module:model/MergeField>}
+   */
+  exports.prototype.getMerge = function() {
+    return this['merge'];
+  }
+
+  /**
+   * Sets An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. 
+   * @param {Array.<module:model/MergeField>} merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. 
+   */
+  exports.prototype.setMerge = function(merge) {
+    this['merge'] = merge;
     return this;
   }
 
