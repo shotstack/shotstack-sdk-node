@@ -16,12 +16,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Asset', 'model/AssetRenderResponse', 'model/AssetResponse', 'model/AssetResponseAttributes', 'model/AssetResponseData', 'model/AudioAsset', 'model/Clip', 'model/Crop', 'model/Destinations', 'model/Edit', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/LumaAsset', 'model/Offset', 'model/Output', 'model/Poster', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/Range', 'model/RenderResponse', 'model/RenderResponseData', 'model/ShotstackDestination', 'model/Size', 'model/Soundtrack', 'model/Thumbnail', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transition', 'model/VideoAsset', 'api/EditApi', 'api/ServeApi', 'api/EndpointsApi'], factory);
+    define(['ApiClient', 'model/Asset', 'model/AssetRenderResponse', 'model/AssetResponse', 'model/AssetResponseAttributes', 'model/AssetResponseData', 'model/AudioAsset', 'model/Clip', 'model/Crop', 'model/Destinations', 'model/Edit', 'model/FlipTransformation', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/LumaAsset', 'model/MergeField', 'model/Offset', 'model/Output', 'model/Poster', 'model/ProbeResponse', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/Range', 'model/RenderResponse', 'model/RenderResponseData', 'model/RotateTransformation', 'model/ShotstackDestination', 'model/Size', 'model/SkewTransformation', 'model/Soundtrack', 'model/Thumbnail', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transformation', 'model/Transition', 'model/VideoAsset', 'api/EditApi', 'api/ServeApi', 'api/EndpointsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AssetRenderResponse'), require('./model/AssetResponse'), require('./model/AssetResponseAttributes'), require('./model/AssetResponseData'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Crop'), require('./model/Destinations'), require('./model/Edit'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/LumaAsset'), require('./model/Offset'), require('./model/Output'), require('./model/Poster'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/Range'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/ShotstackDestination'), require('./model/Size'), require('./model/Soundtrack'), require('./model/Thumbnail'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EditApi'), require('./api/ServeApi'), require('./api/EndpointsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AssetRenderResponse'), require('./model/AssetResponse'), require('./model/AssetResponseAttributes'), require('./model/AssetResponseData'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Crop'), require('./model/Destinations'), require('./model/Edit'), require('./model/FlipTransformation'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/LumaAsset'), require('./model/MergeField'), require('./model/Offset'), require('./model/Output'), require('./model/Poster'), require('./model/ProbeResponse'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/Range'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/RotateTransformation'), require('./model/ShotstackDestination'), require('./model/Size'), require('./model/SkewTransformation'), require('./model/Soundtrack'), require('./model/Thumbnail'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transformation'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EditApi'), require('./api/ServeApi'), require('./api/EndpointsApi'));
   }
-}(function(ApiClient, Asset, AssetRenderResponse, AssetResponse, AssetResponseAttributes, AssetResponseData, AudioAsset, Clip, Crop, Destinations, Edit, Font, HtmlAsset, ImageAsset, LumaAsset, Offset, Output, Poster, QueuedResponse, QueuedResponseData, Range, RenderResponse, RenderResponseData, ShotstackDestination, Size, Soundtrack, Thumbnail, Timeline, TitleAsset, Track, Transition, VideoAsset, EditApi, ServeApi, EndpointsApi) {
+}(function(ApiClient, Asset, AssetRenderResponse, AssetResponse, AssetResponseAttributes, AssetResponseData, AudioAsset, Clip, Crop, Destinations, Edit, FlipTransformation, Font, HtmlAsset, ImageAsset, LumaAsset, MergeField, Offset, Output, Poster, ProbeResponse, QueuedResponse, QueuedResponseData, Range, RenderResponse, RenderResponseData, RotateTransformation, ShotstackDestination, Size, SkewTransformation, Soundtrack, Thumbnail, Timeline, TitleAsset, Track, Transformation, Transition, VideoAsset, EditApi, ServeApi, EndpointsApi) {
   'use strict';
 
   /**
@@ -112,6 +112,11 @@
      */
     Edit: Edit,
     /**
+     * The FlipTransformation model constructor.
+     * @property {module:model/FlipTransformation}
+     */
+    FlipTransformation: FlipTransformation,
+    /**
      * The Font model constructor.
      * @property {module:model/Font}
      */
@@ -132,6 +137,11 @@
      */
     LumaAsset: LumaAsset,
     /**
+     * The MergeField model constructor.
+     * @property {module:model/MergeField}
+     */
+    MergeField: MergeField,
+    /**
      * The Offset model constructor.
      * @property {module:model/Offset}
      */
@@ -146,6 +156,11 @@
      * @property {module:model/Poster}
      */
     Poster: Poster,
+    /**
+     * The ProbeResponse model constructor.
+     * @property {module:model/ProbeResponse}
+     */
+    ProbeResponse: ProbeResponse,
     /**
      * The QueuedResponse model constructor.
      * @property {module:model/QueuedResponse}
@@ -172,6 +187,11 @@
      */
     RenderResponseData: RenderResponseData,
     /**
+     * The RotateTransformation model constructor.
+     * @property {module:model/RotateTransformation}
+     */
+    RotateTransformation: RotateTransformation,
+    /**
      * The ShotstackDestination model constructor.
      * @property {module:model/ShotstackDestination}
      */
@@ -181,6 +201,11 @@
      * @property {module:model/Size}
      */
     Size: Size,
+    /**
+     * The SkewTransformation model constructor.
+     * @property {module:model/SkewTransformation}
+     */
+    SkewTransformation: SkewTransformation,
     /**
      * The Soundtrack model constructor.
      * @property {module:model/Soundtrack}
@@ -206,6 +231,11 @@
      * @property {module:model/Track}
      */
     Track: Track,
+    /**
+     * The Transformation model constructor.
+     * @property {module:model/Transformation}
+     */
+    Transformation: Transformation,
     /**
      * The Transition model constructor.
      * @property {module:model/Transition}

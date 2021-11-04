@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Offset', 'model/Asset', 'model/Transition'], factory);
+    define(['ApiClient', 'model/Offset', 'model/Asset', 'model/Transformation', 'model/Transition'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Offset'), require('./Asset'), require('./Transition'));
+    module.exports = factory(require('../ApiClient'), require('./Offset'), require('./Asset'), require('./Transformation'), require('./Transition'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Offset, root.ShotstackSdk.Asset, root.ShotstackSdk.Transition);
+    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Offset, root.ShotstackSdk.Asset, root.ShotstackSdk.Transformation, root.ShotstackSdk.Transition);
   }
-}(this, function(ApiClient, Offset, Asset, Transition) {
+}(this, function(ApiClient, Offset, Asset, Transformation, Transition) {
   'use strict';
 
 
@@ -43,7 +43,7 @@
    * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
    * @alias module:model/Clip
    * @class
-   * @param asset {module:model/Asset} The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b>, <b>VideoAsset</b>, <b>HtmlAsset</b>, <b>AudioAsset</b> or <b>LumaAsset</b>
+   * @param asset {module:model/Asset} The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    * @param start {Number} The start position of the Clip on the timeline, in seconds.
    * @param length {Number} The length, in seconds, the Clip should play for.
    */
@@ -98,12 +98,15 @@
       if (data.hasOwnProperty('opacity')) {
         obj['opacity'] = ApiClient.convertToType(data['opacity'], 'Number');
       }
+      if (data.hasOwnProperty('transform')) {
+        obj['transform'] = Transformation.constructFromObject(data['transform']);
+      }
     }
     return obj;
   }
 
   /**
-   * The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b>, <b>VideoAsset</b>, <b>HtmlAsset</b>, <b>AudioAsset</b> or <b>LumaAsset</b>
+   * The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    * @member {module:model/Asset} asset
    */
   exports.prototype['asset'] = undefined;
@@ -158,10 +161,14 @@
    * @default 1
    */
   exports.prototype['opacity'] = 1;
+  /**
+   * @member {module:model/Transformation} transform
+   */
+  exports.prototype['transform'] = undefined;
 
 
   /**
-   * Returns The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b>, <b>VideoAsset</b>, <b>HtmlAsset</b>, <b>AudioAsset</b> or <b>LumaAsset</b>
+   * Returns The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    * @return {module:model/Asset}
    */
   exports.prototype.getAsset = function() {
@@ -169,8 +176,8 @@
   }
 
   /**
-   * Sets The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b>, <b>VideoAsset</b>, <b>HtmlAsset</b>, <b>AudioAsset</b> or <b>LumaAsset</b>
-   * @param {module:model/Asset} asset The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b>, <b>VideoAsset</b>, <b>HtmlAsset</b>, <b>AudioAsset</b> or <b>LumaAsset</b>
+   * Sets The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
+   * @param {module:model/Asset} asset The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    */
   exports.prototype.setAsset = function(asset) {
     this['asset'] = asset;
@@ -350,6 +357,22 @@
    */
   exports.prototype.setOpacity = function(opacity) {
     this['opacity'] = opacity;
+    return this;
+  }
+
+
+  /**
+   * @return {module:model/Transformation}
+   */
+  exports.prototype.getTransform = function() {
+    return this['transform'];
+  }
+
+  /**
+   * @param {module:model/Transformation} transform
+   */
+  exports.prototype.setTransform = function(transform) {
+    this['transform'] = transform;
     return this;
   }
 

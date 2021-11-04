@@ -82,6 +82,9 @@
       if (data.hasOwnProperty('quality')) {
         obj['quality'] = ApiClient.convertToType(data['quality'], 'String');
       }
+      if (data.hasOwnProperty('repeat')) {
+        obj['repeat'] = ApiClient.convertToType(data['repeat'], 'Boolean');
+      }
       if (data.hasOwnProperty('range')) {
         obj['range'] = Range.constructFromObject(data['range']);
       }
@@ -134,6 +137,12 @@
    * @default 'medium'
    */
   exports.prototype['quality'] = 'medium';
+  /**
+   * Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+   * @member {Boolean} repeat
+   * @default true
+   */
+  exports.prototype['repeat'] = true;
   /**
    * @member {module:model/Range} range
    */
@@ -273,6 +282,24 @@
    */
   exports.prototype.setQuality = function(quality) {
     this['quality'] = quality;
+    return this;
+  }
+
+
+  /**
+   * Returns Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+   * @return {Boolean}
+   */
+  exports.prototype.getRepeat = function() {
+    return this['repeat'];
+  }
+
+  /**
+   * Sets Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+   * @param {Boolean} repeat Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+   */
+  exports.prototype.setRepeat = function(repeat) {
+    this['repeat'] = repeat;
     return this;
   }
 
