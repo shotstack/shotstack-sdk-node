@@ -24,7 +24,7 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [Track()](#track)
     - [Clip()](#clip)
     - [VideoAsset()](#videoasset)
-    - [ImageAsset()](#imageasset)
+    - [ImageAsset](#imageasset)
     - [TitleAsset()](#titleasset)
     - [HtmlAsset()](#htmlasset)
     - [AudioAsset()](#audioasset)
@@ -358,7 +358,7 @@ setCrop([\Shotstack\Client\Model\Crop](#crop) $crop) | Crop the sides of an asse
 
 ---
 
-### ImageAsset()
+### ImageAsset
 
 The **ImageAsset** is used to create video from images to compose an image. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
 
