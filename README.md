@@ -369,7 +369,7 @@ const Shotstack = require('shotstack-sdk');
 
 const imageAsset = new Shotstack.ImageAsset;
 imageAsset
-  .setSrc(image)
+  .setSrc('https://shotstack-assets.s3-ap-southeast-2.amazonaws.com/images/earth.jpg')
   .setCrop($crop);
 ```
 
