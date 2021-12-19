@@ -84,22 +84,12 @@ and then sent to the API for rendering.
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
 const api = new Shotstack.EditApi();
-
-let apiUrl = 'https://api.shotstack.io/stage';
-
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_HOST) {
-    apiUrl = process.env.SHOTSTACK_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
 
 let videoAsset = new Shotstack.VideoAsset;
 videoAsset
@@ -133,12 +123,7 @@ api.postRender(edit).then((data) => {
     let id = data.response.id
     
     console.log(message + '\n');
-    console.log('>> Now check the progress of your render by running:');
-    console.log('>> node examples/status.js ' + id);
-
-}, (error) => {
-    console.error('Request failed: ', error);
-    process.exit(1);
+    console.log('>> Render ID ' + id);
 });
 ```
 
@@ -151,28 +136,14 @@ the render, which can take several seconds to process.
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
 const api = new Shotstack.EditApi();
-const id = process.argv[2];
 
-if (!id) {
-  console.log(">> Please provide the UUID of the render task (i.e. php examples/status.php 2abd5c11-0f3d-4c6d-ba20-235fc9b8e8b7)\n");
-  process.exit(1);
-}
-
-let apiUrl = 'https://api.shotstack.io/stage';
-
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_HOST) {
-    apiUrl = process.env.SHOTSTACK_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
+const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; //use a valid render id
 
 api.getRender(id, { data: false, merged: true }).then((data) => {
     let status = data.response.status;
@@ -187,9 +158,6 @@ api.getRender(id, { data: false, merged: true }).then((data) => {
     } else {
         console.log('>> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete.');
     }
-}, (error) => {
-    console.error('Request failed or not found: ', error);
-    process.exit(1);
 });
 ```
 
@@ -982,28 +950,14 @@ the render, which can take several seconds to process.
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
 const api = new Shotstack.EditApi();
-const id = process.argv[2];
 
-if (!id) {
-  console.log(">> Please provide the UUID of the render task (i.e. php examples/status.php 2abd5c11-0f3d-4c6d-ba20-235fc9b8e8b7)\n");
-  process.exit(1);
-}
-
-let apiUrl = 'https://api.shotstack.io/stage';
-
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_HOST) {
-    apiUrl = process.env.SHOTSTACK_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
+const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; //use a valid render id
 
 api.getRender(id, { data: false, merged: true }).then((data) => {
     let status = data.response.status;
@@ -1018,9 +972,6 @@ api.getRender(id, { data: false, merged: true }).then((data) => {
     } else {
         console.log('>> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete.');
     }
-}, (error) => {
-    console.error('Request failed or not found: ', error);
-    process.exit(1);
 });
 ```
 ## Inspecting Media
@@ -1034,28 +985,14 @@ The example below inspects (probes) a video hosted on GitHub and returns metadat
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
 const api = new Shotstack.EditApi();
-const url = process.argv[2];
 
-if (!url) {
-    console.log(">> Please provide the URL to a media file to inspect (i.e. php examples/probe.php https://github.com/shotstack/test-media/raw/main/captioning/scott-ko.mp4)\n");
-    process.exit(1);
-}
-
-let apiUrl = 'https://api.shotstack.io/stage';
-
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_HOST) {
-    apiUrl = process.env.SHOTSTACK_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
+const url = 'https://github.com/shotstack/test-media/raw/main/captioning/scott-ko.mp4';
 
 api.probe(url).then((data) => {
     data.response.metadata.streams.forEach(stream => {
@@ -1067,9 +1004,6 @@ api.probe(url).then((data) => {
             console.log('Duration: ' + stream.duration + ' secs');
         }
     });
-}, (error) => {
-    console.error('Request failed or not found: ', error);
-    process.exit(1);
 });
 ```
 ## Probe Schemas
@@ -1103,23 +1037,14 @@ created for a render, i.e. video, thumb and poster. Each asset has a unique asse
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
-const api = new Shotstack.ServeApi();
-const id = process.argv[2];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
 
-let apiUrl = 'https://api.shotstack.io/serve/stage';
+const api = new Shotstack.EditApi();
 
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_SERVE_HOST) {
-    apiUrl = process.env.SHOTSTACK_SERVE_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
+const id = '140924c6-077d-4334-a89f-94befcfc0155'; // Use a valid render ID
 
 api.getAssetByRenderId(id).then((assets) => {
     assets.data.forEach((asset) => {
@@ -1134,9 +1059,6 @@ api.getAssetByRenderId(id).then((assets) => {
             console.log('>> Render ID: ' + asset.attributes.renderId);
         }
     });
-}, (error) => {
-    console.error('Request failed or not found: ', error);
-    process.exit(1);
 });
 ```
 
@@ -1148,23 +1070,14 @@ Every asset has a unique asset ID, the example below looks up an asset by its as
 const Shotstack = require('shotstack-sdk');
 
 const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
-const api = new Shotstack.ServeApi();
-const id = process.argv[2];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
 
-let apiUrl = 'https://api.shotstack.io/serve/stage';
+const api = new Shotstack.EditApi();
 
-if (!process.env.SHOTSTACK_KEY) {
-    console.log('API Key is required. Set using: export SHOTSTACK_KEY=your_key_here');
-    process.exit(1);
-}
-
-if (process.env.SHOTSTACK_SERVE_HOST) {
-    apiUrl = process.env.SHOTSTACK_SERVE_HOST;
-}
-
-defaultClient.basePath = apiUrl;
-DeveloperKey.apiKey = process.env.SHOTSTACK_KEY;
+const id = 'ed43eae3-4825-4c03-979d-f7dc47b9997c'; // use a valid asset ID
 
 api.getAsset(id).then((asset) => {
     const status = asset.data.attributes.status;
@@ -1177,9 +1090,6 @@ api.getAsset(id).then((asset) => {
         console.log('>> Asset ID: ' + asset.data.attributes.id);
         console.log('>> Render ID: ' + asset.data.attributes.renderId);
     }
-}, (error) => {
-    console.error('Request failed or not found: ', error);
-    process.exit(1);
 });
 ```
 
