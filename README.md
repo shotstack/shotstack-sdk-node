@@ -49,7 +49,6 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [QueuedResponseData](#queuedresponsedata)
     - [RenderResponse](#renderresponse)
     - [RenderResponseData](#renderresponsedata)
-    - [Status Check Example](#status-check-example-1)
   - [Inspecting Media](#inspecting-media)
     - [Probe Example](#probe-example)
   - [Probe Schemas](#probe-schemas)
@@ -119,11 +118,7 @@ edit
     .setOutput(output);
 
 api.postRender(edit).then((data) => {
-    let message = data.response.message;
-    let id = data.response.id
-    
-    console.log(message + '\n');
-    console.log('>> Render ID ' + id);
+    console.log(data.response.id);
 });
 ```
 
@@ -143,20 +138,11 @@ DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the cor
 
 const api = new Shotstack.EditApi();
 
-const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; //use a valid render id
+const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; // use the render id from previous example
 
 api.getRender(id, { data: false, merged: true }).then((data) => {
-    let status = data.response.status;
-    let url = data.response.url;
-
-    console.log('Status: ' + status.toUpperCase() + '\n');
-
-    if (status == 'done') {
-        console.log('>> Asset URL: ' + url);
-    } else if (status == 'failed') {
-        console.log('>> Something went wrong, rendering has terminated and will not continue.');
-    } else {
-        console.log('>> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete.');
+    if (data.response.status === 'done') {
+        console.log(data.response.url);
     }
 });
 ```
@@ -940,40 +926,6 @@ getCreated(): string | The time the render task was initially queued. | Y
 getUpdated(): string | The time the render status was last updated. | Y
 
 ---
-
-### Status Check Example
-
-The example request below can be called a few seconds after the render above is posted. It will return the status of 
-the render, which can take several seconds to process.
-
-```javascript
-const Shotstack = require('shotstack-sdk');
-
-const defaultClient = Shotstack.ApiClient.instance;
-defaultClient.basePath = 'https://api.shotstack.io/stage';
-
-const DeveloperKey = defaultClient.authentications['DeveloperKey'];
-DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
-
-const api = new Shotstack.EditApi();
-
-const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; //use a valid render id
-
-api.getRender(id, { data: false, merged: true }).then((data) => {
-    let status = data.response.status;
-    let url = data.response.url;
-
-    console.log('Status: ' + status.toUpperCase() + '\n');
-
-    if (status == 'done') {
-        console.log('>> Asset URL: ' + url);
-    } else if (status == 'failed') {
-        console.log('>> Something went wrong, rendering has terminated and will not continue.');
-    } else {
-        console.log('>> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete.');
-    }
-});
-```
 ## Inspecting Media
 
 The SDK `probe` endpoint can be used to inspect media hosted online. Simply pass the URL of an asset to inspect.
@@ -1042,18 +994,13 @@ defaultClient.basePath = 'https://api.shotstack.io/stage';
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
 DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
 
-const api = new Shotstack.EditApi();
+const api = new Shotstack.ServeApi();
 
 const id = '140924c6-077d-4334-a89f-94befcfc0155'; // Use a valid render ID
 
 api.getAssetByRenderId(id).then((assets) => {
     assets.data.forEach((asset) => {
-        const status = asset.attributes.status;
-        console.log('Status: ' + status.toUpperCase() + '\n');
-
-        if (status == 'failed') {
-            console.log('>> Something went wrong, asset could not be copied.');
-        } else {
+        if (asset.attributes.status === 'ready') {
             console.log('>> Asset CDN URL: ' + asset.attributes.url);
             console.log('>> Asset ID: ' + asset.attributes.id);
             console.log('>> Render ID: ' + asset.attributes.renderId);
@@ -1075,17 +1022,12 @@ defaultClient.basePath = 'https://api.shotstack.io/stage';
 const DeveloperKey = defaultClient.authentications['DeveloperKey'];
 DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
 
-const api = new Shotstack.EditApi();
+const api = new Shotstack.ServeApi();
 
 const id = 'ed43eae3-4825-4c03-979d-f7dc47b9997c'; // use a valid asset ID
 
 api.getAsset(id).then((asset) => {
-    const status = asset.data.attributes.status;
-    console.log('Status: ' + status.toUpperCase() + '\n');
-
-    if (status == 'failed') {
-        console.log('>> Something went wrong, asset could not be copied.');
-    } else {
+    if (asset.data.attributes.status === 'ready') {
         console.log('>> Asset CDN URL: ' + asset.data.attributes.url);
         console.log('>> Asset ID: ' + asset.data.attributes.id);
         console.log('>> Render ID: ' + asset.data.attributes.renderId);
