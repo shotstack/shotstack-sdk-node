@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  *
@@ -16,16 +16,16 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Asset', 'model/AssetRenderResponse', 'model/AssetResponse', 'model/AssetResponseAttributes', 'model/AssetResponseData', 'model/AudioAsset', 'model/Clip', 'model/Crop', 'model/Destinations', 'model/Edit', 'model/FlipTransformation', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/LumaAsset', 'model/MergeField', 'model/Offset', 'model/Output', 'model/Poster', 'model/ProbeResponse', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/Range', 'model/RenderResponse', 'model/RenderResponseData', 'model/RotateTransformation', 'model/ShotstackDestination', 'model/Size', 'model/SkewTransformation', 'model/Soundtrack', 'model/Thumbnail', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transformation', 'model/Transition', 'model/VideoAsset', 'api/EditApi', 'api/ServeApi', 'api/EndpointsApi'], factory);
+    define(['ApiClient', 'model/Asset', 'model/AssetRenderResponse', 'model/AssetResponse', 'model/AssetResponseAttributes', 'model/AssetResponseData', 'model/AudioAsset', 'model/Clip', 'model/Crop', 'model/Destinations', 'model/Edit', 'model/FlipTransformation', 'model/Font', 'model/HtmlAsset', 'model/ImageAsset', 'model/LumaAsset', 'model/MergeField', 'model/MuxDestination', 'model/MuxDestinationOptions', 'model/Offset', 'model/Output', 'model/Poster', 'model/ProbeResponse', 'model/QueuedResponse', 'model/QueuedResponseData', 'model/Range', 'model/RenderResponse', 'model/RenderResponseData', 'model/RotateTransformation', 'model/ShotstackDestination', 'model/Size', 'model/SkewTransformation', 'model/Soundtrack', 'model/Thumbnail', 'model/Timeline', 'model/TitleAsset', 'model/Track', 'model/Transformation', 'model/Transition', 'model/VideoAsset', 'api/EditApi', 'api/ServeApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AssetRenderResponse'), require('./model/AssetResponse'), require('./model/AssetResponseAttributes'), require('./model/AssetResponseData'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Crop'), require('./model/Destinations'), require('./model/Edit'), require('./model/FlipTransformation'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/LumaAsset'), require('./model/MergeField'), require('./model/Offset'), require('./model/Output'), require('./model/Poster'), require('./model/ProbeResponse'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/Range'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/RotateTransformation'), require('./model/ShotstackDestination'), require('./model/Size'), require('./model/SkewTransformation'), require('./model/Soundtrack'), require('./model/Thumbnail'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transformation'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EditApi'), require('./api/ServeApi'), require('./api/EndpointsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Asset'), require('./model/AssetRenderResponse'), require('./model/AssetResponse'), require('./model/AssetResponseAttributes'), require('./model/AssetResponseData'), require('./model/AudioAsset'), require('./model/Clip'), require('./model/Crop'), require('./model/Destinations'), require('./model/Edit'), require('./model/FlipTransformation'), require('./model/Font'), require('./model/HtmlAsset'), require('./model/ImageAsset'), require('./model/LumaAsset'), require('./model/MergeField'), require('./model/MuxDestination'), require('./model/MuxDestinationOptions'), require('./model/Offset'), require('./model/Output'), require('./model/Poster'), require('./model/ProbeResponse'), require('./model/QueuedResponse'), require('./model/QueuedResponseData'), require('./model/Range'), require('./model/RenderResponse'), require('./model/RenderResponseData'), require('./model/RotateTransformation'), require('./model/ShotstackDestination'), require('./model/Size'), require('./model/SkewTransformation'), require('./model/Soundtrack'), require('./model/Thumbnail'), require('./model/Timeline'), require('./model/TitleAsset'), require('./model/Track'), require('./model/Transformation'), require('./model/Transition'), require('./model/VideoAsset'), require('./api/EditApi'), require('./api/ServeApi'));
   }
-}(function(ApiClient, Asset, AssetRenderResponse, AssetResponse, AssetResponseAttributes, AssetResponseData, AudioAsset, Clip, Crop, Destinations, Edit, FlipTransformation, Font, HtmlAsset, ImageAsset, LumaAsset, MergeField, Offset, Output, Poster, ProbeResponse, QueuedResponse, QueuedResponseData, Range, RenderResponse, RenderResponseData, RotateTransformation, ShotstackDestination, Size, SkewTransformation, Soundtrack, Thumbnail, Timeline, TitleAsset, Track, Transformation, Transition, VideoAsset, EditApi, ServeApi, EndpointsApi) {
+}(function(ApiClient, Asset, AssetRenderResponse, AssetResponse, AssetResponseAttributes, AssetResponseData, AudioAsset, Clip, Crop, Destinations, Edit, FlipTransformation, Font, HtmlAsset, ImageAsset, LumaAsset, MergeField, MuxDestination, MuxDestinationOptions, Offset, Output, Poster, ProbeResponse, QueuedResponse, QueuedResponseData, Range, RenderResponse, RenderResponseData, RotateTransformation, ShotstackDestination, Size, SkewTransformation, Soundtrack, Thumbnail, Timeline, TitleAsset, Track, Transformation, Transition, VideoAsset, EditApi, ServeApi) {
   'use strict';
 
   /**
-   * Shotstack_is_a_video_image_and_audio_editing_service_that_allows_for_the_automated_generation_of_videos_images_and_audio_using_JSON_and_a_RESTful_API_You_arrange_and_configure_an_edit_and_POST_it_to_the_API_which_will_render_your_media_and_provide_a_file__location_when_complete_For_more_details_visit__shotstack_io_https__shotstack_io_or_checkout_our__getting_started_https__shotstack_gitbook_io_docs_guides_getting_started_documentation_There_are_two_main_APIs_one_for_editing_and_generating_assets__Edit_API_and_one_for_managing_hosted_assets__Serve_API_The_Edit_API_base_URL_is_bhttps__api_shotstack_io_version_bThe_Serve_API_base_URL_is_bhttps__api_shotstack_io_serve_version_b.<br>
+   * Shotstack_is_a_video_image_and_audio_editing_service_that_allows_for_the_automated_generation_of_videos_images_and_audio_using_JSON_and_a_RESTful_API_You_arrange_and_configure_an_edit_and_POST_it_to_the_API_which_will_render_your_media_and_provide_a_file__location_when_complete_For_more_details_visit__shotstack_io_https__shotstack_io_or_checkout_our__getting_started_https__shotstack_io_docs_guide__documentation_There_are_two_main_APIs_one_for_editing_and_generating_assets__Edit_API_and_one_for_managing_hosted_assets__Serve_API_The_Edit_API_base_URL_is_bhttps__api_shotstack_io_version_bThe_Serve_API_base_URL_is_bhttps__api_shotstack_io_serve_version_b.<br>
    * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -105,7 +105,7 @@
      * The Destinations model constructor.
      * @property {module:model/Destinations}
      */
-     Destinations: Destinations,
+    Destinations: Destinations,
     /**
      * The Edit model constructor.
      * @property {module:model/Edit}
@@ -141,6 +141,16 @@
      * @property {module:model/MergeField}
      */
     MergeField: MergeField,
+    /**
+     * The MuxDestination model constructor.
+     * @property {module:model/MuxDestination}
+     */
+    MuxDestination: MuxDestination,
+    /**
+     * The MuxDestinationOptions model constructor.
+     * @property {module:model/MuxDestinationOptions}
+     */
+    MuxDestinationOptions: MuxDestinationOptions,
     /**
      * The Offset model constructor.
      * @property {module:model/Offset}
@@ -246,11 +256,6 @@
      * @property {module:model/VideoAsset}
      */
     VideoAsset: VideoAsset,
-    /**
-     * The EndpointsApi service constructor.
-     * @property {module:api/EndpointsApi}
-     */
-    EndpointsApi: EndpointsApi,
     /**
      * The EditApi service constructor.
      * @property {module:api/EditApi}
