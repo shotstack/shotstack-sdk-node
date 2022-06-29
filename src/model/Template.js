@@ -16,105 +16,102 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/Edit'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./Edit'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.FlipTransformation = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.Template = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Edit);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, Edit) {
   'use strict';
 
 
 
   /**
-   * The FlipTransformation model module.
-   * @module model/FlipTransformation
+   * The Template model module.
+   * @module model/Template
    * @version v1
    */
 
   /**
-   * Constructs a new <code>FlipTransformation</code>.
-   * Flip a clip vertically or horizontally. Acts as a mirror effect of the clip along the selected plane.
-   * @alias module:model/FlipTransformation
+   * Constructs a new <code>Template</code>.
+   * A template is a saved [Edit](#tocs_edit) than can be loaded and re-used.
+   * @alias module:model/Template
    * @class
+   * @param name {String} The template name
    */
-  var exports = function() {
+  var exports = function(name) {
     var _this = this;
 
+    _this['name'] = name;
   };
 
   /**
-   * Constructs a <code>FlipTransformation</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>Template</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/FlipTransformation} obj Optional instance to populate.
-   * @return {module:model/FlipTransformation} The populated <code>FlipTransformation</code> instance.
+   * @param {module:model/Template} obj Optional instance to populate.
+   * @return {module:model/Template} The populated <code>Template</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      if (data.hasOwnProperty('horizontal')) {
-        obj['horizontal'] = ApiClient.convertToType(data['horizontal'], 'Boolean');
+      if (data.hasOwnProperty('name')) {
+        obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
-      if (data.hasOwnProperty('vertical')) {
-        obj['vertical'] = ApiClient.convertToType(data['vertical'], 'Boolean');
+      if (data.hasOwnProperty('template')) {
+        obj['template'] = Edit.constructFromObject(data['template']);
       }
     }
     return obj;
   }
 
   /**
-   * Flip a clip horizontally.
-   * @member {Boolean} horizontal
-   * @default false
+   * The template name
+   * @member {String} name
    */
-  exports.prototype['horizontal'] = false;
+  exports.prototype['name'] = undefined;
   /**
-   * Flip a clip vertically.
-   * @member {Boolean} vertical
-   * @default false
+   * @member {module:model/Edit} template
    */
-  exports.prototype['vertical'] = false;
+  exports.prototype['template'] = undefined;
 
 
   /**
-   * Returns Flip a clip horizontally.
-   * @return {Boolean}
+   * Returns The template name
+   * @return {String}
    */
-  exports.prototype.getHorizontal = function() {
-    return this['horizontal'];
+  exports.prototype.getName = function() {
+    return this['name'];
   }
 
   /**
-   * Sets Flip a clip horizontally.
-   * @param {Boolean} horizontal Flip a clip horizontally.
+   * Sets The template name
+   * @param {String} name The template name
    */
-  exports.prototype.setHorizontal = function(horizontal) {
-    this['horizontal'] = horizontal;
+  exports.prototype.setName = function(name) {
+    this['name'] = name;
     return this;
   }
 
 
   /**
-   * Returns Flip a clip vertically.
-   * @return {Boolean}
+   * @return {module:model/Edit}
    */
-  exports.prototype.getVertical = function() {
-    return this['vertical'];
+  exports.prototype.getTemplate = function() {
+    return this['template'];
   }
 
   /**
-   * Sets Flip a clip vertically.
-   * @param {Boolean} vertical Flip a clip vertically.
+   * @param {module:model/Edit} template
    */
-  exports.prototype.setVertical = function(vertical) {
-    this['vertical'] = vertical;
+  exports.prototype.setTemplate = function(template) {
+    this['template'] = template;
     return this;
   }
 

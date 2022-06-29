@@ -45,7 +45,7 @@
    * @class
    * @param success {Boolean} `true` if media successfully read, else `false`.
    * @param message {String} `Created`, `Bad Request` or an error message.
-   * @param response {Object} The response from FFprobe in JSON format
+   * @param response {Object} The response from FFprobe in JSON format.
    */
   var exports = function(success, message, response) {
     var _this = this;
@@ -89,7 +89,7 @@
    */
   exports.prototype['message'] = undefined;
   /**
-   * The response from FFprobe in JSON format
+   * The response from FFprobe in JSON format.
    * @member {Object} response
    */
   exports.prototype['response'] = undefined;
@@ -132,7 +132,7 @@
 
 
   /**
-   * Returns The response from FFprobe in JSON format
+   * Returns The response from FFprobe in JSON format.
    * @return {Object}
    */
   exports.prototype.getResponse = function() {
@@ -140,8 +140,8 @@
   }
 
   /**
-   * Sets The response from FFprobe in JSON format
-   * @param {Object} response The response from FFprobe in JSON format
+   * Sets The response from FFprobe in JSON format.
+   * @param {Object} response The response from FFprobe in JSON format.
    */
   exports.prototype.setResponse = function(response) {
     this['response'] = response;

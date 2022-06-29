@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation.  There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> 
  *
  * The version of the OpenAPI document: v1
  *
@@ -446,6 +446,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setType = function(type) {
     this['type'] = type;
+    return this;
   }
 
 
@@ -463,6 +464,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setSrc = function(src) {
     this['src'] = src;
+    return this;
   }
 
 
@@ -480,6 +482,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setTrim = function(trim) {
     this['trim'] = trim;
+    return this;
   }
 
 
@@ -497,6 +500,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setVolume = function(volume) {
     this['volume'] = volume;
+    return this;
   }
 
 
@@ -512,6 +516,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setCrop = function(crop) {
     this['crop'] = crop;
+    return this;
   }
 
 
@@ -529,6 +534,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setText = function(text) {
     this['text'] = text;
+    return this;
   }
 
 
@@ -546,6 +552,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setStyle = function(style) {
     this['style'] = style;
+    return this;
   }
 
 
@@ -563,6 +570,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setColor = function(color) {
     this['color'] = color;
+    return this;
   }
 
 
@@ -580,6 +588,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setSize = function(size) {
     this['size'] = size;
+    return this;
   }
 
 
@@ -597,6 +606,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setBackground = function(background) {
     this['background'] = background;
+    return this;
   }
 
 
@@ -614,6 +624,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setPosition = function(position) {
     this['position'] = position;
+    return this;
   }
 
 
@@ -629,6 +640,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setOffset = function(offset) {
     this['offset'] = offset;
+    return this;
   }
 
 
@@ -646,6 +658,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setHtml = function(html) {
     this['html'] = html;
+    return this;
   }
 
 
@@ -663,6 +676,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setCss = function(css) {
     this['css'] = css;
+    return this;
   }
 
 
@@ -680,6 +694,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setWidth = function(width) {
     this['width'] = width;
+    return this;
   }
 
 
@@ -697,6 +712,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setHeight = function(height) {
     this['height'] = height;
+    return this;
   }
 
 
@@ -714,6 +730,7 @@ exports.prototype['trim'] = undefined;
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
+    return this;
   }
 
 
