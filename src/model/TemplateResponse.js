@@ -16,36 +16,36 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/RenderResponseData'], factory);
+    define(['ApiClient', 'model/TemplateResponseData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./RenderResponseData'));
+    module.exports = factory(require('../ApiClient'), require('./TemplateResponseData'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.RenderResponse = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.RenderResponseData);
+    root.ShotstackSdk.TemplateResponse = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.TemplateResponseData);
   }
-}(this, function(ApiClient, RenderResponseData) {
+}(this, function(ApiClient, TemplateResponseData) {
   'use strict';
 
 
 
   /**
-   * The RenderResponse model module.
-   * @module model/RenderResponse
+   * The TemplateResponse model module.
+   * @module model/TemplateResponse
    * @version v1
    */
 
   /**
-   * Constructs a new <code>RenderResponse</code>.
-   * The response received after a [render status request](#get-render-status) is submitted. The response includes  details about status of a render and the output URL.
-   * @alias module:model/RenderResponse
+   * Constructs a new <code>TemplateResponse</code>.
+   * The response received after a [template](#create-a-template) is submitted. The template is saved and a unique template id is returned.
+   * @alias module:model/TemplateResponse
    * @class
-   * @param success {Boolean} `true` if status available, else `false`.
-   * @param message {String} `OK` or an error message.
-   * @param response {module:model/RenderResponseData} 
+   * @param success {Boolean} `true` if successfully created, else `false`.
+   * @param message {String} `Created`, `Bad Request` or an error message.
+   * @param response {module:model/TemplateResponseData} 
    */
   var exports = function(success, message, response) {
     var _this = this;
@@ -56,11 +56,11 @@
   };
 
   /**
-   * Constructs a <code>RenderResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>TemplateResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/RenderResponse} obj Optional instance to populate.
-   * @return {module:model/RenderResponse} The populated <code>RenderResponse</code> instance.
+   * @param {module:model/TemplateResponse} obj Optional instance to populate.
+   * @return {module:model/TemplateResponse} The populated <code>TemplateResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -72,30 +72,30 @@
         obj['message'] = ApiClient.convertToType(data['message'], 'String');
       }
       if (data.hasOwnProperty('response')) {
-        obj['response'] = RenderResponseData.constructFromObject(data['response']);
+        obj['response'] = TemplateResponseData.constructFromObject(data['response']);
       }
     }
     return obj;
   }
 
   /**
-   * `true` if status available, else `false`.
+   * `true` if successfully created, else `false`.
    * @member {Boolean} success
    */
   exports.prototype['success'] = undefined;
   /**
-   * `OK` or an error message.
+   * `Created`, `Bad Request` or an error message.
    * @member {String} message
    */
   exports.prototype['message'] = undefined;
   /**
-   * @member {module:model/RenderResponseData} response
+   * @member {module:model/TemplateResponseData} response
    */
   exports.prototype['response'] = undefined;
 
 
   /**
-   * Returns `true` if status available, else `false`.
+   * Returns `true` if successfully created, else `false`.
    * @return {Boolean}
    */
   exports.prototype.getSuccess = function() {
@@ -103,8 +103,8 @@
   }
 
   /**
-   * Sets `true` if status available, else `false`.
-   * @param {Boolean} success `true` if status available, else `false`.
+   * Sets `true` if successfully created, else `false`.
+   * @param {Boolean} success `true` if successfully created, else `false`.
    */
   exports.prototype.setSuccess = function(success) {
     this['success'] = success;
@@ -113,7 +113,7 @@
 
 
   /**
-   * Returns `OK` or an error message.
+   * Returns `Created`, `Bad Request` or an error message.
    * @return {String}
    */
   exports.prototype.getMessage = function() {
@@ -121,8 +121,8 @@
   }
 
   /**
-   * Sets `OK` or an error message.
-   * @param {String} message `OK` or an error message.
+   * Sets `Created`, `Bad Request` or an error message.
+   * @param {String} message `Created`, `Bad Request` or an error message.
    */
   exports.prototype.setMessage = function(message) {
     this['message'] = message;
@@ -131,14 +131,14 @@
 
 
   /**
-   * @return {module:model/RenderResponseData}
+   * @return {module:model/TemplateResponseData}
    */
   exports.prototype.getResponse = function() {
     return this['response'];
   }
 
   /**
-   * @param {module:model/RenderResponseData} response
+   * @param {module:model/TemplateResponseData} response
    */
   exports.prototype.setResponse = function(response) {
     this['response'] = response;

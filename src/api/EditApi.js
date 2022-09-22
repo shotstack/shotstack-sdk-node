@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation.  There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> 
  *
  * The version of the OpenAPI document: v1
  *
@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Edit', 'model/ProbeResponse', 'model/QueuedResponse', 'model/RenderResponse'], factory);
+    define(['ApiClient', 'model/Edit', 'model/ProbeResponse', 'model/QueuedResponse', 'model/RenderResponse', 'model/Template', 'model/TemplateDataResponse', 'model/TemplateListResponse', 'model/TemplateRender', 'model/TemplateResponse'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Edit'), require('../model/ProbeResponse'), require('../model/QueuedResponse'), require('../model/RenderResponse'));
+    module.exports = factory(require('../ApiClient'), require('../model/Edit'), require('../model/ProbeResponse'), require('../model/QueuedResponse'), require('../model/RenderResponse'), require('../model/Template'), require('../model/TemplateDataResponse'), require('../model/TemplateListResponse'), require('../model/TemplateRender'), require('../model/TemplateResponse'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.EditApi = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Edit, root.ShotstackSdk.ProbeResponse, root.ShotstackSdk.QueuedResponse, root.ShotstackSdk.RenderResponse);
+    root.ShotstackSdk.EditApi = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Edit, root.ShotstackSdk.ProbeResponse, root.ShotstackSdk.QueuedResponse, root.ShotstackSdk.RenderResponse, root.ShotstackSdk.Template, root.ShotstackSdk.TemplateDataResponse, root.ShotstackSdk.TemplateListResponse, root.ShotstackSdk.TemplateRender, root.ShotstackSdk.TemplateResponse);
   }
-}(this, function(ApiClient, Edit, ProbeResponse, QueuedResponse, RenderResponse) {
+}(this, function(ApiClient, Edit, ProbeResponse, QueuedResponse, RenderResponse, Template, TemplateDataResponse, TemplateListResponse, TemplateRender, TemplateResponse) {
   'use strict';
 
   /**
@@ -49,8 +49,58 @@
 
 
     /**
+     * Delete Template
+     * Delete a template by its template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    this.deleteTemplateWithHttpInfo = function(id) {
+      var postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling deleteTemplate");
+      }
+
+      var pathParams = {
+        'id': id
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'DELETE',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Delete Template
+     * Delete a template by its template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.deleteTemplate = function(id) {
+      return this.deleteTemplateWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Get Render Status
-     * Get the rendering status, temporary asset url and details of a render by ID.  **Base URL:** https://api.shotstack.io/{version}
+     * Get the rendering status, temporary asset url and details of a render by ID.  **Base URL:** https://api.shotstack.io/{version} 
      * @param {String} id The id of the timeline render task in UUID format
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.data Include the data parameter in the response. The data parameter includes the original timeline, output and other settings sent to the API.<br><br><b>Note:</b> the default is currently `true`, this is deprecated and the default will soon be `false`. If you rely on the data being returned in the response you should explicitly set the parameter to `true`.
@@ -92,7 +142,7 @@
 
     /**
      * Get Render Status
-     * Get the rendering status, temporary asset url and details of a render by ID.  **Base URL:** https://api.shotstack.io/{version}
+     * Get the rendering status, temporary asset url and details of a render by ID.  **Base URL:** https://api.shotstack.io/{version} 
      * @param {String} id The id of the timeline render task in UUID format
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.data Include the data parameter in the response. The data parameter includes the original timeline, output and other settings sent to the API.<br><br><b>Note:</b> the default is currently `true`, this is deprecated and the default will soon be `false`. If you rely on the data being returned in the response you should explicitly set the parameter to `true`.
@@ -108,8 +158,101 @@
 
 
     /**
+     * Retrieve Template
+     * Retrieve a template by template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateDataResponse} and HTTP response
+     */
+    this.getTemplateWithHttpInfo = function(id) {
+      var postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getTemplate");
+      }
+
+      var pathParams = {
+        'id': id
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = TemplateDataResponse;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Retrieve Template
+     * Retrieve a template by template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateDataResponse}
+     */
+    this.getTemplate = function(id) {
+      return this.getTemplateWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * List Templates
+     * Retrieve a list of templates stored against a users account. The API key is used to determine which templates are associated to the user.  **Base URL:** https://api.shotstack.io/{version} 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateListResponse} and HTTP response
+     */
+    this.getTemplatesWithHttpInfo = function() {
+      var postBody = null;
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = TemplateListResponse;
+      return this.apiClient.callApi(
+        '/templates', 'GET',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * List Templates
+     * Retrieve a list of templates stored against a users account. The API key is used to determine which templates are associated to the user.  **Base URL:** https://api.shotstack.io/{version} 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateListResponse}
+     */
+    this.getTemplates = function() {
+      return this.getTemplatesWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Render Asset
-     * Queue and render the contents of a timeline as a video, image or audio file.  **Base URL:** https://api.shotstack.io/{version}
+     * Queue and render the contents of an [Edit](#tocs_edit) as a video, image or audio file.  **Base URL:** https://api.shotstack.io/{version} 
      * @param {module:model/Edit} edit The video, image or audio edit specified using JSON.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
      */
@@ -144,7 +287,7 @@
 
     /**
      * Render Asset
-     * Queue and render the contents of a timeline as a video, image or audio file.  **Base URL:** https://api.shotstack.io/{version}
+     * Queue and render the contents of an [Edit](#tocs_edit) as a video, image or audio file.  **Base URL:** https://api.shotstack.io/{version} 
      * @param {module:model/Edit} edit The video, image or audio edit specified using JSON.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
      */
@@ -157,8 +300,106 @@
 
 
     /**
+     * Create Template
+     * Save an [Edit](#tocs_edit) as a re-usable template. Templates can be retrieved and modified in your application before being rendered. [Merge fields](#tocs_mergefield) can be also used to merge data in to a template and [render](#render-template) it in a single request.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {module:model/Template} template Create a template with a name and [Edit](#tocs_edit).
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateResponse} and HTTP response
+     */
+    this.postTemplateWithHttpInfo = function(template) {
+      var postBody = template;
+      // verify the required parameter 'template' is set
+      if (template === undefined || template === null) {
+        throw new Error("Missing the required parameter 'template' when calling postTemplate");
+      }
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = TemplateResponse;
+      return this.apiClient.callApi(
+        '/templates', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Create Template
+     * Save an [Edit](#tocs_edit) as a re-usable template. Templates can be retrieved and modified in your application before being rendered. [Merge fields](#tocs_mergefield) can be also used to merge data in to a template and [render](#render-template) it in a single request.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {module:model/Template} template Create a template with a name and [Edit](#tocs_edit).
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateResponse}
+     */
+    this.postTemplate = function(template) {
+      return this.postTemplateWithHttpInfo(template)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Render Template
+     * Render an asset from a template id and optional merge fields. Merge fields can be used to replace placeholder variables within the [Edit](#tocs_edit).  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {module:model/TemplateRender} templateRender Render a template by template id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
+     */
+    this.postTemplateRenderWithHttpInfo = function(templateRender) {
+      var postBody = templateRender;
+      // verify the required parameter 'templateRender' is set
+      if (templateRender === undefined || templateRender === null) {
+        throw new Error("Missing the required parameter 'templateRender' when calling postTemplateRender");
+      }
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = QueuedResponse;
+      return this.apiClient.callApi(
+        '/templates/render', 'POST',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Render Template
+     * Render an asset from a template id and optional merge fields. Merge fields can be used to replace placeholder variables within the [Edit](#tocs_edit).  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {module:model/TemplateRender} templateRender Render a template by template id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
+     */
+    this.postTemplateRender = function(templateRender) {
+      return this.postTemplateRenderWithHttpInfo(templateRender)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Inspect Media
-     * Inspects any media asset (image, video, audio) on the internet using a hosted version of [FFprobe](https://ffmpeg.org/ffprobe.html). The probe endpoint returns useful information about an asset such as width, height, duration, rotation, framerate, etc...  **Base URL:** https://api.shotstack.io/{version}
+     * Inspects any media asset (image, video, audio) on the internet using a hosted version of [FFprobe](https://ffmpeg.org/ffprobe.html). The probe endpoint returns useful information about an asset such as width, height, duration, rotation, framerate, etc...  **Base URL:** https://api.shotstack.io/{version} 
      * @param {String} url The URL of the media to inspect, must be **URL encoded**.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProbeResponse} and HTTP response
      */
@@ -194,12 +435,68 @@
 
     /**
      * Inspect Media
-     * Inspects any media asset (image, video, audio) on the internet using a hosted version of [FFprobe](https://ffmpeg.org/ffprobe.html). The probe endpoint returns useful information about an asset such as width, height, duration, rotation, framerate, etc...  **Base URL:** https://api.shotstack.io/{version}
+     * Inspects any media asset (image, video, audio) on the internet using a hosted version of [FFprobe](https://ffmpeg.org/ffprobe.html). The probe endpoint returns useful information about an asset such as width, height, duration, rotation, framerate, etc...  **Base URL:** https://api.shotstack.io/{version} 
      * @param {String} url The URL of the media to inspect, must be **URL encoded**.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProbeResponse}
      */
     this.probe = function(url) {
       return this.probeWithHttpInfo(url)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update Template
+     * Update an existing template by template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @param {module:model/Template} template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateResponse} and HTTP response
+     */
+    this.putTemplateWithHttpInfo = function(id, template) {
+      var postBody = template;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling putTemplate");
+      }
+      // verify the required parameter 'template' is set
+      if (template === undefined || template === null) {
+        throw new Error("Missing the required parameter 'template' when calling putTemplate");
+      }
+
+      var pathParams = {
+        'id': id
+      };
+      var queryParams = {
+      };
+      var collectionQueryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['DeveloperKey'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = TemplateResponse;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'PUT',
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Update Template
+     * Update an existing template by template id.  **Base URL:** https://api.shotstack.io/{version} 
+     * @param {String} id The id of the template in UUID format
+     * @param {module:model/Template} template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateResponse}
+     */
+    this.putTemplate = function(id, template) {
+      return this.putTemplateWithHttpInfo(id, template)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

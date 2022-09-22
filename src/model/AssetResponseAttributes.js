@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation.  There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> 
  *
  * The version of the OpenAPI document: v1
  *
@@ -43,10 +43,22 @@
    * The list of asset attributes and their values.
    * @alias module:model/AssetResponseAttributes
    * @class
+   * @param id {String} The unique id of the hosted asset in UUID format.
+   * @param owner {String} The owner id of the render task.
+   * @param filename {String} The asset file name.
+   * @param status {module:model/AssetResponseAttributes.StatusEnum} The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+   * @param created {String} The time the asset was created.
+   * @param updated {String} The time the asset status was last updated.
    */
-  var exports = function() {
+  var exports = function(id, owner, filename, status, created, updated) {
     var _this = this;
 
+    _this['id'] = id;
+    _this['owner'] = owner;
+    _this['filename'] = filename;
+    _this['status'] = status;
+    _this['created'] = created;
+    _this['updated'] = updated;
   };
 
   /**
@@ -70,6 +82,9 @@
       }
       if (data.hasOwnProperty('renderId')) {
         obj['renderId'] = ApiClient.convertToType(data['renderId'], 'String');
+      }
+      if (data.hasOwnProperty('providerId')) {
+        obj['providerId'] = ApiClient.convertToType(data['providerId'], 'String');
       }
       if (data.hasOwnProperty('filename')) {
         obj['filename'] = ApiClient.convertToType(data['filename'], 'String');
@@ -111,6 +126,11 @@
    */
   exports.prototype['renderId'] = undefined;
   /**
+   * The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+   * @member {String} providerId
+   */
+  exports.prototype['providerId'] = undefined;
+  /**
    * The asset file name.
    * @member {String} filename
    */
@@ -151,6 +171,7 @@
    */
   exports.prototype.setId = function(id) {
     this['id'] = id;
+    return this;
   }
 
 
@@ -168,6 +189,7 @@
    */
   exports.prototype.setOwner = function(owner) {
     this['owner'] = owner;
+    return this;
   }
 
 
@@ -185,6 +207,7 @@
    */
   exports.prototype.setRegion = function(region) {
     this['region'] = region;
+    return this;
   }
 
 
@@ -202,6 +225,25 @@
    */
   exports.prototype.setRenderId = function(renderId) {
     this['renderId'] = renderId;
+    return this;
+  }
+
+
+  /**
+   * Returns The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+   * @return {String}
+   */
+  exports.prototype.getProviderId = function() {
+    return this['providerId'];
+  }
+
+  /**
+   * Sets The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+   * @param {String} providerId The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+   */
+  exports.prototype.setProviderId = function(providerId) {
+    this['providerId'] = providerId;
+    return this;
   }
 
 
@@ -219,6 +261,7 @@
    */
   exports.prototype.setFilename = function(filename) {
     this['filename'] = filename;
+    return this;
   }
 
 
@@ -236,6 +279,7 @@
    */
   exports.prototype.setUrl = function(url) {
     this['url'] = url;
+    return this;
   }
 
 
@@ -253,6 +297,7 @@
    */
   exports.prototype.setStatus = function(status) {
     this['status'] = status;
+    return this;
   }
 
 
@@ -270,6 +315,7 @@
    */
   exports.prototype.setCreated = function(created) {
     this['created'] = created;
+    return this;
   }
 
 
@@ -287,6 +333,7 @@
    */
   exports.prototype.setUpdated = function(updated) {
     this['updated'] = updated;
+    return this;
   }
 
 

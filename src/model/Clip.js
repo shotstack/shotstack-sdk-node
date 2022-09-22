@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation.  There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> 
  *
  * The version of the OpenAPI document: v1
  *
@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Offset', 'model/Asset', 'model/Transformation', 'model/Transition'], factory);
+    define(['ApiClient', 'model/Asset', 'model/Offset', 'model/Transformation', 'model/Transition'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Offset'), require('./Asset'), require('./Transformation'), require('./Transition'));
+    module.exports = factory(require('../ApiClient'), require('./Asset'), require('./Offset'), require('./Transformation'), require('./Transition'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Offset, root.ShotstackSdk.Asset, root.ShotstackSdk.Transformation, root.ShotstackSdk.Transition);
+    root.ShotstackSdk.Clip = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Asset, root.ShotstackSdk.Offset, root.ShotstackSdk.Transformation, root.ShotstackSdk.Transition);
   }
-}(this, function(ApiClient, Offset, Asset, Transformation, Transition) {
+}(this, function(ApiClient, Asset, Offset, Transformation, Transition) {
   'use strict';
 
 
@@ -43,7 +43,7 @@
    * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
    * @alias module:model/Clip
    * @class
-   * @param asset {module:model/Asset} The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
+   * @param asset {module:model/Asset} 
    * @param start {Number} The start position of the Clip on the timeline, in seconds.
    * @param length {Number} The length, in seconds, the Clip should play for.
    */
@@ -66,7 +66,7 @@
     if (data) {
       obj = obj || new exports();
       if (data.hasOwnProperty('asset')) {
-        obj['asset'] = ApiClient.convertToType(data['asset'], Asset);
+        obj['asset'] = Asset.constructFromObject(data['asset']);
       }
       if (data.hasOwnProperty('start')) {
         obj['start'] = ApiClient.convertToType(data['start'], 'Number');
@@ -106,7 +106,6 @@
   }
 
   /**
-   * The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    * @member {module:model/Asset} asset
    */
   exports.prototype['asset'] = undefined;
@@ -168,7 +167,6 @@
 
 
   /**
-   * Returns The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
    * @return {module:model/Asset}
    */
   exports.prototype.getAsset = function() {
@@ -176,8 +174,7 @@
   }
 
   /**
-   * Sets The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
-   * @param {module:model/Asset} asset The type of asset to display for the duration of this Clip. Value must be one of:   <ul>     <li><a href=\"#tocs_videoasset\">VideoAsset</a></li>     <li><a href=\"#tocs_imageasset\">ImageAsset</a></li>     <li><a href=\"#tocs_titleasset\">TitleAsset</a></li>     <li><a href=\"#tocs_htmlasset\">HtmlAsset</a></li>     <li><a href=\"#tocs_audioasset\">AudioAsset</a></li>     <li><a href=\"#tocs_lumaasset\">LumaAsset</a></li>   </ul>
+   * @param {module:model/Asset} asset
    */
   exports.prototype.setAsset = function(asset) {
     this['asset'] = asset;

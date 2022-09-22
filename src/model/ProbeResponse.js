@@ -1,6 +1,6 @@
 /**
  * Shotstack
- * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.io/docs/guide/) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  *
@@ -45,7 +45,7 @@
    * @class
    * @param success {Boolean} `true` if media successfully read, else `false`.
    * @param message {String} `Created`, `Bad Request` or an error message.
-   * @param response {Object} The response from FFprobe in JSON format
+   * @param response {Object} The response from FFprobe in JSON format.
    */
   var exports = function(success, message, response) {
     var _this = this;
@@ -89,7 +89,7 @@
    */
   exports.prototype['message'] = undefined;
   /**
-   * The response from FFprobe in JSON format
+   * The response from FFprobe in JSON format.
    * @member {Object} response
    */
   exports.prototype['response'] = undefined;
@@ -132,7 +132,7 @@
 
 
   /**
-   * Returns The response from FFprobe in JSON format
+   * Returns The response from FFprobe in JSON format.
    * @return {Object}
    */
   exports.prototype.getResponse = function() {
@@ -140,8 +140,8 @@
   }
 
   /**
-   * Sets The response from FFprobe in JSON format
-   * @param {Object} response The response from FFprobe in JSON format
+   * Sets The response from FFprobe in JSON format.
+   * @param {Object} response The response from FFprobe in JSON format.
    */
   exports.prototype.setResponse = function(response) {
     this['response'] = response;
