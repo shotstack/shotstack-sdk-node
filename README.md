@@ -713,7 +713,7 @@ output
   .setSize(size)
   .setFps(25)
   .setScaleTo('preview')
-  .setQuality('mediue')
+  .setQuality('medium')
   .setRepeat(true)
   .setRange(range)
   .setPoster(poster)
