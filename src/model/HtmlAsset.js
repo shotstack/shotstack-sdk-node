@@ -117,15 +117,13 @@
   /**
    * Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    * @member {String} background
-   * @default 'transparent'
    */
-  exports.prototype['background'] = 'transparent';
+  exports.prototype['background'] = undefined;
   /**
    * Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/HtmlAsset.PositionEnum} position
-   * @default 'center'
    */
-  exports.prototype['position'] = 'center';
+  exports.prototype['position'] = undefined;
 
 
   /**

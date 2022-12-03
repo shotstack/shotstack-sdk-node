@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/Edit'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./Edit'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.TemplateDataResponseData = factory(root.ShotstackSdk.ApiClient);
+    root.ShotstackSdk.TemplateDataResponseData = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.Edit);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, Edit) {
   'use strict';
 
 
@@ -46,7 +46,7 @@
    * @param id {String} The unique id of the template in UUID format.
    * @param name {String} The template name.
    * @param owner {String} The owner id of the templates.
-   * @param template {String} The [Edit](#tocs_edit) template.
+   * @param template {module:model/Edit} 
    */
   var exports = function(id, name, owner, template) {
     var _this = this;
@@ -77,7 +77,7 @@
         obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
       }
       if (data.hasOwnProperty('template')) {
-        obj['template'] = ApiClient.convertToType(data['template'], 'String');
+        obj['template'] = Edit.constructFromObject(data['template']);
       }
     }
     return obj;
@@ -99,8 +99,7 @@
    */
   exports.prototype['owner'] = undefined;
   /**
-   * The [Edit](#tocs_edit) template.
-   * @member {String} template
+   * @member {module:model/Edit} template
    */
   exports.prototype['template'] = undefined;
 
@@ -160,16 +159,14 @@
 
 
   /**
-   * Returns The [Edit](#tocs_edit) template.
-   * @return {String}
+   * @return {module:model/Edit}
    */
   exports.prototype.getTemplate = function() {
     return this['template'];
   }
 
   /**
-   * Sets The [Edit](#tocs_edit) template.
-   * @param {String} template The [Edit](#tocs_edit) template.
+   * @param {module:model/Edit} template
    */
   exports.prototype.setTemplate = function(template) {
     this['template'] = template;

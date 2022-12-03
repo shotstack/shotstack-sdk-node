@@ -69,9 +69,8 @@
   /**
    * The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise.
    * @member {Number} angle
-   * @default 0
    */
-  exports.prototype['angle'] = 0;
+  exports.prototype['angle'] = undefined;
 
 
   /**

@@ -87,9 +87,8 @@
   /**
    * A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
    * @member {String} background
-   * @default '#000000'
    */
-  exports.prototype['background'] = '#000000';
+  exports.prototype['background'] = undefined;
   /**
    * An array of custom fonts to be downloaded for use by the HTML assets.
    * @member {Array.<module:model/Font>} fonts
@@ -103,9 +102,8 @@
   /**
    * Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.io/docs/guide/architecting-an-application/caching) for more details.
    * @member {Boolean} cache
-   * @default true
    */
-  exports.prototype['cache'] = true;
+  exports.prototype['cache'] = undefined;
 
 
   /**

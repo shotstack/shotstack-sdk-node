@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>Size</code>.
-   * Set a custom size for a video or image. When using a custom size omit the &#x60;resolution&#x60; and &#x60;aspectRatio&#x60;. Custom sizes must be divisible by 2 based on the encoder specifications.
+   * Set a custom size for a video or image in pixels. When using a custom size omit the &#x60;resolution&#x60; and &#x60;aspectRatio&#x60;. Custom sizes must be divisible by 2 based on the encoder specifications.
    * @alias module:model/Size
    * @class
    */
@@ -70,19 +70,19 @@
   }
 
   /**
-   * Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+   * Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
    * @member {Number} width
    */
   exports.prototype['width'] = undefined;
   /**
-   * Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+   * Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
    * @member {Number} height
    */
   exports.prototype['height'] = undefined;
 
 
   /**
-   * Returns Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+   * Returns Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
    * minimum: 0
    * maximum: 4096
    * @return {Number}
@@ -92,8 +92,8 @@
   }
 
   /**
-   * Sets Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
-   * @param {Number} width Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+   * Sets Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+   * @param {Number} width Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
    */
   exports.prototype.setWidth = function(width) {
     this['width'] = width;
@@ -102,7 +102,7 @@
 
 
   /**
-   * Returns Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+   * Returns Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
    * minimum: 0
    * maximum: 4096
    * @return {Number}
@@ -112,8 +112,8 @@
   }
 
   /**
-   * Sets Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
-   * @param {Number} height Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+   * Sets Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+   * @param {Number} height Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
    */
   exports.prototype.setHeight = function(height) {
     this['height'] = height;

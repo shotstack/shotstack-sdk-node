@@ -120,11 +120,10 @@
    */
   exports.prototype['length'] = undefined;
   /**
-   * Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+   * Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
    * @member {module:model/Clip.FitEnum} fit
-   * @default 'crop'
    */
-  exports.prototype['fit'] = 'crop';
+  exports.prototype['fit'] = undefined;
   /**
    * Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
    * @member {Number} scale
@@ -133,9 +132,8 @@
   /**
    * Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/Clip.PositionEnum} position
-   * @default 'center'
    */
-  exports.prototype['position'] = 'center';
+  exports.prototype['position'] = undefined;
   /**
    * @member {module:model/Offset} offset
    */
@@ -145,21 +143,20 @@
    */
   exports.prototype['transition'] = undefined;
   /**
-   * A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
+   * A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
    * @member {module:model/Clip.EffectEnum} effect
    */
   exports.prototype['effect'] = undefined;
   /**
-   * A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
+   * A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
    * @member {module:model/Clip.FilterEnum} filter
    */
   exports.prototype['filter'] = undefined;
   /**
    * Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
    * @member {Number} opacity
-   * @default 1
    */
-  exports.prototype['opacity'] = 1;
+  exports.prototype['opacity'] = undefined;
   /**
    * @member {module:model/Transformation} transform
    */
@@ -219,7 +216,7 @@
 
 
   /**
-   * Returns Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+   * Returns Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
    * @return {module:model/Clip.FitEnum}
    */
   exports.prototype.getFit = function() {
@@ -227,8 +224,8 @@
   }
 
   /**
-   * Sets Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
-   * @param {module:model/Clip.FitEnum} fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+   * Sets Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+   * @param {module:model/Clip.FitEnum} fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
    */
   exports.prototype.setFit = function(fit) {
     this['fit'] = fit;
@@ -305,7 +302,7 @@
 
 
   /**
-   * Returns A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
+   * Returns A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
    * @return {module:model/Clip.EffectEnum}
    */
   exports.prototype.getEffect = function() {
@@ -313,8 +310,8 @@
   }
 
   /**
-   * Sets A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
-   * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
+   * Sets A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
+   * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
    */
   exports.prototype.setEffect = function(effect) {
     this['effect'] = effect;
@@ -323,7 +320,7 @@
 
 
   /**
-   * Returns A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
+   * Returns A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
    * @return {module:model/Clip.FilterEnum}
    */
   exports.prototype.getFilter = function() {
@@ -331,8 +328,8 @@
   }
 
   /**
-   * Sets A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
-   * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
+   * Sets A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
+   * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
    */
   exports.prototype.setFilter = function(filter) {
     this['filter'] = filter;
@@ -465,30 +462,90 @@
      */
     "zoomIn": "zoomIn",
     /**
+     * value: "zoomInSlow"
+     * @const
+     */
+    "zoomInSlow": "zoomInSlow",
+    /**
+     * value: "zoomInFast"
+     * @const
+     */
+    "zoomInFast": "zoomInFast",
+    /**
      * value: "zoomOut"
      * @const
      */
     "zoomOut": "zoomOut",
+    /**
+     * value: "zoomOutSlow"
+     * @const
+     */
+    "zoomOutSlow": "zoomOutSlow",
+    /**
+     * value: "zoomOutFast"
+     * @const
+     */
+    "zoomOutFast": "zoomOutFast",
     /**
      * value: "slideLeft"
      * @const
      */
     "slideLeft": "slideLeft",
     /**
+     * value: "slideLeftSLow"
+     * @const
+     */
+    "slideLeftSLow": "slideLeftSLow",
+    /**
+     * value: "slideLeftFast"
+     * @const
+     */
+    "slideLeftFast": "slideLeftFast",
+    /**
      * value: "slideRight"
      * @const
      */
     "slideRight": "slideRight",
+    /**
+     * value: "slideRightSlow"
+     * @const
+     */
+    "slideRightSlow": "slideRightSlow",
+    /**
+     * value: "slideRightFast"
+     * @const
+     */
+    "slideRightFast": "slideRightFast",
     /**
      * value: "slideUp"
      * @const
      */
     "slideUp": "slideUp",
     /**
+     * value: "slideUpSlow"
+     * @const
+     */
+    "slideUpSlow": "slideUpSlow",
+    /**
+     * value: "slideUpFast"
+     * @const
+     */
+    "slideUpFast": "slideUpFast",
+    /**
      * value: "slideDown"
      * @const
      */
-    "slideDown": "slideDown"  };
+    "slideDown": "slideDown",
+    /**
+     * value: "slideDownSlow"
+     * @const
+     */
+    "slideDownSlow": "slideDownSlow",
+    /**
+     * value: "slideDownFast"
+     * @const
+     */
+    "slideDownFast": "slideDownFast"  };
 
   /**
    * Allowed values for the <code>filter</code> property.

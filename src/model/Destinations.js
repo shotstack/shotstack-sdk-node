@@ -16,18 +16,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/MuxDestination', 'model/MuxDestinationOptions', 'model/ShotstackDestination'], factory);
+    define(['ApiClient', 'model/MuxDestination', 'model/S3Destination', 'model/S3DestinationOptions', 'model/ShotstackDestination'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./MuxDestination'), require('./MuxDestinationOptions'), require('./ShotstackDestination'));
+    module.exports = factory(require('../ApiClient'), require('./MuxDestination'), require('./S3Destination'), require('./S3DestinationOptions'), require('./ShotstackDestination'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.Destinations = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.MuxDestination, root.ShotstackSdk.MuxDestinationOptions, root.ShotstackSdk.ShotstackDestination);
+    root.ShotstackSdk.Destinations = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.MuxDestination, root.ShotstackSdk.S3Destination, root.ShotstackSdk.S3DestinationOptions, root.ShotstackSdk.ShotstackDestination);
   }
-}(this, function(ApiClient, MuxDestination, MuxDestinationOptions, ShotstackDestination) {
+}(this, function(ApiClient, MuxDestination, S3Destination, S3DestinationOptions, ShotstackDestination) {
   'use strict';
 
 
@@ -40,19 +40,21 @@
 
   /**
    * Constructs a new <code>Destinations</code>.
-   * A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the  [Shotstack hosting destination](https://shotstack.io/docs/guide/serving-assets/hosting). You can add other destinations to send assets to. The following destinations are available:   &lt;ul&gt;     &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackdestination\&quot;&gt;DestinationShotstack&lt;/a&gt;&lt;/li&gt;     &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_muxdestination\&quot;&gt;DestinationMux&lt;/a&gt;&lt;/li&gt;   &lt;/ul&gt;
+   * A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the  [Shotstack hosting destination](https://shotstack.io/docs/guide/serving-assets/hosting). You can add other destinations to send assets to. The following destinations are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackdestination\&quot;&gt;ShotstackDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_muxdestination\&quot;&gt;MuxDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_s3destination\&quot;&gt;S3Destination&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
    * @alias module:model/Destinations
    * @class
    * @implements module:model/ShotstackDestination
    * @implements module:model/MuxDestination
-   * @param provider {String} The destination to send rendered assets to - set to `mux` for Mux.
+   * @implements module:model/S3Destination
+   * @param provider {String} The destination to send rendered assets to - set to `s3` for S3.
    */
   var exports = function(provider) {
     var _this = this;
 
     ShotstackDestination.call(_this, provider);
     MuxDestination.call(_this, provider);
-    _this['provider'] = provider || 'mux';
+    S3Destination.call(_this, provider);
+    _this['provider'] = provider || 's3';
   };
 
   /**
@@ -67,6 +69,7 @@
       obj = obj || new exports();
       ShotstackDestination.constructFromObject(data, obj);
       MuxDestination.constructFromObject(data, obj);
+      S3Destination.constructFromObject(data, obj);
       if (data.hasOwnProperty('provider')) {
         obj['provider'] = ApiClient.convertToType(data['provider'], 'String');
       }
@@ -74,26 +77,25 @@
         obj['exclude'] = ApiClient.convertToType(data['exclude'], 'Boolean');
       }
       if (data.hasOwnProperty('options')) {
-        obj['options'] = MuxDestinationOptions.constructFromObject(data['options']);
+        obj['options'] = S3DestinationOptions.constructFromObject(data['options']);
       }
     }
     return obj;
   }
 
   /**
-   * The destination to send rendered assets to - set to `mux` for Mux.
+   * The destination to send rendered assets to - set to `s3` for S3.
    * @member {String} provider
-   * @default 'mux'
+   * @default 's3'
    */
-  exports.prototype['provider'] = 'mux';
+  exports.prototype['provider'] = 's3';
   /**
-   * Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    * @member {Boolean} exclude
-   * @default false
    */
-  exports.prototype['exclude'] = false;
+  exports.prototype['exclude'] = undefined;
   /**
-   * @member {module:model/MuxDestinationOptions} options
+   * @member {module:model/S3DestinationOptions} options
    */
   exports.prototype['options'] = undefined;
 
@@ -106,11 +108,10 @@
 exports.prototype['provider'] = 'shotstack';
 
   /**
-   * Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    * @member {Boolean} exclude
-   * @default false
    */
-exports.prototype['exclude'] = false;
+exports.prototype['exclude'] = undefined;
 
   // Implement MuxDestination interface:
   /**
@@ -125,9 +126,22 @@ exports.prototype['provider'] = 'mux';
    */
 exports.prototype['options'] = undefined;
 
+  // Implement S3Destination interface:
+  /**
+   * The destination to send rendered assets to - set to `s3` for S3.
+   * @member {String} provider
+   * @default 's3'
+   */
+exports.prototype['provider'] = 's3';
 
   /**
-   * Returns The destination to send rendered assets to - set to `mux` for Mux.
+   * @member {module:model/S3DestinationOptions} options
+   */
+exports.prototype['options'] = undefined;
+
+
+  /**
+   * Returns The destination to send rendered assets to - set to `s3` for S3.
    * @return {String}
    */
   exports.prototype.getProvider = function() {
@@ -135,8 +149,8 @@ exports.prototype['options'] = undefined;
   }
 
   /**
-   * Sets The destination to send rendered assets to - set to `mux` for Mux.
-   * @param {String} provider The destination to send rendered assets to - set to `mux` for Mux.
+   * Sets The destination to send rendered assets to - set to `s3` for S3.
+   * @param {String} provider The destination to send rendered assets to - set to `s3` for S3.
    */
   exports.prototype.setProvider = function(provider) {
     this['provider'] = provider;
@@ -145,7 +159,7 @@ exports.prototype['options'] = undefined;
 
 
   /**
-   * Returns Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Returns Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    * @return {Boolean}
    */
   exports.prototype.getExclude = function() {
@@ -153,8 +167,8 @@ exports.prototype['options'] = undefined;
   }
 
   /**
-   * Sets Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
-   * @param {Boolean} exclude Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Sets Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * @param {Boolean} exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    */
   exports.prototype.setExclude = function(exclude) {
     this['exclude'] = exclude;
@@ -163,14 +177,14 @@ exports.prototype['options'] = undefined;
 
 
   /**
-   * @return {module:model/MuxDestinationOptions}
+   * @return {module:model/S3DestinationOptions}
    */
   exports.prototype.getOptions = function() {
     return this['options'];
   }
 
   /**
-   * @param {module:model/MuxDestinationOptions} options
+   * @param {module:model/S3DestinationOptions} options
    */
   exports.prototype.setOptions = function(options) {
     this['options'] = options;

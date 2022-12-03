@@ -72,15 +72,13 @@
   /**
    * Flip a clip horizontally.
    * @member {Boolean} horizontal
-   * @default false
    */
-  exports.prototype['horizontal'] = false;
+  exports.prototype['horizontal'] = undefined;
   /**
    * Flip a clip vertically.
    * @member {Boolean} vertical
-   * @default false
    */
-  exports.prototype['vertical'] = false;
+  exports.prototype['vertical'] = undefined;
 
 
   /**

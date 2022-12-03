@@ -70,23 +70,21 @@
   }
 
   /**
-   * Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+   * Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
    * @member {Number} x
-   * @default 0
    */
-  exports.prototype['x'] = 0;
+  exports.prototype['x'] = undefined;
   /**
-   * Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+   * Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
    * @member {Number} y
-   * @default 0
    */
-  exports.prototype['y'] = 0;
+  exports.prototype['y'] = undefined;
 
 
   /**
-   * Returns Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
-   * minimum: -1
-   * maximum: 1
+   * Returns Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+   * minimum: -10
+   * maximum: 10
    * @return {Number}
    */
   exports.prototype.getX = function() {
@@ -94,8 +92,8 @@
   }
 
   /**
-   * Sets Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
-   * @param {Number} x Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+   * Sets Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+   * @param {Number} x Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
    */
   exports.prototype.setX = function(x) {
     this['x'] = x;
@@ -104,9 +102,9 @@
 
 
   /**
-   * Returns Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
-   * minimum: -1
-   * maximum: 1
+   * Returns Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+   * minimum: -10
+   * maximum: 10
    * @return {Number}
    */
   exports.prototype.getY = function() {
@@ -114,8 +112,8 @@
   }
 
   /**
-   * Sets Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
-   * @param {Number} y Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+   * Sets Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+   * @param {Number} y Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
    */
   exports.prototype.setY = function(y) {
     this['y'] = y;

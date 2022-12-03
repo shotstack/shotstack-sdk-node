@@ -45,20 +45,14 @@
    * @class
    * @param id {String} The unique id of the hosted asset in UUID format.
    * @param owner {String} The owner id of the render task.
-   * @param filename {String} The asset file name.
    * @param status {module:model/AssetResponseAttributes.StatusEnum} The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-   * @param created {String} The time the asset was created.
-   * @param updated {String} The time the asset status was last updated.
    */
-  var exports = function(id, owner, filename, status, created, updated) {
+  var exports = function(id, owner, status) {
     var _this = this;
 
     _this['id'] = id;
     _this['owner'] = owner;
-    _this['filename'] = filename;
     _this['status'] = status;
-    _this['created'] = created;
-    _this['updated'] = updated;
   };
 
   /**
