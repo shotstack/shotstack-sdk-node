@@ -75,6 +75,9 @@
       if (data.hasOwnProperty('volume')) {
         obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
       }
+      if (data.hasOwnProperty('volumeEffect')) {
+        obj['volumeEffect'] = ApiClient.convertToType(data['volumeEffect'], 'String');
+      }
       if (data.hasOwnProperty('crop')) {
         obj['crop'] = Crop.constructFromObject(data['crop']);
       }
@@ -99,10 +102,15 @@
    */
   exports.prototype['trim'] = undefined;
   /**
-   * Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
    */
   exports.prototype['volume'] = undefined;
+  /**
+   * The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @member {module:model/VideoAsset.VolumeEffectEnum} volumeEffect
+   */
+  exports.prototype['volumeEffect'] = undefined;
   /**
    * @member {module:model/Crop} crop
    */
@@ -164,7 +172,7 @@
 
 
   /**
-   * Returns Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Returns Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @return {Number}
    */
   exports.prototype.getVolume = function() {
@@ -172,11 +180,29 @@
   }
 
   /**
-   * Sets Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
-   * @param {Number} volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Sets Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+   * @param {Number} volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    */
   exports.prototype.setVolume = function(volume) {
     this['volume'] = volume;
+    return this;
+  }
+
+
+  /**
+   * Returns The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @return {module:model/VideoAsset.VolumeEffectEnum}
+   */
+  exports.prototype.getVolumeEffect = function() {
+    return this['volumeEffect'];
+  }
+
+  /**
+   * Sets The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @param {module:model/VideoAsset.VolumeEffectEnum} volumeEffect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   */
+  exports.prototype.setVolumeEffect = function(volumeEffect) {
+    this['volumeEffect'] = volumeEffect;
     return this;
   }
 
@@ -196,6 +222,28 @@
     return this;
   }
 
+
+  /**
+   * Allowed values for the <code>volumeEffect</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.VolumeEffectEnum = {
+    /**
+     * value: "fadeIn"
+     * @const
+     */
+    "fadeIn": "fadeIn",
+    /**
+     * value: "fadeOut"
+     * @const
+     */
+    "fadeOut": "fadeOut",
+    /**
+     * value: "fadeInFadeOut"
+     * @const
+     */
+    "fadeInFadeOut": "fadeInFadeOut"  };
 
 
   return exports;

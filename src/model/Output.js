@@ -85,6 +85,9 @@
       if (data.hasOwnProperty('repeat')) {
         obj['repeat'] = ApiClient.convertToType(data['repeat'], 'Boolean');
       }
+      if (data.hasOwnProperty('mute')) {
+        obj['mute'] = ApiClient.convertToType(data['mute'], 'Boolean');
+      }
       if (data.hasOwnProperty('range')) {
         obj['range'] = Range.constructFromObject(data['range']);
       }
@@ -112,7 +115,7 @@
    */
   exports.prototype['resolution'] = undefined;
   /**
-   * The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+   * The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    * @member {module:model/Output.AspectRatioEnum} aspectRatio
    */
   exports.prototype['aspectRatio'] = undefined;
@@ -121,7 +124,7 @@
    */
   exports.prototype['size'] = undefined;
   /**
-   * Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
+   * Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
    * @member {module:model/Output.FpsEnum} fps
    */
   exports.prototype['fps'] = undefined;
@@ -131,17 +134,20 @@
    */
   exports.prototype['scaleTo'] = undefined;
   /**
-   * Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
    * @member {module:model/Output.QualityEnum} quality
-   * @default 'medium'
    */
-  exports.prototype['quality'] = 'medium';
+  exports.prototype['quality'] = undefined;
   /**
    * Loop settings for gif files. Set to `true` to loop, `false` to play only once.
    * @member {Boolean} repeat
-   * @default true
    */
-  exports.prototype['repeat'] = true;
+  exports.prototype['repeat'] = undefined;
+  /**
+   * Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+   * @member {Boolean} mute
+   */
+  exports.prototype['mute'] = undefined;
   /**
    * @member {module:model/Range} range
    */
@@ -155,6 +161,7 @@
    */
   exports.prototype['thumbnail'] = undefined;
   /**
+   * Specify the storage locations and hosting services to send rendered videos to.
    * @member {Array.<module:model/Destinations>} destinations
    */
   exports.prototype['destinations'] = undefined;
@@ -197,7 +204,7 @@
 
 
   /**
-   * Returns The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+   * Returns The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    * @return {module:model/Output.AspectRatioEnum}
    */
   exports.prototype.getAspectRatio = function() {
@@ -205,8 +212,8 @@
   }
 
   /**
-   * Sets The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
-   * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+   * Sets The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+   * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
    */
   exports.prototype.setAspectRatio = function(aspectRatio) {
     this['aspectRatio'] = aspectRatio;
@@ -231,7 +238,7 @@
 
 
   /**
-   * Returns Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
+   * Returns Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
    * @return {module:model/Output.FpsEnum}
    */
   exports.prototype.getFps = function() {
@@ -239,8 +246,8 @@
   }
 
   /**
-   * Sets Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
-   * @param {module:model/Output.FpsEnum} fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
+   * Sets Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
+   * @param {module:model/Output.FpsEnum} fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
    */
   exports.prototype.setFps = function(fps) {
     this['fps'] = fps;
@@ -267,7 +274,7 @@
 
 
   /**
-   * Returns Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * Returns Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
    * @return {module:model/Output.QualityEnum}
    */
   exports.prototype.getQuality = function() {
@@ -275,8 +282,8 @@
   }
 
   /**
-   * Sets Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
-   * @param {module:model/Output.QualityEnum} quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * Sets Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+   * @param {module:model/Output.QualityEnum} quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
    */
   exports.prototype.setQuality = function(quality) {
     this['quality'] = quality;
@@ -298,6 +305,24 @@
    */
   exports.prototype.setRepeat = function(repeat) {
     this['repeat'] = repeat;
+    return this;
+  }
+
+
+  /**
+   * Returns Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+   * @return {Boolean}
+   */
+  exports.prototype.getMute = function() {
+    return this['mute'];
+  }
+
+  /**
+   * Sets Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+   * @param {Boolean} mute Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+   */
+  exports.prototype.setMute = function(mute) {
+    this['mute'] = mute;
     return this;
   }
 
@@ -351,6 +376,7 @@
 
 
   /**
+   * Returns Specify the storage locations and hosting services to send rendered videos to.
    * @return {Array.<module:model/Destinations>}
    */
   exports.prototype.getDestinations = function() {
@@ -358,7 +384,8 @@
   }
 
   /**
-   * @param {Array.<module:model/Destinations>} destinations
+   * Sets Specify the storage locations and hosting services to send rendered videos to.
+   * @param {Array.<module:model/Destinations>} destinations Specify the storage locations and hosting services to send rendered videos to.
    */
   exports.prototype.setDestinations = function(destinations) {
     this['destinations'] = destinations;

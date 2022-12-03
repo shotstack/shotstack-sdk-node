@@ -45,16 +45,12 @@
    * @class
    * @param id {String} The unique id of the template in UUID format.
    * @param name {String} The template name
-   * @param created {String} The time the template was created.
-   * @param updated {String} The time the template was last updated.
    */
-  var exports = function(id, name, created, updated) {
+  var exports = function(id, name) {
     var _this = this;
 
     _this['id'] = id;
     _this['name'] = name;
-    _this['created'] = created;
-    _this['updated'] = updated;
   };
 
   /**

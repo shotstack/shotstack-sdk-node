@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>Asset</code>.
-   * The type of asset to display for the duration of this Clip. Value     must be one of:       &lt;ul&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt;       &lt;/ul&gt;
+   * The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
    * @alias module:model/Asset
    * @class
    * @implements module:model/VideoAsset
@@ -96,6 +96,9 @@
       }
       if (data.hasOwnProperty('volume')) {
         obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
+      }
+      if (data.hasOwnProperty('volumeEffect')) {
+        obj['volumeEffect'] = ApiClient.convertToType(data['volumeEffect'], 'String');
       }
       if (data.hasOwnProperty('crop')) {
         obj['crop'] = Crop.constructFromObject(data['crop']);
@@ -159,9 +162,13 @@
   /**
    * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
-   * @default 1
    */
-  exports.prototype['volume'] = 1;
+  exports.prototype['volume'] = undefined;
+  /**
+   * The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @member {module:model/Asset.VolumeEffectEnum} volumeEffect
+   */
+  exports.prototype['volumeEffect'] = undefined;
   /**
    * @member {module:model/Crop} crop
    */
@@ -179,27 +186,23 @@
   /**
    * Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    * @member {String} color
-   * @default '#ffffff'
    */
-  exports.prototype['color'] = '#ffffff';
+  exports.prototype['color'] = undefined;
   /**
    * Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    * @member {module:model/Asset.SizeEnum} size
-   * @default 'medium'
    */
-  exports.prototype['size'] = 'medium';
+  exports.prototype['size'] = undefined;
   /**
    * Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    * @member {String} background
-   * @default 'transparent'
    */
-  exports.prototype['background'] = 'transparent';
+  exports.prototype['background'] = undefined;
   /**
    * Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/Asset.PositionEnum} position
-   * @default 'center'
    */
-  exports.prototype['position'] = 'center';
+  exports.prototype['position'] = undefined;
   /**
    * @member {module:model/Offset} offset
    */
@@ -251,10 +254,16 @@ exports.prototype['src'] = undefined;
 exports.prototype['trim'] = undefined;
 
   /**
-   * Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+   * Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
    */
 exports.prototype['volume'] = undefined;
+
+  /**
+   * The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @member {module:model/VideoAsset.VolumeEffectEnum} volumeEffect
+   */
+exports.prototype['volumeEffect'] = undefined;
 
   /**
    * @member {module:model/Crop} crop
@@ -303,16 +312,14 @@ exports.prototype['style'] = undefined;
   /**
    * Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    * @member {String} color
-   * @default '#ffffff'
    */
-exports.prototype['color'] = '#ffffff';
+exports.prototype['color'] = undefined;
 
   /**
    * Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    * @member {module:model/TitleAsset.SizeEnum} size
-   * @default 'medium'
    */
-exports.prototype['size'] = 'medium';
+exports.prototype['size'] = undefined;
 
   /**
    * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
@@ -323,9 +330,8 @@ exports.prototype['background'] = undefined;
   /**
    * Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/TitleAsset.PositionEnum} position
-   * @default 'center'
    */
-exports.prototype['position'] = 'center';
+exports.prototype['position'] = undefined;
 
   /**
    * @member {module:model/Offset} offset
@@ -367,16 +373,14 @@ exports.prototype['height'] = undefined;
   /**
    * Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
    * @member {String} background
-   * @default 'transparent'
    */
-exports.prototype['background'] = 'transparent';
+exports.prototype['background'] = undefined;
 
   /**
    * Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/HtmlAsset.PositionEnum} position
-   * @default 'center'
    */
-exports.prototype['position'] = 'center';
+exports.prototype['position'] = undefined;
 
   // Implement AudioAsset interface:
   /**
@@ -401,9 +405,8 @@ exports.prototype['trim'] = undefined;
   /**
    * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
-   * @default 1
    */
-exports.prototype['volume'] = 1;
+exports.prototype['volume'] = undefined;
 
   /**
    * The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
@@ -733,6 +736,28 @@ exports.prototype['trim'] = undefined;
     return this;
   }
 
+
+  /**
+   * Allowed values for the <code>volumeEffect</code> property.
+   * @enum {String}
+   * @readonly
+   */
+  exports.VolumeEffectEnum = {
+    /**
+     * value: "fadeIn"
+     * @const
+     */
+    "fadeIn": "fadeIn",
+    /**
+     * value: "fadeOut"
+     * @const
+     */
+    "fadeOut": "fadeOut",
+    /**
+     * value: "fadeInFadeOut"
+     * @const
+     */
+    "fadeInFadeOut": "fadeInFadeOut"  };
 
   /**
    * Allowed values for the <code>style</code> property.

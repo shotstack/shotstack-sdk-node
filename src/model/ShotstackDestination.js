@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>ShotstackDestination</code>.
-   * Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
+   * Send rendered assets to the  [Shotstack hosting and CDN](https://shotstack.io/docs/guide/serving-assets/destinations/shotstack) service.  This destination is enabled by default.
    * @alias module:model/ShotstackDestination
    * @class
    * @param provider {String} The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN.
@@ -78,11 +78,10 @@
    */
   exports.prototype['provider'] = 'shotstack';
   /**
-   * Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    * @member {Boolean} exclude
-   * @default false
    */
-  exports.prototype['exclude'] = false;
+  exports.prototype['exclude'] = undefined;
 
 
   /**
@@ -104,7 +103,7 @@
 
 
   /**
-   * Returns Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Returns Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    * @return {Boolean}
    */
   exports.prototype.getExclude = function() {
@@ -112,8 +111,8 @@
   }
 
   /**
-   * Sets Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
-   * @param {Boolean} exclude Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * Sets Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+   * @param {Boolean} exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
    */
   exports.prototype.setExclude = function(exclude) {
     this['exclude'] = exclude;

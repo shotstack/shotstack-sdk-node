@@ -72,15 +72,13 @@
   /**
    * Skew the clip along it's x axis.
    * @member {Number} x
-   * @default 0
    */
-  exports.prototype['x'] = 0;
+  exports.prototype['x'] = undefined;
   /**
    * Skew the clip along it's y axis.
    * @member {Number} y
-   * @default 0
    */
-  exports.prototype['y'] = 0;
+  exports.prototype['y'] = undefined;
 
 
   /**

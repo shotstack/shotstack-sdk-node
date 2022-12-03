@@ -46,19 +46,13 @@
    * @param id {String} The id of the render task in UUID format.
    * @param owner {String} The owner id of the render task.
    * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
-   * @param data {module:model/Edit} 
-   * @param created {String} The time the render task was initially queued.
-   * @param updated {String} The time the render status was last updated.
    */
-  var exports = function(id, owner, status, data, created, updated) {
+  var exports = function(id, owner, status) {
     var _this = this;
 
     _this['id'] = id;
     _this['owner'] = owner;
     _this['status'] = status;
-    _this['data'] = data;
-    _this['created'] = created;
-    _this['updated'] = updated;
   };
 
   /**

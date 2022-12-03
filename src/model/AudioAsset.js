@@ -101,9 +101,8 @@
   /**
    * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
    * @member {Number} volume
-   * @default 1
    */
-  exports.prototype['volume'] = 1;
+  exports.prototype['volume'] = undefined;
   /**
    * The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
    * @member {module:model/AudioAsset.EffectEnum} effect

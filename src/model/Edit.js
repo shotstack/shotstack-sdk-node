@@ -103,9 +103,8 @@
   /**
    * The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimized for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
    * @member {module:model/Edit.DiskEnum} disk
-   * @default 'local'
    */
-  exports.prototype['disk'] = 'local';
+  exports.prototype['disk'] = undefined;
 
 
   /**

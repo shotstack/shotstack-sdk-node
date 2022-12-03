@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>TitleAsset</code>.
-   * The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
+   * **Notice: The title asset is deprecated, use the [HTML asset](#tocs_htmlasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning. 
    * @alias module:model/TitleAsset
    * @class
    * @param type {String} The type of asset - set to `title` for titles.
@@ -110,15 +110,13 @@
   /**
    * Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
    * @member {String} color
-   * @default '#ffffff'
    */
-  exports.prototype['color'] = '#ffffff';
+  exports.prototype['color'] = undefined;
   /**
    * Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
    * @member {module:model/TitleAsset.SizeEnum} size
-   * @default 'medium'
    */
-  exports.prototype['size'] = 'medium';
+  exports.prototype['size'] = undefined;
   /**
    * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
    * @member {String} background
@@ -127,9 +125,8 @@
   /**
    * Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
    * @member {module:model/TitleAsset.PositionEnum} position
-   * @default 'center'
    */
-  exports.prototype['position'] = 'center';
+  exports.prototype['position'] = undefined;
   /**
    * @member {module:model/Offset} offset
    */

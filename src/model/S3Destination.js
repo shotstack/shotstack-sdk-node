@@ -16,47 +16,47 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/MuxDestinationOptions'], factory);
+    define(['ApiClient', 'model/S3DestinationOptions'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./MuxDestinationOptions'));
+    module.exports = factory(require('../ApiClient'), require('./S3DestinationOptions'));
   } else {
     // Browser globals (root is window)
     if (!root.ShotstackSdk) {
       root.ShotstackSdk = {};
     }
-    root.ShotstackSdk.MuxDestination = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.MuxDestinationOptions);
+    root.ShotstackSdk.S3Destination = factory(root.ShotstackSdk.ApiClient, root.ShotstackSdk.S3DestinationOptions);
   }
-}(this, function(ApiClient, MuxDestinationOptions) {
+}(this, function(ApiClient, S3DestinationOptions) {
   'use strict';
 
 
 
   /**
-   * The MuxDestination model module.
-   * @module model/MuxDestination
+   * The S3Destination model module.
+   * @module model/S3Destination
    * @version v1
    */
 
   /**
-   * Constructs a new <code>MuxDestination</code>.
-   * Send rendered videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
-   * @alias module:model/MuxDestination
+   * Constructs a new <code>S3Destination</code>.
+   * Send rendered videos to an [Amazon S3](https://shotstack.io/docs/guide/serving-assets/destinations/s3) bucket. Send files to any region with your own prefix and filename. AWS credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/s3), not in the request.
+   * @alias module:model/S3Destination
    * @class
-   * @param provider {String} The destination to send rendered assets to - set to `mux` for Mux.
+   * @param provider {String} The destination to send rendered assets to - set to `s3` for S3.
    */
   var exports = function(provider) {
     var _this = this;
 
-    _this['provider'] = provider || 'mux';
+    _this['provider'] = provider || 's3';
   };
 
   /**
-   * Constructs a <code>MuxDestination</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>S3Destination</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/MuxDestination} obj Optional instance to populate.
-   * @return {module:model/MuxDestination} The populated <code>MuxDestination</code> instance.
+   * @param {module:model/S3Destination} obj Optional instance to populate.
+   * @return {module:model/S3Destination} The populated <code>S3Destination</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -65,26 +65,26 @@
         obj['provider'] = ApiClient.convertToType(data['provider'], 'String');
       }
       if (data.hasOwnProperty('options')) {
-        obj['options'] = MuxDestinationOptions.constructFromObject(data['options']);
+        obj['options'] = S3DestinationOptions.constructFromObject(data['options']);
       }
     }
     return obj;
   }
 
   /**
-   * The destination to send rendered assets to - set to `mux` for Mux.
+   * The destination to send rendered assets to - set to `s3` for S3.
    * @member {String} provider
-   * @default 'mux'
+   * @default 's3'
    */
-  exports.prototype['provider'] = 'mux';
+  exports.prototype['provider'] = 's3';
   /**
-   * @member {module:model/MuxDestinationOptions} options
+   * @member {module:model/S3DestinationOptions} options
    */
   exports.prototype['options'] = undefined;
 
 
   /**
-   * Returns The destination to send rendered assets to - set to `mux` for Mux.
+   * Returns The destination to send rendered assets to - set to `s3` for S3.
    * @return {String}
    */
   exports.prototype.getProvider = function() {
@@ -92,8 +92,8 @@
   }
 
   /**
-   * Sets The destination to send rendered assets to - set to `mux` for Mux.
-   * @param {String} provider The destination to send rendered assets to - set to `mux` for Mux.
+   * Sets The destination to send rendered assets to - set to `s3` for S3.
+   * @param {String} provider The destination to send rendered assets to - set to `s3` for S3.
    */
   exports.prototype.setProvider = function(provider) {
     this['provider'] = provider;
@@ -102,14 +102,14 @@
 
 
   /**
-   * @return {module:model/MuxDestinationOptions}
+   * @return {module:model/S3DestinationOptions}
    */
   exports.prototype.getOptions = function() {
     return this['options'];
   }
 
   /**
-   * @param {module:model/MuxDestinationOptions} options
+   * @param {module:model/S3DestinationOptions} options
    */
   exports.prototype.setOptions = function(options) {
     this['options'] = options;
