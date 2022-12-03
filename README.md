@@ -43,7 +43,10 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [Range](#range)
     - [Poster](#poster)
     - [Thumbnail](#thumbnail)
+  - [Destinations](#destinations)
     - [ShotstackDestination](#shotstackdestination)
+    - [MuxDestination](#muxdestination)
+    - [MuxDestinationOptions](#muxdestinationoptions)
   - [Render Response Schemas](#render-response-schemas)
     - [QueuedResponse](#queuedresponse)
     - [QueuedResponseData](#queuedresponsedata)
@@ -834,6 +837,8 @@ setScale(float scale) | Scale the thumbnail size to a fraction of the viewport s
 
 ---
 
+## Destinations
+
 ### ShotstackDestination
 
 Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
@@ -857,6 +862,48 @@ setProvider(string provider) | The destination to send rendered assets to - set 
 setExclude(bool exclude) | Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. [default to `false`] | -
 
 ---
+
+### MuxDestination
+
+Send rendered videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux) video hosting and
+streaming service. Mux credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const muxDestination = new Shotstack.MuxDestination;
+muxDestination
+  .setProvider('mux')
+  .setOptions(options);
+```
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string provider) | The destination to send rendered assets to - set to `mux` for Mux hosting and CDN. [default to `mux`] | Y
+setOptions([MuxDestinationOptions](#muxdestinationoptions) options) | Additional Mux configuration and features. | - 
+
+### MuxDestinationOptions
+
+Pass additional options to control how Mux processes video. Currently supports playback policy option.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const muxDestinationOptions = new Shotstack.MuxDestinationOptions;
+muxDestination
+  .setPlaybackPolicy(['public']);
+```
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setPlaybackPolicy([string] policy) | Sets the Mux &#x60;playback_policy&#x60; option. Value is an array of strings - use **public**, **signed**, or both. | -  
 
 ## Render Response Schemas
 
