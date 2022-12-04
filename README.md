@@ -47,6 +47,8 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [ShotstackDestination](#shotstackdestination)
     - [MuxDestination](#muxdestination)
     - [MuxDestinationOptions](#muxdestinationoptions)
+    - [S3Destination](#s3destination)
+    - [S3DestinationOptions](#s3destinationoptions)
   - [Render Response Schemas](#render-response-schemas)
     - [QueuedResponse](#queuedresponse)
     - [QueuedResponseData](#queuedresponsedata)
@@ -858,7 +860,7 @@ shotstackDestination
 
 Method | Description | Required
 :--- | :--- | :---: 
-setProvider(string provider) | The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN. [default to `shotstack`] | Y
+setProvider(string provider) | The destination to send rendered assets to - set to `shotstack` for Shotstack. | Y
 setExclude(bool exclude) | Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. [default to `false`] | -
 
 ---
@@ -877,13 +879,13 @@ const Shotstack = require('shotstack-sdk');
 const muxDestination = new Shotstack.MuxDestination;
 muxDestination
   .setProvider('mux')
-  .setOptions(options);
+  .setOptions(muxDestinationOptions);
 ```
 #### Methods:
 
 Name | Description | Required
 :--- | :--- | :---: 
-setProvider(string provider) | The destination to send rendered assets to - set to `mux` for Mux hosting and CDN. [default to `mux`] | Y
+setProvider(string provider) | The destination to send rendered assets to - set to `mux` for Mux. | Y
 setOptions([MuxDestinationOptions](#muxdestinationoptions) options) | Additional Mux configuration and features. | - 
 
 ### MuxDestinationOptions
@@ -896,14 +898,65 @@ Pass additional options to control how Mux processes video. Currently supports p
 const Shotstack = require('shotstack-sdk');
 
 const muxDestinationOptions = new Shotstack.MuxDestinationOptions;
-muxDestination
+muxDestinationOptions
   .setPlaybackPolicy(['public']);
 ```
 #### Methods:
 
 Name | Description | Required
 :--- | :--- | :---: 
-setPlaybackPolicy([string] policy) | Sets the Mux &#x60;playback_policy&#x60; option. Value is an array of strings - use **public**, **signed**, or both. | -  
+setPlaybackPolicy([string] policy) | Sets the Mux `playback_policy` option. Value is an array of strings - use **public**, **signed**, or both. | -  
+
+### S3Destination
+
+Send rendered videos to an [Amazon S3](https://shotstack.io/docs/guide/serving-assets/destinations/s3) bucket. Send 
+files to any region with your own prefix and filename. AWS credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/s3), not in the request.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const s3Destination = new Shotstack.S3Destination;
+s3Destination
+  .setProvider('s3')
+  .setOptions(S3DestinationOptions);
+```
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string provider) | The destination to send rendered assets to - set to `s3` for S3. | Y
+setOptions([S3DestinationOptions](#s3destinationoptions) options) | Additional S3 configuration options. | - 
+
+### S3DestinationOptions
+
+Pass additional options to control how files are stored in S3.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const S3DestinationOptions = new Shotstack.S3DestinationOptions;
+S3DestinationOptions
+  .setRegion('us-east-1');
+  .setBucket('my-bucket');
+  .setPrefix('my-renders');
+  .setFilename('my-file');
+  .setAcl('public-read');
+```
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setRegion(string region) | Choose the region to send the file to. Must be a valid [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2` | Y
+setBucket(string bucket) | The bucket name to send files to. The bucket must exist in the AWS account before files can be sent. | Y
+setPrefix(string prefix) | A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`. | -
+setFilename(string filename) | Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending n the output format. Also `poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images. | -
+setAcl(string acl) | Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). | -
+
 
 ## Render Response Schemas
 
