@@ -182,7 +182,7 @@ setTimeline([Shotstack.Timeline](#timeline)) | A timeline represents the content
 setOutput([Shotstack.Output](#output)) | The output format, render range and type of media to generate. | Y
 setMerge([Shotstack.MergeField[]](#mergefield) mergeField) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
 setCallback(string callback) | An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.io/docs/guide/architecting-an-application/webhooks/) for  more details. | -
-setDisk(string disk) | The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
+setDisk(string disk) | **(Deprecated)** The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
 
 -----
 
@@ -545,8 +545,8 @@ offset
 
 Method | Description | Required
 :--- | :--- | :---: 
-setX(float x) | Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
-setY(float y) | Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height of the viewport - i.e. an Y offset of 0.5 will move the asset up half the screen height. [default to `0`] | -
+setX(float x) | Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
+setY(float y) | Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height. [default to `0`] | -
 
 ---
 
@@ -720,6 +720,7 @@ output
   .setScaleTo('preview')
   .setQuality('medium')
   .setRepeat(true)
+  .setMute(false)
   .setRange(range)
   .setPoster(poster)
   .setThumbnail(thumbnail)
@@ -738,6 +739,7 @@ setFps(float fps) | Override the default frames per second. Useful for when the 
 setScaleTo(string scaleTo) | Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul><li>`preview` - 512px x 288px @ 15fps</li><li>`mobile` - 640px x 360px @ 25fps</li><li>`sd` - 1024px x 576px @25fps</li><li>`hd` - 1280px x 720px @25fps</li><li>`1080` - 1920px x 1080px @25fps</li></ul> | -
 setQuality(string quality) | Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul><li>`low` - slightly reduced quality, smaller file size</li><li>`medium` - optimized quality, render speeds and file size</li><li>`high` - slightly increased quality, larger file size</li></ul> | -
 setRepeat(bool repeat) | Loop settings for gif files. Set to `true` to loop, `false` to play only once. [default to `true`] | -
+setMute(bool mute) | Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute. | -
 setRange([Shotstack.Range](#range) range) | Specify a time range to render, i.e. to render only a portion of a video or audio file. Omit this setting to export the entire video. Range can also be used to render a frame at a specific time point - setting a range and output format as `jpg` will output a single frame image at the range `start` point. | -
 setPoster([Shotstack.Poster](#poster) poster) | Generate a poster image from a specific point on the timeline. | -
 setThumbnail([Shotstack.Thumbnail](#thumbnail) thumbnail) | Generate a thumbnail image from a specific point on the timeline. | -
