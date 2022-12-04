@@ -37,6 +37,9 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [SkewTransformation](#skewtransformation)
     - [FlipTransformation](#fliptransformation)
     - [MergeField](#mergefield)
+  - [Template Schemas](#template-schemas)
+    - [Template](#template)
+    - [TemplateRender](#templaterender)
   - [Output Schemas](#output-schemas)
     - [Output](#output)
     - [Size](#size)
@@ -143,7 +146,7 @@ DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the cor
 
 const api = new Shotstack.EditApi();
 
-const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; // use the render id from previous example
+const id = '75143ec6-4b72-46f8-a67a-fd7284546935'; // use the render id from previous example
 
 api.getRender(id, { data: false, merged: true }).then((data) => {
     if (data.response.status === 'done') {
@@ -170,7 +173,7 @@ edit
   .setTimeline(timeline)
   .setOutput(output)
   .setMerge(merge)
-  .setCallback("https://my-server.com/callback.php")
+  .setCallback('https://my-server.com/callback.php')
   .setDisk("local");
 ```
 
@@ -700,6 +703,57 @@ setReplace(replace) | The replacement value. The replacement can be any valid JS
 
 ---
 
+## Template Schemas
+
+The following schemas specify how to use templates to store and render templates. A template lets you save an
+[Edit](#edit) that can be rendered by its template ID and optionally include merge fields that are merged with the
+template when rendered.
+
+### Template
+
+A template is a saved [Edit](#edit) than can be loaded and re-used.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const template = new Shotstack.Template;
+template
+  .setName('My Template')
+  .setTemplate(edit);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setName(string name) | The template name. | Y
+setTemplate([Shotstack.Edit](#edit) edit)) | An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. | Y
+
+### TemplateRender
+
+Render a template by its id and optional merge fields.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const template = new Shotstack.TemplateRender;
+template
+  .setId('21e781c0-8232-4418-fec1-cc99f0280c21')
+  .setMerge(merge);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setId(string id) | The id of the template to render in UUID format. | Y
+setMerge([Shotstack.MergeField[]](#mergefield) mergeField) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
+
+---
 ## Output Schemas
 
 The following schemas specify the output format and settings.
