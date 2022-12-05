@@ -16,6 +16,8 @@ For examples of how to use the SDK to create videos using code checkout the Node
   - [Video Editing](#video-editing)
     - [Video Editing Example](#video-editing-example)
     - [Status Check Example](#status-check-example)
+    - [Save a Template Example](#save-a-template-example)
+    - [Render a Template Example](#render-a-template-example)
   - [Video Editing Schemas](#video-editing-schemas)
     - [Edit](#edit)
     - [Timeline](#timeline)
@@ -37,6 +39,9 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [SkewTransformation](#skewtransformation)
     - [FlipTransformation](#fliptransformation)
     - [MergeField](#mergefield)
+  - [Template Schemas](#template-schemas)
+    - [Template](#template)
+    - [TemplateRender](#templaterender)
   - [Output Schemas](#output-schemas)
     - [Output](#output)
     - [Size](#size)
@@ -54,6 +59,14 @@ For examples of how to use the SDK to create videos using code checkout the Node
     - [QueuedResponseData](#queuedresponsedata)
     - [RenderResponse](#renderresponse)
     - [RenderResponseData](#renderresponsedata)
+  - [Template Response Schemas](#template-response-schemas)
+    - [TemplateResponse](#templateresponse)
+    - [TemplateResponseData](#templateresponsedata)
+    - [TemplateDataResponse](#templatedataresponse)
+    - [TemplateDataResponseData](#templatedataresponsedata)
+    - [TemplateListResponse](#templatelistresponse)
+    - [TemplateListResponseData](#templatelistresponsedata)
+    - [TemplateListResponseItem](#templatelistresponseitem)
   - [Inspecting Media](#inspecting-media)
     - [Probe Example](#probe-example)
   - [Probe Schemas](#probe-schemas)
@@ -143,12 +156,117 @@ DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the cor
 
 const api = new Shotstack.EditApi();
 
-const id = "75143ec6-4b72-46f8-a67a-fd7284546935"; // use the render id from previous example
+const id = '75143ec6-4b72-46f8-a67a-fd7284546935'; // use the render id from previous example
 
 api.getRender(id, { data: false, merged: true }).then((data) => {
     if (data.response.status === 'done') {
         console.log(data.response.url);
     }
+});
+```
+
+### Save a Template Example
+
+The example below uses the Edit we create in the [Video Editing Example](#video-editing-example) and saves it as a
+template. The template can be rendered at a later date and can include placeholders. Placeholders can be replaced 
+when rendered using [merge fields](#mergefield).
+
+This example uses a placeholder for the video src (URL), trim (TRIM), and length (LENGTH) to allow you to trim any video
+using a template.
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
+const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
+const api = new Shotstack.EditApi();
+
+let videoAsset = new Shotstack.VideoAsset;
+videoAsset
+    .setSrc('{{ URL }}')
+    .setTrim('{{ TRIM }}');
+
+let videoClip = new Shotstack.Clip;
+videoClip
+    .setAsset(videoAsset)
+    .setStart(0)
+    .setLength('{{ LENGTH }}');
+
+let track = new Shotstack.Track;
+track.setClips([videoClip]);
+
+let timeline = new Shotstack.Timeline;
+timeline.setTracks([track]);
+
+let output = new Shotstack.Output;
+output
+    .setFormat('mp4')
+    .setResolution('sd');
+
+let edit = new Shotstack.Edit;
+edit
+    .setTimeline(timeline)
+    .setOutput(output);
+
+const template = new Shotstack.Template;
+template
+    .setName('Trim Template')
+    .setTemplate(edit);
+
+api.postTemplate(template).then((data) => {
+    console.log(data.response.id);
+});
+```
+
+### Render a Template Example
+
+The example below renders the template we created in the previous example and includes merge fields that will replace
+the placeholders. Once submitted use the returned render ID and call the [Status Check Example](#status-check-example)
+to get the render progress.
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
+const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
+const api = new Shotstack.EditApi();
+
+const id = '8aeabb0e-b5eb-8c5e-847d-82297dd4802a'; // use the template id from previous example
+
+const mergeFieldUrl = new Shotstack.MergeField;
+mergeFieldUrl
+    .setFind('URL')
+    .setReplace('https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/footage/skater.hd.mp4');
+
+const mergeFieldTrim = new Shotstack.MergeField;
+mergeFieldTrim
+    .setFind('TRIM')
+    .setReplace(3);
+
+const mergeFieldLength = new Shotstack.MergeField;
+mergeFieldLength
+    .setFind('LENGTH')
+    .setReplace(6);
+
+const template = new Shotstack.TemplateRender;
+template
+    .setId(id)
+    .setMerge([
+        mergeFieldUrl,
+        mergeFieldTrim,
+        mergeFieldLength,
+    ]);
+
+api.postTemplateRender(template).then((data) => {
+    console.log(data.response.id);
 });
 ```
 
@@ -170,7 +288,7 @@ edit
   .setTimeline(timeline)
   .setOutput(output)
   .setMerge(merge)
-  .setCallback("https://my-server.com/callback.php")
+  .setCallback('https://my-server.com/callback.php')
   .setDisk("local");
 ```
 
@@ -700,6 +818,57 @@ setReplace(replace) | The replacement value. The replacement can be any valid JS
 
 ---
 
+## Template Schemas
+
+The following schemas specify how to use templates to store and render templates. A template lets you save an
+[Edit](#edit) that can be rendered by its template ID and optionally include merge fields that are merged with the
+template when rendered.
+
+### Template
+
+A template is a saved [Edit](#edit) than can be loaded and re-used.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const template = new Shotstack.Template;
+template
+  .setName('My Template')
+  .setTemplate(edit);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setName(string name) | The template name. | Y
+setTemplate([Shotstack.Edit](#edit) edit)) | An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. | Y
+
+### TemplateRender
+
+Configure the id and optional merge fields to render a template by id.
+
+#### Example:
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const template = new Shotstack.TemplateRender;
+template
+  .setId('21e781c0-8232-4418-fec1-cc99f0280c21')
+  .setMerge(merge);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setId(string id) | The id of the template to render in UUID format. | Y
+setMerge([Shotstack.MergeField[]](#mergefield) mergeField) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
+
+---
 ## Output Schemas
 
 The following schemas specify the output format and settings.
@@ -1028,6 +1197,98 @@ getThumbnail(): string | The URL of the thumbnail image if requested. This will 
 getData(): [Shotstack.Edit](#edit) | The timeline and output data to be rendered. | Y
 getCreated(): string | The time the render task was initially queued. | Y
 getUpdated(): string | The time the render status was last updated. | Y
+
+---
+
+## Template Response Schemas
+
+The following schemas are returned by the templates endpoint, including create, update and rendering a template.
+
+### TemplateResponse
+
+The response received after a [template](#create-template) is submitted. The template is saved and a unique
+template id is returned.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [Shotstack.TemplateResponseData](#templateresponsedata) | `TemplateResponseData` or an error message. | Y
+
+### TemplateResponseData
+
+The response data returned with the [Shotstack.TemplateResponse](#templateresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getMessage(): string | Success response message or error details. | Y
+getId(): string | The unique id of the template in UUID format. | Y
+
+### TemplateDataResponse
+
+The template data including the template name and [Edit](#edit).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [Shotstack.TemplateDataResponseData](#templatedataresponsedata) | `TemplateDataResponseData` or an error message. | Y
+
+### TemplateDataResponseData
+
+The response data returned with the [TemplateDataResponse](#templatedataresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name. | Y
+getOwner(): string | The owner id of the templates. | Y
+getTemplate(): [Shotstack.Edit](#edit) | `Edit` or an error message. | Y
+
+### TemplateListResponse
+
+A list of previously saved templates.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [Shotstack.TemplateListResponseData](#templatelistresponsedata) | `TemplateListResponseData` or an error message. | Y
+
+### TemplateListResponseData
+
+The response data returned with the [TemplateListResponse](#templatelistresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getOwner(): bool | The owner id of the templates. | Y
+getTemplates(): [[Shotstack.TemplateListResponseItem]](#templatelistresponseitem) | The list of templates. | Y
+
+### TemplateListResponseItem
+
+The individual template item returned with the [TemplateListResponseData](#templatelistresponsedata) templates
+list.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name | Y
+getCreated(): string | The time the template was created. | -
+getUpdated(): string | The time the template was last updated. | -
 
 ---
 ## Inspecting Media
