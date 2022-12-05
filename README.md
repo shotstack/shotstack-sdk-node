@@ -16,6 +16,8 @@ For examples of how to use the SDK to create videos using code checkout the Node
   - [Video Editing](#video-editing)
     - [Video Editing Example](#video-editing-example)
     - [Status Check Example](#status-check-example)
+    - [Save a Template Example](#save-a-template-example)
+    - [Render a Template Example](#render-a-template-example)
   - [Video Editing Schemas](#video-editing-schemas)
     - [Edit](#edit)
     - [Timeline](#timeline)
@@ -160,6 +162,111 @@ api.getRender(id, { data: false, merged: true }).then((data) => {
     if (data.response.status === 'done') {
         console.log(data.response.url);
     }
+});
+```
+
+### Save a Template Example
+
+The example below uses the Edit we create in the [Video Editing Example](#video-editing-example) and saves it as a
+template. The template can be rendered at a later date and can include placeholders. Placeholders can be replaced 
+when rendered using [merge fields](#mergefield).
+
+This example uses a placeholder for the video src (URL), trim (TRIM), and length (LENGTH) to allow you to trim any video
+using a template.
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
+const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
+const api = new Shotstack.EditApi();
+
+let videoAsset = new Shotstack.VideoAsset;
+videoAsset
+    .setSrc('{{ URL }}')
+    .setTrim('{{ TRIM }}');
+
+let videoClip = new Shotstack.Clip;
+videoClip
+    .setAsset(videoAsset)
+    .setStart(0)
+    .setLength('{{ LENGTH }}');
+
+let track = new Shotstack.Track;
+track.setClips([videoClip]);
+
+let timeline = new Shotstack.Timeline;
+timeline.setTracks([track]);
+
+let output = new Shotstack.Output;
+output
+    .setFormat('mp4')
+    .setResolution('sd');
+
+let edit = new Shotstack.Edit;
+edit
+    .setTimeline(timeline)
+    .setOutput(output);
+
+const template = new Shotstack.Template;
+template
+    .setName('Trim Template')
+    .setTemplate(edit);
+
+api.postTemplate(template).then((data) => {
+    console.log(data.response.id);
+});
+```
+
+### Render a Template Example
+
+The example below renders the template we created in the previous example and includes merge fields that will replace
+the placeholders. Once submitted use the returned render ID and call the [Status Check Example](#status-check-example)
+to get the render progress.
+
+```javascript
+const Shotstack = require('shotstack-sdk');
+
+const defaultClient = Shotstack.ApiClient.instance;
+defaultClient.basePath = 'https://api.shotstack.io/stage';
+
+const DeveloperKey = defaultClient.authentications['DeveloperKey'];
+DeveloperKey.apiKey = 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'; // use the correct API key
+
+const api = new Shotstack.EditApi();
+
+const id = '8aeabb0e-b5eb-8c5e-847d-82297dd4802a'; // use the template id from previous example
+
+const mergeFieldUrl = new Shotstack.MergeField;
+mergeFieldUrl
+    .setFind('URL')
+    .setReplace('https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/footage/skater.hd.mp4');
+
+const mergeFieldTrim = new Shotstack.MergeField;
+mergeFieldTrim
+    .setFind('TRIM')
+    .setReplace(3);
+
+const mergeFieldLength = new Shotstack.MergeField;
+mergeFieldLength
+    .setFind('LENGTH')
+    .setReplace(6);
+
+const template = new Shotstack.TemplateRender;
+template
+    .setId(id)
+    .setMerge([
+        mergeFieldUrl,
+        mergeFieldTrim,
+        mergeFieldLength,
+    ]);
+
+api.postTemplateRender(template).then((data) => {
+    console.log(data.response.id);
 });
 ```
 
@@ -741,7 +848,7 @@ setTemplate([Shotstack.Edit](#edit) edit)) | An edit defines the arrangement of 
 
 ### TemplateRender
 
-Render a template by its id and optional merge fields.
+Configure the id and optional merge fields to render a template by id.
 
 #### Example:
 
