@@ -43,10 +43,14 @@
    * Pass additional options to control how files are stored in S3.
    * @alias module:model/S3DestinationOptions
    * @class
+   * @param region {String} Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
+   * @param bucket {String} The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
    */
-  var exports = function() {
+  var exports = function(region, bucket) {
     var _this = this;
 
+    _this['region'] = region;
+    _this['bucket'] = bucket;
   };
 
   /**
@@ -79,7 +83,7 @@
   }
 
   /**
-   * Choose the region to send the file to. Must be a valid [AWS region] string like `us-east-1` or `ap-southeast-2`.
+   * Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
    * @member {String} region
    */
   exports.prototype['region'] = undefined;
@@ -106,7 +110,7 @@
 
 
   /**
-   * Returns Choose the region to send the file to. Must be a valid [AWS region] string like `us-east-1` or `ap-southeast-2`.
+   * Returns Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
    * @return {String}
    */
   exports.prototype.getRegion = function() {
@@ -114,8 +118,8 @@
   }
 
   /**
-   * Sets Choose the region to send the file to. Must be a valid [AWS region] string like `us-east-1` or `ap-southeast-2`.
-   * @param {String} region Choose the region to send the file to. Must be a valid [AWS region] string like `us-east-1` or `ap-southeast-2`.
+   * Sets Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
+   * @param {String} region Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
    */
   exports.prototype.setRegion = function(region) {
     this['region'] = region;
