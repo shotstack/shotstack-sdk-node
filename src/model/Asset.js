@@ -508,6 +508,24 @@ exports.prototype['trim'] = undefined;
 
 
   /**
+   * Returns The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @return {module:model/Asset.VolumeEffectEnum}
+   */
+  exports.prototype.getVolumeEffect = function() {
+    return this['volumeEffect'];
+  }
+
+  /**
+   * Sets The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   * @param {module:model/Asset.VolumeEffectEnum} volumeEffect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+   */
+  exports.prototype.setVolumeEffect = function(volumeEffect) {
+    this['volumeEffect'] = volumeEffect;
+    return this;
+  }
+
+
+  /**
    * @return {module:model/Crop}
    */
   exports.prototype.getCrop = function() {

@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>TemplateRender</code>.
-   * Render a template by it&#39;s id and optional merge fields.
+   * Configure the id and optional merge fields to render a template by id.
    * @alias module:model/TemplateRender
    * @class
    * @param id {String} The id of the template to render in UUID format.

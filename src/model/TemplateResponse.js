@@ -40,7 +40,7 @@
 
   /**
    * Constructs a new <code>TemplateResponse</code>.
-   * The response received after a [template](#create-a-template) is submitted. The template is saved and a unique template id is returned.
+   * The response received after a [template](#create-template) is submitted. The template is saved and a unique template id is returned.
    * @alias module:model/TemplateResponse
    * @class
    * @param success {Boolean} `true` if successfully created, else `false`.
