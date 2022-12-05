@@ -914,7 +914,7 @@ setMute(bool mute) | Mute the audio track of the output video. Set to `true` to 
 setRange([Shotstack.Range](#range) range) | Specify a time range to render, i.e. to render only a portion of a video or audio file. Omit this setting to export the entire video. Range can also be used to render a frame at a specific time point - setting a range and output format as `jpg` will output a single frame image at the range `start` point. | -
 setPoster([Shotstack.Poster](#poster) poster) | Generate a poster image from a specific point on the timeline. | -
 setThumbnail([Shotstack.Thumbnail](#thumbnail) thumbnail) | Generate a thumbnail image from a specific point on the timeline. | -
-setDestinations([AnyOfShotstackDestination[]](#shotstackdestination) destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [ShotstackDestination](#shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property. | -
+setDestinations([Destinations[]](#destinations) destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. | -
 
 ---
 
@@ -1274,7 +1274,7 @@ The response data returned with the [TemplateListResponse](#templatelistresponse
 Method | Description | Required
 :--- | :--- | :---: 
 getOwner(): bool | The owner id of the templates. | Y
-getTemplates(): [[Shotstack.TemplateListResponseItem]](#templatelistresponseitem) | The list of templates. | Y
+getTemplates(): [Shotstack.TemplateListResponseItem[]](#templatelistresponseitem) | The list of templates. | Y
 
 ### TemplateListResponseItem
 
