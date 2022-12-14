@@ -1127,7 +1127,7 @@ Name | Description | Required
 setRegion(string region) | Choose the region to send the file to. Must be a valid [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2` | Y
 setBucket(string bucket) | The bucket name to send files to. The bucket must exist in the AWS account before files can be sent. | Y
 setPrefix(string prefix) | A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`. | -
-setFilename(string filename) | Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending n the output format. Also `poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images. | -
+setFilename(string filename) | Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images. | -
 setAcl(string acl) | Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). | -
 
 
