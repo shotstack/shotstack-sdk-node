@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,35 +26,135 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The S3DestinationOptions model module.
  * @module model/S3DestinationOptions
  * @version 0.2.6
  */
-class S3DestinationOptions {
+var S3DestinationOptions = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>S3DestinationOptions</code>.
+   * Pass additional options to control how files are stored in S3.
+   * @alias module:model/S3DestinationOptions
+   * @param region {String} Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
+   * @param bucket {String} The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
+   */
+  function S3DestinationOptions(region, bucket) {
+    _classCallCheck(this, S3DestinationOptions);
+    S3DestinationOptions.initialize(this, region, bucket);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(S3DestinationOptions, [{
+    key: "getRegion",
+    value:
     /**
-     * Constructs a new <code>S3DestinationOptions</code>.
-     * Pass additional options to control how files are stored in S3.
-     * @alias module:model/S3DestinationOptions
-     * @param region {String} Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
-     * @param bucket {String} The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
-     */
-    constructor(region, bucket) { 
-        
-        S3DestinationOptions.initialize(this, region, bucket);
+         * Returns Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
+         * @return {String}
+         */
+    function getRegion() {
+      return this.region;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
+     * @param {String} region Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
      */
-    static initialize(obj, region, bucket) { 
-        obj['region'] = region;
-        obj['bucket'] = bucket;
+  }, {
+    key: "setRegion",
+    value: function setRegion(region) {
+      this['region'] = region;
+      return this;
+    }
+    /**
+         * Returns The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
+         * @return {String}
+         */
+  }, {
+    key: "getBucket",
+    value: function getBucket() {
+      return this.bucket;
+    }
+
+    /**
+     * Sets The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
+     * @param {String} bucket The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
+     */
+  }, {
+    key: "setBucket",
+    value: function setBucket(bucket) {
+      this['bucket'] = bucket;
+      return this;
+    }
+    /**
+         * Returns A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
+         * @return {String}
+         */
+  }, {
+    key: "getPrefix",
+    value: function getPrefix() {
+      return this.prefix;
+    }
+
+    /**
+     * Sets A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
+     * @param {String} prefix A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
+     */
+  }, {
+    key: "setPrefix",
+    value: function setPrefix(prefix) {
+      this['prefix'] = prefix;
+      return this;
+    }
+    /**
+         * Returns Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+         * @return {String}
+         */
+  }, {
+    key: "getFilename",
+    value: function getFilename() {
+      return this.filename;
+    }
+
+    /**
+     * Sets Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     * @param {String} filename Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     */
+  }, {
+    key: "setFilename",
+    value: function setFilename(filename) {
+      this['filename'] = filename;
+      return this;
+    }
+    /**
+         * Returns Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
+         * @return {String}
+         */
+  }, {
+    key: "getAcl",
+    value: function getAcl() {
+      return this.acl;
+    }
+
+    /**
+     * Sets Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
+     * @param {String} acl Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
+     */
+  }, {
+    key: "setAcl",
+    value: function setAcl(acl) {
+      this['acl'] = acl;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, region, bucket) {
+      obj['region'] = region;
+      obj['bucket'] = bucket;
     }
 
     /**
@@ -48,27 +164,28 @@ class S3DestinationOptions {
      * @param {module:model/S3DestinationOptions} obj Optional instance to populate.
      * @return {module:model/S3DestinationOptions} The populated <code>S3DestinationOptions</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new S3DestinationOptions();
-
-            if (data.hasOwnProperty('region')) {
-                obj['region'] = ApiClient.convertToType(data['region'], 'String');
-            }
-            if (data.hasOwnProperty('bucket')) {
-                obj['bucket'] = ApiClient.convertToType(data['bucket'], 'String');
-            }
-            if (data.hasOwnProperty('prefix')) {
-                obj['prefix'] = ApiClient.convertToType(data['prefix'], 'String');
-            }
-            if (data.hasOwnProperty('filename')) {
-                obj['filename'] = ApiClient.convertToType(data['filename'], 'String');
-            }
-            if (data.hasOwnProperty('acl')) {
-                obj['acl'] = ApiClient.convertToType(data['acl'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new S3DestinationOptions();
+        if (data.hasOwnProperty('region')) {
+          obj['region'] = _ApiClient["default"].convertToType(data['region'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('bucket')) {
+          obj['bucket'] = _ApiClient["default"].convertToType(data['bucket'], 'String');
+        }
+        if (data.hasOwnProperty('prefix')) {
+          obj['prefix'] = _ApiClient["default"].convertToType(data['prefix'], 'String');
+        }
+        if (data.hasOwnProperty('filename')) {
+          obj['filename'] = _ApiClient["default"].convertToType(data['filename'], 'String');
+        }
+        if (data.hasOwnProperty('acl')) {
+          obj['acl'] = _ApiClient["default"].convertToType(data['acl'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -76,120 +193,48 @@ class S3DestinationOptions {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>S3DestinationOptions</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of S3DestinationOptions.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(S3DestinationOptions.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['region'] && !(typeof data['region'] === 'string' || data['region'] instanceof String)) {
-            throw new Error("Expected the field `region` to be a primitive type in the JSON string but got " + data['region']);
-        }
-        // ensure the json data is a string
-        if (data['bucket'] && !(typeof data['bucket'] === 'string' || data['bucket'] instanceof String)) {
-            throw new Error("Expected the field `bucket` to be a primitive type in the JSON string but got " + data['bucket']);
-        }
-        // ensure the json data is a string
-        if (data['prefix'] && !(typeof data['prefix'] === 'string' || data['prefix'] instanceof String)) {
-            throw new Error("Expected the field `prefix` to be a primitive type in the JSON string but got " + data['prefix']);
-        }
-        // ensure the json data is a string
-        if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
-            throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
-        }
-        // ensure the json data is a string
-        if (data['acl'] && !(typeof data['acl'] === 'string' || data['acl'] instanceof String)) {
-            throw new Error("Expected the field `acl` to be a primitive type in the JSON string but got " + data['acl']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['region'] && !(typeof data['region'] === 'string' || data['region'] instanceof String)) {
+        throw new Error("Expected the field `region` to be a primitive type in the JSON string but got " + data['region']);
+      }
+      // ensure the json data is a string
+      if (data['bucket'] && !(typeof data['bucket'] === 'string' || data['bucket'] instanceof String)) {
+        throw new Error("Expected the field `bucket` to be a primitive type in the JSON string but got " + data['bucket']);
+      }
+      // ensure the json data is a string
+      if (data['prefix'] && !(typeof data['prefix'] === 'string' || data['prefix'] instanceof String)) {
+        throw new Error("Expected the field `prefix` to be a primitive type in the JSON string but got " + data['prefix']);
+      }
+      // ensure the json data is a string
+      if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
+        throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
+      }
+      // ensure the json data is a string
+      if (data['acl'] && !(typeof data['acl'] === 'string' || data['acl'] instanceof String)) {
+        throw new Error("Expected the field `acl` to be a primitive type in the JSON string but got " + data['acl']);
+      }
+      return true;
     }
-
-/**
-     * Returns Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
-     * @return {String}
-     */
-    getRegion() {
-        return this.region;
-    }
-
-    /**
-     * Sets Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
-     * @param {String} region Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
-     */
-    setRegion(region) {
-        this['region'] = region;
-        return this;
-    }
-/**
-     * Returns The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
-     * @return {String}
-     */
-    getBucket() {
-        return this.bucket;
-    }
-
-    /**
-     * Sets The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
-     * @param {String} bucket The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
-     */
-    setBucket(bucket) {
-        this['bucket'] = bucket;
-        return this;
-    }
-/**
-     * Returns A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
-     * @return {String}
-     */
-    getPrefix() {
-        return this.prefix;
-    }
-
-    /**
-     * Sets A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
-     * @param {String} prefix A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
-     */
-    setPrefix(prefix) {
-        this['prefix'] = prefix;
-        return this;
-    }
-/**
-     * Returns Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     * @return {String}
-     */
-    getFilename() {
-        return this.filename;
-    }
-
-    /**
-     * Sets Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     * @param {String} filename Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     */
-    setFilename(filename) {
-        this['filename'] = filename;
-        return this;
-    }
-/**
-     * Returns Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-     * @return {String}
-     */
-    getAcl() {
-        return this.acl;
-    }
-
-    /**
-     * Sets Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-     * @param {String} acl Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-     */
-    setAcl(acl) {
-        this['acl'] = acl;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 S3DestinationOptions.RequiredProperties = ["region", "bucket"];
 
 /**
@@ -221,11 +266,4 @@ S3DestinationOptions.prototype['filename'] = undefined;
  * @member {String} acl
  */
 S3DestinationOptions.prototype['acl'] = undefined;
-
-
-
-
-
-
-export default S3DestinationOptions;
-
+var _default = exports["default"] = S3DestinationOptions;

@@ -1,4 +1,17 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,32 +23,71 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The MuxDestinationOptions model module.
  * @module model/MuxDestinationOptions
  * @version 0.2.6
  */
-class MuxDestinationOptions {
+var MuxDestinationOptions = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>MuxDestinationOptions</code>.
+   * Pass additional options to control how Mux processes video. Currently supports playback_policy and passthrough options.
+   * @alias module:model/MuxDestinationOptions
+   */
+  function MuxDestinationOptions() {
+    _classCallCheck(this, MuxDestinationOptions);
+    MuxDestinationOptions.initialize(this);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(MuxDestinationOptions, [{
+    key: "getPlaybackPolicy",
+    value:
     /**
-     * Constructs a new <code>MuxDestinationOptions</code>.
-     * Pass additional options to control how Mux processes video. Currently supports playback_policy and passthrough options.
-     * @alias module:model/MuxDestinationOptions
-     */
-    constructor() { 
-        
-        MuxDestinationOptions.initialize(this);
+         * Returns Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
+         * @return {Array.<module:model/MuxDestinationOptions.PlaybackPolicyEnum>}
+         */
+    function getPlaybackPolicy() {
+      return this.playbackPolicy;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
+     * @param {Array.<module:model/MuxDestinationOptions.PlaybackPolicyEnum>} playbackPolicy Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
      */
-    static initialize(obj) { 
+  }, {
+    key: "setPlaybackPolicy",
+    value: function setPlaybackPolicy(playbackPolicy) {
+      this['playbackPolicy'] = playbackPolicy;
+      return this;
     }
+    /**
+         * Returns Sets the Mux `passthrough` option. Max 255 characters.
+         * @return {String}
+         */
+  }, {
+    key: "getPassthrough",
+    value: function getPassthrough() {
+      return this.passthrough;
+    }
+
+    /**
+     * Sets Sets the Mux `passthrough` option. Max 255 characters.
+     * @param {String} passthrough Sets the Mux `passthrough` option. Max 255 characters.
+     */
+  }, {
+    key: "setPassthrough",
+    value: function setPassthrough(passthrough) {
+      this['passthrough'] = passthrough;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj) {}
 
     /**
      * Constructs a <code>MuxDestinationOptions</code> from a plain JavaScript object, optionally creating a new instance.
@@ -44,18 +96,19 @@ class MuxDestinationOptions {
      * @param {module:model/MuxDestinationOptions} obj Optional instance to populate.
      * @return {module:model/MuxDestinationOptions} The populated <code>MuxDestinationOptions</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new MuxDestinationOptions();
-
-            if (data.hasOwnProperty('playbackPolicy')) {
-                obj['playbackPolicy'] = ApiClient.convertToType(data['playbackPolicy'], ['String']);
-            }
-            if (data.hasOwnProperty('passthrough')) {
-                obj['passthrough'] = ApiClient.convertToType(data['passthrough'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new MuxDestinationOptions();
+        if (data.hasOwnProperty('playbackPolicy')) {
+          obj['playbackPolicy'] = _ApiClient["default"].convertToType(data['playbackPolicy'], ['String']);
         }
-        return obj;
+        if (data.hasOwnProperty('passthrough')) {
+          obj['passthrough'] = _ApiClient["default"].convertToType(data['passthrough'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -63,56 +116,21 @@ class MuxDestinationOptions {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>MuxDestinationOptions</code>.
      */
-    static validateJSON(data) {
-        // ensure the json data is an array
-        if (!Array.isArray(data['playbackPolicy'])) {
-            throw new Error("Expected the field `playbackPolicy` to be an array in the JSON data but got " + data['playbackPolicy']);
-        }
-        // ensure the json data is a string
-        if (data['passthrough'] && !(typeof data['passthrough'] === 'string' || data['passthrough'] instanceof String)) {
-            throw new Error("Expected the field `passthrough` to be a primitive type in the JSON string but got " + data['passthrough']);
-        }
-
-        return true;
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // ensure the json data is an array
+      if (!Array.isArray(data['playbackPolicy'])) {
+        throw new Error("Expected the field `playbackPolicy` to be an array in the JSON data but got " + data['playbackPolicy']);
+      }
+      // ensure the json data is a string
+      if (data['passthrough'] && !(typeof data['passthrough'] === 'string' || data['passthrough'] instanceof String)) {
+        throw new Error("Expected the field `passthrough` to be a primitive type in the JSON string but got " + data['passthrough']);
+      }
+      return true;
     }
-
-/**
-     * Returns Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
-     * @return {Array.<module:model/MuxDestinationOptions.PlaybackPolicyEnum>}
-     */
-    getPlaybackPolicy() {
-        return this.playbackPolicy;
-    }
-
-    /**
-     * Sets Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
-     * @param {Array.<module:model/MuxDestinationOptions.PlaybackPolicyEnum>} playbackPolicy Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
-     */
-    setPlaybackPolicy(playbackPolicy) {
-        this['playbackPolicy'] = playbackPolicy;
-        return this;
-    }
-/**
-     * Returns Sets the Mux `passthrough` option. Max 255 characters.
-     * @return {String}
-     */
-    getPassthrough() {
-        return this.passthrough;
-    }
-
-    /**
-     * Sets Sets the Mux `passthrough` option. Max 255 characters.
-     * @param {String} passthrough Sets the Mux `passthrough` option. Max 255 characters.
-     */
-    setPassthrough(passthrough) {
-        this['passthrough'] = passthrough;
-        return this;
-    }
-
-}
-
-
-
+  }]);
+}();
 /**
  * Sets the Mux `playback_policy` option. Value is an array of strings - use `public`, `signed`, or both.
  * @member {Array.<module:model/MuxDestinationOptions.PlaybackPolicyEnum>} playbackPolicy
@@ -125,31 +143,21 @@ MuxDestinationOptions.prototype['playbackPolicy'] = undefined;
  */
 MuxDestinationOptions.prototype['passthrough'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>playbackPolicy</code> property.
  * @enum {String}
  * @readonly
  */
 MuxDestinationOptions['PlaybackPolicyEnum'] = {
-
-    /**
-     * value: "public"
-     * @const
-     */
-    "public": "public",
-
-    /**
-     * value: "signed"
-     * @const
-     */
-    "signed": "signed"
+  /**
+   * value: "public"
+   * @const
+   */
+  "public": "public",
+  /**
+   * value: "signed"
+   * @const
+   */
+  "signed": "signed"
 };
-
-
-
-export default MuxDestinationOptions;
-
+var _default = exports["default"] = MuxDestinationOptions;

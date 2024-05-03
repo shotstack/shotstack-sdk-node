@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _DolbyEnhancement = _interopRequireDefault(require("./DolbyEnhancement"));
+var _DolbyEnhancementOptions = _interopRequireDefault(require("./DolbyEnhancementOptions"));
+var _AudioEnhancement;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,116 +27,112 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import DolbyEnhancement from './DolbyEnhancement';
-import DolbyEnhancementOptions from './DolbyEnhancementOptions';
-
 /**
  * The AudioEnhancement model module.
  * @module model/AudioEnhancement
  * @version 0.2.6
  */
-class AudioEnhancement {
+var AudioEnhancement = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>AudioEnhancement</code>.
+   * An audio enhancement that can be applied to the audio content of a rendition. The following providers are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_dolbyenhancement\&quot;&gt;DolbyEnhancement&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+   * @alias module:model/AudioEnhancement
+   * @param {(module:model/DolbyEnhancement)} instance The actual instance to initialize AudioEnhancement.
+   */
+  function AudioEnhancement() {
+    var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    _classCallCheck(this, AudioEnhancement);
     /**
-     * Constructs a new <code>AudioEnhancement</code>.
-     * An audio enhancement that can be applied to the audio content of a rendition. The following providers are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_dolbyenhancement\&quot;&gt;DolbyEnhancement&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
-     * @alias module:model/AudioEnhancement
-     * @param {(module:model/DolbyEnhancement)} instance The actual instance to initialize AudioEnhancement.
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
      */
-    constructor(instance = null) {
-        if (instance === null) {
-            this.actualInstance = null;
-            return;
-        }
-        var match = 0;
-        var errorMessages = [];
-        try {
-            if (typeof instance === "DolbyEnhancement") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                DolbyEnhancement.validateJSON(instance); // throw an exception if no match
-                // create DolbyEnhancement from JS object
-                this.actualInstance = DolbyEnhancement.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into DolbyEnhancement
-            errorMessages.push("Failed to construct DolbyEnhancement: " + err)
-        }
-
-        if (match > 1) {
-            throw new Error("Multiple matches found constructing `AudioEnhancement` with oneOf schemas DolbyEnhancement. Input: " + JSON.stringify(instance));
-        } else if (match === 0) {
-            this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `AudioEnhancement` with oneOf schemas DolbyEnhancement. Details: " +
-                            errorMessages.join(", "));
-        } else { // only 1 match
-            // the input is valid
-        }
+    _defineProperty(this, "toJSON", function () {
+      return this.getActualInstance();
+    });
+    if (instance === null) {
+      this.actualInstance = null;
+      return;
     }
-
-    /**
-     * Constructs a <code>AudioEnhancement</code> from a plain JavaScript object, optionally creating a new instance.
-     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-     * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AudioEnhancement} obj Optional instance to populate.
-     * @return {module:model/AudioEnhancement} The populated <code>AudioEnhancement</code> instance.
-     */
-    static constructFromObject(data, obj) {
-        return new AudioEnhancement(data);
+    var match = 0;
+    var errorMessages = [];
+    try {
+      if (typeof instance === "DolbyEnhancement") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _DolbyEnhancement["default"].validateJSON(instance); // throw an exception if no match
+        // create DolbyEnhancement from JS object
+        this.actualInstance = _DolbyEnhancement["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into DolbyEnhancement
+      errorMessages.push("Failed to construct DolbyEnhancement: " + err);
     }
+    if (match > 1) {
+      throw new Error("Multiple matches found constructing `AudioEnhancement` with oneOf schemas DolbyEnhancement. Input: " + JSON.stringify(instance));
+    } else if (match === 0) {
+      this.actualInstance = null; // clear the actual instance in case there are multiple matches
+      throw new Error("No match found constructing `AudioEnhancement` with oneOf schemas DolbyEnhancement. Details: " + errorMessages.join(", "));
+    } else {// only 1 match
+      // the input is valid
+    }
+  }
 
+  /**
+   * Constructs a <code>AudioEnhancement</code> from a plain JavaScript object, optionally creating a new instance.
+   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+   * @param {Object} data The plain JavaScript object bearing properties of interest.
+   * @param {module:model/AudioEnhancement} obj Optional instance to populate.
+   * @return {module:model/AudioEnhancement} The populated <code>AudioEnhancement</code> instance.
+   */
+  return _createClass(AudioEnhancement, [{
+    key: "getActualInstance",
+    value:
     /**
      * Gets the actual instance, which can be <code>DolbyEnhancement</code>.
      * @return {(module:model/DolbyEnhancement)} The actual instance.
      */
-    getActualInstance() {
-        return this.actualInstance;
+    function getActualInstance() {
+      return this.actualInstance;
     }
 
     /**
      * Sets the actual instance, which can be <code>DolbyEnhancement</code>.
      * @param {(module:model/DolbyEnhancement)} obj The actual instance.
      */
-    setActualInstance(obj) {
-       this.actualInstance = AudioEnhancement.constructFromObject(obj).getActualInstance();
+  }, {
+    key: "setActualInstance",
+    value: function setActualInstance(obj) {
+      this.actualInstance = AudioEnhancement.constructFromObject(obj).getActualInstance();
     }
-
-    /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
-     */
-    toJSON = function(){
-        return this.getActualInstance();
+  }], [{
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      return new AudioEnhancement(data);
     }
-
-    /**
-     * Create an instance of AudioEnhancement from a JSON string.
-     * @param {string} json_string JSON string.
-     * @return {module:model/AudioEnhancement} An instance of AudioEnhancement.
-     */
-    static fromJSON = function(json_string){
-        return AudioEnhancement.constructFromObject(JSON.parse(json_string));
-    }
-}
-
+  }]);
+}();
 /**
  * The enhancement provider to use - set to `dolby` for Dolby.
  * @member {String} provider
  * @default 'dolby'
  */
+_AudioEnhancement = AudioEnhancement;
+/**
+ * Create an instance of AudioEnhancement from a JSON string.
+ * @param {string} json_string JSON string.
+ * @return {module:model/AudioEnhancement} An instance of AudioEnhancement.
+ */
+_defineProperty(AudioEnhancement, "fromJSON", function (json_string) {
+  return _AudioEnhancement.constructFromObject(JSON.parse(json_string));
+});
 AudioEnhancement.prototype['provider'] = 'dolby';
 
 /**
  * @member {module:model/DolbyEnhancementOptions} options
  */
 AudioEnhancement.prototype['options'] = undefined;
-
-
 AudioEnhancement.OneOf = ["DolbyEnhancement"];
-
-export default AudioEnhancement;
-
+var _default = exports["default"] = AudioEnhancement;

@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,33 +26,73 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The GoogleDriveDestinationOptions model module.
  * @module model/GoogleDriveDestinationOptions
  * @version 0.2.6
  */
-class GoogleDriveDestinationOptions {
+var GoogleDriveDestinationOptions = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>GoogleDriveDestinationOptions</code>.
+   * Pass the folder ID and options to configure how assets are stored in Google Drive.
+   * @alias module:model/GoogleDriveDestinationOptions
+   * @param folderId {String} The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+   */
+  function GoogleDriveDestinationOptions(folderId) {
+    _classCallCheck(this, GoogleDriveDestinationOptions);
+    GoogleDriveDestinationOptions.initialize(this, folderId);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(GoogleDriveDestinationOptions, [{
+    key: "getFolderId",
+    value:
     /**
-     * Constructs a new <code>GoogleDriveDestinationOptions</code>.
-     * Pass the folder ID and options to configure how assets are stored in Google Drive.
-     * @alias module:model/GoogleDriveDestinationOptions
-     * @param folderId {String} The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
-     */
-    constructor(folderId) { 
-        
-        GoogleDriveDestinationOptions.initialize(this, folderId);
+         * Returns The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+         * @return {String}
+         */
+    function getFolderId() {
+      return this.folderId;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+     * @param {String} folderId The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
      */
-    static initialize(obj, folderId) { 
-        obj['folderId'] = folderId;
+  }, {
+    key: "setFolderId",
+    value: function setFolderId(folderId) {
+      this['folderId'] = folderId;
+      return this;
+    }
+    /**
+         * Returns Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+         * @return {String}
+         */
+  }, {
+    key: "getFilename",
+    value: function getFilename() {
+      return this.filename;
+    }
+
+    /**
+     * Sets Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     * @param {String} filename Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     */
+  }, {
+    key: "setFilename",
+    value: function setFilename(filename) {
+      this['filename'] = filename;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, folderId) {
+      obj['folderId'] = folderId;
     }
 
     /**
@@ -46,18 +102,19 @@ class GoogleDriveDestinationOptions {
      * @param {module:model/GoogleDriveDestinationOptions} obj Optional instance to populate.
      * @return {module:model/GoogleDriveDestinationOptions} The populated <code>GoogleDriveDestinationOptions</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new GoogleDriveDestinationOptions();
-
-            if (data.hasOwnProperty('folderId')) {
-                obj['folderId'] = ApiClient.convertToType(data['folderId'], 'String');
-            }
-            if (data.hasOwnProperty('filename')) {
-                obj['filename'] = ApiClient.convertToType(data['filename'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new GoogleDriveDestinationOptions();
+        if (data.hasOwnProperty('folderId')) {
+          obj['folderId'] = _ApiClient["default"].convertToType(data['folderId'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('filename')) {
+          obj['filename'] = _ApiClient["default"].convertToType(data['filename'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -65,60 +122,36 @@ class GoogleDriveDestinationOptions {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>GoogleDriveDestinationOptions</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of GoogleDriveDestinationOptions.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(GoogleDriveDestinationOptions.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['folderId'] && !(typeof data['folderId'] === 'string' || data['folderId'] instanceof String)) {
-            throw new Error("Expected the field `folderId` to be a primitive type in the JSON string but got " + data['folderId']);
-        }
-        // ensure the json data is a string
-        if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
-            throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['folderId'] && !(typeof data['folderId'] === 'string' || data['folderId'] instanceof String)) {
+        throw new Error("Expected the field `folderId` to be a primitive type in the JSON string but got " + data['folderId']);
+      }
+      // ensure the json data is a string
+      if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
+        throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
+      }
+      return true;
     }
-
-/**
-     * Returns The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
-     * @return {String}
-     */
-    getFolderId() {
-        return this.folderId;
-    }
-
-    /**
-     * Sets The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
-     * @param {String} folderId The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
-     */
-    setFolderId(folderId) {
-        this['folderId'] = folderId;
-        return this;
-    }
-/**
-     * Returns Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     * @return {String}
-     */
-    getFilename() {
-        return this.filename;
-    }
-
-    /**
-     * Sets Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     * @param {String} filename Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
-     */
-    setFilename(filename) {
-        this['filename'] = filename;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 GoogleDriveDestinationOptions.RequiredProperties = ["folderId"];
 
 /**
@@ -132,11 +165,4 @@ GoogleDriveDestinationOptions.prototype['folderId'] = undefined;
  * @member {String} filename
  */
 GoogleDriveDestinationOptions.prototype['filename'] = undefined;
-
-
-
-
-
-
-export default GoogleDriveDestinationOptions;
-
+var _default = exports["default"] = GoogleDriveDestinationOptions;

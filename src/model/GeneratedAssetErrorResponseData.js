@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,37 +26,97 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The GeneratedAssetErrorResponseData model module.
  * @module model/GeneratedAssetErrorResponseData
  * @version 0.2.6
  */
-class GeneratedAssetErrorResponseData {
+var GeneratedAssetErrorResponseData = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>GeneratedAssetErrorResponseData</code>.
+   * Individual errors returned by the Create API.
+   * @alias module:model/GeneratedAssetErrorResponseData
+   * @param status {String} The http status code.
+   * @param title {String} A short summary of the error.
+   * @param detail {String} A detailed description of the error.
+   */
+  function GeneratedAssetErrorResponseData(status, title, detail) {
+    _classCallCheck(this, GeneratedAssetErrorResponseData);
+    GeneratedAssetErrorResponseData.initialize(this, status, title, detail);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(GeneratedAssetErrorResponseData, [{
+    key: "getStatus",
+    value:
     /**
-     * Constructs a new <code>GeneratedAssetErrorResponseData</code>.
-     * Individual errors returned by the Create API.
-     * @alias module:model/GeneratedAssetErrorResponseData
-     * @param status {String} The http status code.
-     * @param title {String} A short summary of the error.
-     * @param detail {String} A detailed description of the error.
-     */
-    constructor(status, title, detail) { 
-        
-        GeneratedAssetErrorResponseData.initialize(this, status, title, detail);
+         * Returns The http status code.
+         * @return {String}
+         */
+    function getStatus() {
+      return this.status;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The http status code.
+     * @param {String} status The http status code.
      */
-    static initialize(obj, status, title, detail) { 
-        obj['status'] = status;
-        obj['title'] = title;
-        obj['detail'] = detail;
+  }, {
+    key: "setStatus",
+    value: function setStatus(status) {
+      this['status'] = status;
+      return this;
+    }
+    /**
+         * Returns A short summary of the error.
+         * @return {String}
+         */
+  }, {
+    key: "getTitle",
+    value: function getTitle() {
+      return this.title;
+    }
+
+    /**
+     * Sets A short summary of the error.
+     * @param {String} title A short summary of the error.
+     */
+  }, {
+    key: "setTitle",
+    value: function setTitle(title) {
+      this['title'] = title;
+      return this;
+    }
+    /**
+         * Returns A detailed description of the error.
+         * @return {String}
+         */
+  }, {
+    key: "getDetail",
+    value: function getDetail() {
+      return this.detail;
+    }
+
+    /**
+     * Sets A detailed description of the error.
+     * @param {String} detail A detailed description of the error.
+     */
+  }, {
+    key: "setDetail",
+    value: function setDetail(detail) {
+      this['detail'] = detail;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, status, title, detail) {
+      obj['status'] = status;
+      obj['title'] = title;
+      obj['detail'] = detail;
     }
 
     /**
@@ -50,21 +126,22 @@ class GeneratedAssetErrorResponseData {
      * @param {module:model/GeneratedAssetErrorResponseData} obj Optional instance to populate.
      * @return {module:model/GeneratedAssetErrorResponseData} The populated <code>GeneratedAssetErrorResponseData</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new GeneratedAssetErrorResponseData();
-
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], 'String');
-            }
-            if (data.hasOwnProperty('title')) {
-                obj['title'] = ApiClient.convertToType(data['title'], 'String');
-            }
-            if (data.hasOwnProperty('detail')) {
-                obj['detail'] = ApiClient.convertToType(data['detail'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new GeneratedAssetErrorResponseData();
+        if (data.hasOwnProperty('status')) {
+          obj['status'] = _ApiClient["default"].convertToType(data['status'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('title')) {
+          obj['title'] = _ApiClient["default"].convertToType(data['title'], 'String');
+        }
+        if (data.hasOwnProperty('detail')) {
+          obj['detail'] = _ApiClient["default"].convertToType(data['detail'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -72,80 +149,40 @@ class GeneratedAssetErrorResponseData {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>GeneratedAssetErrorResponseData</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of GeneratedAssetErrorResponseData.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(GeneratedAssetErrorResponseData.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
-            throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
-        }
-        // ensure the json data is a string
-        if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
-            throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
-        }
-        // ensure the json data is a string
-        if (data['detail'] && !(typeof data['detail'] === 'string' || data['detail'] instanceof String)) {
-            throw new Error("Expected the field `detail` to be a primitive type in the JSON string but got " + data['detail']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
+        throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
+      }
+      // ensure the json data is a string
+      if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
+        throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
+      }
+      // ensure the json data is a string
+      if (data['detail'] && !(typeof data['detail'] === 'string' || data['detail'] instanceof String)) {
+        throw new Error("Expected the field `detail` to be a primitive type in the JSON string but got " + data['detail']);
+      }
+      return true;
     }
-
-/**
-     * Returns The http status code.
-     * @return {String}
-     */
-    getStatus() {
-        return this.status;
-    }
-
-    /**
-     * Sets The http status code.
-     * @param {String} status The http status code.
-     */
-    setStatus(status) {
-        this['status'] = status;
-        return this;
-    }
-/**
-     * Returns A short summary of the error.
-     * @return {String}
-     */
-    getTitle() {
-        return this.title;
-    }
-
-    /**
-     * Sets A short summary of the error.
-     * @param {String} title A short summary of the error.
-     */
-    setTitle(title) {
-        this['title'] = title;
-        return this;
-    }
-/**
-     * Returns A detailed description of the error.
-     * @return {String}
-     */
-    getDetail() {
-        return this.detail;
-    }
-
-    /**
-     * Sets A detailed description of the error.
-     * @param {String} detail A detailed description of the error.
-     */
-    setDetail(detail) {
-        this['detail'] = detail;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 GeneratedAssetErrorResponseData.RequiredProperties = ["status", "title", "detail"];
 
 /**
@@ -165,11 +202,4 @@ GeneratedAssetErrorResponseData.prototype['title'] = undefined;
  * @member {String} detail
  */
 GeneratedAssetErrorResponseData.prototype['detail'] = undefined;
-
-
-
-
-
-
-export default GeneratedAssetErrorResponseData;
-
+var _default = exports["default"] = GeneratedAssetErrorResponseData;

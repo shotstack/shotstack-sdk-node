@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Crop = _interopRequireDefault(require("./Crop"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,36 +27,175 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Crop from './Crop';
-
 /**
  * The VideoAsset model module.
  * @module model/VideoAsset
  * @version 0.2.6
  */
-class VideoAsset {
+var VideoAsset = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>VideoAsset</code>.
+   * The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+   * @alias module:model/VideoAsset
+   * @param type {String} The type of asset - set to `video` for videos.
+   * @param src {String} The video source URL. The URL must be publicly accessible or include credentials.
+   */
+  function VideoAsset(type, src) {
+    _classCallCheck(this, VideoAsset);
+    VideoAsset.initialize(this, type, src);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(VideoAsset, [{
+    key: "getType",
+    value:
     /**
-     * Constructs a new <code>VideoAsset</code>.
-     * The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
-     * @alias module:model/VideoAsset
-     * @param type {String} The type of asset - set to `video` for videos.
-     * @param src {String} The video source URL. The URL must be publicly accessible or include credentials.
-     */
-    constructor(type, src) { 
-        
-        VideoAsset.initialize(this, type, src);
+         * Returns The type of asset - set to `video` for videos.
+         * @return {String}
+         */
+    function getType() {
+      return this.type;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The type of asset - set to `video` for videos.
+     * @param {String} type The type of asset - set to `video` for videos.
      */
-    static initialize(obj, type, src) { 
-        obj['type'] = type || 'video';
-        obj['src'] = src;
+  }, {
+    key: "setType",
+    value: function setType(type) {
+      this['type'] = type;
+      return this;
+    }
+    /**
+         * Returns The video source URL. The URL must be publicly accessible or include credentials.
+         * @return {String}
+         */
+  }, {
+    key: "getSrc",
+    value: function getSrc() {
+      return this.src;
+    }
+
+    /**
+     * Sets The video source URL. The URL must be publicly accessible or include credentials.
+     * @param {String} src The video source URL. The URL must be publicly accessible or include credentials.
+     */
+  }, {
+    key: "setSrc",
+    value: function setSrc(src) {
+      this['src'] = src;
+      return this;
+    }
+    /**
+         * Returns The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+         * @return {Number}
+         */
+  }, {
+    key: "getTrim",
+    value: function getTrim() {
+      return this.trim;
+    }
+
+    /**
+     * Sets The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+     * @param {Number} trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+     */
+  }, {
+    key: "setTrim",
+    value: function setTrim(trim) {
+      this['trim'] = trim;
+      return this;
+    }
+    /**
+         * Returns Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+         * @return {Number}
+         */
+  }, {
+    key: "getVolume",
+    value: function getVolume() {
+      return this.volume;
+    }
+
+    /**
+     * Sets Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param {Number} volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     */
+  }, {
+    key: "setVolume",
+    value: function setVolume(volume) {
+      this['volume'] = volume;
+      return this;
+    }
+    /**
+         * Returns The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+         * @return {module:model/VideoAsset.VolumeEffectEnum}
+         */
+  }, {
+    key: "getVolumeEffect",
+    value: function getVolumeEffect() {
+      return this.volumeEffect;
+    }
+
+    /**
+     * Sets The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param {module:model/VideoAsset.VolumeEffectEnum} volumeEffect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     */
+  }, {
+    key: "setVolumeEffect",
+    value: function setVolumeEffect(volumeEffect) {
+      this['volumeEffect'] = volumeEffect;
+      return this;
+    }
+    /**
+         * Returns Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+         * minimum: 0
+         * maximum: 10
+         * @return {Number}
+         */
+  }, {
+    key: "getSpeed",
+    value: function getSpeed() {
+      return this.speed;
+    }
+
+    /**
+     * Sets Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param {Number} speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     */
+  }, {
+    key: "setSpeed",
+    value: function setSpeed(speed) {
+      this['speed'] = speed;
+      return this;
+    }
+    /**
+         * @return {module:model/Crop}
+         */
+  }, {
+    key: "getCrop",
+    value: function getCrop() {
+      return this.crop;
+    }
+
+    /**
+     * @param {module:model/Crop} crop
+     */
+  }, {
+    key: "setCrop",
+    value: function setCrop(crop) {
+      this['crop'] = crop;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, type, src) {
+      obj['type'] = type || 'video';
+      obj['src'] = src;
     }
 
     /**
@@ -49,33 +205,34 @@ class VideoAsset {
      * @param {module:model/VideoAsset} obj Optional instance to populate.
      * @return {module:model/VideoAsset} The populated <code>VideoAsset</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new VideoAsset();
-
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
-            }
-            if (data.hasOwnProperty('src')) {
-                obj['src'] = ApiClient.convertToType(data['src'], 'String');
-            }
-            if (data.hasOwnProperty('trim')) {
-                obj['trim'] = ApiClient.convertToType(data['trim'], 'Number');
-            }
-            if (data.hasOwnProperty('volume')) {
-                obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
-            }
-            if (data.hasOwnProperty('volumeEffect')) {
-                obj['volumeEffect'] = ApiClient.convertToType(data['volumeEffect'], 'String');
-            }
-            if (data.hasOwnProperty('speed')) {
-                obj['speed'] = ApiClient.convertToType(data['speed'], 'Number');
-            }
-            if (data.hasOwnProperty('crop')) {
-                obj['crop'] = Crop.constructFromObject(data['crop']);
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new VideoAsset();
+        if (data.hasOwnProperty('type')) {
+          obj['type'] = _ApiClient["default"].convertToType(data['type'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('src')) {
+          obj['src'] = _ApiClient["default"].convertToType(data['src'], 'String');
+        }
+        if (data.hasOwnProperty('trim')) {
+          obj['trim'] = _ApiClient["default"].convertToType(data['trim'], 'Number');
+        }
+        if (data.hasOwnProperty('volume')) {
+          obj['volume'] = _ApiClient["default"].convertToType(data['volume'], 'Number');
+        }
+        if (data.hasOwnProperty('volumeEffect')) {
+          obj['volumeEffect'] = _ApiClient["default"].convertToType(data['volumeEffect'], 'String');
+        }
+        if (data.hasOwnProperty('speed')) {
+          obj['speed'] = _ApiClient["default"].convertToType(data['speed'], 'Number');
+        }
+        if (data.hasOwnProperty('crop')) {
+          obj['crop'] = _Crop["default"].constructFromObject(data['crop']);
+        }
+      }
+      return obj;
     }
 
     /**
@@ -83,148 +240,45 @@ class VideoAsset {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>VideoAsset</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of VideoAsset.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(VideoAsset.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
-        }
-        // ensure the json data is a string
-        if (data['src'] && !(typeof data['src'] === 'string' || data['src'] instanceof String)) {
-            throw new Error("Expected the field `src` to be a primitive type in the JSON string but got " + data['src']);
-        }
-        // ensure the json data is a string
-        if (data['volumeEffect'] && !(typeof data['volumeEffect'] === 'string' || data['volumeEffect'] instanceof String)) {
-            throw new Error("Expected the field `volumeEffect` to be a primitive type in the JSON string but got " + data['volumeEffect']);
-        }
-        // validate the optional field `crop`
-        if (data['crop']) { // data not null
-          Crop.validateJSON(data['crop']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+        throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+      }
+      // ensure the json data is a string
+      if (data['src'] && !(typeof data['src'] === 'string' || data['src'] instanceof String)) {
+        throw new Error("Expected the field `src` to be a primitive type in the JSON string but got " + data['src']);
+      }
+      // ensure the json data is a string
+      if (data['volumeEffect'] && !(typeof data['volumeEffect'] === 'string' || data['volumeEffect'] instanceof String)) {
+        throw new Error("Expected the field `volumeEffect` to be a primitive type in the JSON string but got " + data['volumeEffect']);
+      }
+      // validate the optional field `crop`
+      if (data['crop']) {
+        // data not null
+        _Crop["default"].validateJSON(data['crop']);
+      }
+      return true;
     }
-
-/**
-     * Returns The type of asset - set to `video` for videos.
-     * @return {String}
-     */
-    getType() {
-        return this.type;
-    }
-
-    /**
-     * Sets The type of asset - set to `video` for videos.
-     * @param {String} type The type of asset - set to `video` for videos.
-     */
-    setType(type) {
-        this['type'] = type;
-        return this;
-    }
-/**
-     * Returns The video source URL. The URL must be publicly accessible or include credentials.
-     * @return {String}
-     */
-    getSrc() {
-        return this.src;
-    }
-
-    /**
-     * Sets The video source URL. The URL must be publicly accessible or include credentials.
-     * @param {String} src The video source URL. The URL must be publicly accessible or include credentials.
-     */
-    setSrc(src) {
-        this['src'] = src;
-        return this;
-    }
-/**
-     * Returns The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
-     * @return {Number}
-     */
-    getTrim() {
-        return this.trim;
-    }
-
-    /**
-     * Sets The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
-     * @param {Number} trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
-     */
-    setTrim(trim) {
-        this['trim'] = trim;
-        return this;
-    }
-/**
-     * Returns Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     * @return {Number}
-     */
-    getVolume() {
-        return this.volume;
-    }
-
-    /**
-     * Sets Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     * @param {Number} volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     */
-    setVolume(volume) {
-        this['volume'] = volume;
-        return this;
-    }
-/**
-     * Returns The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     * @return {module:model/VideoAsset.VolumeEffectEnum}
-     */
-    getVolumeEffect() {
-        return this.volumeEffect;
-    }
-
-    /**
-     * Sets The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     * @param {module:model/VideoAsset.VolumeEffectEnum} volumeEffect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     */
-    setVolumeEffect(volumeEffect) {
-        this['volumeEffect'] = volumeEffect;
-        return this;
-    }
-/**
-     * Returns Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
-     * minimum: 0
-     * maximum: 10
-     * @return {Number}
-     */
-    getSpeed() {
-        return this.speed;
-    }
-
-    /**
-     * Sets Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
-     * @param {Number} speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
-     */
-    setSpeed(speed) {
-        this['speed'] = speed;
-        return this;
-    }
-/**
-     * @return {module:model/Crop}
-     */
-    getCrop() {
-        return this.crop;
-    }
-
-    /**
-     * @param {module:model/Crop} crop
-     */
-    setCrop(crop) {
-        this['crop'] = crop;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 VideoAsset.RequiredProperties = ["type", "src"];
 
 /**
@@ -269,37 +323,26 @@ VideoAsset.prototype['speed'] = undefined;
  */
 VideoAsset.prototype['crop'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>volumeEffect</code> property.
  * @enum {String}
  * @readonly
  */
 VideoAsset['VolumeEffectEnum'] = {
-
-    /**
-     * value: "fadeIn"
-     * @const
-     */
-    "fadeIn": "fadeIn",
-
-    /**
-     * value: "fadeOut"
-     * @const
-     */
-    "fadeOut": "fadeOut",
-
-    /**
-     * value: "fadeInFadeOut"
-     * @const
-     */
-    "fadeInFadeOut": "fadeInFadeOut"
+  /**
+   * value: "fadeIn"
+   * @const
+   */
+  "fadeIn": "fadeIn",
+  /**
+   * value: "fadeOut"
+   * @const
+   */
+  "fadeOut": "fadeOut",
+  /**
+   * value: "fadeInFadeOut"
+   * @const
+   */
+  "fadeInFadeOut": "fadeInFadeOut"
 };
-
-
-
-export default VideoAsset;
-
+var _default = exports["default"] = VideoAsset;

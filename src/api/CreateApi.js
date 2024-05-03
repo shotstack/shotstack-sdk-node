@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _GeneratedAsset = _interopRequireDefault(require("../model/GeneratedAsset"));
+var _GeneratedAssetErrorResponse = _interopRequireDefault(require("../model/GeneratedAssetErrorResponse"));
+var _GeneratedAssetResponse = _interopRequireDefault(require("../model/GeneratedAssetResponse"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,65 +26,49 @@
  * Do not edit the class manually.
  *
  */
-
-
-import ApiClient from "../ApiClient";
-import GeneratedAsset from '../model/GeneratedAsset';
-import GeneratedAssetErrorResponse from '../model/GeneratedAssetErrorResponse';
-import GeneratedAssetResponse from '../model/GeneratedAssetResponse';
-
 /**
 * Create service.
 * @module api/CreateApi
 * @version 0.2.6
 */
-export default class CreateApi {
+var CreateApi = exports["default"] = /*#__PURE__*/function () {
+  /**
+  * Constructs a new CreateApi. 
+  * @alias module:api/CreateApi
+  * @class
+  * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+  * default to {@link module:ApiClient#instance} if unspecified.
+  */
+  function CreateApi(apiClient) {
+    _classCallCheck(this, CreateApi);
+    this.apiClient = apiClient || _ApiClient["default"].instance;
+  }
 
-    /**
-    * Constructs a new CreateApi. 
-    * @alias module:api/CreateApi
-    * @class
-    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-    * default to {@link module:ApiClient#instance} if unspecified.
-    */
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
-    }
-
-
-
-    /**
-     * Get Generated Asset
-     * Get the generated assets status, url and details by ID.  **Base URL:** <a href=\"#\">https://api.shotstack.io/create/{version}</a> 
-     * @param {String} id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeneratedAssetResponse} and HTTP response
-     */
-    getGeneratedAssetWithHttpInfo(id) {
-      let postBody = null;
+  /**
+   * Get Generated Asset
+   * Get the generated assets status, url and details by ID.  **Base URL:** <a href=\"#\">https://api.shotstack.io/create/{version}</a> 
+   * @param {String} id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeneratedAssetResponse} and HTTP response
+   */
+  return _createClass(CreateApi, [{
+    key: "getGeneratedAssetWithHttpInfo",
+    value: function getGeneratedAssetWithHttpInfo(id) {
+      var postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling getGeneratedAsset");
       }
-
-      let pathParams = {
+      var pathParams = {
         'id': id
       };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = GeneratedAssetResponse;
-      return this.apiClient.callApi(
-        '/assets/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = _GeneratedAssetResponse["default"];
+      return this.apiClient.callApi('/assets/{id}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -77,13 +77,13 @@ export default class CreateApi {
      * @param {String} id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GeneratedAssetResponse}
      */
-    getGeneratedAsset(id) {
-      return this.getGeneratedAssetWithHttpInfo(id)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "getGeneratedAsset",
+    value: function getGeneratedAsset(id) {
+      return this.getGeneratedAssetWithHttpInfo(id).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
 
     /**
      * Generate Asset
@@ -91,31 +91,23 @@ export default class CreateApi {
      * @param {module:model/GeneratedAsset} generatedAsset Generate an asset using the specified provider, type and options.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GeneratedAssetResponse} and HTTP response
      */
-    postGenerateAssetWithHttpInfo(generatedAsset) {
-      let postBody = generatedAsset;
+  }, {
+    key: "postGenerateAssetWithHttpInfo",
+    value: function postGenerateAssetWithHttpInfo(generatedAsset) {
+      var postBody = generatedAsset;
       // verify the required parameter 'generatedAsset' is set
       if (generatedAsset === undefined || generatedAsset === null) {
         throw new Error("Missing the required parameter 'generatedAsset' when calling postGenerateAsset");
       }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = GeneratedAssetResponse;
-      return this.apiClient.callApi(
-        '/assets', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var pathParams = {};
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = _GeneratedAssetResponse["default"];
+      return this.apiClient.callApi('/assets', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -124,12 +116,12 @@ export default class CreateApi {
      * @param {module:model/GeneratedAsset} generatedAsset Generate an asset using the specified provider, type and options.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GeneratedAssetResponse}
      */
-    postGenerateAsset(generatedAsset) {
-      return this.postGenerateAssetWithHttpInfo(generatedAsset)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "postGenerateAsset",
+    value: function postGenerateAsset(generatedAsset) {
+      return this.postGenerateAssetWithHttpInfo(generatedAsset).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
-
-}
+  }]);
+}();

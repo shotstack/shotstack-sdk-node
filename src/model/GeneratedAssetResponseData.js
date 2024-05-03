@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _GeneratedAssetResponseAttributes = _interopRequireDefault(require("./GeneratedAssetResponseAttributes"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,38 +27,95 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import GeneratedAssetResponseAttributes from './GeneratedAssetResponseAttributes';
-
 /**
  * The GeneratedAssetResponseData model module.
  * @module model/GeneratedAssetResponseData
  * @version 0.2.6
  */
-class GeneratedAssetResponseData {
+var GeneratedAssetResponseData = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>GeneratedAssetResponseData</code>.
+   * The type of resource (an asset), it&#39;s id and attributes of the generated file.
+   * @alias module:model/GeneratedAssetResponseData
+   * @param type {String} The type of resource, in this case it is an asset.
+   * @param id {String} The generated asset id.
+   * @param attributes {module:model/GeneratedAssetResponseAttributes} 
+   */
+  function GeneratedAssetResponseData(type, id, attributes) {
+    _classCallCheck(this, GeneratedAssetResponseData);
+    GeneratedAssetResponseData.initialize(this, type, id, attributes);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(GeneratedAssetResponseData, [{
+    key: "getType",
+    value:
     /**
-     * Constructs a new <code>GeneratedAssetResponseData</code>.
-     * The type of resource (an asset), it&#39;s id and attributes of the generated file.
-     * @alias module:model/GeneratedAssetResponseData
-     * @param type {String} The type of resource, in this case it is an asset.
-     * @param id {String} The generated asset id.
-     * @param attributes {module:model/GeneratedAssetResponseAttributes} 
-     */
-    constructor(type, id, attributes) { 
-        
-        GeneratedAssetResponseData.initialize(this, type, id, attributes);
+         * Returns The type of resource, in this case it is an asset.
+         * @return {String}
+         */
+    function getType() {
+      return this.type;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The type of resource, in this case it is an asset.
+     * @param {String} type The type of resource, in this case it is an asset.
      */
-    static initialize(obj, type, id, attributes) { 
-        obj['type'] = type;
-        obj['id'] = id;
-        obj['attributes'] = attributes;
+  }, {
+    key: "setType",
+    value: function setType(type) {
+      this['type'] = type;
+      return this;
+    }
+    /**
+         * Returns The generated asset id.
+         * @return {String}
+         */
+  }, {
+    key: "getId",
+    value: function getId() {
+      return this.id;
+    }
+
+    /**
+     * Sets The generated asset id.
+     * @param {String} id The generated asset id.
+     */
+  }, {
+    key: "setId",
+    value: function setId(id) {
+      this['id'] = id;
+      return this;
+    }
+    /**
+         * @return {module:model/GeneratedAssetResponseAttributes}
+         */
+  }, {
+    key: "getAttributes",
+    value: function getAttributes() {
+      return this.attributes;
+    }
+
+    /**
+     * @param {module:model/GeneratedAssetResponseAttributes} attributes
+     */
+  }, {
+    key: "setAttributes",
+    value: function setAttributes(attributes) {
+      this['attributes'] = attributes;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, type, id, attributes) {
+      obj['type'] = type;
+      obj['id'] = id;
+      obj['attributes'] = attributes;
     }
 
     /**
@@ -51,21 +125,22 @@ class GeneratedAssetResponseData {
      * @param {module:model/GeneratedAssetResponseData} obj Optional instance to populate.
      * @return {module:model/GeneratedAssetResponseData} The populated <code>GeneratedAssetResponseData</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new GeneratedAssetResponseData();
-
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
-            }
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('attributes')) {
-                obj['attributes'] = GeneratedAssetResponseAttributes.constructFromObject(data['attributes']);
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new GeneratedAssetResponseData();
+        if (data.hasOwnProperty('type')) {
+          obj['type'] = _ApiClient["default"].convertToType(data['type'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('id')) {
+          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
+        }
+        if (data.hasOwnProperty('attributes')) {
+          obj['attributes'] = _GeneratedAssetResponseAttributes["default"].constructFromObject(data['attributes']);
+        }
+      }
+      return obj;
     }
 
     /**
@@ -73,78 +148,41 @@ class GeneratedAssetResponseData {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>GeneratedAssetResponseData</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of GeneratedAssetResponseData.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(GeneratedAssetResponseData.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
-        }
-        // ensure the json data is a string
-        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-        }
-        // validate the optional field `attributes`
-        if (data['attributes']) { // data not null
-          GeneratedAssetResponseAttributes.validateJSON(data['attributes']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+        throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+      }
+      // ensure the json data is a string
+      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+      }
+      // validate the optional field `attributes`
+      if (data['attributes']) {
+        // data not null
+        _GeneratedAssetResponseAttributes["default"].validateJSON(data['attributes']);
+      }
+      return true;
     }
-
-/**
-     * Returns The type of resource, in this case it is an asset.
-     * @return {String}
-     */
-    getType() {
-        return this.type;
-    }
-
-    /**
-     * Sets The type of resource, in this case it is an asset.
-     * @param {String} type The type of resource, in this case it is an asset.
-     */
-    setType(type) {
-        this['type'] = type;
-        return this;
-    }
-/**
-     * Returns The generated asset id.
-     * @return {String}
-     */
-    getId() {
-        return this.id;
-    }
-
-    /**
-     * Sets The generated asset id.
-     * @param {String} id The generated asset id.
-     */
-    setId(id) {
-        this['id'] = id;
-        return this;
-    }
-/**
-     * @return {module:model/GeneratedAssetResponseAttributes}
-     */
-    getAttributes() {
-        return this.attributes;
-    }
-
-    /**
-     * @param {module:model/GeneratedAssetResponseAttributes} attributes
-     */
-    setAttributes(attributes) {
-        this['attributes'] = attributes;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 GeneratedAssetResponseData.RequiredProperties = ["type", "id", "attributes"];
 
 /**
@@ -163,11 +201,4 @@ GeneratedAssetResponseData.prototype['id'] = undefined;
  * @member {module:model/GeneratedAssetResponseAttributes} attributes
  */
 GeneratedAssetResponseData.prototype['attributes'] = undefined;
-
-
-
-
-
-
-export default GeneratedAssetResponseData;
-
+var _default = exports["default"] = GeneratedAssetResponseData;
