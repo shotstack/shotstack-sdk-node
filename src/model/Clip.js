@@ -1,4 +1,24 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Asset = _interopRequireDefault(require("./Asset"));
+var _Offset = _interopRequireDefault(require("./Offset"));
+var _Transformation = _interopRequireDefault(require("./Transformation"));
+var _Transition = _interopRequireDefault(require("./Transition"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,41 +30,269 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Asset from './Asset';
-import Offset from './Offset';
-import Transformation from './Transformation';
-import Transition from './Transition';
-
 /**
  * The Clip model module.
  * @module model/Clip
  * @version 0.2.6
  */
-class Clip {
+var Clip = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>Clip</code>.
+   * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
+   * @alias module:model/Clip
+   * @param asset {module:model/Asset} 
+   * @param start {Number} The start position of the Clip on the timeline, in seconds.
+   * @param length {Number} The length, in seconds, the Clip should play for.
+   */
+  function Clip(asset, start, length) {
+    _classCallCheck(this, Clip);
+    Clip.initialize(this, asset, start, length);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(Clip, [{
+    key: "getAsset",
+    value:
     /**
-     * Constructs a new <code>Clip</code>.
-     * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
-     * @alias module:model/Clip
-     * @param asset {module:model/Asset} 
-     * @param start {Number} The start position of the Clip on the timeline, in seconds.
-     * @param length {Number} The length, in seconds, the Clip should play for.
-     */
-    constructor(asset, start, length) { 
-        
-        Clip.initialize(this, asset, start, length);
+         * @return {module:model/Asset}
+         */
+    function getAsset() {
+      return this.asset;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * @param {module:model/Asset} asset
      */
-    static initialize(obj, asset, start, length) { 
-        obj['asset'] = asset;
-        obj['start'] = start;
-        obj['length'] = length;
+  }, {
+    key: "setAsset",
+    value: function setAsset(asset) {
+      this['asset'] = asset;
+      return this;
+    }
+    /**
+         * Returns The start position of the Clip on the timeline, in seconds.
+         * @return {Number}
+         */
+  }, {
+    key: "getStart",
+    value: function getStart() {
+      return this.start;
+    }
+
+    /**
+     * Sets The start position of the Clip on the timeline, in seconds.
+     * @param {Number} start The start position of the Clip on the timeline, in seconds.
+     */
+  }, {
+    key: "setStart",
+    value: function setStart(start) {
+      this['start'] = start;
+      return this;
+    }
+    /**
+         * Returns The length, in seconds, the Clip should play for.
+         * @return {Number}
+         */
+  }, {
+    key: "getLength",
+    value: function getLength() {
+      return this.length;
+    }
+
+    /**
+     * Sets The length, in seconds, the Clip should play for.
+     * @param {Number} length The length, in seconds, the Clip should play for.
+     */
+  }, {
+    key: "setLength",
+    value: function setLength(length) {
+      this['length'] = length;
+      return this;
+    }
+    /**
+         * Returns Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+         * @return {module:model/Clip.FitEnum}
+         */
+  }, {
+    key: "getFit",
+    value: function getFit() {
+      return this.fit;
+    }
+
+    /**
+     * Sets Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+     * @param {module:model/Clip.FitEnum} fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+     */
+  }, {
+    key: "setFit",
+    value: function setFit(fit) {
+      this['fit'] = fit;
+      return this;
+    }
+    /**
+         * Returns Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
+         * @return {Number}
+         */
+  }, {
+    key: "getScale",
+    value: function getScale() {
+      return this.scale;
+    }
+
+    /**
+     * Sets Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
+     * @param {Number} scale Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
+     */
+  }, {
+    key: "setScale",
+    value: function setScale(scale) {
+      this['scale'] = scale;
+      return this;
+    }
+    /**
+         * Returns Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+         * @return {module:model/Clip.PositionEnum}
+         */
+  }, {
+    key: "getPosition",
+    value: function getPosition() {
+      return this.position;
+    }
+
+    /**
+     * Sets Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+     * @param {module:model/Clip.PositionEnum} position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+     */
+  }, {
+    key: "setPosition",
+    value: function setPosition(position) {
+      this['position'] = position;
+      return this;
+    }
+    /**
+         * @return {module:model/Offset}
+         */
+  }, {
+    key: "getOffset",
+    value: function getOffset() {
+      return this.offset;
+    }
+
+    /**
+     * @param {module:model/Offset} offset
+     */
+  }, {
+    key: "setOffset",
+    value: function setOffset(offset) {
+      this['offset'] = offset;
+      return this;
+    }
+    /**
+         * @return {module:model/Transition}
+         */
+  }, {
+    key: "getTransition",
+    value: function getTransition() {
+      return this.transition;
+    }
+
+    /**
+     * @param {module:model/Transition} transition
+     */
+  }, {
+    key: "setTransition",
+    value: function setTransition(transition) {
+      this['transition'] = transition;
+      return this;
+    }
+    /**
+         * Returns A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
+         * @return {module:model/Clip.EffectEnum}
+         */
+  }, {
+    key: "getEffect",
+    value: function getEffect() {
+      return this.effect;
+    }
+
+    /**
+     * Sets A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
+     * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
+     */
+  }, {
+    key: "setEffect",
+    value: function setEffect(effect) {
+      this['effect'] = effect;
+      return this;
+    }
+    /**
+         * Returns A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
+         * @return {module:model/Clip.FilterEnum}
+         */
+  }, {
+    key: "getFilter",
+    value: function getFilter() {
+      return this.filter;
+    }
+
+    /**
+     * Sets A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
+     * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
+     */
+  }, {
+    key: "setFilter",
+    value: function setFilter(filter) {
+      this['filter'] = filter;
+      return this;
+    }
+    /**
+         * Returns Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+         * @return {Number}
+         */
+  }, {
+    key: "getOpacity",
+    value: function getOpacity() {
+      return this.opacity;
+    }
+
+    /**
+     * Sets Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+     * @param {Number} opacity Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+     */
+  }, {
+    key: "setOpacity",
+    value: function setOpacity(opacity) {
+      this['opacity'] = opacity;
+      return this;
+    }
+    /**
+         * @return {module:model/Transformation}
+         */
+  }, {
+    key: "getTransform",
+    value: function getTransform() {
+      return this.transform;
+    }
+
+    /**
+     * @param {module:model/Transformation} transform
+     */
+  }, {
+    key: "setTransform",
+    value: function setTransform(transform) {
+      this['transform'] = transform;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, asset, start, length) {
+      obj['asset'] = asset;
+      obj['start'] = start;
+      obj['length'] = length;
     }
 
     /**
@@ -54,48 +302,49 @@ class Clip {
      * @param {module:model/Clip} obj Optional instance to populate.
      * @return {module:model/Clip} The populated <code>Clip</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new Clip();
-
-            if (data.hasOwnProperty('asset')) {
-                obj['asset'] = Asset.constructFromObject(data['asset']);
-            }
-            if (data.hasOwnProperty('start')) {
-                obj['start'] = ApiClient.convertToType(data['start'], 'Number');
-            }
-            if (data.hasOwnProperty('length')) {
-                obj['length'] = ApiClient.convertToType(data['length'], 'Number');
-            }
-            if (data.hasOwnProperty('fit')) {
-                obj['fit'] = ApiClient.convertToType(data['fit'], 'String');
-            }
-            if (data.hasOwnProperty('scale')) {
-                obj['scale'] = ApiClient.convertToType(data['scale'], 'Number');
-            }
-            if (data.hasOwnProperty('position')) {
-                obj['position'] = ApiClient.convertToType(data['position'], 'String');
-            }
-            if (data.hasOwnProperty('offset')) {
-                obj['offset'] = Offset.constructFromObject(data['offset']);
-            }
-            if (data.hasOwnProperty('transition')) {
-                obj['transition'] = Transition.constructFromObject(data['transition']);
-            }
-            if (data.hasOwnProperty('effect')) {
-                obj['effect'] = ApiClient.convertToType(data['effect'], 'String');
-            }
-            if (data.hasOwnProperty('filter')) {
-                obj['filter'] = ApiClient.convertToType(data['filter'], 'String');
-            }
-            if (data.hasOwnProperty('opacity')) {
-                obj['opacity'] = ApiClient.convertToType(data['opacity'], 'Number');
-            }
-            if (data.hasOwnProperty('transform')) {
-                obj['transform'] = Transformation.constructFromObject(data['transform']);
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new Clip();
+        if (data.hasOwnProperty('asset')) {
+          obj['asset'] = _Asset["default"].constructFromObject(data['asset']);
         }
-        return obj;
+        if (data.hasOwnProperty('start')) {
+          obj['start'] = _ApiClient["default"].convertToType(data['start'], 'Number');
+        }
+        if (data.hasOwnProperty('length')) {
+          obj['length'] = _ApiClient["default"].convertToType(data['length'], 'Number');
+        }
+        if (data.hasOwnProperty('fit')) {
+          obj['fit'] = _ApiClient["default"].convertToType(data['fit'], 'String');
+        }
+        if (data.hasOwnProperty('scale')) {
+          obj['scale'] = _ApiClient["default"].convertToType(data['scale'], 'Number');
+        }
+        if (data.hasOwnProperty('position')) {
+          obj['position'] = _ApiClient["default"].convertToType(data['position'], 'String');
+        }
+        if (data.hasOwnProperty('offset')) {
+          obj['offset'] = _Offset["default"].constructFromObject(data['offset']);
+        }
+        if (data.hasOwnProperty('transition')) {
+          obj['transition'] = _Transition["default"].constructFromObject(data['transition']);
+        }
+        if (data.hasOwnProperty('effect')) {
+          obj['effect'] = _ApiClient["default"].convertToType(data['effect'], 'String');
+        }
+        if (data.hasOwnProperty('filter')) {
+          obj['filter'] = _ApiClient["default"].convertToType(data['filter'], 'String');
+        }
+        if (data.hasOwnProperty('opacity')) {
+          obj['opacity'] = _ApiClient["default"].convertToType(data['opacity'], 'Number');
+        }
+        if (data.hasOwnProperty('transform')) {
+          obj['transform'] = _Transformation["default"].constructFromObject(data['transform']);
+        }
+      }
+      return obj;
     }
 
     /**
@@ -103,236 +352,64 @@ class Clip {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Clip</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of Clip.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(Clip.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // validate the optional field `asset`
-        if (data['asset']) { // data not null
-          Asset.validateJSON(data['asset']);
-        }
-        // ensure the json data is a string
-        if (data['fit'] && !(typeof data['fit'] === 'string' || data['fit'] instanceof String)) {
-            throw new Error("Expected the field `fit` to be a primitive type in the JSON string but got " + data['fit']);
-        }
-        // ensure the json data is a string
-        if (data['position'] && !(typeof data['position'] === 'string' || data['position'] instanceof String)) {
-            throw new Error("Expected the field `position` to be a primitive type in the JSON string but got " + data['position']);
-        }
-        // validate the optional field `offset`
-        if (data['offset']) { // data not null
-          Offset.validateJSON(data['offset']);
-        }
-        // validate the optional field `transition`
-        if (data['transition']) { // data not null
-          Transition.validateJSON(data['transition']);
-        }
-        // ensure the json data is a string
-        if (data['effect'] && !(typeof data['effect'] === 'string' || data['effect'] instanceof String)) {
-            throw new Error("Expected the field `effect` to be a primitive type in the JSON string but got " + data['effect']);
-        }
-        // ensure the json data is a string
-        if (data['filter'] && !(typeof data['filter'] === 'string' || data['filter'] instanceof String)) {
-            throw new Error("Expected the field `filter` to be a primitive type in the JSON string but got " + data['filter']);
-        }
-        // validate the optional field `transform`
-        if (data['transform']) { // data not null
-          Transformation.validateJSON(data['transform']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['asset']) {
+        // data not null
+        _Asset["default"].validateJSON(data['asset']);
+      }
+      // ensure the json data is a string
+      if (data['fit'] && !(typeof data['fit'] === 'string' || data['fit'] instanceof String)) {
+        throw new Error("Expected the field `fit` to be a primitive type in the JSON string but got " + data['fit']);
+      }
+      // ensure the json data is a string
+      if (data['position'] && !(typeof data['position'] === 'string' || data['position'] instanceof String)) {
+        throw new Error("Expected the field `position` to be a primitive type in the JSON string but got " + data['position']);
+      }
+      // validate the optional field `offset`
+      if (data['offset']) {
+        // data not null
+        _Offset["default"].validateJSON(data['offset']);
+      }
+      // validate the optional field `transition`
+      if (data['transition']) {
+        // data not null
+        _Transition["default"].validateJSON(data['transition']);
+      }
+      // ensure the json data is a string
+      if (data['effect'] && !(typeof data['effect'] === 'string' || data['effect'] instanceof String)) {
+        throw new Error("Expected the field `effect` to be a primitive type in the JSON string but got " + data['effect']);
+      }
+      // ensure the json data is a string
+      if (data['filter'] && !(typeof data['filter'] === 'string' || data['filter'] instanceof String)) {
+        throw new Error("Expected the field `filter` to be a primitive type in the JSON string but got " + data['filter']);
+      }
+      // validate the optional field `transform`
+      if (data['transform']) {
+        // data not null
+        _Transformation["default"].validateJSON(data['transform']);
+      }
+      return true;
     }
-
-/**
-     * @return {module:model/Asset}
-     */
-    getAsset() {
-        return this.asset;
-    }
-
-    /**
-     * @param {module:model/Asset} asset
-     */
-    setAsset(asset) {
-        this['asset'] = asset;
-        return this;
-    }
-/**
-     * Returns The start position of the Clip on the timeline, in seconds.
-     * @return {Number}
-     */
-    getStart() {
-        return this.start;
-    }
-
-    /**
-     * Sets The start position of the Clip on the timeline, in seconds.
-     * @param {Number} start The start position of the Clip on the timeline, in seconds.
-     */
-    setStart(start) {
-        this['start'] = start;
-        return this;
-    }
-/**
-     * Returns The length, in seconds, the Clip should play for.
-     * @return {Number}
-     */
-    getLength() {
-        return this.length;
-    }
-
-    /**
-     * Sets The length, in seconds, the Clip should play for.
-     * @param {Number} length The length, in seconds, the Clip should play for.
-     */
-    setLength(length) {
-        this['length'] = length;
-        return this;
-    }
-/**
-     * Returns Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
-     * @return {module:model/Clip.FitEnum}
-     */
-    getFit() {
-        return this.fit;
-    }
-
-    /**
-     * Sets Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
-     * @param {module:model/Clip.FitEnum} fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
-     */
-    setFit(fit) {
-        this['fit'] = fit;
-        return this;
-    }
-/**
-     * Returns Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
-     * @return {Number}
-     */
-    getScale() {
-        return this.scale;
-    }
-
-    /**
-     * Sets Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
-     * @param {Number} scale Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
-     */
-    setScale(scale) {
-        this['scale'] = scale;
-        return this;
-    }
-/**
-     * Returns Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     * @return {module:model/Clip.PositionEnum}
-     */
-    getPosition() {
-        return this.position;
-    }
-
-    /**
-     * Sets Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     * @param {module:model/Clip.PositionEnum} position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     */
-    setPosition(position) {
-        this['position'] = position;
-        return this;
-    }
-/**
-     * @return {module:model/Offset}
-     */
-    getOffset() {
-        return this.offset;
-    }
-
-    /**
-     * @param {module:model/Offset} offset
-     */
-    setOffset(offset) {
-        this['offset'] = offset;
-        return this;
-    }
-/**
-     * @return {module:model/Transition}
-     */
-    getTransition() {
-        return this.transition;
-    }
-
-    /**
-     * @param {module:model/Transition} transition
-     */
-    setTransition(transition) {
-        this['transition'] = transition;
-        return this;
-    }
-/**
-     * Returns A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
-     * @return {module:model/Clip.EffectEnum}
-     */
-    getEffect() {
-        return this.effect;
-    }
-
-    /**
-     * Sets A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
-     * @param {module:model/Clip.EffectEnum} effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
-     */
-    setEffect(effect) {
-        this['effect'] = effect;
-        return this;
-    }
-/**
-     * Returns A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
-     * @return {module:model/Clip.FilterEnum}
-     */
-    getFilter() {
-        return this.filter;
-    }
-
-    /**
-     * Sets A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
-     * @param {module:model/Clip.FilterEnum} filter A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
-     */
-    setFilter(filter) {
-        this['filter'] = filter;
-        return this;
-    }
-/**
-     * Returns Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
-     * @return {Number}
-     */
-    getOpacity() {
-        return this.opacity;
-    }
-
-    /**
-     * Sets Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
-     * @param {Number} opacity Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
-     */
-    setOpacity(opacity) {
-        this['opacity'] = opacity;
-        return this;
-    }
-/**
-     * @return {module:model/Transformation}
-     */
-    getTransform() {
-        return this.transform;
-    }
-
-    /**
-     * @param {module:model/Transformation} transform
-     */
-    setTransform(transform) {
-        this['transform'] = transform;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 Clip.RequiredProperties = ["asset", "start", "length"];
 
 /**
@@ -403,42 +480,33 @@ Clip.prototype['opacity'] = undefined;
  */
 Clip.prototype['transform'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>fit</code> property.
  * @enum {String}
  * @readonly
  */
 Clip['FitEnum'] = {
-
-    /**
-     * value: "cover"
-     * @const
-     */
-    "cover": "cover",
-
-    /**
-     * value: "contain"
-     * @const
-     */
-    "contain": "contain",
-
-    /**
-     * value: "crop"
-     * @const
-     */
-    "crop": "crop",
-
-    /**
-     * value: "none"
-     * @const
-     */
-    "none": "none"
+  /**
+   * value: "cover"
+   * @const
+   */
+  "cover": "cover",
+  /**
+   * value: "contain"
+   * @const
+   */
+  "contain": "contain",
+  /**
+   * value: "crop"
+   * @const
+   */
+  "crop": "crop",
+  /**
+   * value: "none"
+   * @const
+   */
+  "none": "none"
 };
-
 
 /**
  * Allowed values for the <code>position</code> property.
@@ -446,62 +514,52 @@ Clip['FitEnum'] = {
  * @readonly
  */
 Clip['PositionEnum'] = {
-
-    /**
-     * value: "top"
-     * @const
-     */
-    "top": "top",
-
-    /**
-     * value: "topRight"
-     * @const
-     */
-    "topRight": "topRight",
-
-    /**
-     * value: "right"
-     * @const
-     */
-    "right": "right",
-
-    /**
-     * value: "bottomRight"
-     * @const
-     */
-    "bottomRight": "bottomRight",
-
-    /**
-     * value: "bottom"
-     * @const
-     */
-    "bottom": "bottom",
-
-    /**
-     * value: "bottomLeft"
-     * @const
-     */
-    "bottomLeft": "bottomLeft",
-
-    /**
-     * value: "left"
-     * @const
-     */
-    "left": "left",
-
-    /**
-     * value: "topLeft"
-     * @const
-     */
-    "topLeft": "topLeft",
-
-    /**
-     * value: "center"
-     * @const
-     */
-    "center": "center"
+  /**
+   * value: "top"
+   * @const
+   */
+  "top": "top",
+  /**
+   * value: "topRight"
+   * @const
+   */
+  "topRight": "topRight",
+  /**
+   * value: "right"
+   * @const
+   */
+  "right": "right",
+  /**
+   * value: "bottomRight"
+   * @const
+   */
+  "bottomRight": "bottomRight",
+  /**
+   * value: "bottom"
+   * @const
+   */
+  "bottom": "bottom",
+  /**
+   * value: "bottomLeft"
+   * @const
+   */
+  "bottomLeft": "bottomLeft",
+  /**
+   * value: "left"
+   * @const
+   */
+  "left": "left",
+  /**
+   * value: "topLeft"
+   * @const
+   */
+  "topLeft": "topLeft",
+  /**
+   * value: "center"
+   * @const
+   */
+  "center": "center"
 };
-
 
 /**
  * Allowed values for the <code>effect</code> property.
@@ -509,116 +567,97 @@ Clip['PositionEnum'] = {
  * @readonly
  */
 Clip['EffectEnum'] = {
-
-    /**
-     * value: "zoomIn"
-     * @const
-     */
-    "zoomIn": "zoomIn",
-
-    /**
-     * value: "zoomInSlow"
-     * @const
-     */
-    "zoomInSlow": "zoomInSlow",
-
-    /**
-     * value: "zoomInFast"
-     * @const
-     */
-    "zoomInFast": "zoomInFast",
-
-    /**
-     * value: "zoomOut"
-     * @const
-     */
-    "zoomOut": "zoomOut",
-
-    /**
-     * value: "zoomOutSlow"
-     * @const
-     */
-    "zoomOutSlow": "zoomOutSlow",
-
-    /**
-     * value: "zoomOutFast"
-     * @const
-     */
-    "zoomOutFast": "zoomOutFast",
-
-    /**
-     * value: "slideLeft"
-     * @const
-     */
-    "slideLeft": "slideLeft",
-
-    /**
-     * value: "slideLeftSlow"
-     * @const
-     */
-    "slideLeftSlow": "slideLeftSlow",
-
-    /**
-     * value: "slideLeftFast"
-     * @const
-     */
-    "slideLeftFast": "slideLeftFast",
-
-    /**
-     * value: "slideRight"
-     * @const
-     */
-    "slideRight": "slideRight",
-
-    /**
-     * value: "slideRightSlow"
-     * @const
-     */
-    "slideRightSlow": "slideRightSlow",
-
-    /**
-     * value: "slideRightFast"
-     * @const
-     */
-    "slideRightFast": "slideRightFast",
-
-    /**
-     * value: "slideUp"
-     * @const
-     */
-    "slideUp": "slideUp",
-
-    /**
-     * value: "slideUpSlow"
-     * @const
-     */
-    "slideUpSlow": "slideUpSlow",
-
-    /**
-     * value: "slideUpFast"
-     * @const
-     */
-    "slideUpFast": "slideUpFast",
-
-    /**
-     * value: "slideDown"
-     * @const
-     */
-    "slideDown": "slideDown",
-
-    /**
-     * value: "slideDownSlow"
-     * @const
-     */
-    "slideDownSlow": "slideDownSlow",
-
-    /**
-     * value: "slideDownFast"
-     * @const
-     */
-    "slideDownFast": "slideDownFast"
+  /**
+   * value: "zoomIn"
+   * @const
+   */
+  "zoomIn": "zoomIn",
+  /**
+   * value: "zoomInSlow"
+   * @const
+   */
+  "zoomInSlow": "zoomInSlow",
+  /**
+   * value: "zoomInFast"
+   * @const
+   */
+  "zoomInFast": "zoomInFast",
+  /**
+   * value: "zoomOut"
+   * @const
+   */
+  "zoomOut": "zoomOut",
+  /**
+   * value: "zoomOutSlow"
+   * @const
+   */
+  "zoomOutSlow": "zoomOutSlow",
+  /**
+   * value: "zoomOutFast"
+   * @const
+   */
+  "zoomOutFast": "zoomOutFast",
+  /**
+   * value: "slideLeft"
+   * @const
+   */
+  "slideLeft": "slideLeft",
+  /**
+   * value: "slideLeftSlow"
+   * @const
+   */
+  "slideLeftSlow": "slideLeftSlow",
+  /**
+   * value: "slideLeftFast"
+   * @const
+   */
+  "slideLeftFast": "slideLeftFast",
+  /**
+   * value: "slideRight"
+   * @const
+   */
+  "slideRight": "slideRight",
+  /**
+   * value: "slideRightSlow"
+   * @const
+   */
+  "slideRightSlow": "slideRightSlow",
+  /**
+   * value: "slideRightFast"
+   * @const
+   */
+  "slideRightFast": "slideRightFast",
+  /**
+   * value: "slideUp"
+   * @const
+   */
+  "slideUp": "slideUp",
+  /**
+   * value: "slideUpSlow"
+   * @const
+   */
+  "slideUpSlow": "slideUpSlow",
+  /**
+   * value: "slideUpFast"
+   * @const
+   */
+  "slideUpFast": "slideUpFast",
+  /**
+   * value: "slideDown"
+   * @const
+   */
+  "slideDown": "slideDown",
+  /**
+   * value: "slideDownSlow"
+   * @const
+   */
+  "slideDownSlow": "slideDownSlow",
+  /**
+   * value: "slideDownFast"
+   * @const
+   */
+  "slideDownFast": "slideDownFast"
 };
-
 
 /**
  * Allowed values for the <code>filter</code> property.
@@ -626,57 +665,45 @@ Clip['EffectEnum'] = {
  * @readonly
  */
 Clip['FilterEnum'] = {
-
-    /**
-     * value: "blur"
-     * @const
-     */
-    "blur": "blur",
-
-    /**
-     * value: "boost"
-     * @const
-     */
-    "boost": "boost",
-
-    /**
-     * value: "contrast"
-     * @const
-     */
-    "contrast": "contrast",
-
-    /**
-     * value: "darken"
-     * @const
-     */
-    "darken": "darken",
-
-    /**
-     * value: "greyscale"
-     * @const
-     */
-    "greyscale": "greyscale",
-
-    /**
-     * value: "lighten"
-     * @const
-     */
-    "lighten": "lighten",
-
-    /**
-     * value: "muted"
-     * @const
-     */
-    "muted": "muted",
-
-    /**
-     * value: "negative"
-     * @const
-     */
-    "negative": "negative"
+  /**
+   * value: "blur"
+   * @const
+   */
+  "blur": "blur",
+  /**
+   * value: "boost"
+   * @const
+   */
+  "boost": "boost",
+  /**
+   * value: "contrast"
+   * @const
+   */
+  "contrast": "contrast",
+  /**
+   * value: "darken"
+   * @const
+   */
+  "darken": "darken",
+  /**
+   * value: "greyscale"
+   * @const
+   */
+  "greyscale": "greyscale",
+  /**
+   * value: "lighten"
+   * @const
+   */
+  "lighten": "lighten",
+  /**
+   * value: "muted"
+   * @const
+   */
+  "muted": "muted",
+  /**
+   * value: "negative"
+   * @const
+   */
+  "negative": "negative"
 };
-
-
-
-export default Clip;
-
+var _default = exports["default"] = Clip;

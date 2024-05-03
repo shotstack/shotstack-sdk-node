@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Rendition = _interopRequireDefault(require("./Rendition"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,34 +27,211 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Rendition from './Rendition';
-
 /**
  * The RenditionResponseAttributes model module.
  * @module model/RenditionResponseAttributes
  * @version 0.2.6
  */
-class RenditionResponseAttributes {
+var RenditionResponseAttributes = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>RenditionResponseAttributes</code>.
+   * The id and attributes of the generated rendition file.
+   * @alias module:model/RenditionResponseAttributes
+   * @param id {String} The rendition id.
+   */
+  function RenditionResponseAttributes(id) {
+    _classCallCheck(this, RenditionResponseAttributes);
+    RenditionResponseAttributes.initialize(this, id);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(RenditionResponseAttributes, [{
+    key: "getId",
+    value:
     /**
-     * Constructs a new <code>RenditionResponseAttributes</code>.
-     * The id and attributes of the generated rendition file.
-     * @alias module:model/RenditionResponseAttributes
-     * @param id {String} The rendition id.
-     */
-    constructor(id) { 
-        
-        RenditionResponseAttributes.initialize(this, id);
+         * Returns The rendition id.
+         * @return {String}
+         */
+    function getId() {
+      return this.id;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The rendition id.
+     * @param {String} id The rendition id.
      */
-    static initialize(obj, id) { 
-        obj['id'] = id;
+  }, {
+    key: "setId",
+    value: function setId(id) {
+      this['id'] = id;
+      return this;
+    }
+    /**
+         * Returns The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
+         * @return {module:model/RenditionResponseAttributes.StatusEnum}
+         */
+  }, {
+    key: "getStatus",
+    value: function getStatus() {
+      return this.status;
+    }
+
+    /**
+     * Sets The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
+     * @param {module:model/RenditionResponseAttributes.StatusEnum} status The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
+     */
+  }, {
+    key: "setStatus",
+    value: function setStatus(status) {
+      this['status'] = status;
+      return this;
+    }
+    /**
+         * Returns The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
+         * @return {String}
+         */
+  }, {
+    key: "getUrl",
+    value: function getUrl() {
+      return this.url;
+    }
+
+    /**
+     * Sets The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
+     * @param {String} url The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
+     */
+  }, {
+    key: "setUrl",
+    value: function setUrl(url) {
+      this['url'] = url;
+      return this;
+    }
+    /**
+         * Returns The time in milliseconds it took to process the rendition.
+         * @return {Number}
+         */
+  }, {
+    key: "getExecutionTime",
+    value: function getExecutionTime() {
+      return this.executionTime;
+    }
+
+    /**
+     * Sets The time in milliseconds it took to process the rendition.
+     * @param {Number} executionTime The time in milliseconds it took to process the rendition.
+     */
+  }, {
+    key: "setExecutionTime",
+    value: function setExecutionTime(executionTime) {
+      this['executionTime'] = executionTime;
+      return this;
+    }
+    /**
+         * @return {module:model/Rendition}
+         */
+  }, {
+    key: "getTransformation",
+    value: function getTransformation() {
+      return this.transformation;
+    }
+
+    /**
+     * @param {module:model/Rendition} transformation
+     */
+  }, {
+    key: "setTransformation",
+    value: function setTransformation(transformation) {
+      this['transformation'] = transformation;
+      return this;
+    }
+    /**
+         * Returns The width in pixels of the ingested source file, if a video or image.
+         * @return {Number}
+         */
+  }, {
+    key: "getWidth",
+    value: function getWidth() {
+      return this.width;
+    }
+
+    /**
+     * Sets The width in pixels of the ingested source file, if a video or image.
+     * @param {Number} width The width in pixels of the ingested source file, if a video or image.
+     */
+  }, {
+    key: "setWidth",
+    value: function setWidth(width) {
+      this['width'] = width;
+      return this;
+    }
+    /**
+         * Returns The height in pixels of the ingested source file, if a video or image.
+         * @return {Number}
+         */
+  }, {
+    key: "getHeight",
+    value: function getHeight() {
+      return this.height;
+    }
+
+    /**
+     * Sets The height in pixels of the ingested source file, if a video or image.
+     * @param {Number} height The height in pixels of the ingested source file, if a video or image.
+     */
+  }, {
+    key: "setHeight",
+    value: function setHeight(height) {
+      this['height'] = height;
+      return this;
+    }
+    /**
+         * Returns The duration in seconds of the ingested source file, if a video or audio file.
+         * @return {Number}
+         */
+  }, {
+    key: "getDuration",
+    value: function getDuration() {
+      return this.duration;
+    }
+
+    /**
+     * Sets The duration in seconds of the ingested source file, if a video or audio file.
+     * @param {Number} duration The duration in seconds of the ingested source file, if a video or audio file.
+     */
+  }, {
+    key: "setDuration",
+    value: function setDuration(duration) {
+      this['duration'] = duration;
+      return this;
+    }
+    /**
+         * Returns The frame rate in frames per second of the source file, if a video file.
+         * @return {Number}
+         */
+  }, {
+    key: "getFps",
+    value: function getFps() {
+      return this.fps;
+    }
+
+    /**
+     * Sets The frame rate in frames per second of the source file, if a video file.
+     * @param {Number} fps The frame rate in frames per second of the source file, if a video file.
+     */
+  }, {
+    key: "setFps",
+    value: function setFps(fps) {
+      this['fps'] = fps;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, id) {
+      obj['id'] = id;
     }
 
     /**
@@ -47,39 +241,40 @@ class RenditionResponseAttributes {
      * @param {module:model/RenditionResponseAttributes} obj Optional instance to populate.
      * @return {module:model/RenditionResponseAttributes} The populated <code>RenditionResponseAttributes</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new RenditionResponseAttributes();
-
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], 'String');
-            }
-            if (data.hasOwnProperty('url')) {
-                obj['url'] = ApiClient.convertToType(data['url'], 'String');
-            }
-            if (data.hasOwnProperty('executionTime')) {
-                obj['executionTime'] = ApiClient.convertToType(data['executionTime'], 'Number');
-            }
-            if (data.hasOwnProperty('transformation')) {
-                obj['transformation'] = Rendition.constructFromObject(data['transformation']);
-            }
-            if (data.hasOwnProperty('width')) {
-                obj['width'] = ApiClient.convertToType(data['width'], 'Number');
-            }
-            if (data.hasOwnProperty('height')) {
-                obj['height'] = ApiClient.convertToType(data['height'], 'Number');
-            }
-            if (data.hasOwnProperty('duration')) {
-                obj['duration'] = ApiClient.convertToType(data['duration'], 'Number');
-            }
-            if (data.hasOwnProperty('fps')) {
-                obj['fps'] = ApiClient.convertToType(data['fps'], 'Number');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new RenditionResponseAttributes();
+        if (data.hasOwnProperty('id')) {
+          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('status')) {
+          obj['status'] = _ApiClient["default"].convertToType(data['status'], 'String');
+        }
+        if (data.hasOwnProperty('url')) {
+          obj['url'] = _ApiClient["default"].convertToType(data['url'], 'String');
+        }
+        if (data.hasOwnProperty('executionTime')) {
+          obj['executionTime'] = _ApiClient["default"].convertToType(data['executionTime'], 'Number');
+        }
+        if (data.hasOwnProperty('transformation')) {
+          obj['transformation'] = _Rendition["default"].constructFromObject(data['transformation']);
+        }
+        if (data.hasOwnProperty('width')) {
+          obj['width'] = _ApiClient["default"].convertToType(data['width'], 'Number');
+        }
+        if (data.hasOwnProperty('height')) {
+          obj['height'] = _ApiClient["default"].convertToType(data['height'], 'Number');
+        }
+        if (data.hasOwnProperty('duration')) {
+          obj['duration'] = _ApiClient["default"].convertToType(data['duration'], 'Number');
+        }
+        if (data.hasOwnProperty('fps')) {
+          obj['fps'] = _ApiClient["default"].convertToType(data['fps'], 'Number');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -87,178 +282,45 @@ class RenditionResponseAttributes {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>RenditionResponseAttributes</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of RenditionResponseAttributes.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(RenditionResponseAttributes.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-        }
-        // ensure the json data is a string
-        if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
-            throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
-        }
-        // ensure the json data is a string
-        if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
-            throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
-        }
-        // validate the optional field `transformation`
-        if (data['transformation']) { // data not null
-          Rendition.validateJSON(data['transformation']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+      }
+      // ensure the json data is a string
+      if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
+        throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
+      }
+      // ensure the json data is a string
+      if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
+        throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
+      }
+      // validate the optional field `transformation`
+      if (data['transformation']) {
+        // data not null
+        _Rendition["default"].validateJSON(data['transformation']);
+      }
+      return true;
     }
-
-/**
-     * Returns The rendition id.
-     * @return {String}
-     */
-    getId() {
-        return this.id;
-    }
-
-    /**
-     * Sets The rendition id.
-     * @param {String} id The rendition id.
-     */
-    setId(id) {
-        this['id'] = id;
-        return this;
-    }
-/**
-     * Returns The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
-     * @return {module:model/RenditionResponseAttributes.StatusEnum}
-     */
-    getStatus() {
-        return this.status;
-    }
-
-    /**
-     * Sets The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
-     * @param {module:model/RenditionResponseAttributes.StatusEnum} status The status of the rendition transformation task. <ul>   <li>`waiting` - rendition task is waiting for source file to become available</li>   <li>`queued` - rendition task is queued waiting to be processed</li>   <li>`processing` - the rendition is being processed</li>   <li>`ready` - the rendition is ready to be downloaded</li>   <li>`failed` - there was an error creating the rendition</li>   <li>`deleted` - the rendition has been deleted</li> </ul>
-     */
-    setStatus(status) {
-        this['status'] = status;
-        return this;
-    }
-/**
-     * Returns The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
-     * @return {String}
-     */
-    getUrl() {
-        return this.url;
-    }
-
-    /**
-     * Sets The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
-     * @param {String} url The URL of the rendition file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file name with the rendition id and extension.
-     */
-    setUrl(url) {
-        this['url'] = url;
-        return this;
-    }
-/**
-     * Returns The time in milliseconds it took to process the rendition.
-     * @return {Number}
-     */
-    getExecutionTime() {
-        return this.executionTime;
-    }
-
-    /**
-     * Sets The time in milliseconds it took to process the rendition.
-     * @param {Number} executionTime The time in milliseconds it took to process the rendition.
-     */
-    setExecutionTime(executionTime) {
-        this['executionTime'] = executionTime;
-        return this;
-    }
-/**
-     * @return {module:model/Rendition}
-     */
-    getTransformation() {
-        return this.transformation;
-    }
-
-    /**
-     * @param {module:model/Rendition} transformation
-     */
-    setTransformation(transformation) {
-        this['transformation'] = transformation;
-        return this;
-    }
-/**
-     * Returns The width in pixels of the ingested source file, if a video or image.
-     * @return {Number}
-     */
-    getWidth() {
-        return this.width;
-    }
-
-    /**
-     * Sets The width in pixels of the ingested source file, if a video or image.
-     * @param {Number} width The width in pixels of the ingested source file, if a video or image.
-     */
-    setWidth(width) {
-        this['width'] = width;
-        return this;
-    }
-/**
-     * Returns The height in pixels of the ingested source file, if a video or image.
-     * @return {Number}
-     */
-    getHeight() {
-        return this.height;
-    }
-
-    /**
-     * Sets The height in pixels of the ingested source file, if a video or image.
-     * @param {Number} height The height in pixels of the ingested source file, if a video or image.
-     */
-    setHeight(height) {
-        this['height'] = height;
-        return this;
-    }
-/**
-     * Returns The duration in seconds of the ingested source file, if a video or audio file.
-     * @return {Number}
-     */
-    getDuration() {
-        return this.duration;
-    }
-
-    /**
-     * Sets The duration in seconds of the ingested source file, if a video or audio file.
-     * @param {Number} duration The duration in seconds of the ingested source file, if a video or audio file.
-     */
-    setDuration(duration) {
-        this['duration'] = duration;
-        return this;
-    }
-/**
-     * Returns The frame rate in frames per second of the source file, if a video file.
-     * @return {Number}
-     */
-    getFps() {
-        return this.fps;
-    }
-
-    /**
-     * Sets The frame rate in frames per second of the source file, if a video file.
-     * @param {Number} fps The frame rate in frames per second of the source file, if a video file.
-     */
-    setFps(fps) {
-        this['fps'] = fps;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 RenditionResponseAttributes.RequiredProperties = ["id"];
 
 /**
@@ -314,55 +376,41 @@ RenditionResponseAttributes.prototype['duration'] = undefined;
  */
 RenditionResponseAttributes.prototype['fps'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>status</code> property.
  * @enum {String}
  * @readonly
  */
 RenditionResponseAttributes['StatusEnum'] = {
-
-    /**
-     * value: "queued"
-     * @const
-     */
-    "queued": "queued",
-
-    /**
-     * value: "importing"
-     * @const
-     */
-    "importing": "importing",
-
-    /**
-     * value: "ready"
-     * @const
-     */
-    "ready": "ready",
-
-    /**
-     * value: "failed"
-     * @const
-     */
-    "failed": "failed",
-
-    /**
-     * value: "deleted"
-     * @const
-     */
-    "deleted": "deleted",
-
-    /**
-     * value: "overwritten"
-     * @const
-     */
-    "overwritten": "overwritten"
+  /**
+   * value: "queued"
+   * @const
+   */
+  "queued": "queued",
+  /**
+   * value: "importing"
+   * @const
+   */
+  "importing": "importing",
+  /**
+   * value: "ready"
+   * @const
+   */
+  "ready": "ready",
+  /**
+   * value: "failed"
+   * @const
+   */
+  "failed": "failed",
+  /**
+   * value: "deleted"
+   * @const
+   */
+  "deleted": "deleted",
+  /**
+   * value: "overwritten"
+   * @const
+   */
+  "overwritten": "overwritten"
 };
-
-
-
-export default RenditionResponseAttributes;
-
+var _default = exports["default"] = RenditionResponseAttributes;

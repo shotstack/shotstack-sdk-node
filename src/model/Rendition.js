@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Enhancements = _interopRequireDefault(require("./Enhancements"));
+var _Size = _interopRequireDefault(require("./Size"));
+var _Speed = _interopRequireDefault(require("./Speed"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,35 +26,229 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Enhancements from './Enhancements';
-import Size from './Size';
-import Speed from './Speed';
-
 /**
  * The Rendition model module.
  * @module model/Rendition
  * @version 0.2.6
  */
-class Rendition {
+var Rendition = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>Rendition</code>.
+   * A rendition is a new output file that is generated from the source. The rendition can be encoded to a different format and have transformations applied to it such as resizing, cropping, etc...
+   * @alias module:model/Rendition
+   */
+  function Rendition() {
+    _classCallCheck(this, Rendition);
+    Rendition.initialize(this);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(Rendition, [{
+    key: "getFormat",
+    value:
     /**
-     * Constructs a new <code>Rendition</code>.
-     * A rendition is a new output file that is generated from the source. The rendition can be encoded to a different format and have transformations applied to it such as resizing, cropping, etc...
-     * @alias module:model/Rendition
-     */
-    constructor() { 
-        
-        Rendition.initialize(this);
+         * Returns The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
+         * @return {module:model/Rendition.FormatEnum}
+         */
+    function getFormat() {
+      return this.format;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
+     * @param {module:model/Rendition.FormatEnum} format The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
      */
-    static initialize(obj) { 
+  }, {
+    key: "setFormat",
+    value: function setFormat(format) {
+      this['format'] = format;
+      return this;
     }
+    /**
+         * @return {module:model/Size}
+         */
+  }, {
+    key: "getSize",
+    value: function getSize() {
+      return this.size;
+    }
+
+    /**
+     * @param {module:model/Size} size
+     */
+  }, {
+    key: "setSize",
+    value: function setSize(size) {
+      this['size'] = size;
+      return this;
+    }
+    /**
+         * Returns Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
+         * @return {module:model/Rendition.FitEnum}
+         */
+  }, {
+    key: "getFit",
+    value: function getFit() {
+      return this.fit;
+    }
+
+    /**
+     * Sets Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
+     * @param {module:model/Rendition.FitEnum} fit Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
+     */
+  }, {
+    key: "setFit",
+    value: function setFit(fit) {
+      this['fit'] = fit;
+      return this;
+    }
+    /**
+         * Returns The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
+         * @return {module:model/Rendition.ResolutionEnum}
+         */
+  }, {
+    key: "getResolution",
+    value: function getResolution() {
+      return this.resolution;
+    }
+
+    /**
+     * Sets The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
+     * @param {module:model/Rendition.ResolutionEnum} resolution The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
+     */
+  }, {
+    key: "setResolution",
+    value: function setResolution(resolution) {
+      this['resolution'] = resolution;
+      return this;
+    }
+    /**
+         * Returns Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
+         * minimum: 1
+         * maximum: 100
+         * @return {Number}
+         */
+  }, {
+    key: "getQuality",
+    value: function getQuality() {
+      return this.quality;
+    }
+
+    /**
+     * Sets Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
+     * @param {Number} quality Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
+     */
+  }, {
+    key: "setQuality",
+    value: function setQuality(quality) {
+      this['quality'] = quality;
+      return this;
+    }
+    /**
+         * Returns Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+         * @return {module:model/Rendition.FpsEnum}
+         */
+  }, {
+    key: "getFps",
+    value: function getFps() {
+      return this.fps;
+    }
+
+    /**
+     * Sets Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     * @param {module:model/Rendition.FpsEnum} fps Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     */
+  }, {
+    key: "setFps",
+    value: function setFps(fps) {
+      this['fps'] = fps;
+      return this;
+    }
+    /**
+         * @return {module:model/Speed}
+         */
+  }, {
+    key: "getSpeed",
+    value: function getSpeed() {
+      return this.speed;
+    }
+
+    /**
+     * @param {module:model/Speed} speed
+     */
+  }, {
+    key: "setSpeed",
+    value: function setSpeed(speed) {
+      this['speed'] = speed;
+      return this;
+    }
+    /**
+         * Returns The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
+         * minimum: 1
+         * maximum: 300
+         * @return {Number}
+         */
+  }, {
+    key: "getKeyframeInterval",
+    value: function getKeyframeInterval() {
+      return this.keyframeInterval;
+    }
+
+    /**
+     * Sets The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
+     * @param {Number} keyframeInterval The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
+     */
+  }, {
+    key: "setKeyframeInterval",
+    value: function setKeyframeInterval(keyframeInterval) {
+      this['keyframeInterval'] = keyframeInterval;
+      return this;
+    }
+    /**
+         * @return {module:model/Enhancements}
+         */
+  }, {
+    key: "getEnhance",
+    value: function getEnhance() {
+      return this.enhance;
+    }
+
+    /**
+     * @param {module:model/Enhancements} enhance
+     */
+  }, {
+    key: "setEnhance",
+    value: function setEnhance(enhance) {
+      this['enhance'] = enhance;
+      return this;
+    }
+    /**
+         * Returns A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
+         * @return {String}
+         */
+  }, {
+    key: "getFilename",
+    value: function getFilename() {
+      return this.filename;
+    }
+
+    /**
+     * Sets A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
+     * @param {String} filename A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
+     */
+  }, {
+    key: "setFilename",
+    value: function setFilename(filename) {
+      this['filename'] = filename;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj) {}
 
     /**
      * Constructs a <code>Rendition</code> from a plain JavaScript object, optionally creating a new instance.
@@ -47,42 +257,43 @@ class Rendition {
      * @param {module:model/Rendition} obj Optional instance to populate.
      * @return {module:model/Rendition} The populated <code>Rendition</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new Rendition();
-
-            if (data.hasOwnProperty('format')) {
-                obj['format'] = ApiClient.convertToType(data['format'], 'String');
-            }
-            if (data.hasOwnProperty('size')) {
-                obj['size'] = Size.constructFromObject(data['size']);
-            }
-            if (data.hasOwnProperty('fit')) {
-                obj['fit'] = ApiClient.convertToType(data['fit'], 'String');
-            }
-            if (data.hasOwnProperty('resolution')) {
-                obj['resolution'] = ApiClient.convertToType(data['resolution'], 'String');
-            }
-            if (data.hasOwnProperty('quality')) {
-                obj['quality'] = ApiClient.convertToType(data['quality'], 'Number');
-            }
-            if (data.hasOwnProperty('fps')) {
-                obj['fps'] = ApiClient.convertToType(data['fps'], 'Number');
-            }
-            if (data.hasOwnProperty('speed')) {
-                obj['speed'] = Speed.constructFromObject(data['speed']);
-            }
-            if (data.hasOwnProperty('keyframeInterval')) {
-                obj['keyframeInterval'] = ApiClient.convertToType(data['keyframeInterval'], 'Number');
-            }
-            if (data.hasOwnProperty('enhance')) {
-                obj['enhance'] = Enhancements.constructFromObject(data['enhance']);
-            }
-            if (data.hasOwnProperty('filename')) {
-                obj['filename'] = ApiClient.convertToType(data['filename'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new Rendition();
+        if (data.hasOwnProperty('format')) {
+          obj['format'] = _ApiClient["default"].convertToType(data['format'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('size')) {
+          obj['size'] = _Size["default"].constructFromObject(data['size']);
+        }
+        if (data.hasOwnProperty('fit')) {
+          obj['fit'] = _ApiClient["default"].convertToType(data['fit'], 'String');
+        }
+        if (data.hasOwnProperty('resolution')) {
+          obj['resolution'] = _ApiClient["default"].convertToType(data['resolution'], 'String');
+        }
+        if (data.hasOwnProperty('quality')) {
+          obj['quality'] = _ApiClient["default"].convertToType(data['quality'], 'Number');
+        }
+        if (data.hasOwnProperty('fps')) {
+          obj['fps'] = _ApiClient["default"].convertToType(data['fps'], 'Number');
+        }
+        if (data.hasOwnProperty('speed')) {
+          obj['speed'] = _Speed["default"].constructFromObject(data['speed']);
+        }
+        if (data.hasOwnProperty('keyframeInterval')) {
+          obj['keyframeInterval'] = _ApiClient["default"].convertToType(data['keyframeInterval'], 'Number');
+        }
+        if (data.hasOwnProperty('enhance')) {
+          obj['enhance'] = _Enhancements["default"].constructFromObject(data['enhance']);
+        }
+        if (data.hasOwnProperty('filename')) {
+          obj['filename'] = _ApiClient["default"].convertToType(data['filename'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -90,198 +301,39 @@ class Rendition {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Rendition</code>.
      */
-    static validateJSON(data) {
-        // ensure the json data is a string
-        if (data['format'] && !(typeof data['format'] === 'string' || data['format'] instanceof String)) {
-            throw new Error("Expected the field `format` to be a primitive type in the JSON string but got " + data['format']);
-        }
-        // validate the optional field `size`
-        if (data['size']) { // data not null
-          Size.validateJSON(data['size']);
-        }
-        // ensure the json data is a string
-        if (data['fit'] && !(typeof data['fit'] === 'string' || data['fit'] instanceof String)) {
-            throw new Error("Expected the field `fit` to be a primitive type in the JSON string but got " + data['fit']);
-        }
-        // ensure the json data is a string
-        if (data['resolution'] && !(typeof data['resolution'] === 'string' || data['resolution'] instanceof String)) {
-            throw new Error("Expected the field `resolution` to be a primitive type in the JSON string but got " + data['resolution']);
-        }
-        // validate the optional field `speed`
-        if (data['speed']) { // data not null
-          Speed.validateJSON(data['speed']);
-        }
-        // ensure the json data is a string
-        if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
-            throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
-        }
-
-        return true;
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // ensure the json data is a string
+      if (data['format'] && !(typeof data['format'] === 'string' || data['format'] instanceof String)) {
+        throw new Error("Expected the field `format` to be a primitive type in the JSON string but got " + data['format']);
+      }
+      // validate the optional field `size`
+      if (data['size']) {
+        // data not null
+        _Size["default"].validateJSON(data['size']);
+      }
+      // ensure the json data is a string
+      if (data['fit'] && !(typeof data['fit'] === 'string' || data['fit'] instanceof String)) {
+        throw new Error("Expected the field `fit` to be a primitive type in the JSON string but got " + data['fit']);
+      }
+      // ensure the json data is a string
+      if (data['resolution'] && !(typeof data['resolution'] === 'string' || data['resolution'] instanceof String)) {
+        throw new Error("Expected the field `resolution` to be a primitive type in the JSON string but got " + data['resolution']);
+      }
+      // validate the optional field `speed`
+      if (data['speed']) {
+        // data not null
+        _Speed["default"].validateJSON(data['speed']);
+      }
+      // ensure the json data is a string
+      if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
+        throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
+      }
+      return true;
     }
-
-/**
-     * Returns The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
-     * @return {module:model/Rendition.FormatEnum}
-     */
-    getFormat() {
-        return this.format;
-    }
-
-    /**
-     * Sets The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
-     * @param {module:model/Rendition.FormatEnum} format The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
-     */
-    setFormat(format) {
-        this['format'] = format;
-        return this;
-    }
-/**
-     * @return {module:model/Size}
-     */
-    getSize() {
-        return this.size;
-    }
-
-    /**
-     * @param {module:model/Size} size
-     */
-    setSize(size) {
-        this['size'] = size;
-        return this;
-    }
-/**
-     * Returns Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
-     * @return {module:model/Rendition.FitEnum}
-     */
-    getFit() {
-        return this.fit;
-    }
-
-    /**
-     * Sets Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
-     * @param {module:model/Rendition.FitEnum} fit Set how the rendition should be scaled and cropped when using a size with an aspect ratio that is different from the source. Fit applies to both videos and images. <ul>   <li>`crop` <b>(default)</b> - scale the rendition to fill the output area while maintaining the aspect ratio. The rendition will be cropped if it exceeds the bounds of the output.</li>   <li>`cover` - stretch the rendition to fill the output without maintaining the aspect ratio.</li>   <li>`contain` - fit the entire rendition within the output while maintaining the original aspect ratio.</li> </ul>
-     */
-    setFit(fit) {
-        this['fit'] = fit;
-        return this;
-    }
-/**
-     * Returns The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
-     * @return {module:model/Rendition.ResolutionEnum}
-     */
-    getResolution() {
-        return this.resolution;
-    }
-
-    /**
-     * Sets The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
-     * @param {module:model/Rendition.ResolutionEnum} resolution The preset output resolution of the video or image. This is a convenience property that sets the width and height based on industry standard resolutions. The following resolutions are available: <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`fhd` - 1920px x 1080px</li> </ul>
-     */
-    setResolution(resolution) {
-        this['resolution'] = resolution;
-        return this;
-    }
-/**
-     * Returns Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
-     * minimum: 1
-     * maximum: 100
-     * @return {Number}
-     */
-    getQuality() {
-        return this.quality;
-    }
-
-    /**
-     * Sets Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
-     * @param {Number} quality Adjust the visual quality of the video or image. The higher the value, the sharper the image quality but the larger file size and slower the encoding process. When specifying quality, the goal is to balance file size vs visual quality. Quality is a value between 1 and 100 where 1 is fully compressed with low image quality and 100 is close to lossless with high image quality and large file size. Sane values are between 50 and 75. Omitting the quality parameter will result in an asset optimised for encoding speed, file size and visual quality.
-     */
-    setQuality(quality) {
-        this['quality'] = quality;
-        return this;
-    }
-/**
-     * Returns Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-     * @return {module:model/Rendition.FpsEnum}
-     */
-    getFps() {
-        return this.fps;
-    }
-
-    /**
-     * Sets Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-     * @param {module:model/Rendition.FpsEnum} fps Change the frame rate of a video asset. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-     */
-    setFps(fps) {
-        this['fps'] = fps;
-        return this;
-    }
-/**
-     * @return {module:model/Speed}
-     */
-    getSpeed() {
-        return this.speed;
-    }
-
-    /**
-     * @param {module:model/Speed} speed
-     */
-    setSpeed(speed) {
-        this['speed'] = speed;
-        return this;
-    }
-/**
-     * Returns The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
-     * minimum: 1
-     * maximum: 300
-     * @return {Number}
-     */
-    getKeyframeInterval() {
-        return this.keyframeInterval;
-    }
-
-    /**
-     * Sets The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
-     * @param {Number} keyframeInterval The keyframe interval is useful to optimize playback, seeking and smoother scrubbing in browsers. The value sets the number of frames between a keyframe. The lower the number, the larger the file. Try a value between 10 and 25 for smooth scrubbing.
-     */
-    setKeyframeInterval(keyframeInterval) {
-        this['keyframeInterval'] = keyframeInterval;
-        return this;
-    }
-/**
-     * @return {module:model/Enhancements}
-     */
-    getEnhance() {
-        return this.enhance;
-    }
-
-    /**
-     * @param {module:model/Enhancements} enhance
-     */
-    setEnhance(enhance) {
-        this['enhance'] = enhance;
-        return this;
-    }
-/**
-     * Returns A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
-     * @return {String}
-     */
-    getFilename() {
-        return this.filename;
-    }
-
-    /**
-     * Sets A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
-     * @param {String} filename A custom name for the generated rendition file. The file extension will be automatically added based on the format of the rendition. If no filename is provided, the rendition ID will be used.
-     */
-    setFilename(filename) {
-        this['filename'] = filename;
-        return this;
-    }
-
-}
-
-
-
+  }]);
+}();
 /**
  * The output format to encode the file to. You can only encode a file to the same type, i.e. a video to a video or an image to an image. You can't encode a video as an image. The following formats are available: <ul>   <li>`mp4` - mp4 video file (video only)</li>   <li>`webm` - webm video file (video only)</li>   <li>`mov` - mov video file (video only)</li>   <li>`avi` - avi video file (video only)</li>   <li>`mkv` - mkv video file (video only)</li>   <li>`ogv` - ogv video file (video only)</li>   <li>`wmv` - wmv video file (video only)</li>   <li>`avif` - avif video file (video only)</li>   <li>`gif` - animated gif file (video only)</li>   <li>`jpg` - jpg image file (image only)</li>   <li>`png` - png image file (image only)</li>   <li>`webp` - webp image file (image only)</li>   <li>`tif` - tif image file (image only)</li>   <li>`mp3` - mp3 audio file (audio only)</li>   <li>`wav` - wav audio file (audio only)</li> </ul>
  * @member {module:model/Rendition.FormatEnum} format
@@ -339,108 +391,88 @@ Rendition.prototype['enhance'] = undefined;
  */
 Rendition.prototype['filename'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>format</code> property.
  * @enum {String}
  * @readonly
  */
 Rendition['FormatEnum'] = {
-
-    /**
-     * value: "mp4"
-     * @const
-     */
-    "mp4": "mp4",
-
-    /**
-     * value: "webm"
-     * @const
-     */
-    "webm": "webm",
-
-    /**
-     * value: "mov"
-     * @const
-     */
-    "mov": "mov",
-
-    /**
-     * value: "avi"
-     * @const
-     */
-    "avi": "avi",
-
-    /**
-     * value: "mkv"
-     * @const
-     */
-    "mkv": "mkv",
-
-    /**
-     * value: "ogv"
-     * @const
-     */
-    "ogv": "ogv",
-
-    /**
-     * value: "wmv"
-     * @const
-     */
-    "wmv": "wmv",
-
-    /**
-     * value: "avif"
-     * @const
-     */
-    "avif": "avif",
-
-    /**
-     * value: "gif"
-     * @const
-     */
-    "gif": "gif",
-
-    /**
-     * value: "mp3"
-     * @const
-     */
-    "mp3": "mp3",
-
-    /**
-     * value: "wav"
-     * @const
-     */
-    "wav": "wav",
-
-    /**
-     * value: "jpg"
-     * @const
-     */
-    "jpg": "jpg",
-
-    /**
-     * value: "png"
-     * @const
-     */
-    "png": "png",
-
-    /**
-     * value: "webp"
-     * @const
-     */
-    "webp": "webp",
-
-    /**
-     * value: "tif"
-     * @const
-     */
-    "tif": "tif"
+  /**
+   * value: "mp4"
+   * @const
+   */
+  "mp4": "mp4",
+  /**
+   * value: "webm"
+   * @const
+   */
+  "webm": "webm",
+  /**
+   * value: "mov"
+   * @const
+   */
+  "mov": "mov",
+  /**
+   * value: "avi"
+   * @const
+   */
+  "avi": "avi",
+  /**
+   * value: "mkv"
+   * @const
+   */
+  "mkv": "mkv",
+  /**
+   * value: "ogv"
+   * @const
+   */
+  "ogv": "ogv",
+  /**
+   * value: "wmv"
+   * @const
+   */
+  "wmv": "wmv",
+  /**
+   * value: "avif"
+   * @const
+   */
+  "avif": "avif",
+  /**
+   * value: "gif"
+   * @const
+   */
+  "gif": "gif",
+  /**
+   * value: "mp3"
+   * @const
+   */
+  "mp3": "mp3",
+  /**
+   * value: "wav"
+   * @const
+   */
+  "wav": "wav",
+  /**
+   * value: "jpg"
+   * @const
+   */
+  "jpg": "jpg",
+  /**
+   * value: "png"
+   * @const
+   */
+  "png": "png",
+  /**
+   * value: "webp"
+   * @const
+   */
+  "webp": "webp",
+  /**
+   * value: "tif"
+   * @const
+   */
+  "tif": "tif"
 };
-
 
 /**
  * Allowed values for the <code>fit</code> property.
@@ -448,26 +480,22 @@ Rendition['FormatEnum'] = {
  * @readonly
  */
 Rendition['FitEnum'] = {
-
-    /**
-     * value: "cover"
-     * @const
-     */
-    "cover": "cover",
-
-    /**
-     * value: "contain"
-     * @const
-     */
-    "contain": "contain",
-
-    /**
-     * value: "crop"
-     * @const
-     */
-    "crop": "crop"
+  /**
+   * value: "cover"
+   * @const
+   */
+  "cover": "cover",
+  /**
+   * value: "contain"
+   * @const
+   */
+  "contain": "contain",
+  /**
+   * value: "crop"
+   * @const
+   */
+  "crop": "crop"
 };
-
 
 /**
  * Allowed values for the <code>resolution</code> property.
@@ -475,38 +503,32 @@ Rendition['FitEnum'] = {
  * @readonly
  */
 Rendition['ResolutionEnum'] = {
-
-    /**
-     * value: "preview"
-     * @const
-     */
-    "preview": "preview",
-
-    /**
-     * value: "mobile"
-     * @const
-     */
-    "mobile": "mobile",
-
-    /**
-     * value: "sd"
-     * @const
-     */
-    "sd": "sd",
-
-    /**
-     * value: "hd"
-     * @const
-     */
-    "hd": "hd",
-
-    /**
-     * value: "fhd"
-     * @const
-     */
-    "fhd": "fhd"
+  /**
+   * value: "preview"
+   * @const
+   */
+  "preview": "preview",
+  /**
+   * value: "mobile"
+   * @const
+   */
+  "mobile": "mobile",
+  /**
+   * value: "sd"
+   * @const
+   */
+  "sd": "sd",
+  /**
+   * value: "hd"
+   * @const
+   */
+  "hd": "hd",
+  /**
+   * value: "fhd"
+   * @const
+   */
+  "fhd": "fhd"
 };
-
 
 /**
  * Allowed values for the <code>fps</code> property.
@@ -514,75 +536,60 @@ Rendition['ResolutionEnum'] = {
  * @readonly
  */
 Rendition['FpsEnum'] = {
-
-    /**
-     * value: 12
-     * @const
-     */
-    "12": 12,
-
-    /**
-     * value: 15
-     * @const
-     */
-    "15": 15,
-
-    /**
-     * value: 23.976
-     * @const
-     */
-    "23.976": 23.976,
-
-    /**
-     * value: 24
-     * @const
-     */
-    "24": 24,
-
-    /**
-     * value: 25
-     * @const
-     */
-    "25": 25,
-
-    /**
-     * value: 29.97
-     * @const
-     */
-    "29.97": 29.97,
-
-    /**
-     * value: 30
-     * @const
-     */
-    "30": 30,
-
-    /**
-     * value: 48
-     * @const
-     */
-    "48": 48,
-
-    /**
-     * value: 50
-     * @const
-     */
-    "50": 50,
-
-    /**
-     * value: 59.94
-     * @const
-     */
-    "59.94": 59.94,
-
-    /**
-     * value: 60
-     * @const
-     */
-    "60": 60
+  /**
+   * value: 12
+   * @const
+   */
+  "12": 12,
+  /**
+   * value: 15
+   * @const
+   */
+  "15": 15,
+  /**
+   * value: 23.976
+   * @const
+   */
+  "23.976": 23.976,
+  /**
+   * value: 24
+   * @const
+   */
+  "24": 24,
+  /**
+   * value: 25
+   * @const
+   */
+  "25": 25,
+  /**
+   * value: 29.97
+   * @const
+   */
+  "29.97": 29.97,
+  /**
+   * value: 30
+   * @const
+   */
+  "30": 30,
+  /**
+   * value: 48
+   * @const
+   */
+  "48": 48,
+  /**
+   * value: 50
+   * @const
+   */
+  "50": 50,
+  /**
+   * value: 59.94
+   * @const
+   */
+  "59.94": 59.94,
+  /**
+   * value: 60
+   * @const
+   */
+  "60": 60
 };
-
-
-
-export default Rendition;
-
+var _default = exports["default"] = Rendition;

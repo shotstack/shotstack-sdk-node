@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Edit = _interopRequireDefault(require("./Edit"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,40 +27,117 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Edit from './Edit';
-
 /**
  * The TemplateDataResponseData model module.
  * @module model/TemplateDataResponseData
  * @version 0.2.6
  */
-class TemplateDataResponseData {
+var TemplateDataResponseData = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>TemplateDataResponseData</code>.
+   * The response data returned with the [TemplateDataResponse](#tocs_templatedataresponse).
+   * @alias module:model/TemplateDataResponseData
+   * @param id {String} The unique id of the template in UUID format.
+   * @param name {String} The template name.
+   * @param owner {String} The owner id of the templates.
+   * @param template {module:model/Edit} 
+   */
+  function TemplateDataResponseData(id, name, owner, template) {
+    _classCallCheck(this, TemplateDataResponseData);
+    TemplateDataResponseData.initialize(this, id, name, owner, template);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(TemplateDataResponseData, [{
+    key: "getId",
+    value:
     /**
-     * Constructs a new <code>TemplateDataResponseData</code>.
-     * The response data returned with the [TemplateDataResponse](#tocs_templatedataresponse).
-     * @alias module:model/TemplateDataResponseData
-     * @param id {String} The unique id of the template in UUID format.
-     * @param name {String} The template name.
-     * @param owner {String} The owner id of the templates.
-     * @param template {module:model/Edit} 
-     */
-    constructor(id, name, owner, template) { 
-        
-        TemplateDataResponseData.initialize(this, id, name, owner, template);
+         * Returns The unique id of the template in UUID format.
+         * @return {String}
+         */
+    function getId() {
+      return this.id;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The unique id of the template in UUID format.
+     * @param {String} id The unique id of the template in UUID format.
      */
-    static initialize(obj, id, name, owner, template) { 
-        obj['id'] = id;
-        obj['name'] = name;
-        obj['owner'] = owner;
-        obj['template'] = template;
+  }, {
+    key: "setId",
+    value: function setId(id) {
+      this['id'] = id;
+      return this;
+    }
+    /**
+         * Returns The template name.
+         * @return {String}
+         */
+  }, {
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+
+    /**
+     * Sets The template name.
+     * @param {String} name The template name.
+     */
+  }, {
+    key: "setName",
+    value: function setName(name) {
+      this['name'] = name;
+      return this;
+    }
+    /**
+         * Returns The owner id of the templates.
+         * @return {String}
+         */
+  }, {
+    key: "getOwner",
+    value: function getOwner() {
+      return this.owner;
+    }
+
+    /**
+     * Sets The owner id of the templates.
+     * @param {String} owner The owner id of the templates.
+     */
+  }, {
+    key: "setOwner",
+    value: function setOwner(owner) {
+      this['owner'] = owner;
+      return this;
+    }
+    /**
+         * @return {module:model/Edit}
+         */
+  }, {
+    key: "getTemplate",
+    value: function getTemplate() {
+      return this.template;
+    }
+
+    /**
+     * @param {module:model/Edit} template
+     */
+  }, {
+    key: "setTemplate",
+    value: function setTemplate(template) {
+      this['template'] = template;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, id, name, owner, template) {
+      obj['id'] = id;
+      obj['name'] = name;
+      obj['owner'] = owner;
+      obj['template'] = template;
     }
 
     /**
@@ -53,24 +147,25 @@ class TemplateDataResponseData {
      * @param {module:model/TemplateDataResponseData} obj Optional instance to populate.
      * @return {module:model/TemplateDataResponseData} The populated <code>TemplateDataResponseData</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new TemplateDataResponseData();
-
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('name')) {
-                obj['name'] = ApiClient.convertToType(data['name'], 'String');
-            }
-            if (data.hasOwnProperty('owner')) {
-                obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
-            }
-            if (data.hasOwnProperty('template')) {
-                obj['template'] = Edit.constructFromObject(data['template']);
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new TemplateDataResponseData();
+        if (data.hasOwnProperty('id')) {
+          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('name')) {
+          obj['name'] = _ApiClient["default"].convertToType(data['name'], 'String');
+        }
+        if (data.hasOwnProperty('owner')) {
+          obj['owner'] = _ApiClient["default"].convertToType(data['owner'], 'String');
+        }
+        if (data.hasOwnProperty('template')) {
+          obj['template'] = _Edit["default"].constructFromObject(data['template']);
+        }
+      }
+      return obj;
     }
 
     /**
@@ -78,98 +173,45 @@ class TemplateDataResponseData {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TemplateDataResponseData</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of TemplateDataResponseData.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(TemplateDataResponseData.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-        }
-        // ensure the json data is a string
-        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
-            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
-        }
-        // ensure the json data is a string
-        if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
-            throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
-        }
-        // validate the optional field `template`
-        if (data['template']) { // data not null
-          Edit.validateJSON(data['template']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+      }
+      // ensure the json data is a string
+      if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
+        throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
+      }
+      // ensure the json data is a string
+      if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
+        throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
+      }
+      // validate the optional field `template`
+      if (data['template']) {
+        // data not null
+        _Edit["default"].validateJSON(data['template']);
+      }
+      return true;
     }
-
-/**
-     * Returns The unique id of the template in UUID format.
-     * @return {String}
-     */
-    getId() {
-        return this.id;
-    }
-
-    /**
-     * Sets The unique id of the template in UUID format.
-     * @param {String} id The unique id of the template in UUID format.
-     */
-    setId(id) {
-        this['id'] = id;
-        return this;
-    }
-/**
-     * Returns The template name.
-     * @return {String}
-     */
-    getName() {
-        return this.name;
-    }
-
-    /**
-     * Sets The template name.
-     * @param {String} name The template name.
-     */
-    setName(name) {
-        this['name'] = name;
-        return this;
-    }
-/**
-     * Returns The owner id of the templates.
-     * @return {String}
-     */
-    getOwner() {
-        return this.owner;
-    }
-
-    /**
-     * Sets The owner id of the templates.
-     * @param {String} owner The owner id of the templates.
-     */
-    setOwner(owner) {
-        this['owner'] = owner;
-        return this;
-    }
-/**
-     * @return {module:model/Edit}
-     */
-    getTemplate() {
-        return this.template;
-    }
-
-    /**
-     * @param {module:model/Edit} template
-     */
-    setTemplate(template) {
-        this['template'] = template;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 TemplateDataResponseData.RequiredProperties = ["id", "name", "owner", "template"];
 
 /**
@@ -194,11 +236,4 @@ TemplateDataResponseData.prototype['owner'] = undefined;
  * @member {module:model/Edit} template
  */
 TemplateDataResponseData.prototype['template'] = undefined;
-
-
-
-
-
-
-export default TemplateDataResponseData;
-
+var _default = exports["default"] = TemplateDataResponseData;

@@ -1,4 +1,17 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,32 +23,71 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The Transition model module.
  * @module model/Transition
  * @version 0.2.6
  */
-class Transition {
+var Transition = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>Transition</code>.
+   * In and out transitions for a clip - i.e. fade in and fade out
+   * @alias module:model/Transition
+   */
+  function Transition() {
+    _classCallCheck(this, Transition);
+    Transition.initialize(this);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(Transition, [{
+    key: "getIn",
+    value:
     /**
-     * Constructs a new <code>Transition</code>.
-     * In and out transitions for a clip - i.e. fade in and fade out
-     * @alias module:model/Transition
-     */
-    constructor() { 
-        
-        Transition.initialize(this);
+         * Returns The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
+         * @return {module:model/Transition.InEnum}
+         */
+    function getIn() {
+      return this["in"];
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
+     * @param {module:model/Transition.InEnum} _in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
      */
-    static initialize(obj) { 
+  }, {
+    key: "setIn",
+    value: function setIn(_in) {
+      this['in'] = _in;
+      return this;
     }
+    /**
+         * Returns The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
+         * @return {module:model/Transition.OutEnum}
+         */
+  }, {
+    key: "getOut",
+    value: function getOut() {
+      return this.out;
+    }
+
+    /**
+     * Sets The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
+     * @param {module:model/Transition.OutEnum} out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
+     */
+  }, {
+    key: "setOut",
+    value: function setOut(out) {
+      this['out'] = out;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj) {}
 
     /**
      * Constructs a <code>Transition</code> from a plain JavaScript object, optionally creating a new instance.
@@ -44,18 +96,19 @@ class Transition {
      * @param {module:model/Transition} obj Optional instance to populate.
      * @return {module:model/Transition} The populated <code>Transition</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new Transition();
-
-            if (data.hasOwnProperty('in')) {
-                obj['in'] = ApiClient.convertToType(data['in'], 'String');
-            }
-            if (data.hasOwnProperty('out')) {
-                obj['out'] = ApiClient.convertToType(data['out'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new Transition();
+        if (data.hasOwnProperty('in')) {
+          obj['in'] = _ApiClient["default"].convertToType(data['in'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('out')) {
+          obj['out'] = _ApiClient["default"].convertToType(data['out'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -63,56 +116,21 @@ class Transition {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Transition</code>.
      */
-    static validateJSON(data) {
-        // ensure the json data is a string
-        if (data['in'] && !(typeof data['in'] === 'string' || data['in'] instanceof String)) {
-            throw new Error("Expected the field `in` to be a primitive type in the JSON string but got " + data['in']);
-        }
-        // ensure the json data is a string
-        if (data['out'] && !(typeof data['out'] === 'string' || data['out'] instanceof String)) {
-            throw new Error("Expected the field `out` to be a primitive type in the JSON string but got " + data['out']);
-        }
-
-        return true;
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // ensure the json data is a string
+      if (data['in'] && !(typeof data['in'] === 'string' || data['in'] instanceof String)) {
+        throw new Error("Expected the field `in` to be a primitive type in the JSON string but got " + data['in']);
+      }
+      // ensure the json data is a string
+      if (data['out'] && !(typeof data['out'] === 'string' || data['out'] instanceof String)) {
+        throw new Error("Expected the field `out` to be a primitive type in the JSON string but got " + data['out']);
+      }
+      return true;
     }
-
-/**
-     * Returns The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     * @return {module:model/Transition.InEnum}
-     */
-    getIn() {
-        return this.in;
-    }
-
-    /**
-     * Sets The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     * @param {module:model/Transition.InEnum} _in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     */
-    setIn(_in) {
-        this['in'] = _in;
-        return this;
-    }
-/**
-     * Returns The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     * @return {module:model/Transition.OutEnum}
-     */
-    getOut() {
-        return this.out;
-    }
-
-    /**
-     * Sets The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     * @param {module:model/Transition.OutEnum} out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
-     */
-    setOut(out) {
-        this['out'] = out;
-        return this;
-    }
-
-}
-
-
-
+  }]);
+}();
 /**
  * The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
  * @member {module:model/Transition.InEnum} in
@@ -125,384 +143,318 @@ Transition.prototype['in'] = undefined;
  */
 Transition.prototype['out'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>in</code> property.
  * @enum {String}
  * @readonly
  */
 Transition['InEnum'] = {
-
-    /**
-     * value: "fade"
-     * @const
-     */
-    "fade": "fade",
-
-    /**
-     * value: "fadeSlow"
-     * @const
-     */
-    "fadeSlow": "fadeSlow",
-
-    /**
-     * value: "fadeFast"
-     * @const
-     */
-    "fadeFast": "fadeFast",
-
-    /**
-     * value: "reveal"
-     * @const
-     */
-    "reveal": "reveal",
-
-    /**
-     * value: "revealSlow"
-     * @const
-     */
-    "revealSlow": "revealSlow",
-
-    /**
-     * value: "revealFast"
-     * @const
-     */
-    "revealFast": "revealFast",
-
-    /**
-     * value: "wipeLeft"
-     * @const
-     */
-    "wipeLeft": "wipeLeft",
-
-    /**
-     * value: "wipeLeftSlow"
-     * @const
-     */
-    "wipeLeftSlow": "wipeLeftSlow",
-
-    /**
-     * value: "wipeLeftFast"
-     * @const
-     */
-    "wipeLeftFast": "wipeLeftFast",
-
-    /**
-     * value: "wipeRight"
-     * @const
-     */
-    "wipeRight": "wipeRight",
-
-    /**
-     * value: "wipeRightSlow"
-     * @const
-     */
-    "wipeRightSlow": "wipeRightSlow",
-
-    /**
-     * value: "wipeRightFast"
-     * @const
-     */
-    "wipeRightFast": "wipeRightFast",
-
-    /**
-     * value: "slideLeft"
-     * @const
-     */
-    "slideLeft": "slideLeft",
-
-    /**
-     * value: "slideLeftSlow"
-     * @const
-     */
-    "slideLeftSlow": "slideLeftSlow",
-
-    /**
-     * value: "slideLeftFast"
-     * @const
-     */
-    "slideLeftFast": "slideLeftFast",
-
-    /**
-     * value: "slideRight"
-     * @const
-     */
-    "slideRight": "slideRight",
-
-    /**
-     * value: "slideRightSlow"
-     * @const
-     */
-    "slideRightSlow": "slideRightSlow",
-
-    /**
-     * value: "slideRightFast"
-     * @const
-     */
-    "slideRightFast": "slideRightFast",
-
-    /**
-     * value: "slideUp"
-     * @const
-     */
-    "slideUp": "slideUp",
-
-    /**
-     * value: "slideUpSlow"
-     * @const
-     */
-    "slideUpSlow": "slideUpSlow",
-
-    /**
-     * value: "slideUpFast"
-     * @const
-     */
-    "slideUpFast": "slideUpFast",
-
-    /**
-     * value: "slideDown"
-     * @const
-     */
-    "slideDown": "slideDown",
-
-    /**
-     * value: "slideDownSlow"
-     * @const
-     */
-    "slideDownSlow": "slideDownSlow",
-
-    /**
-     * value: "slideDownFast"
-     * @const
-     */
-    "slideDownFast": "slideDownFast",
-
-    /**
-     * value: "carouselLeft"
-     * @const
-     */
-    "carouselLeft": "carouselLeft",
-
-    /**
-     * value: "carouselLeftSlow"
-     * @const
-     */
-    "carouselLeftSlow": "carouselLeftSlow",
-
-    /**
-     * value: "carouselLeftFast"
-     * @const
-     */
-    "carouselLeftFast": "carouselLeftFast",
-
-    /**
-     * value: "carouselRight"
-     * @const
-     */
-    "carouselRight": "carouselRight",
-
-    /**
-     * value: "carouselRightSlow"
-     * @const
-     */
-    "carouselRightSlow": "carouselRightSlow",
-
-    /**
-     * value: "carouselRightFast"
-     * @const
-     */
-    "carouselRightFast": "carouselRightFast",
-
-    /**
-     * value: "carouselUp"
-     * @const
-     */
-    "carouselUp": "carouselUp",
-
-    /**
-     * value: "carouselUpSlow"
-     * @const
-     */
-    "carouselUpSlow": "carouselUpSlow",
-
-    /**
-     * value: "carouselUpFast"
-     * @const
-     */
-    "carouselUpFast": "carouselUpFast",
-
-    /**
-     * value: "carouselDown"
-     * @const
-     */
-    "carouselDown": "carouselDown",
-
-    /**
-     * value: "carouselDownSlow"
-     * @const
-     */
-    "carouselDownSlow": "carouselDownSlow",
-
-    /**
-     * value: "carouselDownFast"
-     * @const
-     */
-    "carouselDownFast": "carouselDownFast",
-
-    /**
-     * value: "shuffleTopRight"
-     * @const
-     */
-    "shuffleTopRight": "shuffleTopRight",
-
-    /**
-     * value: "shuffleTopRightSlow"
-     * @const
-     */
-    "shuffleTopRightSlow": "shuffleTopRightSlow",
-
-    /**
-     * value: "shuffleTopRightFast"
-     * @const
-     */
-    "shuffleTopRightFast": "shuffleTopRightFast",
-
-    /**
-     * value: "shuffleRightTop"
-     * @const
-     */
-    "shuffleRightTop": "shuffleRightTop",
-
-    /**
-     * value: "shuffleRightTopSlow"
-     * @const
-     */
-    "shuffleRightTopSlow": "shuffleRightTopSlow",
-
-    /**
-     * value: "shuffleRightTopFast"
-     * @const
-     */
-    "shuffleRightTopFast": "shuffleRightTopFast",
-
-    /**
-     * value: "shuffleRightBottom"
-     * @const
-     */
-    "shuffleRightBottom": "shuffleRightBottom",
-
-    /**
-     * value: "shuffleRightBottomSlow"
-     * @const
-     */
-    "shuffleRightBottomSlow": "shuffleRightBottomSlow",
-
-    /**
-     * value: "shuffleRightBottomFast"
-     * @const
-     */
-    "shuffleRightBottomFast": "shuffleRightBottomFast",
-
-    /**
-     * value: "shuffleBottomRight"
-     * @const
-     */
-    "shuffleBottomRight": "shuffleBottomRight",
-
-    /**
-     * value: "shuffleBottomRightSlow"
-     * @const
-     */
-    "shuffleBottomRightSlow": "shuffleBottomRightSlow",
-
-    /**
-     * value: "shuffleBottomRightFast"
-     * @const
-     */
-    "shuffleBottomRightFast": "shuffleBottomRightFast",
-
-    /**
-     * value: "shuffleBottomLeft"
-     * @const
-     */
-    "shuffleBottomLeft": "shuffleBottomLeft",
-
-    /**
-     * value: "shuffleBottomLeftSlow"
-     * @const
-     */
-    "shuffleBottomLeftSlow": "shuffleBottomLeftSlow",
-
-    /**
-     * value: "shuffleBottomLeftFast"
-     * @const
-     */
-    "shuffleBottomLeftFast": "shuffleBottomLeftFast",
-
-    /**
-     * value: "shuffleLeftBottom"
-     * @const
-     */
-    "shuffleLeftBottom": "shuffleLeftBottom",
-
-    /**
-     * value: "shuffleLeftBottomSlow"
-     * @const
-     */
-    "shuffleLeftBottomSlow": "shuffleLeftBottomSlow",
-
-    /**
-     * value: "shuffleLeftBottomFast"
-     * @const
-     */
-    "shuffleLeftBottomFast": "shuffleLeftBottomFast",
-
-    /**
-     * value: "shuffleLeftTop"
-     * @const
-     */
-    "shuffleLeftTop": "shuffleLeftTop",
-
-    /**
-     * value: "shuffleLeftTopSlow"
-     * @const
-     */
-    "shuffleLeftTopSlow": "shuffleLeftTopSlow",
-
-    /**
-     * value: "shuffleLeftTopFast"
-     * @const
-     */
-    "shuffleLeftTopFast": "shuffleLeftTopFast",
-
-    /**
-     * value: "shuffleTopLeft"
-     * @const
-     */
-    "shuffleTopLeft": "shuffleTopLeft",
-
-    /**
-     * value: "shuffleTopLeftSlow"
-     * @const
-     */
-    "shuffleTopLeftSlow": "shuffleTopLeftSlow",
-
-    /**
-     * value: "shuffleTopLeftFast"
-     * @const
-     */
-    "shuffleTopLeftFast": "shuffleTopLeftFast",
-
-    /**
-     * value: "zoom"
-     * @const
-     */
-    "zoom": "zoom"
+  /**
+   * value: "fade"
+   * @const
+   */
+  "fade": "fade",
+  /**
+   * value: "fadeSlow"
+   * @const
+   */
+  "fadeSlow": "fadeSlow",
+  /**
+   * value: "fadeFast"
+   * @const
+   */
+  "fadeFast": "fadeFast",
+  /**
+   * value: "reveal"
+   * @const
+   */
+  "reveal": "reveal",
+  /**
+   * value: "revealSlow"
+   * @const
+   */
+  "revealSlow": "revealSlow",
+  /**
+   * value: "revealFast"
+   * @const
+   */
+  "revealFast": "revealFast",
+  /**
+   * value: "wipeLeft"
+   * @const
+   */
+  "wipeLeft": "wipeLeft",
+  /**
+   * value: "wipeLeftSlow"
+   * @const
+   */
+  "wipeLeftSlow": "wipeLeftSlow",
+  /**
+   * value: "wipeLeftFast"
+   * @const
+   */
+  "wipeLeftFast": "wipeLeftFast",
+  /**
+   * value: "wipeRight"
+   * @const
+   */
+  "wipeRight": "wipeRight",
+  /**
+   * value: "wipeRightSlow"
+   * @const
+   */
+  "wipeRightSlow": "wipeRightSlow",
+  /**
+   * value: "wipeRightFast"
+   * @const
+   */
+  "wipeRightFast": "wipeRightFast",
+  /**
+   * value: "slideLeft"
+   * @const
+   */
+  "slideLeft": "slideLeft",
+  /**
+   * value: "slideLeftSlow"
+   * @const
+   */
+  "slideLeftSlow": "slideLeftSlow",
+  /**
+   * value: "slideLeftFast"
+   * @const
+   */
+  "slideLeftFast": "slideLeftFast",
+  /**
+   * value: "slideRight"
+   * @const
+   */
+  "slideRight": "slideRight",
+  /**
+   * value: "slideRightSlow"
+   * @const
+   */
+  "slideRightSlow": "slideRightSlow",
+  /**
+   * value: "slideRightFast"
+   * @const
+   */
+  "slideRightFast": "slideRightFast",
+  /**
+   * value: "slideUp"
+   * @const
+   */
+  "slideUp": "slideUp",
+  /**
+   * value: "slideUpSlow"
+   * @const
+   */
+  "slideUpSlow": "slideUpSlow",
+  /**
+   * value: "slideUpFast"
+   * @const
+   */
+  "slideUpFast": "slideUpFast",
+  /**
+   * value: "slideDown"
+   * @const
+   */
+  "slideDown": "slideDown",
+  /**
+   * value: "slideDownSlow"
+   * @const
+   */
+  "slideDownSlow": "slideDownSlow",
+  /**
+   * value: "slideDownFast"
+   * @const
+   */
+  "slideDownFast": "slideDownFast",
+  /**
+   * value: "carouselLeft"
+   * @const
+   */
+  "carouselLeft": "carouselLeft",
+  /**
+   * value: "carouselLeftSlow"
+   * @const
+   */
+  "carouselLeftSlow": "carouselLeftSlow",
+  /**
+   * value: "carouselLeftFast"
+   * @const
+   */
+  "carouselLeftFast": "carouselLeftFast",
+  /**
+   * value: "carouselRight"
+   * @const
+   */
+  "carouselRight": "carouselRight",
+  /**
+   * value: "carouselRightSlow"
+   * @const
+   */
+  "carouselRightSlow": "carouselRightSlow",
+  /**
+   * value: "carouselRightFast"
+   * @const
+   */
+  "carouselRightFast": "carouselRightFast",
+  /**
+   * value: "carouselUp"
+   * @const
+   */
+  "carouselUp": "carouselUp",
+  /**
+   * value: "carouselUpSlow"
+   * @const
+   */
+  "carouselUpSlow": "carouselUpSlow",
+  /**
+   * value: "carouselUpFast"
+   * @const
+   */
+  "carouselUpFast": "carouselUpFast",
+  /**
+   * value: "carouselDown"
+   * @const
+   */
+  "carouselDown": "carouselDown",
+  /**
+   * value: "carouselDownSlow"
+   * @const
+   */
+  "carouselDownSlow": "carouselDownSlow",
+  /**
+   * value: "carouselDownFast"
+   * @const
+   */
+  "carouselDownFast": "carouselDownFast",
+  /**
+   * value: "shuffleTopRight"
+   * @const
+   */
+  "shuffleTopRight": "shuffleTopRight",
+  /**
+   * value: "shuffleTopRightSlow"
+   * @const
+   */
+  "shuffleTopRightSlow": "shuffleTopRightSlow",
+  /**
+   * value: "shuffleTopRightFast"
+   * @const
+   */
+  "shuffleTopRightFast": "shuffleTopRightFast",
+  /**
+   * value: "shuffleRightTop"
+   * @const
+   */
+  "shuffleRightTop": "shuffleRightTop",
+  /**
+   * value: "shuffleRightTopSlow"
+   * @const
+   */
+  "shuffleRightTopSlow": "shuffleRightTopSlow",
+  /**
+   * value: "shuffleRightTopFast"
+   * @const
+   */
+  "shuffleRightTopFast": "shuffleRightTopFast",
+  /**
+   * value: "shuffleRightBottom"
+   * @const
+   */
+  "shuffleRightBottom": "shuffleRightBottom",
+  /**
+   * value: "shuffleRightBottomSlow"
+   * @const
+   */
+  "shuffleRightBottomSlow": "shuffleRightBottomSlow",
+  /**
+   * value: "shuffleRightBottomFast"
+   * @const
+   */
+  "shuffleRightBottomFast": "shuffleRightBottomFast",
+  /**
+   * value: "shuffleBottomRight"
+   * @const
+   */
+  "shuffleBottomRight": "shuffleBottomRight",
+  /**
+   * value: "shuffleBottomRightSlow"
+   * @const
+   */
+  "shuffleBottomRightSlow": "shuffleBottomRightSlow",
+  /**
+   * value: "shuffleBottomRightFast"
+   * @const
+   */
+  "shuffleBottomRightFast": "shuffleBottomRightFast",
+  /**
+   * value: "shuffleBottomLeft"
+   * @const
+   */
+  "shuffleBottomLeft": "shuffleBottomLeft",
+  /**
+   * value: "shuffleBottomLeftSlow"
+   * @const
+   */
+  "shuffleBottomLeftSlow": "shuffleBottomLeftSlow",
+  /**
+   * value: "shuffleBottomLeftFast"
+   * @const
+   */
+  "shuffleBottomLeftFast": "shuffleBottomLeftFast",
+  /**
+   * value: "shuffleLeftBottom"
+   * @const
+   */
+  "shuffleLeftBottom": "shuffleLeftBottom",
+  /**
+   * value: "shuffleLeftBottomSlow"
+   * @const
+   */
+  "shuffleLeftBottomSlow": "shuffleLeftBottomSlow",
+  /**
+   * value: "shuffleLeftBottomFast"
+   * @const
+   */
+  "shuffleLeftBottomFast": "shuffleLeftBottomFast",
+  /**
+   * value: "shuffleLeftTop"
+   * @const
+   */
+  "shuffleLeftTop": "shuffleLeftTop",
+  /**
+   * value: "shuffleLeftTopSlow"
+   * @const
+   */
+  "shuffleLeftTopSlow": "shuffleLeftTopSlow",
+  /**
+   * value: "shuffleLeftTopFast"
+   * @const
+   */
+  "shuffleLeftTopFast": "shuffleLeftTopFast",
+  /**
+   * value: "shuffleTopLeft"
+   * @const
+   */
+  "shuffleTopLeft": "shuffleTopLeft",
+  /**
+   * value: "shuffleTopLeftSlow"
+   * @const
+   */
+  "shuffleTopLeftSlow": "shuffleTopLeftSlow",
+  /**
+   * value: "shuffleTopLeftFast"
+   * @const
+   */
+  "shuffleTopLeftFast": "shuffleTopLeftFast",
+  /**
+   * value: "zoom"
+   * @const
+   */
+  "zoom": "zoom"
 };
-
 
 /**
  * Allowed values for the <code>out</code> property.
@@ -510,375 +462,310 @@ Transition['InEnum'] = {
  * @readonly
  */
 Transition['OutEnum'] = {
-
-    /**
-     * value: "fade"
-     * @const
-     */
-    "fade": "fade",
-
-    /**
-     * value: "fadeSlow"
-     * @const
-     */
-    "fadeSlow": "fadeSlow",
-
-    /**
-     * value: "fadeFast"
-     * @const
-     */
-    "fadeFast": "fadeFast",
-
-    /**
-     * value: "reveal"
-     * @const
-     */
-    "reveal": "reveal",
-
-    /**
-     * value: "revealSlow"
-     * @const
-     */
-    "revealSlow": "revealSlow",
-
-    /**
-     * value: "revealFast"
-     * @const
-     */
-    "revealFast": "revealFast",
-
-    /**
-     * value: "wipeLeft"
-     * @const
-     */
-    "wipeLeft": "wipeLeft",
-
-    /**
-     * value: "wipeLeftSlow"
-     * @const
-     */
-    "wipeLeftSlow": "wipeLeftSlow",
-
-    /**
-     * value: "wipeLeftFast"
-     * @const
-     */
-    "wipeLeftFast": "wipeLeftFast",
-
-    /**
-     * value: "wipeRight"
-     * @const
-     */
-    "wipeRight": "wipeRight",
-
-    /**
-     * value: "wipeRightSlow"
-     * @const
-     */
-    "wipeRightSlow": "wipeRightSlow",
-
-    /**
-     * value: "wipeRightFast"
-     * @const
-     */
-    "wipeRightFast": "wipeRightFast",
-
-    /**
-     * value: "slideLeft"
-     * @const
-     */
-    "slideLeft": "slideLeft",
-
-    /**
-     * value: "slideLeftSlow"
-     * @const
-     */
-    "slideLeftSlow": "slideLeftSlow",
-
-    /**
-     * value: "slideLeftFast"
-     * @const
-     */
-    "slideLeftFast": "slideLeftFast",
-
-    /**
-     * value: "slideRight"
-     * @const
-     */
-    "slideRight": "slideRight",
-
-    /**
-     * value: "slideRightSlow"
-     * @const
-     */
-    "slideRightSlow": "slideRightSlow",
-
-    /**
-     * value: "slideRightFast"
-     * @const
-     */
-    "slideRightFast": "slideRightFast",
-
-    /**
-     * value: "slideUp"
-     * @const
-     */
-    "slideUp": "slideUp",
-
-    /**
-     * value: "slideUpSlow"
-     * @const
-     */
-    "slideUpSlow": "slideUpSlow",
-
-    /**
-     * value: "slideUpFast"
-     * @const
-     */
-    "slideUpFast": "slideUpFast",
-
-    /**
-     * value: "slideDown"
-     * @const
-     */
-    "slideDown": "slideDown",
-
-    /**
-     * value: "slideDownSlow"
-     * @const
-     */
-    "slideDownSlow": "slideDownSlow",
-
-    /**
-     * value: "slideDownFast"
-     * @const
-     */
-    "slideDownFast": "slideDownFast",
-
-    /**
-     * value: "carouselLeft"
-     * @const
-     */
-    "carouselLeft": "carouselLeft",
-
-    /**
-     * value: "carouselLeftSlow"
-     * @const
-     */
-    "carouselLeftSlow": "carouselLeftSlow",
-
-    /**
-     * value: "carouselLeftFast"
-     * @const
-     */
-    "carouselLeftFast": "carouselLeftFast",
-
-    /**
-     * value: "carouselRight"
-     * @const
-     */
-    "carouselRight": "carouselRight",
-
-    /**
-     * value: "carouselRightSlow"
-     * @const
-     */
-    "carouselRightSlow": "carouselRightSlow",
-
-    /**
-     * value: "carouselRightFast"
-     * @const
-     */
-    "carouselRightFast": "carouselRightFast",
-
-    /**
-     * value: "carouselUp"
-     * @const
-     */
-    "carouselUp": "carouselUp",
-
-    /**
-     * value: "carouselUpSlow"
-     * @const
-     */
-    "carouselUpSlow": "carouselUpSlow",
-
-    /**
-     * value: "carouselUpFast"
-     * @const
-     */
-    "carouselUpFast": "carouselUpFast",
-
-    /**
-     * value: "carouselDown"
-     * @const
-     */
-    "carouselDown": "carouselDown",
-
-    /**
-     * value: "carouselDownSlow"
-     * @const
-     */
-    "carouselDownSlow": "carouselDownSlow",
-
-    /**
-     * value: "carouselDownFast"
-     * @const
-     */
-    "carouselDownFast": "carouselDownFast",
-
-    /**
-     * value: "shuffleTopRight"
-     * @const
-     */
-    "shuffleTopRight": "shuffleTopRight",
-
-    /**
-     * value: "shuffleTopRightSlow"
-     * @const
-     */
-    "shuffleTopRightSlow": "shuffleTopRightSlow",
-
-    /**
-     * value: "shuffleTopRightFast"
-     * @const
-     */
-    "shuffleTopRightFast": "shuffleTopRightFast",
-
-    /**
-     * value: "shuffleRightTop"
-     * @const
-     */
-    "shuffleRightTop": "shuffleRightTop",
-
-    /**
-     * value: "shuffleRightTopSlow"
-     * @const
-     */
-    "shuffleRightTopSlow": "shuffleRightTopSlow",
-
-    /**
-     * value: "shuffleRightTopFast"
-     * @const
-     */
-    "shuffleRightTopFast": "shuffleRightTopFast",
-
-    /**
-     * value: "shuffleRightBottom"
-     * @const
-     */
-    "shuffleRightBottom": "shuffleRightBottom",
-
-    /**
-     * value: "shuffleRightBottomSlow"
-     * @const
-     */
-    "shuffleRightBottomSlow": "shuffleRightBottomSlow",
-
-    /**
-     * value: "shuffleRightBottomFast"
-     * @const
-     */
-    "shuffleRightBottomFast": "shuffleRightBottomFast",
-
-    /**
-     * value: "shuffleBottomRight"
-     * @const
-     */
-    "shuffleBottomRight": "shuffleBottomRight",
-
-    /**
-     * value: "shuffleBottomRightSlow"
-     * @const
-     */
-    "shuffleBottomRightSlow": "shuffleBottomRightSlow",
-
-    /**
-     * value: "shuffleBottomRightFast"
-     * @const
-     */
-    "shuffleBottomRightFast": "shuffleBottomRightFast",
-
-    /**
-     * value: "shuffleBottomLeft"
-     * @const
-     */
-    "shuffleBottomLeft": "shuffleBottomLeft",
-
-    /**
-     * value: "shuffleBottomLeftSlow"
-     * @const
-     */
-    "shuffleBottomLeftSlow": "shuffleBottomLeftSlow",
-
-    /**
-     * value: "shuffleBottomLeftFast"
-     * @const
-     */
-    "shuffleBottomLeftFast": "shuffleBottomLeftFast",
-
-    /**
-     * value: "shuffleLeftBottom"
-     * @const
-     */
-    "shuffleLeftBottom": "shuffleLeftBottom",
-
-    /**
-     * value: "shuffleLeftBottomSlow"
-     * @const
-     */
-    "shuffleLeftBottomSlow": "shuffleLeftBottomSlow",
-
-    /**
-     * value: "shuffleLeftBottomFast"
-     * @const
-     */
-    "shuffleLeftBottomFast": "shuffleLeftBottomFast",
-
-    /**
-     * value: "shuffleLeftTop"
-     * @const
-     */
-    "shuffleLeftTop": "shuffleLeftTop",
-
-    /**
-     * value: "shuffleLeftTopSlow"
-     * @const
-     */
-    "shuffleLeftTopSlow": "shuffleLeftTopSlow",
-
-    /**
-     * value: "shuffleLeftTopFast"
-     * @const
-     */
-    "shuffleLeftTopFast": "shuffleLeftTopFast",
-
-    /**
-     * value: "shuffleTopLeft"
-     * @const
-     */
-    "shuffleTopLeft": "shuffleTopLeft",
-
-    /**
-     * value: "shuffleTopLeftSlow"
-     * @const
-     */
-    "shuffleTopLeftSlow": "shuffleTopLeftSlow",
-
-    /**
-     * value: "shuffleTopLeftFast"
-     * @const
-     */
-    "shuffleTopLeftFast": "shuffleTopLeftFast",
-
-    /**
-     * value: "zoom"
-     * @const
-     */
-    "zoom": "zoom"
+  /**
+   * value: "fade"
+   * @const
+   */
+  "fade": "fade",
+  /**
+   * value: "fadeSlow"
+   * @const
+   */
+  "fadeSlow": "fadeSlow",
+  /**
+   * value: "fadeFast"
+   * @const
+   */
+  "fadeFast": "fadeFast",
+  /**
+   * value: "reveal"
+   * @const
+   */
+  "reveal": "reveal",
+  /**
+   * value: "revealSlow"
+   * @const
+   */
+  "revealSlow": "revealSlow",
+  /**
+   * value: "revealFast"
+   * @const
+   */
+  "revealFast": "revealFast",
+  /**
+   * value: "wipeLeft"
+   * @const
+   */
+  "wipeLeft": "wipeLeft",
+  /**
+   * value: "wipeLeftSlow"
+   * @const
+   */
+  "wipeLeftSlow": "wipeLeftSlow",
+  /**
+   * value: "wipeLeftFast"
+   * @const
+   */
+  "wipeLeftFast": "wipeLeftFast",
+  /**
+   * value: "wipeRight"
+   * @const
+   */
+  "wipeRight": "wipeRight",
+  /**
+   * value: "wipeRightSlow"
+   * @const
+   */
+  "wipeRightSlow": "wipeRightSlow",
+  /**
+   * value: "wipeRightFast"
+   * @const
+   */
+  "wipeRightFast": "wipeRightFast",
+  /**
+   * value: "slideLeft"
+   * @const
+   */
+  "slideLeft": "slideLeft",
+  /**
+   * value: "slideLeftSlow"
+   * @const
+   */
+  "slideLeftSlow": "slideLeftSlow",
+  /**
+   * value: "slideLeftFast"
+   * @const
+   */
+  "slideLeftFast": "slideLeftFast",
+  /**
+   * value: "slideRight"
+   * @const
+   */
+  "slideRight": "slideRight",
+  /**
+   * value: "slideRightSlow"
+   * @const
+   */
+  "slideRightSlow": "slideRightSlow",
+  /**
+   * value: "slideRightFast"
+   * @const
+   */
+  "slideRightFast": "slideRightFast",
+  /**
+   * value: "slideUp"
+   * @const
+   */
+  "slideUp": "slideUp",
+  /**
+   * value: "slideUpSlow"
+   * @const
+   */
+  "slideUpSlow": "slideUpSlow",
+  /**
+   * value: "slideUpFast"
+   * @const
+   */
+  "slideUpFast": "slideUpFast",
+  /**
+   * value: "slideDown"
+   * @const
+   */
+  "slideDown": "slideDown",
+  /**
+   * value: "slideDownSlow"
+   * @const
+   */
+  "slideDownSlow": "slideDownSlow",
+  /**
+   * value: "slideDownFast"
+   * @const
+   */
+  "slideDownFast": "slideDownFast",
+  /**
+   * value: "carouselLeft"
+   * @const
+   */
+  "carouselLeft": "carouselLeft",
+  /**
+   * value: "carouselLeftSlow"
+   * @const
+   */
+  "carouselLeftSlow": "carouselLeftSlow",
+  /**
+   * value: "carouselLeftFast"
+   * @const
+   */
+  "carouselLeftFast": "carouselLeftFast",
+  /**
+   * value: "carouselRight"
+   * @const
+   */
+  "carouselRight": "carouselRight",
+  /**
+   * value: "carouselRightSlow"
+   * @const
+   */
+  "carouselRightSlow": "carouselRightSlow",
+  /**
+   * value: "carouselRightFast"
+   * @const
+   */
+  "carouselRightFast": "carouselRightFast",
+  /**
+   * value: "carouselUp"
+   * @const
+   */
+  "carouselUp": "carouselUp",
+  /**
+   * value: "carouselUpSlow"
+   * @const
+   */
+  "carouselUpSlow": "carouselUpSlow",
+  /**
+   * value: "carouselUpFast"
+   * @const
+   */
+  "carouselUpFast": "carouselUpFast",
+  /**
+   * value: "carouselDown"
+   * @const
+   */
+  "carouselDown": "carouselDown",
+  /**
+   * value: "carouselDownSlow"
+   * @const
+   */
+  "carouselDownSlow": "carouselDownSlow",
+  /**
+   * value: "carouselDownFast"
+   * @const
+   */
+  "carouselDownFast": "carouselDownFast",
+  /**
+   * value: "shuffleTopRight"
+   * @const
+   */
+  "shuffleTopRight": "shuffleTopRight",
+  /**
+   * value: "shuffleTopRightSlow"
+   * @const
+   */
+  "shuffleTopRightSlow": "shuffleTopRightSlow",
+  /**
+   * value: "shuffleTopRightFast"
+   * @const
+   */
+  "shuffleTopRightFast": "shuffleTopRightFast",
+  /**
+   * value: "shuffleRightTop"
+   * @const
+   */
+  "shuffleRightTop": "shuffleRightTop",
+  /**
+   * value: "shuffleRightTopSlow"
+   * @const
+   */
+  "shuffleRightTopSlow": "shuffleRightTopSlow",
+  /**
+   * value: "shuffleRightTopFast"
+   * @const
+   */
+  "shuffleRightTopFast": "shuffleRightTopFast",
+  /**
+   * value: "shuffleRightBottom"
+   * @const
+   */
+  "shuffleRightBottom": "shuffleRightBottom",
+  /**
+   * value: "shuffleRightBottomSlow"
+   * @const
+   */
+  "shuffleRightBottomSlow": "shuffleRightBottomSlow",
+  /**
+   * value: "shuffleRightBottomFast"
+   * @const
+   */
+  "shuffleRightBottomFast": "shuffleRightBottomFast",
+  /**
+   * value: "shuffleBottomRight"
+   * @const
+   */
+  "shuffleBottomRight": "shuffleBottomRight",
+  /**
+   * value: "shuffleBottomRightSlow"
+   * @const
+   */
+  "shuffleBottomRightSlow": "shuffleBottomRightSlow",
+  /**
+   * value: "shuffleBottomRightFast"
+   * @const
+   */
+  "shuffleBottomRightFast": "shuffleBottomRightFast",
+  /**
+   * value: "shuffleBottomLeft"
+   * @const
+   */
+  "shuffleBottomLeft": "shuffleBottomLeft",
+  /**
+   * value: "shuffleBottomLeftSlow"
+   * @const
+   */
+  "shuffleBottomLeftSlow": "shuffleBottomLeftSlow",
+  /**
+   * value: "shuffleBottomLeftFast"
+   * @const
+   */
+  "shuffleBottomLeftFast": "shuffleBottomLeftFast",
+  /**
+   * value: "shuffleLeftBottom"
+   * @const
+   */
+  "shuffleLeftBottom": "shuffleLeftBottom",
+  /**
+   * value: "shuffleLeftBottomSlow"
+   * @const
+   */
+  "shuffleLeftBottomSlow": "shuffleLeftBottomSlow",
+  /**
+   * value: "shuffleLeftBottomFast"
+   * @const
+   */
+  "shuffleLeftBottomFast": "shuffleLeftBottomFast",
+  /**
+   * value: "shuffleLeftTop"
+   * @const
+   */
+  "shuffleLeftTop": "shuffleLeftTop",
+  /**
+   * value: "shuffleLeftTopSlow"
+   * @const
+   */
+  "shuffleLeftTopSlow": "shuffleLeftTopSlow",
+  /**
+   * value: "shuffleLeftTopFast"
+   * @const
+   */
+  "shuffleLeftTopFast": "shuffleLeftTopFast",
+  /**
+   * value: "shuffleTopLeft"
+   * @const
+   */
+  "shuffleTopLeft": "shuffleTopLeft",
+  /**
+   * value: "shuffleTopLeftSlow"
+   * @const
+   */
+  "shuffleTopLeftSlow": "shuffleTopLeftSlow",
+  /**
+   * value: "shuffleTopLeftFast"
+   * @const
+   */
+  "shuffleTopLeftFast": "shuffleTopLeftFast",
+  /**
+   * value: "zoom"
+   * @const
+   */
+  "zoom": "zoom"
 };
-
-
-
-export default Transition;
-
+var _default = exports["default"] = Transition;

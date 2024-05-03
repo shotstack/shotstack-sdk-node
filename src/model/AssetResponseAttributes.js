@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,37 +26,237 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The AssetResponseAttributes model module.
  * @module model/AssetResponseAttributes
  * @version 0.2.6
  */
-class AssetResponseAttributes {
+var AssetResponseAttributes = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>AssetResponseAttributes</code>.
+   * The list of asset attributes and their values.
+   * @alias module:model/AssetResponseAttributes
+   * @param id {String} The unique id of the hosted asset in UUID format.
+   * @param owner {String} The owner id of the asset.
+   * @param status {module:model/AssetResponseAttributes.StatusEnum} The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+   */
+  function AssetResponseAttributes(id, owner, status) {
+    _classCallCheck(this, AssetResponseAttributes);
+    AssetResponseAttributes.initialize(this, id, owner, status);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(AssetResponseAttributes, [{
+    key: "getId",
+    value:
     /**
-     * Constructs a new <code>AssetResponseAttributes</code>.
-     * The list of asset attributes and their values.
-     * @alias module:model/AssetResponseAttributes
-     * @param id {String} The unique id of the hosted asset in UUID format.
-     * @param owner {String} The owner id of the asset.
-     * @param status {module:model/AssetResponseAttributes.StatusEnum} The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-     */
-    constructor(id, owner, status) { 
-        
-        AssetResponseAttributes.initialize(this, id, owner, status);
+         * Returns The unique id of the hosted asset in UUID format.
+         * @return {String}
+         */
+    function getId() {
+      return this.id;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The unique id of the hosted asset in UUID format.
+     * @param {String} id The unique id of the hosted asset in UUID format.
      */
-    static initialize(obj, id, owner, status) { 
-        obj['id'] = id;
-        obj['owner'] = owner;
-        obj['status'] = status;
+  }, {
+    key: "setId",
+    value: function setId(id) {
+      this['id'] = id;
+      return this;
+    }
+    /**
+         * Returns The owner id of the asset.
+         * @return {String}
+         */
+  }, {
+    key: "getOwner",
+    value: function getOwner() {
+      return this.owner;
+    }
+
+    /**
+     * Sets The owner id of the asset.
+     * @param {String} owner The owner id of the asset.
+     */
+  }, {
+    key: "setOwner",
+    value: function setOwner(owner) {
+      this['owner'] = owner;
+      return this;
+    }
+    /**
+         * Returns The region the asset is hosted, currently only `au` (Australia).
+         * @return {String}
+         */
+  }, {
+    key: "getRegion",
+    value: function getRegion() {
+      return this.region;
+    }
+
+    /**
+     * Sets The region the asset is hosted, currently only `au` (Australia).
+     * @param {String} region The region the asset is hosted, currently only `au` (Australia).
+     */
+  }, {
+    key: "setRegion",
+    value: function setRegion(region) {
+      this['region'] = region;
+      return this;
+    }
+    /**
+         * Returns The original render id that created the asset in UUID format. Multiple assets can share the same render id.
+         * @return {String}
+         */
+  }, {
+    key: "getRenderId",
+    value: function getRenderId() {
+      return this.renderId;
+    }
+
+    /**
+     * Sets The original render id that created the asset in UUID format. Multiple assets can share the same render id.
+     * @param {String} renderId The original render id that created the asset in UUID format. Multiple assets can share the same render id.
+     */
+  }, {
+    key: "setRenderId",
+    value: function setRenderId(renderId) {
+      this['renderId'] = renderId;
+      return this;
+    }
+    /**
+         * Returns The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+         * @return {String}
+         */
+  }, {
+    key: "getProviderId",
+    value: function getProviderId() {
+      return this.providerId;
+    }
+
+    /**
+     * Sets The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+     * @param {String} providerId The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+     */
+  }, {
+    key: "setProviderId",
+    value: function setProviderId(providerId) {
+      this['providerId'] = providerId;
+      return this;
+    }
+    /**
+         * Returns The asset file name.
+         * @return {String}
+         */
+  }, {
+    key: "getFilename",
+    value: function getFilename() {
+      return this.filename;
+    }
+
+    /**
+     * Sets The asset file name.
+     * @param {String} filename The asset file name.
+     */
+  }, {
+    key: "setFilename",
+    value: function setFilename(filename) {
+      this['filename'] = filename;
+      return this;
+    }
+    /**
+         * Returns The asset file name.
+         * @return {String}
+         */
+  }, {
+    key: "getUrl",
+    value: function getUrl() {
+      return this.url;
+    }
+
+    /**
+     * Sets The asset file name.
+     * @param {String} url The asset file name.
+     */
+  }, {
+    key: "setUrl",
+    value: function setUrl(url) {
+      this['url'] = url;
+      return this;
+    }
+    /**
+         * Returns The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+         * @return {module:model/AssetResponseAttributes.StatusEnum}
+         */
+  }, {
+    key: "getStatus",
+    value: function getStatus() {
+      return this.status;
+    }
+
+    /**
+     * Sets The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+     * @param {module:model/AssetResponseAttributes.StatusEnum} status The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+     */
+  }, {
+    key: "setStatus",
+    value: function setStatus(status) {
+      this['status'] = status;
+      return this;
+    }
+    /**
+         * Returns The time the asset was created.
+         * @return {String}
+         */
+  }, {
+    key: "getCreated",
+    value: function getCreated() {
+      return this.created;
+    }
+
+    /**
+     * Sets The time the asset was created.
+     * @param {String} created The time the asset was created.
+     */
+  }, {
+    key: "setCreated",
+    value: function setCreated(created) {
+      this['created'] = created;
+      return this;
+    }
+    /**
+         * Returns The time the asset status was last updated.
+         * @return {String}
+         */
+  }, {
+    key: "getUpdated",
+    value: function getUpdated() {
+      return this.updated;
+    }
+
+    /**
+     * Sets The time the asset status was last updated.
+     * @param {String} updated The time the asset status was last updated.
+     */
+  }, {
+    key: "setUpdated",
+    value: function setUpdated(updated) {
+      this['updated'] = updated;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, id, owner, status) {
+      obj['id'] = id;
+      obj['owner'] = owner;
+      obj['status'] = status;
     }
 
     /**
@@ -50,42 +266,43 @@ class AssetResponseAttributes {
      * @param {module:model/AssetResponseAttributes} obj Optional instance to populate.
      * @return {module:model/AssetResponseAttributes} The populated <code>AssetResponseAttributes</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new AssetResponseAttributes();
-
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('owner')) {
-                obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
-            }
-            if (data.hasOwnProperty('region')) {
-                obj['region'] = ApiClient.convertToType(data['region'], 'String');
-            }
-            if (data.hasOwnProperty('renderId')) {
-                obj['renderId'] = ApiClient.convertToType(data['renderId'], 'String');
-            }
-            if (data.hasOwnProperty('providerId')) {
-                obj['providerId'] = ApiClient.convertToType(data['providerId'], 'String');
-            }
-            if (data.hasOwnProperty('filename')) {
-                obj['filename'] = ApiClient.convertToType(data['filename'], 'String');
-            }
-            if (data.hasOwnProperty('url')) {
-                obj['url'] = ApiClient.convertToType(data['url'], 'String');
-            }
-            if (data.hasOwnProperty('status')) {
-                obj['status'] = ApiClient.convertToType(data['status'], 'String');
-            }
-            if (data.hasOwnProperty('created')) {
-                obj['created'] = ApiClient.convertToType(data['created'], 'String');
-            }
-            if (data.hasOwnProperty('updated')) {
-                obj['updated'] = ApiClient.convertToType(data['updated'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new AssetResponseAttributes();
+        if (data.hasOwnProperty('id')) {
+          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('owner')) {
+          obj['owner'] = _ApiClient["default"].convertToType(data['owner'], 'String');
+        }
+        if (data.hasOwnProperty('region')) {
+          obj['region'] = _ApiClient["default"].convertToType(data['region'], 'String');
+        }
+        if (data.hasOwnProperty('renderId')) {
+          obj['renderId'] = _ApiClient["default"].convertToType(data['renderId'], 'String');
+        }
+        if (data.hasOwnProperty('providerId')) {
+          obj['providerId'] = _ApiClient["default"].convertToType(data['providerId'], 'String');
+        }
+        if (data.hasOwnProperty('filename')) {
+          obj['filename'] = _ApiClient["default"].convertToType(data['filename'], 'String');
+        }
+        if (data.hasOwnProperty('url')) {
+          obj['url'] = _ApiClient["default"].convertToType(data['url'], 'String');
+        }
+        if (data.hasOwnProperty('status')) {
+          obj['status'] = _ApiClient["default"].convertToType(data['status'], 'String');
+        }
+        if (data.hasOwnProperty('created')) {
+          obj['created'] = _ApiClient["default"].convertToType(data['created'], 'String');
+        }
+        if (data.hasOwnProperty('updated')) {
+          obj['updated'] = _ApiClient["default"].convertToType(data['updated'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -93,220 +310,68 @@ class AssetResponseAttributes {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>AssetResponseAttributes</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of AssetResponseAttributes.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(AssetResponseAttributes.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-        }
-        // ensure the json data is a string
-        if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
-            throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
-        }
-        // ensure the json data is a string
-        if (data['region'] && !(typeof data['region'] === 'string' || data['region'] instanceof String)) {
-            throw new Error("Expected the field `region` to be a primitive type in the JSON string but got " + data['region']);
-        }
-        // ensure the json data is a string
-        if (data['renderId'] && !(typeof data['renderId'] === 'string' || data['renderId'] instanceof String)) {
-            throw new Error("Expected the field `renderId` to be a primitive type in the JSON string but got " + data['renderId']);
-        }
-        // ensure the json data is a string
-        if (data['providerId'] && !(typeof data['providerId'] === 'string' || data['providerId'] instanceof String)) {
-            throw new Error("Expected the field `providerId` to be a primitive type in the JSON string but got " + data['providerId']);
-        }
-        // ensure the json data is a string
-        if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
-            throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
-        }
-        // ensure the json data is a string
-        if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
-            throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
-        }
-        // ensure the json data is a string
-        if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
-            throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
-        }
-        // ensure the json data is a string
-        if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
-            throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
-        }
-        // ensure the json data is a string
-        if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
-            throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+      }
+      // ensure the json data is a string
+      if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
+        throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
+      }
+      // ensure the json data is a string
+      if (data['region'] && !(typeof data['region'] === 'string' || data['region'] instanceof String)) {
+        throw new Error("Expected the field `region` to be a primitive type in the JSON string but got " + data['region']);
+      }
+      // ensure the json data is a string
+      if (data['renderId'] && !(typeof data['renderId'] === 'string' || data['renderId'] instanceof String)) {
+        throw new Error("Expected the field `renderId` to be a primitive type in the JSON string but got " + data['renderId']);
+      }
+      // ensure the json data is a string
+      if (data['providerId'] && !(typeof data['providerId'] === 'string' || data['providerId'] instanceof String)) {
+        throw new Error("Expected the field `providerId` to be a primitive type in the JSON string but got " + data['providerId']);
+      }
+      // ensure the json data is a string
+      if (data['filename'] && !(typeof data['filename'] === 'string' || data['filename'] instanceof String)) {
+        throw new Error("Expected the field `filename` to be a primitive type in the JSON string but got " + data['filename']);
+      }
+      // ensure the json data is a string
+      if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
+        throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
+      }
+      // ensure the json data is a string
+      if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
+        throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
+      }
+      // ensure the json data is a string
+      if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
+        throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
+      }
+      // ensure the json data is a string
+      if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
+        throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
+      }
+      return true;
     }
-
-/**
-     * Returns The unique id of the hosted asset in UUID format.
-     * @return {String}
-     */
-    getId() {
-        return this.id;
-    }
-
-    /**
-     * Sets The unique id of the hosted asset in UUID format.
-     * @param {String} id The unique id of the hosted asset in UUID format.
-     */
-    setId(id) {
-        this['id'] = id;
-        return this;
-    }
-/**
-     * Returns The owner id of the asset.
-     * @return {String}
-     */
-    getOwner() {
-        return this.owner;
-    }
-
-    /**
-     * Sets The owner id of the asset.
-     * @param {String} owner The owner id of the asset.
-     */
-    setOwner(owner) {
-        this['owner'] = owner;
-        return this;
-    }
-/**
-     * Returns The region the asset is hosted, currently only `au` (Australia).
-     * @return {String}
-     */
-    getRegion() {
-        return this.region;
-    }
-
-    /**
-     * Sets The region the asset is hosted, currently only `au` (Australia).
-     * @param {String} region The region the asset is hosted, currently only `au` (Australia).
-     */
-    setRegion(region) {
-        this['region'] = region;
-        return this;
-    }
-/**
-     * Returns The original render id that created the asset in UUID format. Multiple assets can share the same render id.
-     * @return {String}
-     */
-    getRenderId() {
-        return this.renderId;
-    }
-
-    /**
-     * Sets The original render id that created the asset in UUID format. Multiple assets can share the same render id.
-     * @param {String} renderId The original render id that created the asset in UUID format. Multiple assets can share the same render id.
-     */
-    setRenderId(renderId) {
-        this['renderId'] = renderId;
-        return this;
-    }
-/**
-     * Returns The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
-     * @return {String}
-     */
-    getProviderId() {
-        return this.providerId;
-    }
-
-    /**
-     * Sets The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
-     * @param {String} providerId The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
-     */
-    setProviderId(providerId) {
-        this['providerId'] = providerId;
-        return this;
-    }
-/**
-     * Returns The asset file name.
-     * @return {String}
-     */
-    getFilename() {
-        return this.filename;
-    }
-
-    /**
-     * Sets The asset file name.
-     * @param {String} filename The asset file name.
-     */
-    setFilename(filename) {
-        this['filename'] = filename;
-        return this;
-    }
-/**
-     * Returns The asset file name.
-     * @return {String}
-     */
-    getUrl() {
-        return this.url;
-    }
-
-    /**
-     * Sets The asset file name.
-     * @param {String} url The asset file name.
-     */
-    setUrl(url) {
-        this['url'] = url;
-        return this;
-    }
-/**
-     * Returns The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-     * @return {module:model/AssetResponseAttributes.StatusEnum}
-     */
-    getStatus() {
-        return this.status;
-    }
-
-    /**
-     * Sets The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-     * @param {module:model/AssetResponseAttributes.StatusEnum} status The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-     */
-    setStatus(status) {
-        this['status'] = status;
-        return this;
-    }
-/**
-     * Returns The time the asset was created.
-     * @return {String}
-     */
-    getCreated() {
-        return this.created;
-    }
-
-    /**
-     * Sets The time the asset was created.
-     * @param {String} created The time the asset was created.
-     */
-    setCreated(created) {
-        this['created'] = created;
-        return this;
-    }
-/**
-     * Returns The time the asset status was last updated.
-     * @return {String}
-     */
-    getUpdated() {
-        return this.updated;
-    }
-
-    /**
-     * Sets The time the asset status was last updated.
-     * @param {String} updated The time the asset status was last updated.
-     */
-    setUpdated(updated) {
-        this['updated'] = updated;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 AssetResponseAttributes.RequiredProperties = ["id", "owner", "status"];
 
 /**
@@ -369,43 +434,31 @@ AssetResponseAttributes.prototype['created'] = undefined;
  */
 AssetResponseAttributes.prototype['updated'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>status</code> property.
  * @enum {String}
  * @readonly
  */
 AssetResponseAttributes['StatusEnum'] = {
-
-    /**
-     * value: "importing"
-     * @const
-     */
-    "importing": "importing",
-
-    /**
-     * value: "ready"
-     * @const
-     */
-    "ready": "ready",
-
-    /**
-     * value: "failed"
-     * @const
-     */
-    "failed": "failed",
-
-    /**
-     * value: "deleted"
-     * @const
-     */
-    "deleted": "deleted"
+  /**
+   * value: "importing"
+   * @const
+   */
+  "importing": "importing",
+  /**
+   * value: "ready"
+   * @const
+   */
+  "ready": "ready",
+  /**
+   * value: "failed"
+   * @const
+   */
+  "failed": "failed",
+  /**
+   * value: "deleted"
+   * @const
+   */
+  "deleted": "deleted"
 };
-
-
-
-export default AssetResponseAttributes;
-
+var _default = exports["default"] = AssetResponseAttributes;

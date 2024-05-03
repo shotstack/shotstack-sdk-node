@@ -1,4 +1,26 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _DIDGeneratedAsset = _interopRequireDefault(require("./DIDGeneratedAsset"));
+var _ElevenLabsGeneratedAsset = _interopRequireDefault(require("./ElevenLabsGeneratedAsset"));
+var _HeyGenGeneratedAsset = _interopRequireDefault(require("./HeyGenGeneratedAsset"));
+var _OpenAiGeneratedAsset = _interopRequireDefault(require("./OpenAiGeneratedAsset"));
+var _ShotstackGeneratedAsset = _interopRequireDefault(require("./ShotstackGeneratedAsset"));
+var _StabilityAiGeneratedAsset = _interopRequireDefault(require("./StabilityAiGeneratedAsset"));
+var _StabilityAiGeneratedAssetOptions = _interopRequireDefault(require("./StabilityAiGeneratedAssetOptions"));
+var _GeneratedAsset;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,201 +32,187 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import DIDGeneratedAsset from './DIDGeneratedAsset';
-import ElevenLabsGeneratedAsset from './ElevenLabsGeneratedAsset';
-import HeyGenGeneratedAsset from './HeyGenGeneratedAsset';
-import OpenAiGeneratedAsset from './OpenAiGeneratedAsset';
-import ShotstackGeneratedAsset from './ShotstackGeneratedAsset';
-import StabilityAiGeneratedAsset from './StabilityAiGeneratedAsset';
-import StabilityAiGeneratedAssetOptions from './StabilityAiGeneratedAssetOptions';
-
 /**
  * The GeneratedAsset model module.
  * @module model/GeneratedAsset
  * @version 0.2.6
  */
-class GeneratedAsset {
+var GeneratedAsset = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>GeneratedAsset</code>.
+   * A generated asset is a media asset created by the Create API. You can use native or third party providers to generate video, audio and image files using Generative AI services like text-to-speech and text-to-avatar. The following providers are currently available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackgeneratedasset\&quot;&gt;ShotstackGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_didgeneratedasset\&quot;&gt;DIDGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_elevenlabsgeneratedasset\&quot;&gt;ElevenLabsGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_heygengeneratedasset\&quot;&gt;HeyGenGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_openaigeneratedasset\&quot;&gt;OpenAiGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_stabilityaigeneratedasset\&quot;&gt;StabilityAiGeneratedAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+   * @alias module:model/GeneratedAsset
+   * @param {(module:model/DIDGeneratedAsset|module:model/ElevenLabsGeneratedAsset|module:model/HeyGenGeneratedAsset|module:model/OpenAiGeneratedAsset|module:model/ShotstackGeneratedAsset|module:model/StabilityAiGeneratedAsset)} instance The actual instance to initialize GeneratedAsset.
+   */
+  function GeneratedAsset() {
+    var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    _classCallCheck(this, GeneratedAsset);
     /**
-     * Constructs a new <code>GeneratedAsset</code>.
-     * A generated asset is a media asset created by the Create API. You can use native or third party providers to generate video, audio and image files using Generative AI services like text-to-speech and text-to-avatar. The following providers are currently available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackgeneratedasset\&quot;&gt;ShotstackGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_didgeneratedasset\&quot;&gt;DIDGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_elevenlabsgeneratedasset\&quot;&gt;ElevenLabsGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_heygengeneratedasset\&quot;&gt;HeyGenGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_openaigeneratedasset\&quot;&gt;OpenAiGeneratedAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_stabilityaigeneratedasset\&quot;&gt;StabilityAiGeneratedAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
-     * @alias module:model/GeneratedAsset
-     * @param {(module:model/DIDGeneratedAsset|module:model/ElevenLabsGeneratedAsset|module:model/HeyGenGeneratedAsset|module:model/OpenAiGeneratedAsset|module:model/ShotstackGeneratedAsset|module:model/StabilityAiGeneratedAsset)} instance The actual instance to initialize GeneratedAsset.
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
      */
-    constructor(instance = null) {
-        if (instance === null) {
-            this.actualInstance = null;
-            return;
-        }
-        var match = 0;
-        var errorMessages = [];
-        try {
-            if (typeof instance === "ShotstackGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                ShotstackGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create ShotstackGeneratedAsset from JS object
-                this.actualInstance = ShotstackGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into ShotstackGeneratedAsset
-            errorMessages.push("Failed to construct ShotstackGeneratedAsset: " + err)
-        }
-
-        try {
-            if (typeof instance === "DIDGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                DIDGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create DIDGeneratedAsset from JS object
-                this.actualInstance = DIDGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into DIDGeneratedAsset
-            errorMessages.push("Failed to construct DIDGeneratedAsset: " + err)
-        }
-
-        try {
-            if (typeof instance === "ElevenLabsGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                ElevenLabsGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create ElevenLabsGeneratedAsset from JS object
-                this.actualInstance = ElevenLabsGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into ElevenLabsGeneratedAsset
-            errorMessages.push("Failed to construct ElevenLabsGeneratedAsset: " + err)
-        }
-
-        try {
-            if (typeof instance === "HeyGenGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                HeyGenGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create HeyGenGeneratedAsset from JS object
-                this.actualInstance = HeyGenGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into HeyGenGeneratedAsset
-            errorMessages.push("Failed to construct HeyGenGeneratedAsset: " + err)
-        }
-
-        try {
-            if (typeof instance === "OpenAiGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                OpenAiGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create OpenAiGeneratedAsset from JS object
-                this.actualInstance = OpenAiGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into OpenAiGeneratedAsset
-            errorMessages.push("Failed to construct OpenAiGeneratedAsset: " + err)
-        }
-
-        try {
-            if (typeof instance === "StabilityAiGeneratedAsset") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                StabilityAiGeneratedAsset.validateJSON(instance); // throw an exception if no match
-                // create StabilityAiGeneratedAsset from JS object
-                this.actualInstance = StabilityAiGeneratedAsset.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into StabilityAiGeneratedAsset
-            errorMessages.push("Failed to construct StabilityAiGeneratedAsset: " + err)
-        }
-
-        if (match > 1) {
-            throw new Error("Multiple matches found constructing `GeneratedAsset` with oneOf schemas DIDGeneratedAsset, ElevenLabsGeneratedAsset, HeyGenGeneratedAsset, OpenAiGeneratedAsset, ShotstackGeneratedAsset, StabilityAiGeneratedAsset. Input: " + JSON.stringify(instance));
-        } else if (match === 0) {
-            this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `GeneratedAsset` with oneOf schemas DIDGeneratedAsset, ElevenLabsGeneratedAsset, HeyGenGeneratedAsset, OpenAiGeneratedAsset, ShotstackGeneratedAsset, StabilityAiGeneratedAsset. Details: " +
-                            errorMessages.join(", "));
-        } else { // only 1 match
-            // the input is valid
-        }
+    _defineProperty(this, "toJSON", function () {
+      return this.getActualInstance();
+    });
+    if (instance === null) {
+      this.actualInstance = null;
+      return;
     }
-
-    /**
-     * Constructs a <code>GeneratedAsset</code> from a plain JavaScript object, optionally creating a new instance.
-     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-     * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/GeneratedAsset} obj Optional instance to populate.
-     * @return {module:model/GeneratedAsset} The populated <code>GeneratedAsset</code> instance.
-     */
-    static constructFromObject(data, obj) {
-        return new GeneratedAsset(data);
+    var match = 0;
+    var errorMessages = [];
+    try {
+      if (typeof instance === "ShotstackGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _ShotstackGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create ShotstackGeneratedAsset from JS object
+        this.actualInstance = _ShotstackGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into ShotstackGeneratedAsset
+      errorMessages.push("Failed to construct ShotstackGeneratedAsset: " + err);
     }
+    try {
+      if (typeof instance === "DIDGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _DIDGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create DIDGeneratedAsset from JS object
+        this.actualInstance = _DIDGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into DIDGeneratedAsset
+      errorMessages.push("Failed to construct DIDGeneratedAsset: " + err);
+    }
+    try {
+      if (typeof instance === "ElevenLabsGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _ElevenLabsGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create ElevenLabsGeneratedAsset from JS object
+        this.actualInstance = _ElevenLabsGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into ElevenLabsGeneratedAsset
+      errorMessages.push("Failed to construct ElevenLabsGeneratedAsset: " + err);
+    }
+    try {
+      if (typeof instance === "HeyGenGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _HeyGenGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create HeyGenGeneratedAsset from JS object
+        this.actualInstance = _HeyGenGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into HeyGenGeneratedAsset
+      errorMessages.push("Failed to construct HeyGenGeneratedAsset: " + err);
+    }
+    try {
+      if (typeof instance === "OpenAiGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _OpenAiGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create OpenAiGeneratedAsset from JS object
+        this.actualInstance = _OpenAiGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into OpenAiGeneratedAsset
+      errorMessages.push("Failed to construct OpenAiGeneratedAsset: " + err);
+    }
+    try {
+      if (typeof instance === "StabilityAiGeneratedAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _StabilityAiGeneratedAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create StabilityAiGeneratedAsset from JS object
+        this.actualInstance = _StabilityAiGeneratedAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into StabilityAiGeneratedAsset
+      errorMessages.push("Failed to construct StabilityAiGeneratedAsset: " + err);
+    }
+    if (match > 1) {
+      throw new Error("Multiple matches found constructing `GeneratedAsset` with oneOf schemas DIDGeneratedAsset, ElevenLabsGeneratedAsset, HeyGenGeneratedAsset, OpenAiGeneratedAsset, ShotstackGeneratedAsset, StabilityAiGeneratedAsset. Input: " + JSON.stringify(instance));
+    } else if (match === 0) {
+      this.actualInstance = null; // clear the actual instance in case there are multiple matches
+      throw new Error("No match found constructing `GeneratedAsset` with oneOf schemas DIDGeneratedAsset, ElevenLabsGeneratedAsset, HeyGenGeneratedAsset, OpenAiGeneratedAsset, ShotstackGeneratedAsset, StabilityAiGeneratedAsset. Details: " + errorMessages.join(", "));
+    } else {// only 1 match
+      // the input is valid
+    }
+  }
 
+  /**
+   * Constructs a <code>GeneratedAsset</code> from a plain JavaScript object, optionally creating a new instance.
+   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+   * @param {Object} data The plain JavaScript object bearing properties of interest.
+   * @param {module:model/GeneratedAsset} obj Optional instance to populate.
+   * @return {module:model/GeneratedAsset} The populated <code>GeneratedAsset</code> instance.
+   */
+  return _createClass(GeneratedAsset, [{
+    key: "getActualInstance",
+    value:
     /**
      * Gets the actual instance, which can be <code>DIDGeneratedAsset</code>, <code>ElevenLabsGeneratedAsset</code>, <code>HeyGenGeneratedAsset</code>, <code>OpenAiGeneratedAsset</code>, <code>ShotstackGeneratedAsset</code>, <code>StabilityAiGeneratedAsset</code>.
      * @return {(module:model/DIDGeneratedAsset|module:model/ElevenLabsGeneratedAsset|module:model/HeyGenGeneratedAsset|module:model/OpenAiGeneratedAsset|module:model/ShotstackGeneratedAsset|module:model/StabilityAiGeneratedAsset)} The actual instance.
      */
-    getActualInstance() {
-        return this.actualInstance;
+    function getActualInstance() {
+      return this.actualInstance;
     }
 
     /**
      * Sets the actual instance, which can be <code>DIDGeneratedAsset</code>, <code>ElevenLabsGeneratedAsset</code>, <code>HeyGenGeneratedAsset</code>, <code>OpenAiGeneratedAsset</code>, <code>ShotstackGeneratedAsset</code>, <code>StabilityAiGeneratedAsset</code>.
      * @param {(module:model/DIDGeneratedAsset|module:model/ElevenLabsGeneratedAsset|module:model/HeyGenGeneratedAsset|module:model/OpenAiGeneratedAsset|module:model/ShotstackGeneratedAsset|module:model/StabilityAiGeneratedAsset)} obj The actual instance.
      */
-    setActualInstance(obj) {
-       this.actualInstance = GeneratedAsset.constructFromObject(obj).getActualInstance();
+  }, {
+    key: "setActualInstance",
+    value: function setActualInstance(obj) {
+      this.actualInstance = GeneratedAsset.constructFromObject(obj).getActualInstance();
     }
-
-    /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
-     */
-    toJSON = function(){
-        return this.getActualInstance();
+  }], [{
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      return new GeneratedAsset(data);
     }
-
-    /**
-     * Create an instance of GeneratedAsset from a JSON string.
-     * @param {string} json_string JSON string.
-     * @return {module:model/GeneratedAsset} An instance of GeneratedAsset.
-     */
-    static fromJSON = function(json_string){
-        return GeneratedAsset.constructFromObject(JSON.parse(json_string));
-    }
-}
-
+  }]);
+}();
 /**
  * The name of the provider - set to `stability-ai` for Stability AI.
  * @member {module:model/GeneratedAsset.ProviderEnum} provider
  * @default 'stability-ai'
  */
+_GeneratedAsset = GeneratedAsset;
+/**
+ * Create an instance of GeneratedAsset from a JSON string.
+ * @param {string} json_string JSON string.
+ * @return {module:model/GeneratedAsset} An instance of GeneratedAsset.
+ */
+_defineProperty(GeneratedAsset, "fromJSON", function (json_string) {
+  return _GeneratedAsset.constructFromObject(JSON.parse(json_string));
+});
 GeneratedAsset.prototype['provider'] = 'stability-ai';
 
 /**
  * @member {module:model/StabilityAiGeneratedAssetOptions} options
  */
 GeneratedAsset.prototype['options'] = undefined;
-
-
 GeneratedAsset.OneOf = ["DIDGeneratedAsset", "ElevenLabsGeneratedAsset", "HeyGenGeneratedAsset", "OpenAiGeneratedAsset", "ShotstackGeneratedAsset", "StabilityAiGeneratedAsset"];
-
-export default GeneratedAsset;
-
+var _default = exports["default"] = GeneratedAsset;

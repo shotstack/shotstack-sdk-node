@@ -1,4 +1,20 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,37 +26,97 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-
 /**
  * The ElevenLabsTextToSpeechOptions model module.
  * @module model/ElevenLabsTextToSpeechOptions
  * @version 0.2.6
  */
-class ElevenLabsTextToSpeechOptions {
+var ElevenLabsTextToSpeechOptions = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>ElevenLabsTextToSpeechOptions</code>.
+   * Options for the ElevenLabs text-to-speech service. Set the text to be converted to speech and choose a voice to set the speaking style. The output will be generated as an MP3 audio file available at the URL returned in the response.
+   * @alias module:model/ElevenLabsTextToSpeechOptions
+   * @param type {module:model/ElevenLabsTextToSpeechOptions.TypeEnum} The type of asset to generate - set to `text-to-speech` for text-to-speech.
+   * @param text {String} The text to convert to speech.
+   * @param voice {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum} The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
+   */
+  function ElevenLabsTextToSpeechOptions(type, text, voice) {
+    _classCallCheck(this, ElevenLabsTextToSpeechOptions);
+    ElevenLabsTextToSpeechOptions.initialize(this, type, text, voice);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(ElevenLabsTextToSpeechOptions, [{
+    key: "getType",
+    value:
     /**
-     * Constructs a new <code>ElevenLabsTextToSpeechOptions</code>.
-     * Options for the ElevenLabs text-to-speech service. Set the text to be converted to speech and choose a voice to set the speaking style. The output will be generated as an MP3 audio file available at the URL returned in the response.
-     * @alias module:model/ElevenLabsTextToSpeechOptions
-     * @param type {module:model/ElevenLabsTextToSpeechOptions.TypeEnum} The type of asset to generate - set to `text-to-speech` for text-to-speech.
-     * @param text {String} The text to convert to speech.
-     * @param voice {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum} The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
-     */
-    constructor(type, text, voice) { 
-        
-        ElevenLabsTextToSpeechOptions.initialize(this, type, text, voice);
+         * Returns The type of asset to generate - set to `text-to-speech` for text-to-speech.
+         * @return {module:model/ElevenLabsTextToSpeechOptions.TypeEnum}
+         */
+    function getType() {
+      return this.type;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The type of asset to generate - set to `text-to-speech` for text-to-speech.
+     * @param {module:model/ElevenLabsTextToSpeechOptions.TypeEnum} type The type of asset to generate - set to `text-to-speech` for text-to-speech.
      */
-    static initialize(obj, type, text, voice) { 
-        obj['type'] = type;
-        obj['text'] = text;
-        obj['voice'] = voice;
+  }, {
+    key: "setType",
+    value: function setType(type) {
+      this['type'] = type;
+      return this;
+    }
+    /**
+         * Returns The text to convert to speech.
+         * @return {String}
+         */
+  }, {
+    key: "getText",
+    value: function getText() {
+      return this.text;
+    }
+
+    /**
+     * Sets The text to convert to speech.
+     * @param {String} text The text to convert to speech.
+     */
+  }, {
+    key: "setText",
+    value: function setText(text) {
+      this['text'] = text;
+      return this;
+    }
+    /**
+         * Returns The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
+         * @return {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum}
+         */
+  }, {
+    key: "getVoice",
+    value: function getVoice() {
+      return this.voice;
+    }
+
+    /**
+     * Sets The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
+     * @param {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum} voice The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
+     */
+  }, {
+    key: "setVoice",
+    value: function setVoice(voice) {
+      this['voice'] = voice;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, type, text, voice) {
+      obj['type'] = type;
+      obj['text'] = text;
+      obj['voice'] = voice;
     }
 
     /**
@@ -50,21 +126,22 @@ class ElevenLabsTextToSpeechOptions {
      * @param {module:model/ElevenLabsTextToSpeechOptions} obj Optional instance to populate.
      * @return {module:model/ElevenLabsTextToSpeechOptions} The populated <code>ElevenLabsTextToSpeechOptions</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new ElevenLabsTextToSpeechOptions();
-
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
-            }
-            if (data.hasOwnProperty('text')) {
-                obj['text'] = ApiClient.convertToType(data['text'], 'String');
-            }
-            if (data.hasOwnProperty('voice')) {
-                obj['voice'] = ApiClient.convertToType(data['voice'], 'String');
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new ElevenLabsTextToSpeechOptions();
+        if (data.hasOwnProperty('type')) {
+          obj['type'] = _ApiClient["default"].convertToType(data['type'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('text')) {
+          obj['text'] = _ApiClient["default"].convertToType(data['text'], 'String');
+        }
+        if (data.hasOwnProperty('voice')) {
+          obj['voice'] = _ApiClient["default"].convertToType(data['voice'], 'String');
+        }
+      }
+      return obj;
     }
 
     /**
@@ -72,80 +149,40 @@ class ElevenLabsTextToSpeechOptions {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ElevenLabsTextToSpeechOptions</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of ElevenLabsTextToSpeechOptions.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(ElevenLabsTextToSpeechOptions.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
-        }
-        // ensure the json data is a string
-        if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
-            throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
-        }
-        // ensure the json data is a string
-        if (data['voice'] && !(typeof data['voice'] === 'string' || data['voice'] instanceof String)) {
-            throw new Error("Expected the field `voice` to be a primitive type in the JSON string but got " + data['voice']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+        throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+      }
+      // ensure the json data is a string
+      if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
+        throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
+      }
+      // ensure the json data is a string
+      if (data['voice'] && !(typeof data['voice'] === 'string' || data['voice'] instanceof String)) {
+        throw new Error("Expected the field `voice` to be a primitive type in the JSON string but got " + data['voice']);
+      }
+      return true;
     }
-
-/**
-     * Returns The type of asset to generate - set to `text-to-speech` for text-to-speech.
-     * @return {module:model/ElevenLabsTextToSpeechOptions.TypeEnum}
-     */
-    getType() {
-        return this.type;
-    }
-
-    /**
-     * Sets The type of asset to generate - set to `text-to-speech` for text-to-speech.
-     * @param {module:model/ElevenLabsTextToSpeechOptions.TypeEnum} type The type of asset to generate - set to `text-to-speech` for text-to-speech.
-     */
-    setType(type) {
-        this['type'] = type;
-        return this;
-    }
-/**
-     * Returns The text to convert to speech.
-     * @return {String}
-     */
-    getText() {
-        return this.text;
-    }
-
-    /**
-     * Sets The text to convert to speech.
-     * @param {String} text The text to convert to speech.
-     */
-    setText(text) {
-        this['text'] = text;
-        return this;
-    }
-/**
-     * Returns The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
-     * @return {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum}
-     */
-    getVoice() {
-        return this.voice;
-    }
-
-    /**
-     * Sets The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
-     * @param {module:model/ElevenLabsTextToSpeechOptions.VoiceEnum} voice The voice to use for the text-to-speech conversion. Select a voice from the list of available voices: <ul>   <li>`Adam`</li>   <li>`Antoni`</li>   <li>`Arnold`</li>   <li>`Bella`</li>   <li>`Domi`</li>   <li>`Elli`</li>   <li>`Josh`</li>   <li>`Rachel`</li>   <li>`Sam`</li> </ul>
-     */
-    setVoice(voice) {
-        this['voice'] = voice;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 ElevenLabsTextToSpeechOptions.RequiredProperties = ["type", "text", "voice"];
 
 /**
@@ -166,24 +203,18 @@ ElevenLabsTextToSpeechOptions.prototype['text'] = undefined;
  */
 ElevenLabsTextToSpeechOptions.prototype['voice'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>type</code> property.
  * @enum {String}
  * @readonly
  */
 ElevenLabsTextToSpeechOptions['TypeEnum'] = {
-
-    /**
-     * value: "text-to-speech"
-     * @const
-     */
-    "text-to-speech": "text-to-speech"
+  /**
+   * value: "text-to-speech"
+   * @const
+   */
+  "text-to-speech": "text-to-speech"
 };
-
 
 /**
  * Allowed values for the <code>voice</code> property.
@@ -191,63 +222,50 @@ ElevenLabsTextToSpeechOptions['TypeEnum'] = {
  * @readonly
  */
 ElevenLabsTextToSpeechOptions['VoiceEnum'] = {
-
-    /**
-     * value: "Adam"
-     * @const
-     */
-    "Adam": "Adam",
-
-    /**
-     * value: "Antoni"
-     * @const
-     */
-    "Antoni": "Antoni",
-
-    /**
-     * value: "Arnold"
-     * @const
-     */
-    "Arnold": "Arnold",
-
-    /**
-     * value: "Bella"
-     * @const
-     */
-    "Bella": "Bella",
-
-    /**
-     * value: "Domi"
-     * @const
-     */
-    "Domi": "Domi",
-
-    /**
-     * value: "Elli"
-     * @const
-     */
-    "Elli": "Elli",
-
-    /**
-     * value: "Josh"
-     * @const
-     */
-    "Josh": "Josh",
-
-    /**
-     * value: "Rachel"
-     * @const
-     */
-    "Rachel": "Rachel",
-
-    /**
-     * value: "Sam"
-     * @const
-     */
-    "Sam": "Sam"
+  /**
+   * value: "Adam"
+   * @const
+   */
+  "Adam": "Adam",
+  /**
+   * value: "Antoni"
+   * @const
+   */
+  "Antoni": "Antoni",
+  /**
+   * value: "Arnold"
+   * @const
+   */
+  "Arnold": "Arnold",
+  /**
+   * value: "Bella"
+   * @const
+   */
+  "Bella": "Bella",
+  /**
+   * value: "Domi"
+   * @const
+   */
+  "Domi": "Domi",
+  /**
+   * value: "Elli"
+   * @const
+   */
+  "Elli": "Elli",
+  /**
+   * value: "Josh"
+   * @const
+   */
+  "Josh": "Josh",
+  /**
+   * value: "Rachel"
+   * @const
+   */
+  "Rachel": "Rachel",
+  /**
+   * value: "Sam"
+   * @const
+   */
+  "Sam": "Sam"
 };
-
-
-
-export default ElevenLabsTextToSpeechOptions;
-
+var _default = exports["default"] = ElevenLabsTextToSpeechOptions;

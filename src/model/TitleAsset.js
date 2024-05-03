@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _Offset = _interopRequireDefault(require("./Offset"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,36 +27,193 @@
  * Do not edit the class manually.
  *
  */
-
-import ApiClient from '../ApiClient';
-import Offset from './Offset';
-
 /**
  * The TitleAsset model module.
  * @module model/TitleAsset
  * @version 0.2.6
  */
-class TitleAsset {
+var TitleAsset = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>TitleAsset</code>.
+   * **Notice: The title asset is deprecated, use the [HTML asset](#tocs_htmlasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning. 
+   * @alias module:model/TitleAsset
+   * @param type {String} The type of asset - set to `title` for titles.
+   * @param text {String} The title text string - i.e. \"My Title\".
+   */
+  function TitleAsset(type, text) {
+    _classCallCheck(this, TitleAsset);
+    TitleAsset.initialize(this, type, text);
+  }
+
+  /**
+   * Initializes the fields of this object.
+   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+   * Only for internal use.
+   */
+  return _createClass(TitleAsset, [{
+    key: "getType",
+    value:
     /**
-     * Constructs a new <code>TitleAsset</code>.
-     * **Notice: The title asset is deprecated, use the [HTML asset](#tocs_htmlasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning. 
-     * @alias module:model/TitleAsset
-     * @param type {String} The type of asset - set to `title` for titles.
-     * @param text {String} The title text string - i.e. \"My Title\".
-     */
-    constructor(type, text) { 
-        
-        TitleAsset.initialize(this, type, text);
+         * Returns The type of asset - set to `title` for titles.
+         * @return {String}
+         */
+    function getType() {
+      return this.type;
     }
 
     /**
-     * Initializes the fields of this object.
-     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-     * Only for internal use.
+     * Sets The type of asset - set to `title` for titles.
+     * @param {String} type The type of asset - set to `title` for titles.
      */
-    static initialize(obj, type, text) { 
-        obj['type'] = type || 'title';
-        obj['text'] = text;
+  }, {
+    key: "setType",
+    value: function setType(type) {
+      this['type'] = type;
+      return this;
+    }
+    /**
+         * Returns The title text string - i.e. \"My Title\".
+         * @return {String}
+         */
+  }, {
+    key: "getText",
+    value: function getText() {
+      return this.text;
+    }
+
+    /**
+     * Sets The title text string - i.e. \"My Title\".
+     * @param {String} text The title text string - i.e. \"My Title\".
+     */
+  }, {
+    key: "setText",
+    value: function setText(text) {
+      this['text'] = text;
+      return this;
+    }
+    /**
+         * Returns Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
+         * @return {module:model/TitleAsset.StyleEnum}
+         */
+  }, {
+    key: "getStyle",
+    value: function getStyle() {
+      return this.style;
+    }
+
+    /**
+     * Sets Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
+     * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
+     */
+  }, {
+    key: "setStyle",
+    value: function setStyle(style) {
+      this['style'] = style;
+      return this;
+    }
+    /**
+         * Returns Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
+         * @return {String}
+         */
+  }, {
+    key: "getColor",
+    value: function getColor() {
+      return this.color;
+    }
+
+    /**
+     * Sets Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
+     * @param {String} color Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
+     */
+  }, {
+    key: "setColor",
+    value: function setColor(color) {
+      this['color'] = color;
+      return this;
+    }
+    /**
+         * Returns Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
+         * @return {module:model/TitleAsset.SizeEnum}
+         */
+  }, {
+    key: "getSize",
+    value: function getSize() {
+      return this.size;
+    }
+
+    /**
+     * Sets Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
+     * @param {module:model/TitleAsset.SizeEnum} size Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
+     */
+  }, {
+    key: "setSize",
+    value: function setSize(size) {
+      this['size'] = size;
+      return this;
+    }
+    /**
+         * Returns Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+         * @return {String}
+         */
+  }, {
+    key: "getBackground",
+    value: function getBackground() {
+      return this.background;
+    }
+
+    /**
+     * Sets Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+     * @param {String} background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+     */
+  }, {
+    key: "setBackground",
+    value: function setBackground(background) {
+      this['background'] = background;
+      return this;
+    }
+    /**
+         * Returns Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+         * @return {module:model/TitleAsset.PositionEnum}
+         */
+  }, {
+    key: "getPosition",
+    value: function getPosition() {
+      return this.position;
+    }
+
+    /**
+     * Sets Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+     * @param {module:model/TitleAsset.PositionEnum} position Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+     */
+  }, {
+    key: "setPosition",
+    value: function setPosition(position) {
+      this['position'] = position;
+      return this;
+    }
+    /**
+         * @return {module:model/Offset}
+         */
+  }, {
+    key: "getOffset",
+    value: function getOffset() {
+      return this.offset;
+    }
+
+    /**
+     * @param {module:model/Offset} offset
+     */
+  }, {
+    key: "setOffset",
+    value: function setOffset(offset) {
+      this['offset'] = offset;
+      return this;
+    }
+  }], [{
+    key: "initialize",
+    value: function initialize(obj, type, text) {
+      obj['type'] = type || 'title';
+      obj['text'] = text;
     }
 
     /**
@@ -49,36 +223,37 @@ class TitleAsset {
      * @param {module:model/TitleAsset} obj Optional instance to populate.
      * @return {module:model/TitleAsset} The populated <code>TitleAsset</code> instance.
      */
-    static constructFromObject(data, obj) {
-        if (data) {
-            obj = obj || new TitleAsset();
-
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
-            }
-            if (data.hasOwnProperty('text')) {
-                obj['text'] = ApiClient.convertToType(data['text'], 'String');
-            }
-            if (data.hasOwnProperty('style')) {
-                obj['style'] = ApiClient.convertToType(data['style'], 'String');
-            }
-            if (data.hasOwnProperty('color')) {
-                obj['color'] = ApiClient.convertToType(data['color'], 'String');
-            }
-            if (data.hasOwnProperty('size')) {
-                obj['size'] = ApiClient.convertToType(data['size'], 'String');
-            }
-            if (data.hasOwnProperty('background')) {
-                obj['background'] = ApiClient.convertToType(data['background'], 'String');
-            }
-            if (data.hasOwnProperty('position')) {
-                obj['position'] = ApiClient.convertToType(data['position'], 'String');
-            }
-            if (data.hasOwnProperty('offset')) {
-                obj['offset'] = Offset.constructFromObject(data['offset']);
-            }
+  }, {
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new TitleAsset();
+        if (data.hasOwnProperty('type')) {
+          obj['type'] = _ApiClient["default"].convertToType(data['type'], 'String');
         }
-        return obj;
+        if (data.hasOwnProperty('text')) {
+          obj['text'] = _ApiClient["default"].convertToType(data['text'], 'String');
+        }
+        if (data.hasOwnProperty('style')) {
+          obj['style'] = _ApiClient["default"].convertToType(data['style'], 'String');
+        }
+        if (data.hasOwnProperty('color')) {
+          obj['color'] = _ApiClient["default"].convertToType(data['color'], 'String');
+        }
+        if (data.hasOwnProperty('size')) {
+          obj['size'] = _ApiClient["default"].convertToType(data['size'], 'String');
+        }
+        if (data.hasOwnProperty('background')) {
+          obj['background'] = _ApiClient["default"].convertToType(data['background'], 'String');
+        }
+        if (data.hasOwnProperty('position')) {
+          obj['position'] = _ApiClient["default"].convertToType(data['position'], 'String');
+        }
+        if (data.hasOwnProperty('offset')) {
+          obj['offset'] = _Offset["default"].constructFromObject(data['offset']);
+        }
+      }
+      return obj;
     }
 
     /**
@@ -86,178 +261,61 @@ class TitleAsset {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>TitleAsset</code>.
      */
-    static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of TitleAsset.RequiredProperties) {
-            if (!data.hasOwnProperty(property)) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
+  }, {
+    key: "validateJSON",
+    value: function validateJSON(data) {
+      // check to make sure all required properties are present in the JSON string
+      var _iterator = _createForOfIteratorHelper(TitleAsset.RequiredProperties),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var property = _step.value;
+          if (!data.hasOwnProperty(property)) {
+            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+          }
         }
         // ensure the json data is a string
-        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
-        }
-        // ensure the json data is a string
-        if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
-            throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
-        }
-        // ensure the json data is a string
-        if (data['style'] && !(typeof data['style'] === 'string' || data['style'] instanceof String)) {
-            throw new Error("Expected the field `style` to be a primitive type in the JSON string but got " + data['style']);
-        }
-        // ensure the json data is a string
-        if (data['color'] && !(typeof data['color'] === 'string' || data['color'] instanceof String)) {
-            throw new Error("Expected the field `color` to be a primitive type in the JSON string but got " + data['color']);
-        }
-        // ensure the json data is a string
-        if (data['size'] && !(typeof data['size'] === 'string' || data['size'] instanceof String)) {
-            throw new Error("Expected the field `size` to be a primitive type in the JSON string but got " + data['size']);
-        }
-        // ensure the json data is a string
-        if (data['background'] && !(typeof data['background'] === 'string' || data['background'] instanceof String)) {
-            throw new Error("Expected the field `background` to be a primitive type in the JSON string but got " + data['background']);
-        }
-        // ensure the json data is a string
-        if (data['position'] && !(typeof data['position'] === 'string' || data['position'] instanceof String)) {
-            throw new Error("Expected the field `position` to be a primitive type in the JSON string but got " + data['position']);
-        }
-        // validate the optional field `offset`
-        if (data['offset']) { // data not null
-          Offset.validateJSON(data['offset']);
-        }
-
-        return true;
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+        throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+      }
+      // ensure the json data is a string
+      if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
+        throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
+      }
+      // ensure the json data is a string
+      if (data['style'] && !(typeof data['style'] === 'string' || data['style'] instanceof String)) {
+        throw new Error("Expected the field `style` to be a primitive type in the JSON string but got " + data['style']);
+      }
+      // ensure the json data is a string
+      if (data['color'] && !(typeof data['color'] === 'string' || data['color'] instanceof String)) {
+        throw new Error("Expected the field `color` to be a primitive type in the JSON string but got " + data['color']);
+      }
+      // ensure the json data is a string
+      if (data['size'] && !(typeof data['size'] === 'string' || data['size'] instanceof String)) {
+        throw new Error("Expected the field `size` to be a primitive type in the JSON string but got " + data['size']);
+      }
+      // ensure the json data is a string
+      if (data['background'] && !(typeof data['background'] === 'string' || data['background'] instanceof String)) {
+        throw new Error("Expected the field `background` to be a primitive type in the JSON string but got " + data['background']);
+      }
+      // ensure the json data is a string
+      if (data['position'] && !(typeof data['position'] === 'string' || data['position'] instanceof String)) {
+        throw new Error("Expected the field `position` to be a primitive type in the JSON string but got " + data['position']);
+      }
+      // validate the optional field `offset`
+      if (data['offset']) {
+        // data not null
+        _Offset["default"].validateJSON(data['offset']);
+      }
+      return true;
     }
-
-/**
-     * Returns The type of asset - set to `title` for titles.
-     * @return {String}
-     */
-    getType() {
-        return this.type;
-    }
-
-    /**
-     * Sets The type of asset - set to `title` for titles.
-     * @param {String} type The type of asset - set to `title` for titles.
-     */
-    setType(type) {
-        this['type'] = type;
-        return this;
-    }
-/**
-     * Returns The title text string - i.e. \"My Title\".
-     * @return {String}
-     */
-    getText() {
-        return this.text;
-    }
-
-    /**
-     * Sets The title text string - i.e. \"My Title\".
-     * @param {String} text The title text string - i.e. \"My Title\".
-     */
-    setText(text) {
-        this['text'] = text;
-        return this;
-    }
-/**
-     * Returns Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
-     * @return {module:model/TitleAsset.StyleEnum}
-     */
-    getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Sets Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
-     * @param {module:model/TitleAsset.StyleEnum} style Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
-     */
-    setStyle(style) {
-        this['style'] = style;
-        return this;
-    }
-/**
-     * Returns Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
-     * @return {String}
-     */
-    getColor() {
-        return this.color;
-    }
-
-    /**
-     * Sets Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
-     * @param {String} color Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
-     */
-    setColor(color) {
-        this['color'] = color;
-        return this;
-    }
-/**
-     * Returns Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
-     * @return {module:model/TitleAsset.SizeEnum}
-     */
-    getSize() {
-        return this.size;
-    }
-
-    /**
-     * Sets Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
-     * @param {module:model/TitleAsset.SizeEnum} size Set the relative size of the text using predefined sizes from xx-small to xx-large. <ul>   <li>`xx-small`</li>   <li>`x-small`</li>   <li>`small`</li>   <li>`medium`</li>   <li>`large`</li>   <li>`x-large`</li>   <li>`xx-large`</li> </ul>
-     */
-    setSize(size) {
-        this['size'] = size;
-        return this;
-    }
-/**
-     * Returns Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
-     * @return {String}
-     */
-    getBackground() {
-        return this.background;
-    }
-
-    /**
-     * Sets Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
-     * @param {String} background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
-     */
-    setBackground(background) {
-        this['background'] = background;
-        return this;
-    }
-/**
-     * Returns Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     * @return {module:model/TitleAsset.PositionEnum}
-     */
-    getPosition() {
-        return this.position;
-    }
-
-    /**
-     * Sets Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     * @param {module:model/TitleAsset.PositionEnum} position Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     */
-    setPosition(position) {
-        this['position'] = position;
-        return this;
-    }
-/**
-     * @return {module:model/Offset}
-     */
-    getOffset() {
-        return this.offset;
-    }
-
-    /**
-     * @param {module:model/Offset} offset
-     */
-    setOffset(offset) {
-        this['offset'] = offset;
-        return this;
-    }
-
-}
-
+  }]);
+}();
 TitleAsset.RequiredProperties = ["type", "text"];
 
 /**
@@ -308,78 +366,63 @@ TitleAsset.prototype['position'] = undefined;
  */
 TitleAsset.prototype['offset'] = undefined;
 
-
-
-
-
 /**
  * Allowed values for the <code>style</code> property.
  * @enum {String}
  * @readonly
  */
 TitleAsset['StyleEnum'] = {
-
-    /**
-     * value: "minimal"
-     * @const
-     */
-    "minimal": "minimal",
-
-    /**
-     * value: "blockbuster"
-     * @const
-     */
-    "blockbuster": "blockbuster",
-
-    /**
-     * value: "vogue"
-     * @const
-     */
-    "vogue": "vogue",
-
-    /**
-     * value: "sketchy"
-     * @const
-     */
-    "sketchy": "sketchy",
-
-    /**
-     * value: "skinny"
-     * @const
-     */
-    "skinny": "skinny",
-
-    /**
-     * value: "chunk"
-     * @const
-     */
-    "chunk": "chunk",
-
-    /**
-     * value: "chunkLight"
-     * @const
-     */
-    "chunkLight": "chunkLight",
-
-    /**
-     * value: "marker"
-     * @const
-     */
-    "marker": "marker",
-
-    /**
-     * value: "future"
-     * @const
-     */
-    "future": "future",
-
-    /**
-     * value: "subtitle"
-     * @const
-     */
-    "subtitle": "subtitle"
+  /**
+   * value: "minimal"
+   * @const
+   */
+  "minimal": "minimal",
+  /**
+   * value: "blockbuster"
+   * @const
+   */
+  "blockbuster": "blockbuster",
+  /**
+   * value: "vogue"
+   * @const
+   */
+  "vogue": "vogue",
+  /**
+   * value: "sketchy"
+   * @const
+   */
+  "sketchy": "sketchy",
+  /**
+   * value: "skinny"
+   * @const
+   */
+  "skinny": "skinny",
+  /**
+   * value: "chunk"
+   * @const
+   */
+  "chunk": "chunk",
+  /**
+   * value: "chunkLight"
+   * @const
+   */
+  "chunkLight": "chunkLight",
+  /**
+   * value: "marker"
+   * @const
+   */
+  "marker": "marker",
+  /**
+   * value: "future"
+   * @const
+   */
+  "future": "future",
+  /**
+   * value: "subtitle"
+   * @const
+   */
+  "subtitle": "subtitle"
 };
-
 
 /**
  * Allowed values for the <code>size</code> property.
@@ -387,50 +430,42 @@ TitleAsset['StyleEnum'] = {
  * @readonly
  */
 TitleAsset['SizeEnum'] = {
-
-    /**
-     * value: "xx-small"
-     * @const
-     */
-    "xx-small": "xx-small",
-
-    /**
-     * value: "x-small"
-     * @const
-     */
-    "x-small": "x-small",
-
-    /**
-     * value: "small"
-     * @const
-     */
-    "small": "small",
-
-    /**
-     * value: "medium"
-     * @const
-     */
-    "medium": "medium",
-
-    /**
-     * value: "large"
-     * @const
-     */
-    "large": "large",
-
-    /**
-     * value: "x-large"
-     * @const
-     */
-    "x-large": "x-large",
-
-    /**
-     * value: "xx-large"
-     * @const
-     */
-    "xx-large": "xx-large"
+  /**
+   * value: "xx-small"
+   * @const
+   */
+  "xx-small": "xx-small",
+  /**
+   * value: "x-small"
+   * @const
+   */
+  "x-small": "x-small",
+  /**
+   * value: "small"
+   * @const
+   */
+  "small": "small",
+  /**
+   * value: "medium"
+   * @const
+   */
+  "medium": "medium",
+  /**
+   * value: "large"
+   * @const
+   */
+  "large": "large",
+  /**
+   * value: "x-large"
+   * @const
+   */
+  "x-large": "x-large",
+  /**
+   * value: "xx-large"
+   * @const
+   */
+  "xx-large": "xx-large"
 };
-
 
 /**
  * Allowed values for the <code>position</code> property.
@@ -438,63 +473,50 @@ TitleAsset['SizeEnum'] = {
  * @readonly
  */
 TitleAsset['PositionEnum'] = {
-
-    /**
-     * value: "top"
-     * @const
-     */
-    "top": "top",
-
-    /**
-     * value: "topRight"
-     * @const
-     */
-    "topRight": "topRight",
-
-    /**
-     * value: "right"
-     * @const
-     */
-    "right": "right",
-
-    /**
-     * value: "bottomRight"
-     * @const
-     */
-    "bottomRight": "bottomRight",
-
-    /**
-     * value: "bottom"
-     * @const
-     */
-    "bottom": "bottom",
-
-    /**
-     * value: "bottomLeft"
-     * @const
-     */
-    "bottomLeft": "bottomLeft",
-
-    /**
-     * value: "left"
-     * @const
-     */
-    "left": "left",
-
-    /**
-     * value: "topLeft"
-     * @const
-     */
-    "topLeft": "topLeft",
-
-    /**
-     * value: "center"
-     * @const
-     */
-    "center": "center"
+  /**
+   * value: "top"
+   * @const
+   */
+  "top": "top",
+  /**
+   * value: "topRight"
+   * @const
+   */
+  "topRight": "topRight",
+  /**
+   * value: "right"
+   * @const
+   */
+  "right": "right",
+  /**
+   * value: "bottomRight"
+   * @const
+   */
+  "bottomRight": "bottomRight",
+  /**
+   * value: "bottom"
+   * @const
+   */
+  "bottom": "bottom",
+  /**
+   * value: "bottomLeft"
+   * @const
+   */
+  "bottomLeft": "bottomLeft",
+  /**
+   * value: "left"
+   * @const
+   */
+  "left": "left",
+  /**
+   * value: "topLeft"
+   * @const
+   */
+  "topLeft": "topLeft",
+  /**
+   * value: "center"
+   * @const
+   */
+  "center": "center"
 };
-
-
-
-export default TitleAsset;
-
+var _default = exports["default"] = TitleAsset;

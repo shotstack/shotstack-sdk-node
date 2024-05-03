@@ -1,4 +1,21 @@
-/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _AssetRenderResponse = _interopRequireDefault(require("../model/AssetRenderResponse"));
+var _AssetResponse = _interopRequireDefault(require("../model/AssetResponse"));
+var _Transfer = _interopRequireDefault(require("../model/Transfer"));
+var _TransferResponse = _interopRequireDefault(require("../model/TransferResponse"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -10,66 +27,49 @@
  * Do not edit the class manually.
  *
  */
-
-
-import ApiClient from "../ApiClient";
-import AssetRenderResponse from '../model/AssetRenderResponse';
-import AssetResponse from '../model/AssetResponse';
-import Transfer from '../model/Transfer';
-import TransferResponse from '../model/TransferResponse';
-
 /**
 * Serve service.
 * @module api/ServeApi
 * @version 0.2.6
 */
-export default class ServeApi {
+var ServeApi = exports["default"] = /*#__PURE__*/function () {
+  /**
+  * Constructs a new ServeApi. 
+  * @alias module:api/ServeApi
+  * @class
+  * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+  * default to {@link module:ApiClient#instance} if unspecified.
+  */
+  function ServeApi(apiClient) {
+    _classCallCheck(this, ServeApi);
+    this.apiClient = apiClient || _ApiClient["default"].instance;
+  }
 
-    /**
-    * Constructs a new ServeApi. 
-    * @alias module:api/ServeApi
-    * @class
-    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-    * default to {@link module:ApiClient#instance} if unspecified.
-    */
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
-    }
-
-
-
-    /**
-     * Delete Asset
-     * Delete an asset by its asset id. If a render creates multiple assets, such as thumbnail and poster images, each asset must be deleted individually by the asset id.  **Base URL:** <a href=\"#\">https://api.shotstack.io/serve/{version}</a> 
-     * @param {String} id The id of the asset in UUID format
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
-     */
-    deleteAssetWithHttpInfo(id) {
-      let postBody = null;
+  /**
+   * Delete Asset
+   * Delete an asset by its asset id. If a render creates multiple assets, such as thumbnail and poster images, each asset must be deleted individually by the asset id.  **Base URL:** <a href=\"#\">https://api.shotstack.io/serve/{version}</a> 
+   * @param {String} id The id of the asset in UUID format
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+   */
+  return _createClass(ServeApi, [{
+    key: "deleteAssetWithHttpInfo",
+    value: function deleteAssetWithHttpInfo(id) {
+      var postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling deleteAsset");
       }
-
-      let pathParams = {
+      var pathParams = {
         'id': id
       };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = [];
-      let accepts = [];
-      let returnType = null;
-      return this.apiClient.callApi(
-        '/assets/{id}', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = [];
+      var returnType = null;
+      return this.apiClient.callApi('/assets/{id}', 'DELETE', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -78,13 +78,13 @@ export default class ServeApi {
      * @param {String} id The id of the asset in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
-    deleteAsset(id) {
-      return this.deleteAssetWithHttpInfo(id)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "deleteAsset",
+    value: function deleteAsset(id) {
+      return this.deleteAssetWithHttpInfo(id).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
 
     /**
      * Get Asset
@@ -92,32 +92,25 @@ export default class ServeApi {
      * @param {String} id The id of the asset in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AssetResponse} and HTTP response
      */
-    getAssetWithHttpInfo(id) {
-      let postBody = null;
+  }, {
+    key: "getAssetWithHttpInfo",
+    value: function getAssetWithHttpInfo(id) {
+      var postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling getAsset");
       }
-
-      let pathParams = {
+      var pathParams = {
         'id': id
       };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = AssetResponse;
-      return this.apiClient.callApi(
-        '/assets/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = _AssetResponse["default"];
+      return this.apiClient.callApi('/assets/{id}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -126,13 +119,13 @@ export default class ServeApi {
      * @param {String} id The id of the asset in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AssetResponse}
      */
-    getAsset(id) {
-      return this.getAssetWithHttpInfo(id)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "getAsset",
+    value: function getAsset(id) {
+      return this.getAssetWithHttpInfo(id).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
 
     /**
      * Get Asset by Render ID
@@ -140,32 +133,25 @@ export default class ServeApi {
      * @param {String} id The render id associated with the asset in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/AssetRenderResponse} and HTTP response
      */
-    getAssetByRenderIdWithHttpInfo(id) {
-      let postBody = null;
+  }, {
+    key: "getAssetByRenderIdWithHttpInfo",
+    value: function getAssetByRenderIdWithHttpInfo(id) {
+      var postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling getAssetByRenderId");
       }
-
-      let pathParams = {
+      var pathParams = {
         'id': id
       };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = AssetRenderResponse;
-      return this.apiClient.callApi(
-        '/assets/render/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = _AssetRenderResponse["default"];
+      return this.apiClient.callApi('/assets/render/{id}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -174,13 +160,13 @@ export default class ServeApi {
      * @param {String} id The render id associated with the asset in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/AssetRenderResponse}
      */
-    getAssetByRenderId(id) {
-      return this.getAssetByRenderIdWithHttpInfo(id)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "getAssetByRenderId",
+    value: function getAssetByRenderId(id) {
+      return this.getAssetByRenderIdWithHttpInfo(id).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
 
     /**
      * Transfer Asset
@@ -188,31 +174,23 @@ export default class ServeApi {
      * @param {module:model/Transfer} transfer Fetch an asset from a URL and send it to one or more destinations.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TransferResponse} and HTTP response
      */
-    postServeAssetWithHttpInfo(transfer) {
-      let postBody = transfer;
+  }, {
+    key: "postServeAssetWithHttpInfo",
+    value: function postServeAssetWithHttpInfo(transfer) {
+      var postBody = transfer;
       // verify the required parameter 'transfer' is set
       if (transfer === undefined || transfer === null) {
         throw new Error("Missing the required parameter 'transfer' when calling postServeAsset");
       }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['DeveloperKey'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = TransferResponse;
-      return this.apiClient.callApi(
-        '/assets', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
+      var pathParams = {};
+      var queryParams = {};
+      var headerParams = {};
+      var formParams = {};
+      var authNames = ['DeveloperKey'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = _TransferResponse["default"];
+      return this.apiClient.callApi('/assets', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
     }
 
     /**
@@ -221,12 +199,12 @@ export default class ServeApi {
      * @param {module:model/Transfer} transfer Fetch an asset from a URL and send it to one or more destinations.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TransferResponse}
      */
-    postServeAsset(transfer) {
-      return this.postServeAssetWithHttpInfo(transfer)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+  }, {
+    key: "postServeAsset",
+    value: function postServeAsset(transfer) {
+      return this.postServeAssetWithHttpInfo(transfer).then(function (response_and_data) {
+        return response_and_data.data;
+      });
     }
-
-
-}
+  }]);
+}();
