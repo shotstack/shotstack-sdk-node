@@ -1,20 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -26,75 +10,35 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+
 /**
  * The MergeField model module.
  * @module model/MergeField
  * @version 0.2.6
  */
-var MergeField = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>MergeField</code>.
-   * A merge field consists of a key; &#x60;find&#x60;, and a value; &#x60;replace&#x60;. Merge fields can be used to replace placeholders within the JSON edit to create re-usable templates. Placeholders should be a string with double brace delimiters, i.e. &#x60;\&quot;{{NAME}}\&quot;&#x60;. A placeholder can be used for any value within the JSON edit.
-   * @alias module:model/MergeField
-   * @param find {String} The string to find <u>without</u> delimiters.
-   * @param replace {Object} The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
-   */
-  function MergeField(find, replace) {
-    _classCallCheck(this, MergeField);
-    MergeField.initialize(this, find, replace);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(MergeField, [{
-    key: "getFind",
-    value:
+class MergeField {
     /**
-         * Returns The string to find <u>without</u> delimiters.
-         * @return {String}
-         */
-    function getFind() {
-      return this.find;
-    }
-
-    /**
-     * Sets The string to find <u>without</u> delimiters.
-     * @param {String} find The string to find <u>without</u> delimiters.
+     * Constructs a new <code>MergeField</code>.
+     * A merge field consists of a key; &#x60;find&#x60;, and a value; &#x60;replace&#x60;. Merge fields can be used to replace placeholders within the JSON edit to create re-usable templates. Placeholders should be a string with double brace delimiters, i.e. &#x60;\&quot;{{NAME}}\&quot;&#x60;. A placeholder can be used for any value within the JSON edit.
+     * @alias module:model/MergeField
+     * @param find {String} The string to find <u>without</u> delimiters.
+     * @param replace {Object} The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
      */
-  }, {
-    key: "setFind",
-    value: function setFind(find) {
-      this['find'] = find;
-      return this;
-    }
-    /**
-         * Returns The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
-         * @return {Object}
-         */
-  }, {
-    key: "getReplace",
-    value: function getReplace() {
-      return this.replace;
+    constructor(find, replace) { 
+        
+        MergeField.initialize(this, find, replace);
     }
 
     /**
-     * Sets The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
-     * @param {Object} replace The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setReplace",
-    value: function setReplace(replace) {
-      this['replace'] = replace;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, find, replace) {
-      obj['find'] = find;
-      obj['replace'] = replace;
+    static initialize(obj, find, replace) { 
+        obj['find'] = find;
+        obj['replace'] = replace;
     }
 
     /**
@@ -104,19 +48,18 @@ var MergeField = /*#__PURE__*/function () {
      * @param {module:model/MergeField} obj Optional instance to populate.
      * @return {module:model/MergeField} The populated <code>MergeField</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new MergeField();
-        if (data.hasOwnProperty('find')) {
-          obj['find'] = _ApiClient["default"].convertToType(data['find'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new MergeField();
+
+            if (data.hasOwnProperty('find')) {
+                obj['find'] = ApiClient.convertToType(data['find'], 'String');
+            }
+            if (data.hasOwnProperty('replace')) {
+                obj['replace'] = ApiClient.convertToType(data['replace'], Object);
+            }
         }
-        if (data.hasOwnProperty('replace')) {
-          obj['replace'] = _ApiClient["default"].convertToType(data['replace'], Object);
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -124,32 +67,56 @@ var MergeField = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>MergeField</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(MergeField.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of MergeField.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['find'] && !(typeof data['find'] === 'string' || data['find'] instanceof String)) {
-        throw new Error("Expected the field `find` to be a primitive type in the JSON string but got " + data['find']);
-      }
-      return true;
+        if (data['find'] && !(typeof data['find'] === 'string' || data['find'] instanceof String)) {
+            throw new Error("Expected the field `find` to be a primitive type in the JSON string but got " + data['find']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The string to find <u>without</u> delimiters.
+     * @return {String}
+     */
+    getFind() {
+        return this.find;
+    }
+
+    /**
+     * Sets The string to find <u>without</u> delimiters.
+     * @param {String} find The string to find <u>without</u> delimiters.
+     */
+    setFind(find) {
+        this['find'] = find;
+        return this;
+    }
+/**
+     * Returns The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
+     * @return {Object}
+     */
+    getReplace() {
+        return this.replace;
+    }
+
+    /**
+     * Sets The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
+     * @param {Object} replace The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
+     */
+    setReplace(replace) {
+        this['replace'] = replace;
+        return this;
+    }
+
+}
+
 MergeField.RequiredProperties = ["find", "replace"];
 
 /**
@@ -163,4 +130,11 @@ MergeField.prototype['find'] = undefined;
  * @member {Object} replace
  */
 MergeField.prototype['replace'] = undefined;
-var _default = exports["default"] = MergeField;
+
+
+
+
+
+
+export default MergeField;
+

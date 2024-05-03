@@ -1,21 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _OutputsResponse = _interopRequireDefault(require("./OutputsResponse"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -27,273 +10,36 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import OutputsResponse from './OutputsResponse';
+
 /**
  * The SourceResponseAttributes model module.
  * @module model/SourceResponseAttributes
  * @version 0.2.6
  */
-var SourceResponseAttributes = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>SourceResponseAttributes</code>.
-   * The id and attributes of the source file.
-   * @alias module:model/SourceResponseAttributes
-   * @param id {String} The source id.
-   * @param owner {String} The owner id of the source file.
-   */
-  function SourceResponseAttributes(id, owner) {
-    _classCallCheck(this, SourceResponseAttributes);
-    SourceResponseAttributes.initialize(this, id, owner);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(SourceResponseAttributes, [{
-    key: "getId",
-    value:
+class SourceResponseAttributes {
     /**
-         * Returns The source id.
-         * @return {String}
-         */
-    function getId() {
-      return this.id;
-    }
-
-    /**
-     * Sets The source id.
-     * @param {String} id The source id.
+     * Constructs a new <code>SourceResponseAttributes</code>.
+     * The id and attributes of the source file.
+     * @alias module:model/SourceResponseAttributes
+     * @param id {String} The source id.
+     * @param owner {String} The owner id of the source file.
      */
-  }, {
-    key: "setId",
-    value: function setId(id) {
-      this['id'] = id;
-      return this;
-    }
-    /**
-         * Returns The owner id of the source file.
-         * @return {String}
-         */
-  }, {
-    key: "getOwner",
-    value: function getOwner() {
-      return this.owner;
+    constructor(id, owner) { 
+        
+        SourceResponseAttributes.initialize(this, id, owner);
     }
 
     /**
-     * Sets The owner id of the source file.
-     * @param {String} owner The owner id of the source file.
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setOwner",
-    value: function setOwner(owner) {
-      this['owner'] = owner;
-      return this;
-    }
-    /**
-         * Returns The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
-         * @return {String}
-         */
-  }, {
-    key: "getInput",
-    value: function getInput() {
-      return this.input;
-    }
-
-    /**
-     * Sets The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
-     * @param {String} input The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
-     */
-  }, {
-    key: "setInput",
-    value: function setInput(input) {
-      this['input'] = input;
-      return this;
-    }
-    /**
-         * Returns The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
-         * @return {String}
-         */
-  }, {
-    key: "getSource",
-    value: function getSource() {
-      return this.source;
-    }
-
-    /**
-     * Sets The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
-     * @param {String} source The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
-     */
-  }, {
-    key: "setSource",
-    value: function setSource(source) {
-      this['source'] = source;
-      return this;
-    }
-    /**
-         * Returns The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
-         * @return {module:model/SourceResponseAttributes.StatusEnum}
-         */
-  }, {
-    key: "getStatus",
-    value: function getStatus() {
-      return this.status;
-    }
-
-    /**
-     * Sets The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
-     * @param {module:model/SourceResponseAttributes.StatusEnum} status The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
-     */
-  }, {
-    key: "setStatus",
-    value: function setStatus(status) {
-      this['status'] = status;
-      return this;
-    }
-    /**
-         * @return {module:model/OutputsResponse}
-         */
-  }, {
-    key: "getOutputs",
-    value: function getOutputs() {
-      return this.outputs;
-    }
-
-    /**
-     * @param {module:model/OutputsResponse} outputs
-     */
-  }, {
-    key: "setOutputs",
-    value: function setOutputs(outputs) {
-      this['outputs'] = outputs;
-      return this;
-    }
-    /**
-         * Returns The width in pixels of the ingested source file, if a video or image.
-         * @return {Number}
-         */
-  }, {
-    key: "getWidth",
-    value: function getWidth() {
-      return this.width;
-    }
-
-    /**
-     * Sets The width in pixels of the ingested source file, if a video or image.
-     * @param {Number} width The width in pixels of the ingested source file, if a video or image.
-     */
-  }, {
-    key: "setWidth",
-    value: function setWidth(width) {
-      this['width'] = width;
-      return this;
-    }
-    /**
-         * Returns The height in pixels of the ingested source file, if a video or image.
-         * @return {String}
-         */
-  }, {
-    key: "getHeight",
-    value: function getHeight() {
-      return this.height;
-    }
-
-    /**
-     * Sets The height in pixels of the ingested source file, if a video or image.
-     * @param {String} height The height in pixels of the ingested source file, if a video or image.
-     */
-  }, {
-    key: "setHeight",
-    value: function setHeight(height) {
-      this['height'] = height;
-      return this;
-    }
-    /**
-         * Returns The duration in seconds of the ingested source file, if a video or audio file.
-         * @return {Number}
-         */
-  }, {
-    key: "getDuration",
-    value: function getDuration() {
-      return this.duration;
-    }
-
-    /**
-     * Sets The duration in seconds of the ingested source file, if a video or audio file.
-     * @param {Number} duration The duration in seconds of the ingested source file, if a video or audio file.
-     */
-  }, {
-    key: "setDuration",
-    value: function setDuration(duration) {
-      this['duration'] = duration;
-      return this;
-    }
-    /**
-         * Returns The frame rate in frames per second of the source file, if a video file.
-         * @return {Number}
-         */
-  }, {
-    key: "getFps",
-    value: function getFps() {
-      return this.fps;
-    }
-
-    /**
-     * Sets The frame rate in frames per second of the source file, if a video file.
-     * @param {Number} fps The frame rate in frames per second of the source file, if a video file.
-     */
-  }, {
-    key: "setFps",
-    value: function setFps(fps) {
-      this['fps'] = fps;
-      return this;
-    }
-    /**
-         * Returns The time the ingestion task was initially queued.
-         * @return {String}
-         */
-  }, {
-    key: "getCreated",
-    value: function getCreated() {
-      return this.created;
-    }
-
-    /**
-     * Sets The time the ingestion task was initially queued.
-     * @param {String} created The time the ingestion task was initially queued.
-     */
-  }, {
-    key: "setCreated",
-    value: function setCreated(created) {
-      this['created'] = created;
-      return this;
-    }
-    /**
-         * Returns The time the ingestion status was last updated.
-         * @return {String}
-         */
-  }, {
-    key: "getUpdated",
-    value: function getUpdated() {
-      return this.updated;
-    }
-
-    /**
-     * Sets The time the ingestion status was last updated.
-     * @param {String} updated The time the ingestion status was last updated.
-     */
-  }, {
-    key: "setUpdated",
-    value: function setUpdated(updated) {
-      this['updated'] = updated;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, id, owner) {
-      obj['id'] = id;
-      obj['owner'] = owner;
+    static initialize(obj, id, owner) { 
+        obj['id'] = id;
+        obj['owner'] = owner;
     }
 
     /**
@@ -303,49 +49,48 @@ var SourceResponseAttributes = /*#__PURE__*/function () {
      * @param {module:model/SourceResponseAttributes} obj Optional instance to populate.
      * @return {module:model/SourceResponseAttributes} The populated <code>SourceResponseAttributes</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new SourceResponseAttributes();
-        if (data.hasOwnProperty('id')) {
-          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new SourceResponseAttributes();
+
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
+            if (data.hasOwnProperty('owner')) {
+                obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
+            }
+            if (data.hasOwnProperty('input')) {
+                obj['input'] = ApiClient.convertToType(data['input'], 'String');
+            }
+            if (data.hasOwnProperty('source')) {
+                obj['source'] = ApiClient.convertToType(data['source'], 'String');
+            }
+            if (data.hasOwnProperty('status')) {
+                obj['status'] = ApiClient.convertToType(data['status'], 'String');
+            }
+            if (data.hasOwnProperty('outputs')) {
+                obj['outputs'] = OutputsResponse.constructFromObject(data['outputs']);
+            }
+            if (data.hasOwnProperty('width')) {
+                obj['width'] = ApiClient.convertToType(data['width'], 'Number');
+            }
+            if (data.hasOwnProperty('height')) {
+                obj['height'] = ApiClient.convertToType(data['height'], 'String');
+            }
+            if (data.hasOwnProperty('duration')) {
+                obj['duration'] = ApiClient.convertToType(data['duration'], 'Number');
+            }
+            if (data.hasOwnProperty('fps')) {
+                obj['fps'] = ApiClient.convertToType(data['fps'], 'Number');
+            }
+            if (data.hasOwnProperty('created')) {
+                obj['created'] = ApiClient.convertToType(data['created'], 'String');
+            }
+            if (data.hasOwnProperty('updated')) {
+                obj['updated'] = ApiClient.convertToType(data['updated'], 'String');
+            }
         }
-        if (data.hasOwnProperty('owner')) {
-          obj['owner'] = _ApiClient["default"].convertToType(data['owner'], 'String');
-        }
-        if (data.hasOwnProperty('input')) {
-          obj['input'] = _ApiClient["default"].convertToType(data['input'], 'String');
-        }
-        if (data.hasOwnProperty('source')) {
-          obj['source'] = _ApiClient["default"].convertToType(data['source'], 'String');
-        }
-        if (data.hasOwnProperty('status')) {
-          obj['status'] = _ApiClient["default"].convertToType(data['status'], 'String');
-        }
-        if (data.hasOwnProperty('outputs')) {
-          obj['outputs'] = _OutputsResponse["default"].constructFromObject(data['outputs']);
-        }
-        if (data.hasOwnProperty('width')) {
-          obj['width'] = _ApiClient["default"].convertToType(data['width'], 'Number');
-        }
-        if (data.hasOwnProperty('height')) {
-          obj['height'] = _ApiClient["default"].convertToType(data['height'], 'String');
-        }
-        if (data.hasOwnProperty('duration')) {
-          obj['duration'] = _ApiClient["default"].convertToType(data['duration'], 'Number');
-        }
-        if (data.hasOwnProperty('fps')) {
-          obj['fps'] = _ApiClient["default"].convertToType(data['fps'], 'Number');
-        }
-        if (data.hasOwnProperty('created')) {
-          obj['created'] = _ApiClient["default"].convertToType(data['created'], 'String');
-        }
-        if (data.hasOwnProperty('updated')) {
-          obj['updated'] = _ApiClient["default"].convertToType(data['updated'], 'String');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -353,65 +98,246 @@ var SourceResponseAttributes = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SourceResponseAttributes</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(SourceResponseAttributes.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of SourceResponseAttributes.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-      }
-      // ensure the json data is a string
-      if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
-        throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
-      }
-      // ensure the json data is a string
-      if (data['input'] && !(typeof data['input'] === 'string' || data['input'] instanceof String)) {
-        throw new Error("Expected the field `input` to be a primitive type in the JSON string but got " + data['input']);
-      }
-      // ensure the json data is a string
-      if (data['source'] && !(typeof data['source'] === 'string' || data['source'] instanceof String)) {
-        throw new Error("Expected the field `source` to be a primitive type in the JSON string but got " + data['source']);
-      }
-      // ensure the json data is a string
-      if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
-        throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
-      }
-      // validate the optional field `outputs`
-      if (data['outputs']) {
-        // data not null
-        _OutputsResponse["default"].validateJSON(data['outputs']);
-      }
-      // ensure the json data is a string
-      if (data['height'] && !(typeof data['height'] === 'string' || data['height'] instanceof String)) {
-        throw new Error("Expected the field `height` to be a primitive type in the JSON string but got " + data['height']);
-      }
-      // ensure the json data is a string
-      if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
-        throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
-      }
-      // ensure the json data is a string
-      if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
-        throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
-      }
-      return true;
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
+        // ensure the json data is a string
+        if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
+            throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
+        }
+        // ensure the json data is a string
+        if (data['input'] && !(typeof data['input'] === 'string' || data['input'] instanceof String)) {
+            throw new Error("Expected the field `input` to be a primitive type in the JSON string but got " + data['input']);
+        }
+        // ensure the json data is a string
+        if (data['source'] && !(typeof data['source'] === 'string' || data['source'] instanceof String)) {
+            throw new Error("Expected the field `source` to be a primitive type in the JSON string but got " + data['source']);
+        }
+        // ensure the json data is a string
+        if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
+            throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
+        }
+        // validate the optional field `outputs`
+        if (data['outputs']) { // data not null
+          OutputsResponse.validateJSON(data['outputs']);
+        }
+        // ensure the json data is a string
+        if (data['height'] && !(typeof data['height'] === 'string' || data['height'] instanceof String)) {
+            throw new Error("Expected the field `height` to be a primitive type in the JSON string but got " + data['height']);
+        }
+        // ensure the json data is a string
+        if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
+            throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
+        }
+        // ensure the json data is a string
+        if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
+            throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The source id.
+     * @return {String}
+     */
+    getId() {
+        return this.id;
+    }
+
+    /**
+     * Sets The source id.
+     * @param {String} id The source id.
+     */
+    setId(id) {
+        this['id'] = id;
+        return this;
+    }
+/**
+     * Returns The owner id of the source file.
+     * @return {String}
+     */
+    getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Sets The owner id of the source file.
+     * @param {String} owner The owner id of the source file.
+     */
+    setOwner(owner) {
+        this['owner'] = owner;
+        return this;
+    }
+/**
+     * Returns The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
+     * @return {String}
+     */
+    getInput() {
+        return this.input;
+    }
+
+    /**
+     * Sets The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
+     * @param {String} input The original URL of an ingested source file, where it originated. Only displayed for files ingested using the [fetch source](#fetch-source) endpoint. Not displayed for direct uploads.
+     */
+    setInput(input) {
+        this['input'] = input;
+        return this;
+    }
+/**
+     * Returns The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
+     * @return {String}
+     */
+    getSource() {
+        return this.source;
+    }
+
+    /**
+     * Sets The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
+     * @param {String} source The URL of the source file hosted by Shotstack. The file at the URL can be used by the Edit API. Source file URL's consist of a base URL (AWS bucket), owner id, source id and a file named source. The extension varies depending on the type of file ingested.
+     */
+    setSource(source) {
+        this['source'] = source;
+        return this;
+    }
+/**
+     * Returns The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
+     * @return {module:model/SourceResponseAttributes.StatusEnum}
+     */
+    getStatus() {
+        return this.status;
+    }
+
+    /**
+     * Sets The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
+     * @param {module:model/SourceResponseAttributes.StatusEnum} status The status of the source file ingestion task. <ul>   <li>`queued` - ingestion task is queued waiting to be fetched</li>   <li>`importing` - the source file is being downloaded</li>   <li>`ready` - the source file has been ingested and stored</li>   <li>`failed` - there was an error ingesting the source file</li>   <li>`deleted` - the source file has been deleted</li> </ul>
+     */
+    setStatus(status) {
+        this['status'] = status;
+        return this;
+    }
+/**
+     * @return {module:model/OutputsResponse}
+     */
+    getOutputs() {
+        return this.outputs;
+    }
+
+    /**
+     * @param {module:model/OutputsResponse} outputs
+     */
+    setOutputs(outputs) {
+        this['outputs'] = outputs;
+        return this;
+    }
+/**
+     * Returns The width in pixels of the ingested source file, if a video or image.
+     * @return {Number}
+     */
+    getWidth() {
+        return this.width;
+    }
+
+    /**
+     * Sets The width in pixels of the ingested source file, if a video or image.
+     * @param {Number} width The width in pixels of the ingested source file, if a video or image.
+     */
+    setWidth(width) {
+        this['width'] = width;
+        return this;
+    }
+/**
+     * Returns The height in pixels of the ingested source file, if a video or image.
+     * @return {String}
+     */
+    getHeight() {
+        return this.height;
+    }
+
+    /**
+     * Sets The height in pixels of the ingested source file, if a video or image.
+     * @param {String} height The height in pixels of the ingested source file, if a video or image.
+     */
+    setHeight(height) {
+        this['height'] = height;
+        return this;
+    }
+/**
+     * Returns The duration in seconds of the ingested source file, if a video or audio file.
+     * @return {Number}
+     */
+    getDuration() {
+        return this.duration;
+    }
+
+    /**
+     * Sets The duration in seconds of the ingested source file, if a video or audio file.
+     * @param {Number} duration The duration in seconds of the ingested source file, if a video or audio file.
+     */
+    setDuration(duration) {
+        this['duration'] = duration;
+        return this;
+    }
+/**
+     * Returns The frame rate in frames per second of the source file, if a video file.
+     * @return {Number}
+     */
+    getFps() {
+        return this.fps;
+    }
+
+    /**
+     * Sets The frame rate in frames per second of the source file, if a video file.
+     * @param {Number} fps The frame rate in frames per second of the source file, if a video file.
+     */
+    setFps(fps) {
+        this['fps'] = fps;
+        return this;
+    }
+/**
+     * Returns The time the ingestion task was initially queued.
+     * @return {String}
+     */
+    getCreated() {
+        return this.created;
+    }
+
+    /**
+     * Sets The time the ingestion task was initially queued.
+     * @param {String} created The time the ingestion task was initially queued.
+     */
+    setCreated(created) {
+        this['created'] = created;
+        return this;
+    }
+/**
+     * Returns The time the ingestion status was last updated.
+     * @return {String}
+     */
+    getUpdated() {
+        return this.updated;
+    }
+
+    /**
+     * Sets The time the ingestion status was last updated.
+     * @param {String} updated The time the ingestion status was last updated.
+     */
+    setUpdated(updated) {
+        this['updated'] = updated;
+        return this;
+    }
+
+}
+
 SourceResponseAttributes.RequiredProperties = ["id", "owner"];
 
 /**
@@ -485,41 +411,55 @@ SourceResponseAttributes.prototype['created'] = undefined;
  */
 SourceResponseAttributes.prototype['updated'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>status</code> property.
  * @enum {String}
  * @readonly
  */
 SourceResponseAttributes['StatusEnum'] = {
-  /**
-   * value: "queued"
-   * @const
-   */
-  "queued": "queued",
-  /**
-   * value: "importing"
-   * @const
-   */
-  "importing": "importing",
-  /**
-   * value: "ready"
-   * @const
-   */
-  "ready": "ready",
-  /**
-   * value: "failed"
-   * @const
-   */
-  "failed": "failed",
-  /**
-   * value: "deleted"
-   * @const
-   */
-  "deleted": "deleted",
-  /**
-   * value: "overwritten"
-   * @const
-   */
-  "overwritten": "overwritten"
+
+    /**
+     * value: "queued"
+     * @const
+     */
+    "queued": "queued",
+
+    /**
+     * value: "importing"
+     * @const
+     */
+    "importing": "importing",
+
+    /**
+     * value: "ready"
+     * @const
+     */
+    "ready": "ready",
+
+    /**
+     * value: "failed"
+     * @const
+     */
+    "failed": "failed",
+
+    /**
+     * value: "deleted"
+     * @const
+     */
+    "deleted": "deleted",
+
+    /**
+     * value: "overwritten"
+     * @const
+     */
+    "overwritten": "overwritten"
 };
-var _default = exports["default"] = SourceResponseAttributes;
+
+
+
+export default SourceResponseAttributes;
+

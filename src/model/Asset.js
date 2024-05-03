@@ -1,27 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _AudioAsset = _interopRequireDefault(require("./AudioAsset"));
-var _Crop = _interopRequireDefault(require("./Crop"));
-var _HtmlAsset = _interopRequireDefault(require("./HtmlAsset"));
-var _ImageAsset = _interopRequireDefault(require("./ImageAsset"));
-var _LumaAsset = _interopRequireDefault(require("./LumaAsset"));
-var _Offset = _interopRequireDefault(require("./Offset"));
-var _TitleAsset = _interopRequireDefault(require("./TitleAsset"));
-var _VideoAsset = _interopRequireDefault(require("./VideoAsset"));
-var _Asset;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -33,182 +10,193 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import AudioAsset from './AudioAsset';
+import Crop from './Crop';
+import HtmlAsset from './HtmlAsset';
+import ImageAsset from './ImageAsset';
+import LumaAsset from './LumaAsset';
+import Offset from './Offset';
+import TitleAsset from './TitleAsset';
+import VideoAsset from './VideoAsset';
+
 /**
  * The Asset model module.
  * @module model/Asset
  * @version 0.2.6
  */
-var Asset = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Asset</code>.
-   * The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
-   * @alias module:model/Asset
-   * @param {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} instance The actual instance to initialize Asset.
-   */
-  function Asset() {
-    var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    _classCallCheck(this, Asset);
+class Asset {
     /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
+     * Constructs a new <code>Asset</code>.
+     * The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+     * @alias module:model/Asset
+     * @param {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} instance The actual instance to initialize Asset.
      */
-    _defineProperty(this, "toJSON", function () {
-      return this.getActualInstance();
-    });
-    if (instance === null) {
-      this.actualInstance = null;
-      return;
-    }
-    var match = 0;
-    var errorMessages = [];
-    try {
-      if (typeof instance === "VideoAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _VideoAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create VideoAsset from JS object
-        this.actualInstance = _VideoAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into VideoAsset
-      errorMessages.push("Failed to construct VideoAsset: " + err);
-    }
-    try {
-      if (typeof instance === "ImageAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _ImageAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create ImageAsset from JS object
-        this.actualInstance = _ImageAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into ImageAsset
-      errorMessages.push("Failed to construct ImageAsset: " + err);
-    }
-    try {
-      if (typeof instance === "TitleAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _TitleAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create TitleAsset from JS object
-        this.actualInstance = _TitleAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into TitleAsset
-      errorMessages.push("Failed to construct TitleAsset: " + err);
-    }
-    try {
-      if (typeof instance === "HtmlAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _HtmlAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create HtmlAsset from JS object
-        this.actualInstance = _HtmlAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into HtmlAsset
-      errorMessages.push("Failed to construct HtmlAsset: " + err);
-    }
-    try {
-      if (typeof instance === "AudioAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _AudioAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create AudioAsset from JS object
-        this.actualInstance = _AudioAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into AudioAsset
-      errorMessages.push("Failed to construct AudioAsset: " + err);
-    }
-    try {
-      if (typeof instance === "LumaAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _LumaAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create LumaAsset from JS object
-        this.actualInstance = _LumaAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into LumaAsset
-      errorMessages.push("Failed to construct LumaAsset: " + err);
-    }
-    if (match > 1) {
-      throw new Error("Multiple matches found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Input: " + JSON.stringify(instance));
-    } else if (match === 0) {
-      this.actualInstance = null; // clear the actual instance in case there are multiple matches
-      throw new Error("No match found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Details: " + errorMessages.join(", "));
-    } else {// only 1 match
-      // the input is valid
-    }
-  }
+    constructor(instance = null) {
+        if (instance === null) {
+            this.actualInstance = null;
+            return;
+        }
+        var match = 0;
+        var errorMessages = [];
+        try {
+            if (typeof instance === "VideoAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                VideoAsset.validateJSON(instance); // throw an exception if no match
+                // create VideoAsset from JS object
+                this.actualInstance = VideoAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into VideoAsset
+            errorMessages.push("Failed to construct VideoAsset: " + err)
+        }
 
-  /**
-   * Constructs a <code>Asset</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Asset} obj Optional instance to populate.
-   * @return {module:model/Asset} The populated <code>Asset</code> instance.
-   */
-  return _createClass(Asset, [{
-    key: "getActualInstance",
-    value:
+        try {
+            if (typeof instance === "ImageAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                ImageAsset.validateJSON(instance); // throw an exception if no match
+                // create ImageAsset from JS object
+                this.actualInstance = ImageAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into ImageAsset
+            errorMessages.push("Failed to construct ImageAsset: " + err)
+        }
+
+        try {
+            if (typeof instance === "TitleAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                TitleAsset.validateJSON(instance); // throw an exception if no match
+                // create TitleAsset from JS object
+                this.actualInstance = TitleAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into TitleAsset
+            errorMessages.push("Failed to construct TitleAsset: " + err)
+        }
+
+        try {
+            if (typeof instance === "HtmlAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                HtmlAsset.validateJSON(instance); // throw an exception if no match
+                // create HtmlAsset from JS object
+                this.actualInstance = HtmlAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into HtmlAsset
+            errorMessages.push("Failed to construct HtmlAsset: " + err)
+        }
+
+        try {
+            if (typeof instance === "AudioAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                AudioAsset.validateJSON(instance); // throw an exception if no match
+                // create AudioAsset from JS object
+                this.actualInstance = AudioAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into AudioAsset
+            errorMessages.push("Failed to construct AudioAsset: " + err)
+        }
+
+        try {
+            if (typeof instance === "LumaAsset") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                LumaAsset.validateJSON(instance); // throw an exception if no match
+                // create LumaAsset from JS object
+                this.actualInstance = LumaAsset.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into LumaAsset
+            errorMessages.push("Failed to construct LumaAsset: " + err)
+        }
+
+        if (match > 1) {
+            throw new Error("Multiple matches found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Input: " + JSON.stringify(instance));
+        } else if (match === 0) {
+            this.actualInstance = null; // clear the actual instance in case there are multiple matches
+            throw new Error("No match found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Details: " +
+                            errorMessages.join(", "));
+        } else { // only 1 match
+            // the input is valid
+        }
+    }
+
+    /**
+     * Constructs a <code>Asset</code> from a plain JavaScript object, optionally creating a new instance.
+     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @param {module:model/Asset} obj Optional instance to populate.
+     * @return {module:model/Asset} The populated <code>Asset</code> instance.
+     */
+    static constructFromObject(data, obj) {
+        return new Asset(data);
+    }
+
     /**
      * Gets the actual instance, which can be <code>AudioAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
      * @return {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} The actual instance.
      */
-    function getActualInstance() {
-      return this.actualInstance;
+    getActualInstance() {
+        return this.actualInstance;
     }
 
     /**
      * Sets the actual instance, which can be <code>AudioAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
      * @param {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} obj The actual instance.
      */
-  }, {
-    key: "setActualInstance",
-    value: function setActualInstance(obj) {
-      this.actualInstance = Asset.constructFromObject(obj).getActualInstance();
+    setActualInstance(obj) {
+       this.actualInstance = Asset.constructFromObject(obj).getActualInstance();
     }
-  }], [{
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      return new Asset(data);
+
+    /**
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
+     */
+    toJSON = function(){
+        return this.getActualInstance();
     }
-  }]);
-}();
+
+    /**
+     * Create an instance of Asset from a JSON string.
+     * @param {string} json_string JSON string.
+     * @return {module:model/Asset} An instance of Asset.
+     */
+    static fromJSON = function(json_string){
+        return Asset.constructFromObject(JSON.parse(json_string));
+    }
+}
+
 /**
  * The type of asset - set to `luma` for luma mattes.
  * @member {String} type
  * @default 'luma'
  */
-_Asset = Asset;
-/**
- * Create an instance of Asset from a JSON string.
- * @param {string} json_string JSON string.
- * @return {module:model/Asset} An instance of Asset.
- */
-_defineProperty(Asset, "fromJSON", function (json_string) {
-  return _Asset.constructFromObject(JSON.parse(json_string));
-});
 Asset.prototype['type'] = 'luma';
 
 /**
@@ -316,5 +304,9 @@ Asset.prototype['height'] = undefined;
  * @member {module:model/Asset.EffectEnum} effect
  */
 Asset.prototype['effect'] = undefined;
+
+
 Asset.OneOf = ["AudioAsset", "HtmlAsset", "ImageAsset", "LumaAsset", "TitleAsset", "VideoAsset"];
-var _default = exports["default"] = Asset;
+
+export default Asset;
+

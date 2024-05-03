@@ -1,21 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _Edit = _interopRequireDefault(require("./Edit"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -27,295 +10,38 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import Edit from './Edit';
+
 /**
  * The RenderResponseData model module.
  * @module model/RenderResponseData
  * @version 0.2.6
  */
-var RenderResponseData = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>RenderResponseData</code>.
-   * The response data returned with the [RenderResponse](#tocs_renderresponse) including status and URL.
-   * @alias module:model/RenderResponseData
-   * @param id {String} The id of the render task in UUID format.
-   * @param owner {String} The owner id of the render task.
-   * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
-   */
-  function RenderResponseData(id, owner, status) {
-    _classCallCheck(this, RenderResponseData);
-    RenderResponseData.initialize(this, id, owner, status);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(RenderResponseData, [{
-    key: "getId",
-    value:
+class RenderResponseData {
     /**
-         * Returns The id of the render task in UUID format.
-         * @return {String}
-         */
-    function getId() {
-      return this.id;
-    }
-
-    /**
-     * Sets The id of the render task in UUID format.
-     * @param {String} id The id of the render task in UUID format.
+     * Constructs a new <code>RenderResponseData</code>.
+     * The response data returned with the [RenderResponse](#tocs_renderresponse) including status and URL.
+     * @alias module:model/RenderResponseData
+     * @param id {String} The id of the render task in UUID format.
+     * @param owner {String} The owner id of the render task.
+     * @param status {module:model/RenderResponseData.StatusEnum} The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
      */
-  }, {
-    key: "setId",
-    value: function setId(id) {
-      this['id'] = id;
-      return this;
-    }
-    /**
-         * Returns The owner id of the render task.
-         * @return {String}
-         */
-  }, {
-    key: "getOwner",
-    value: function getOwner() {
-      return this.owner;
+    constructor(id, owner, status) { 
+        
+        RenderResponseData.initialize(this, id, owner, status);
     }
 
     /**
-     * Sets The owner id of the render task.
-     * @param {String} owner The owner id of the render task.
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setOwner",
-    value: function setOwner(owner) {
-      this['owner'] = owner;
-      return this;
-    }
-    /**
-         * Returns The customer subscription plan.
-         * @return {String}
-         */
-  }, {
-    key: "getPlan",
-    value: function getPlan() {
-      return this.plan;
-    }
-
-    /**
-     * Sets The customer subscription plan.
-     * @param {String} plan The customer subscription plan.
-     */
-  }, {
-    key: "setPlan",
-    value: function setPlan(plan) {
-      this['plan'] = plan;
-      return this;
-    }
-    /**
-         * Returns The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
-         * @return {module:model/RenderResponseData.StatusEnum}
-         */
-  }, {
-    key: "getStatus",
-    value: function getStatus() {
-      return this.status;
-    }
-
-    /**
-     * Sets The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
-     * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
-     */
-  }, {
-    key: "setStatus",
-    value: function setStatus(status) {
-      this['status'] = status;
-      return this;
-    }
-    /**
-         * Returns An error message, only displayed if an error occurred.
-         * @return {String}
-         */
-  }, {
-    key: "getError",
-    value: function getError() {
-      return this.error;
-    }
-
-    /**
-     * Sets An error message, only displayed if an error occurred.
-     * @param {String} error An error message, only displayed if an error occurred.
-     */
-  }, {
-    key: "setError",
-    value: function setError(error) {
-      this['error'] = error;
-      return this;
-    }
-    /**
-         * Returns The output video or audio length in seconds.
-         * @return {Number}
-         */
-  }, {
-    key: "getDuration",
-    value: function getDuration() {
-      return this.duration;
-    }
-
-    /**
-     * Sets The output video or audio length in seconds.
-     * @param {Number} duration The output video or audio length in seconds.
-     */
-  }, {
-    key: "setDuration",
-    value: function setDuration(duration) {
-      this['duration'] = duration;
-      return this;
-    }
-    /**
-         * Returns The time taken to render the asset in milliseconds.
-         * @return {Number}
-         */
-  }, {
-    key: "getRenderTime",
-    value: function getRenderTime() {
-      return this.renderTime;
-    }
-
-    /**
-     * Sets The time taken to render the asset in milliseconds.
-     * @param {Number} renderTime The time taken to render the asset in milliseconds.
-     */
-  }, {
-    key: "setRenderTime",
-    value: function setRenderTime(renderTime) {
-      this['renderTime'] = renderTime;
-      return this;
-    }
-    /**
-         * Returns The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
-         * @return {String}
-         */
-  }, {
-    key: "getUrl",
-    value: function getUrl() {
-      return this.url;
-    }
-
-    /**
-     * Sets The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
-     * @param {String} url The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
-     */
-  }, {
-    key: "setUrl",
-    value: function setUrl(url) {
-      this['url'] = url;
-      return this;
-    }
-    /**
-         * Returns The URL of the poster image if requested. This will only be available if status is done.
-         * @return {String}
-         */
-  }, {
-    key: "getPoster",
-    value: function getPoster() {
-      return this.poster;
-    }
-
-    /**
-     * Sets The URL of the poster image if requested. This will only be available if status is done.
-     * @param {String} poster The URL of the poster image if requested. This will only be available if status is done.
-     */
-  }, {
-    key: "setPoster",
-    value: function setPoster(poster) {
-      this['poster'] = poster;
-      return this;
-    }
-    /**
-         * Returns The URL of the thumbnail image if requested. This will only be available if status is done.
-         * @return {String}
-         */
-  }, {
-    key: "getThumbnail",
-    value: function getThumbnail() {
-      return this.thumbnail;
-    }
-
-    /**
-     * Sets The URL of the thumbnail image if requested. This will only be available if status is done.
-     * @param {String} thumbnail The URL of the thumbnail image if requested. This will only be available if status is done.
-     */
-  }, {
-    key: "setThumbnail",
-    value: function setThumbnail(thumbnail) {
-      this['thumbnail'] = thumbnail;
-      return this;
-    }
-    /**
-         * @return {module:model/Edit}
-         */
-  }, {
-    key: "getData",
-    value: function getData() {
-      return this.data;
-    }
-
-    /**
-     * @param {module:model/Edit} data
-     */
-  }, {
-    key: "setData",
-    value: function setData(data) {
-      this['data'] = data;
-      return this;
-    }
-    /**
-         * Returns The time the render task was initially queued.
-         * @return {String}
-         */
-  }, {
-    key: "getCreated",
-    value: function getCreated() {
-      return this.created;
-    }
-
-    /**
-     * Sets The time the render task was initially queued.
-     * @param {String} created The time the render task was initially queued.
-     */
-  }, {
-    key: "setCreated",
-    value: function setCreated(created) {
-      this['created'] = created;
-      return this;
-    }
-    /**
-         * Returns The time the render status was last updated.
-         * @return {String}
-         */
-  }, {
-    key: "getUpdated",
-    value: function getUpdated() {
-      return this.updated;
-    }
-
-    /**
-     * Sets The time the render status was last updated.
-     * @param {String} updated The time the render status was last updated.
-     */
-  }, {
-    key: "setUpdated",
-    value: function setUpdated(updated) {
-      this['updated'] = updated;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, id, owner, status) {
-      obj['id'] = id;
-      obj['owner'] = owner;
-      obj['status'] = status;
+    static initialize(obj, id, owner, status) { 
+        obj['id'] = id;
+        obj['owner'] = owner;
+        obj['status'] = status;
     }
 
     /**
@@ -325,52 +51,51 @@ var RenderResponseData = /*#__PURE__*/function () {
      * @param {module:model/RenderResponseData} obj Optional instance to populate.
      * @return {module:model/RenderResponseData} The populated <code>RenderResponseData</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new RenderResponseData();
-        if (data.hasOwnProperty('id')) {
-          obj['id'] = _ApiClient["default"].convertToType(data['id'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new RenderResponseData();
+
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
+            if (data.hasOwnProperty('owner')) {
+                obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
+            }
+            if (data.hasOwnProperty('plan')) {
+                obj['plan'] = ApiClient.convertToType(data['plan'], 'String');
+            }
+            if (data.hasOwnProperty('status')) {
+                obj['status'] = ApiClient.convertToType(data['status'], 'String');
+            }
+            if (data.hasOwnProperty('error')) {
+                obj['error'] = ApiClient.convertToType(data['error'], 'String');
+            }
+            if (data.hasOwnProperty('duration')) {
+                obj['duration'] = ApiClient.convertToType(data['duration'], 'Number');
+            }
+            if (data.hasOwnProperty('renderTime')) {
+                obj['renderTime'] = ApiClient.convertToType(data['renderTime'], 'Number');
+            }
+            if (data.hasOwnProperty('url')) {
+                obj['url'] = ApiClient.convertToType(data['url'], 'String');
+            }
+            if (data.hasOwnProperty('poster')) {
+                obj['poster'] = ApiClient.convertToType(data['poster'], 'String');
+            }
+            if (data.hasOwnProperty('thumbnail')) {
+                obj['thumbnail'] = ApiClient.convertToType(data['thumbnail'], 'String');
+            }
+            if (data.hasOwnProperty('data')) {
+                obj['data'] = Edit.constructFromObject(data['data']);
+            }
+            if (data.hasOwnProperty('created')) {
+                obj['created'] = ApiClient.convertToType(data['created'], 'String');
+            }
+            if (data.hasOwnProperty('updated')) {
+                obj['updated'] = ApiClient.convertToType(data['updated'], 'String');
+            }
         }
-        if (data.hasOwnProperty('owner')) {
-          obj['owner'] = _ApiClient["default"].convertToType(data['owner'], 'String');
-        }
-        if (data.hasOwnProperty('plan')) {
-          obj['plan'] = _ApiClient["default"].convertToType(data['plan'], 'String');
-        }
-        if (data.hasOwnProperty('status')) {
-          obj['status'] = _ApiClient["default"].convertToType(data['status'], 'String');
-        }
-        if (data.hasOwnProperty('error')) {
-          obj['error'] = _ApiClient["default"].convertToType(data['error'], 'String');
-        }
-        if (data.hasOwnProperty('duration')) {
-          obj['duration'] = _ApiClient["default"].convertToType(data['duration'], 'Number');
-        }
-        if (data.hasOwnProperty('renderTime')) {
-          obj['renderTime'] = _ApiClient["default"].convertToType(data['renderTime'], 'Number');
-        }
-        if (data.hasOwnProperty('url')) {
-          obj['url'] = _ApiClient["default"].convertToType(data['url'], 'String');
-        }
-        if (data.hasOwnProperty('poster')) {
-          obj['poster'] = _ApiClient["default"].convertToType(data['poster'], 'String');
-        }
-        if (data.hasOwnProperty('thumbnail')) {
-          obj['thumbnail'] = _ApiClient["default"].convertToType(data['thumbnail'], 'String');
-        }
-        if (data.hasOwnProperty('data')) {
-          obj['data'] = _Edit["default"].constructFromObject(data['data']);
-        }
-        if (data.hasOwnProperty('created')) {
-          obj['created'] = _ApiClient["default"].convertToType(data['created'], 'String');
-        }
-        if (data.hasOwnProperty('updated')) {
-          obj['updated'] = _ApiClient["default"].convertToType(data['updated'], 'String');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -378,73 +103,270 @@ var RenderResponseData = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>RenderResponseData</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(RenderResponseData.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of RenderResponseData.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-        throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
-      }
-      // ensure the json data is a string
-      if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
-        throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
-      }
-      // ensure the json data is a string
-      if (data['plan'] && !(typeof data['plan'] === 'string' || data['plan'] instanceof String)) {
-        throw new Error("Expected the field `plan` to be a primitive type in the JSON string but got " + data['plan']);
-      }
-      // ensure the json data is a string
-      if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
-        throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
-      }
-      // ensure the json data is a string
-      if (data['error'] && !(typeof data['error'] === 'string' || data['error'] instanceof String)) {
-        throw new Error("Expected the field `error` to be a primitive type in the JSON string but got " + data['error']);
-      }
-      // ensure the json data is a string
-      if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
-        throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
-      }
-      // ensure the json data is a string
-      if (data['poster'] && !(typeof data['poster'] === 'string' || data['poster'] instanceof String)) {
-        throw new Error("Expected the field `poster` to be a primitive type in the JSON string but got " + data['poster']);
-      }
-      // ensure the json data is a string
-      if (data['thumbnail'] && !(typeof data['thumbnail'] === 'string' || data['thumbnail'] instanceof String)) {
-        throw new Error("Expected the field `thumbnail` to be a primitive type in the JSON string but got " + data['thumbnail']);
-      }
-      // validate the optional field `data`
-      if (data['data']) {
-        // data not null
-        _Edit["default"].validateJSON(data['data']);
-      }
-      // ensure the json data is a string
-      if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
-        throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
-      }
-      // ensure the json data is a string
-      if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
-        throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
-      }
-      return true;
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
+        // ensure the json data is a string
+        if (data['owner'] && !(typeof data['owner'] === 'string' || data['owner'] instanceof String)) {
+            throw new Error("Expected the field `owner` to be a primitive type in the JSON string but got " + data['owner']);
+        }
+        // ensure the json data is a string
+        if (data['plan'] && !(typeof data['plan'] === 'string' || data['plan'] instanceof String)) {
+            throw new Error("Expected the field `plan` to be a primitive type in the JSON string but got " + data['plan']);
+        }
+        // ensure the json data is a string
+        if (data['status'] && !(typeof data['status'] === 'string' || data['status'] instanceof String)) {
+            throw new Error("Expected the field `status` to be a primitive type in the JSON string but got " + data['status']);
+        }
+        // ensure the json data is a string
+        if (data['error'] && !(typeof data['error'] === 'string' || data['error'] instanceof String)) {
+            throw new Error("Expected the field `error` to be a primitive type in the JSON string but got " + data['error']);
+        }
+        // ensure the json data is a string
+        if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
+            throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
+        }
+        // ensure the json data is a string
+        if (data['poster'] && !(typeof data['poster'] === 'string' || data['poster'] instanceof String)) {
+            throw new Error("Expected the field `poster` to be a primitive type in the JSON string but got " + data['poster']);
+        }
+        // ensure the json data is a string
+        if (data['thumbnail'] && !(typeof data['thumbnail'] === 'string' || data['thumbnail'] instanceof String)) {
+            throw new Error("Expected the field `thumbnail` to be a primitive type in the JSON string but got " + data['thumbnail']);
+        }
+        // validate the optional field `data`
+        if (data['data']) { // data not null
+          Edit.validateJSON(data['data']);
+        }
+        // ensure the json data is a string
+        if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
+            throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
+        }
+        // ensure the json data is a string
+        if (data['updated'] && !(typeof data['updated'] === 'string' || data['updated'] instanceof String)) {
+            throw new Error("Expected the field `updated` to be a primitive type in the JSON string but got " + data['updated']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The id of the render task in UUID format.
+     * @return {String}
+     */
+    getId() {
+        return this.id;
+    }
+
+    /**
+     * Sets The id of the render task in UUID format.
+     * @param {String} id The id of the render task in UUID format.
+     */
+    setId(id) {
+        this['id'] = id;
+        return this;
+    }
+/**
+     * Returns The owner id of the render task.
+     * @return {String}
+     */
+    getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * Sets The owner id of the render task.
+     * @param {String} owner The owner id of the render task.
+     */
+    setOwner(owner) {
+        this['owner'] = owner;
+        return this;
+    }
+/**
+     * Returns The customer subscription plan.
+     * @return {String}
+     */
+    getPlan() {
+        return this.plan;
+    }
+
+    /**
+     * Sets The customer subscription plan.
+     * @param {String} plan The customer subscription plan.
+     */
+    setPlan(plan) {
+        this['plan'] = plan;
+        return this;
+    }
+/**
+     * Returns The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     * @return {module:model/RenderResponseData.StatusEnum}
+     */
+    getStatus() {
+        return this.status;
+    }
+
+    /**
+     * Sets The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     * @param {module:model/RenderResponseData.StatusEnum} status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     */
+    setStatus(status) {
+        this['status'] = status;
+        return this;
+    }
+/**
+     * Returns An error message, only displayed if an error occurred.
+     * @return {String}
+     */
+    getError() {
+        return this.error;
+    }
+
+    /**
+     * Sets An error message, only displayed if an error occurred.
+     * @param {String} error An error message, only displayed if an error occurred.
+     */
+    setError(error) {
+        this['error'] = error;
+        return this;
+    }
+/**
+     * Returns The output video or audio length in seconds.
+     * @return {Number}
+     */
+    getDuration() {
+        return this.duration;
+    }
+
+    /**
+     * Sets The output video or audio length in seconds.
+     * @param {Number} duration The output video or audio length in seconds.
+     */
+    setDuration(duration) {
+        this['duration'] = duration;
+        return this;
+    }
+/**
+     * Returns The time taken to render the asset in milliseconds.
+     * @return {Number}
+     */
+    getRenderTime() {
+        return this.renderTime;
+    }
+
+    /**
+     * Sets The time taken to render the asset in milliseconds.
+     * @param {Number} renderTime The time taken to render the asset in milliseconds.
+     */
+    setRenderTime(renderTime) {
+        this['renderTime'] = renderTime;
+        return this;
+    }
+/**
+     * Returns The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
+     * @return {String}
+     */
+    getUrl() {
+        return this.url;
+    }
+
+    /**
+     * Sets The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
+     * @param {String} url The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
+     */
+    setUrl(url) {
+        this['url'] = url;
+        return this;
+    }
+/**
+     * Returns The URL of the poster image if requested. This will only be available if status is done.
+     * @return {String}
+     */
+    getPoster() {
+        return this.poster;
+    }
+
+    /**
+     * Sets The URL of the poster image if requested. This will only be available if status is done.
+     * @param {String} poster The URL of the poster image if requested. This will only be available if status is done.
+     */
+    setPoster(poster) {
+        this['poster'] = poster;
+        return this;
+    }
+/**
+     * Returns The URL of the thumbnail image if requested. This will only be available if status is done.
+     * @return {String}
+     */
+    getThumbnail() {
+        return this.thumbnail;
+    }
+
+    /**
+     * Sets The URL of the thumbnail image if requested. This will only be available if status is done.
+     * @param {String} thumbnail The URL of the thumbnail image if requested. This will only be available if status is done.
+     */
+    setThumbnail(thumbnail) {
+        this['thumbnail'] = thumbnail;
+        return this;
+    }
+/**
+     * @return {module:model/Edit}
+     */
+    getData() {
+        return this.data;
+    }
+
+    /**
+     * @param {module:model/Edit} data
+     */
+    setData(data) {
+        this['data'] = data;
+        return this;
+    }
+/**
+     * Returns The time the render task was initially queued.
+     * @return {String}
+     */
+    getCreated() {
+        return this.created;
+    }
+
+    /**
+     * Sets The time the render task was initially queued.
+     * @param {String} created The time the render task was initially queued.
+     */
+    setCreated(created) {
+        this['created'] = created;
+        return this;
+    }
+/**
+     * Returns The time the render status was last updated.
+     * @return {String}
+     */
+    getUpdated() {
+        return this.updated;
+    }
+
+    /**
+     * Sets The time the render status was last updated.
+     * @param {String} updated The time the render status was last updated.
+     */
+    setUpdated(updated) {
+        this['updated'] = updated;
+        return this;
+    }
+
+}
+
 RenderResponseData.RequiredProperties = ["id", "owner", "status"];
 
 /**
@@ -524,41 +446,55 @@ RenderResponseData.prototype['created'] = undefined;
  */
 RenderResponseData.prototype['updated'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>status</code> property.
  * @enum {String}
  * @readonly
  */
 RenderResponseData['StatusEnum'] = {
-  /**
-   * value: "queued"
-   * @const
-   */
-  "queued": "queued",
-  /**
-   * value: "fetching"
-   * @const
-   */
-  "fetching": "fetching",
-  /**
-   * value: "rendering"
-   * @const
-   */
-  "rendering": "rendering",
-  /**
-   * value: "saving"
-   * @const
-   */
-  "saving": "saving",
-  /**
-   * value: "done"
-   * @const
-   */
-  "done": "done",
-  /**
-   * value: "failed"
-   * @const
-   */
-  "failed": "failed"
+
+    /**
+     * value: "queued"
+     * @const
+     */
+    "queued": "queued",
+
+    /**
+     * value: "fetching"
+     * @const
+     */
+    "fetching": "fetching",
+
+    /**
+     * value: "rendering"
+     * @const
+     */
+    "rendering": "rendering",
+
+    /**
+     * value: "saving"
+     * @const
+     */
+    "saving": "saving",
+
+    /**
+     * value: "done"
+     * @const
+     */
+    "done": "done",
+
+    /**
+     * value: "failed"
+     * @const
+     */
+    "failed": "failed"
 };
-var _default = exports["default"] = RenderResponseData;
+
+
+
+export default RenderResponseData;
+

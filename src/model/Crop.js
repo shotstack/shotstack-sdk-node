@@ -1,17 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -23,119 +10,32 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+
 /**
  * The Crop model module.
  * @module model/Crop
  * @version 0.2.6
  */
-var Crop = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Crop</code>.
-   * Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e a left crop of 0.5 will crop half of the asset from the left, a top crop  of 0.25 will crop the top by quarter of the asset.
-   * @alias module:model/Crop
-   */
-  function Crop() {
-    _classCallCheck(this, Crop);
-    Crop.initialize(this);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(Crop, [{
-    key: "getTop",
-    value:
+class Crop {
     /**
-         * Returns Crop from the top of the asset
-         * minimum: 0
-         * maximum: 1
-         * @return {Number}
-         */
-    function getTop() {
-      return this.top;
-    }
-
-    /**
-     * Sets Crop from the top of the asset
-     * @param {Number} top Crop from the top of the asset
+     * Constructs a new <code>Crop</code>.
+     * Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e a left crop of 0.5 will crop half of the asset from the left, a top crop  of 0.25 will crop the top by quarter of the asset.
+     * @alias module:model/Crop
      */
-  }, {
-    key: "setTop",
-    value: function setTop(top) {
-      this['top'] = top;
-      return this;
-    }
-    /**
-         * Returns Crop from the bottom of the asset
-         * minimum: 0
-         * maximum: 1
-         * @return {Number}
-         */
-  }, {
-    key: "getBottom",
-    value: function getBottom() {
-      return this.bottom;
+    constructor() { 
+        
+        Crop.initialize(this);
     }
 
     /**
-     * Sets Crop from the bottom of the asset
-     * @param {Number} bottom Crop from the bottom of the asset
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setBottom",
-    value: function setBottom(bottom) {
-      this['bottom'] = bottom;
-      return this;
+    static initialize(obj) { 
     }
-    /**
-         * Returns Crop from the left of the asset
-         * minimum: 0
-         * maximum: 1
-         * @return {Number}
-         */
-  }, {
-    key: "getLeft",
-    value: function getLeft() {
-      return this.left;
-    }
-
-    /**
-     * Sets Crop from the left of the asset
-     * @param {Number} left Crop from the left of the asset
-     */
-  }, {
-    key: "setLeft",
-    value: function setLeft(left) {
-      this['left'] = left;
-      return this;
-    }
-    /**
-         * Returns Crop from the left of the asset
-         * minimum: 0
-         * maximum: 1
-         * @return {Number}
-         */
-  }, {
-    key: "getRight",
-    value: function getRight() {
-      return this.right;
-    }
-
-    /**
-     * Sets Crop from the left of the asset
-     * @param {Number} right Crop from the left of the asset
-     */
-  }, {
-    key: "setRight",
-    value: function setRight(right) {
-      this['right'] = right;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj) {}
 
     /**
      * Constructs a <code>Crop</code> from a plain JavaScript object, optionally creating a new instance.
@@ -144,25 +44,24 @@ var Crop = /*#__PURE__*/function () {
      * @param {module:model/Crop} obj Optional instance to populate.
      * @return {module:model/Crop} The populated <code>Crop</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new Crop();
-        if (data.hasOwnProperty('top')) {
-          obj['top'] = _ApiClient["default"].convertToType(data['top'], 'Number');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Crop();
+
+            if (data.hasOwnProperty('top')) {
+                obj['top'] = ApiClient.convertToType(data['top'], 'Number');
+            }
+            if (data.hasOwnProperty('bottom')) {
+                obj['bottom'] = ApiClient.convertToType(data['bottom'], 'Number');
+            }
+            if (data.hasOwnProperty('left')) {
+                obj['left'] = ApiClient.convertToType(data['left'], 'Number');
+            }
+            if (data.hasOwnProperty('right')) {
+                obj['right'] = ApiClient.convertToType(data['right'], 'Number');
+            }
         }
-        if (data.hasOwnProperty('bottom')) {
-          obj['bottom'] = _ApiClient["default"].convertToType(data['bottom'], 'Number');
-        }
-        if (data.hasOwnProperty('left')) {
-          obj['left'] = _ApiClient["default"].convertToType(data['left'], 'Number');
-        }
-        if (data.hasOwnProperty('right')) {
-          obj['right'] = _ApiClient["default"].convertToType(data['right'], 'Number');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -170,13 +69,88 @@ var Crop = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Crop</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      return true;
+    static validateJSON(data) {
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns Crop from the top of the asset
+     * minimum: 0
+     * maximum: 1
+     * @return {Number}
+     */
+    getTop() {
+        return this.top;
+    }
+
+    /**
+     * Sets Crop from the top of the asset
+     * @param {Number} top Crop from the top of the asset
+     */
+    setTop(top) {
+        this['top'] = top;
+        return this;
+    }
+/**
+     * Returns Crop from the bottom of the asset
+     * minimum: 0
+     * maximum: 1
+     * @return {Number}
+     */
+    getBottom() {
+        return this.bottom;
+    }
+
+    /**
+     * Sets Crop from the bottom of the asset
+     * @param {Number} bottom Crop from the bottom of the asset
+     */
+    setBottom(bottom) {
+        this['bottom'] = bottom;
+        return this;
+    }
+/**
+     * Returns Crop from the left of the asset
+     * minimum: 0
+     * maximum: 1
+     * @return {Number}
+     */
+    getLeft() {
+        return this.left;
+    }
+
+    /**
+     * Sets Crop from the left of the asset
+     * @param {Number} left Crop from the left of the asset
+     */
+    setLeft(left) {
+        this['left'] = left;
+        return this;
+    }
+/**
+     * Returns Crop from the left of the asset
+     * minimum: 0
+     * maximum: 1
+     * @return {Number}
+     */
+    getRight() {
+        return this.right;
+    }
+
+    /**
+     * Sets Crop from the left of the asset
+     * @param {Number} right Crop from the left of the asset
+     */
+    setRight(right) {
+        this['right'] = right;
+        return this;
+    }
+
+}
+
+
+
 /**
  * Crop from the top of the asset
  * @member {Number} top
@@ -200,4 +174,11 @@ Crop.prototype['left'] = undefined;
  * @member {Number} right
  */
 Crop.prototype['right'] = undefined;
-var _default = exports["default"] = Crop;
+
+
+
+
+
+
+export default Crop;
+

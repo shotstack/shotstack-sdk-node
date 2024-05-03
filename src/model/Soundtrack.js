@@ -1,20 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -26,93 +10,33 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+
 /**
  * The Soundtrack model module.
  * @module model/Soundtrack
  * @version 0.2.6
  */
-var Soundtrack = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Soundtrack</code>.
-   * A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
-   * @alias module:model/Soundtrack
-   * @param src {String} The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
-   */
-  function Soundtrack(src) {
-    _classCallCheck(this, Soundtrack);
-    Soundtrack.initialize(this, src);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(Soundtrack, [{
-    key: "getSrc",
-    value:
+class Soundtrack {
     /**
-         * Returns The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
-         * @return {String}
-         */
-    function getSrc() {
-      return this.src;
-    }
-
-    /**
-     * Sets The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
-     * @param {String} src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * Constructs a new <code>Soundtrack</code>.
+     * A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+     * @alias module:model/Soundtrack
+     * @param src {String} The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
      */
-  }, {
-    key: "setSrc",
-    value: function setSrc(src) {
-      this['src'] = src;
-      return this;
-    }
-    /**
-         * Returns The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-         * @return {module:model/Soundtrack.EffectEnum}
-         */
-  }, {
-    key: "getEffect",
-    value: function getEffect() {
-      return this.effect;
+    constructor(src) { 
+        
+        Soundtrack.initialize(this, src);
     }
 
     /**
-     * Sets The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     * @param {module:model/Soundtrack.EffectEnum} effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setEffect",
-    value: function setEffect(effect) {
-      this['effect'] = effect;
-      return this;
-    }
-    /**
-         * Returns Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-         * @return {Number}
-         */
-  }, {
-    key: "getVolume",
-    value: function getVolume() {
-      return this.volume;
-    }
-
-    /**
-     * Sets Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     * @param {Number} volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     */
-  }, {
-    key: "setVolume",
-    value: function setVolume(volume) {
-      this['volume'] = volume;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, src) {
-      obj['src'] = src;
+    static initialize(obj, src) { 
+        obj['src'] = src;
     }
 
     /**
@@ -122,22 +46,21 @@ var Soundtrack = /*#__PURE__*/function () {
      * @param {module:model/Soundtrack} obj Optional instance to populate.
      * @return {module:model/Soundtrack} The populated <code>Soundtrack</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new Soundtrack();
-        if (data.hasOwnProperty('src')) {
-          obj['src'] = _ApiClient["default"].convertToType(data['src'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Soundtrack();
+
+            if (data.hasOwnProperty('src')) {
+                obj['src'] = ApiClient.convertToType(data['src'], 'String');
+            }
+            if (data.hasOwnProperty('effect')) {
+                obj['effect'] = ApiClient.convertToType(data['effect'], 'String');
+            }
+            if (data.hasOwnProperty('volume')) {
+                obj['volume'] = ApiClient.convertToType(data['volume'], 'Number');
+            }
         }
-        if (data.hasOwnProperty('effect')) {
-          obj['effect'] = _ApiClient["default"].convertToType(data['effect'], 'String');
-        }
-        if (data.hasOwnProperty('volume')) {
-          obj['volume'] = _ApiClient["default"].convertToType(data['volume'], 'Number');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -145,36 +68,76 @@ var Soundtrack = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Soundtrack</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(Soundtrack.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of Soundtrack.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['src'] && !(typeof data['src'] === 'string' || data['src'] instanceof String)) {
-        throw new Error("Expected the field `src` to be a primitive type in the JSON string but got " + data['src']);
-      }
-      // ensure the json data is a string
-      if (data['effect'] && !(typeof data['effect'] === 'string' || data['effect'] instanceof String)) {
-        throw new Error("Expected the field `effect` to be a primitive type in the JSON string but got " + data['effect']);
-      }
-      return true;
+        if (data['src'] && !(typeof data['src'] === 'string' || data['src'] instanceof String)) {
+            throw new Error("Expected the field `src` to be a primitive type in the JSON string but got " + data['src']);
+        }
+        // ensure the json data is a string
+        if (data['effect'] && !(typeof data['effect'] === 'string' || data['effect'] instanceof String)) {
+            throw new Error("Expected the field `effect` to be a primitive type in the JSON string but got " + data['effect']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @return {String}
+     */
+    getSrc() {
+        return this.src;
+    }
+
+    /**
+     * Sets The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param {String} src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     */
+    setSrc(src) {
+        this['src'] = src;
+        return this;
+    }
+/**
+     * Returns The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @return {module:model/Soundtrack.EffectEnum}
+     */
+    getEffect() {
+        return this.effect;
+    }
+
+    /**
+     * Sets The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param {module:model/Soundtrack.EffectEnum} effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     */
+    setEffect(effect) {
+        this['effect'] = effect;
+        return this;
+    }
+/**
+     * Returns Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @return {Number}
+     */
+    getVolume() {
+        return this.volume;
+    }
+
+    /**
+     * Sets Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param {Number} volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     */
+    setVolume(volume) {
+        this['volume'] = volume;
+        return this;
+    }
+
+}
+
 Soundtrack.RequiredProperties = ["src"];
 
 /**
@@ -195,26 +158,37 @@ Soundtrack.prototype['effect'] = undefined;
  */
 Soundtrack.prototype['volume'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>effect</code> property.
  * @enum {String}
  * @readonly
  */
 Soundtrack['EffectEnum'] = {
-  /**
-   * value: "fadeIn"
-   * @const
-   */
-  "fadeIn": "fadeIn",
-  /**
-   * value: "fadeOut"
-   * @const
-   */
-  "fadeOut": "fadeOut",
-  /**
-   * value: "fadeInFadeOut"
-   * @const
-   */
-  "fadeInFadeOut": "fadeInFadeOut"
+
+    /**
+     * value: "fadeIn"
+     * @const
+     */
+    "fadeIn": "fadeIn",
+
+    /**
+     * value: "fadeOut"
+     * @const
+     */
+    "fadeOut": "fadeOut",
+
+    /**
+     * value: "fadeInFadeOut"
+     * @const
+     */
+    "fadeInFadeOut": "fadeInFadeOut"
 };
-var _default = exports["default"] = Soundtrack;
+
+
+
+export default Soundtrack;
+

@@ -1,26 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _Edit = _interopRequireDefault(require("../model/Edit"));
-var _ProbeResponse = _interopRequireDefault(require("../model/ProbeResponse"));
-var _QueuedResponse = _interopRequireDefault(require("../model/QueuedResponse"));
-var _RenderResponse = _interopRequireDefault(require("../model/RenderResponse"));
-var _Template = _interopRequireDefault(require("../model/Template"));
-var _TemplateDataResponse = _interopRequireDefault(require("../model/TemplateDataResponse"));
-var _TemplateListResponse = _interopRequireDefault(require("../model/TemplateListResponse"));
-var _TemplateRender = _interopRequireDefault(require("../model/TemplateRender"));
-var _TemplateResponse = _interopRequireDefault(require("../model/TemplateResponse"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -32,49 +10,71 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+
+import ApiClient from "../ApiClient";
+import Edit from '../model/Edit';
+import ProbeResponse from '../model/ProbeResponse';
+import QueuedResponse from '../model/QueuedResponse';
+import RenderResponse from '../model/RenderResponse';
+import Template from '../model/Template';
+import TemplateDataResponse from '../model/TemplateDataResponse';
+import TemplateListResponse from '../model/TemplateListResponse';
+import TemplateRender from '../model/TemplateRender';
+import TemplateResponse from '../model/TemplateResponse';
+
 /**
 * Edit service.
 * @module api/EditApi
 * @version 0.2.6
 */
-var EditApi = exports["default"] = /*#__PURE__*/function () {
-  /**
-  * Constructs a new EditApi. 
-  * @alias module:api/EditApi
-  * @class
-  * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-  * default to {@link module:ApiClient#instance} if unspecified.
-  */
-  function EditApi(apiClient) {
-    _classCallCheck(this, EditApi);
-    this.apiClient = apiClient || _ApiClient["default"].instance;
-  }
+export default class EditApi {
 
-  /**
-   * Delete Template
-   * Delete a template by its template id.  **Base URL:** <a href=\"#\">https://api.shotstack.io/edit/{version}</a> 
-   * @param {String} id The id of the template in UUID format
-   * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
-   */
-  return _createClass(EditApi, [{
-    key: "deleteTemplateWithHttpInfo",
-    value: function deleteTemplateWithHttpInfo(id) {
-      var postBody = null;
+    /**
+    * Constructs a new EditApi. 
+    * @alias module:api/EditApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
+    }
+
+
+
+    /**
+     * Delete Template
+     * Delete a template by its template id.  **Base URL:** <a href=\"#\">https://api.shotstack.io/edit/{version}</a> 
+     * @param {String} id The id of the template in UUID format
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    deleteTemplateWithHttpInfo(id) {
+      let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling deleteTemplate");
       }
-      var pathParams = {
+
+      let pathParams = {
         'id': id
       };
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = [];
-      var accepts = [];
-      var returnType = null;
-      return this.apiClient.callApi('/templates/{id}', 'DELETE', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = [];
+      let accepts = [];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -83,13 +83,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {String} id The id of the template in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
-  }, {
-    key: "deleteTemplate",
-    value: function deleteTemplate(id) {
-      return this.deleteTemplateWithHttpInfo(id).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    deleteTemplate(id) {
+      return this.deleteTemplateWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Get Render Status
@@ -100,29 +100,35 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {Boolean} [merged] Used when data is set to true, it will show the [merge fields](#tocs_mergefield) merged in to the data response.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RenderResponse} and HTTP response
      */
-  }, {
-    key: "getRenderWithHttpInfo",
-    value: function getRenderWithHttpInfo(id, opts) {
+    getRenderWithHttpInfo(id, opts) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling getRender");
       }
-      var pathParams = {
+
+      let pathParams = {
         'id': id
       };
-      var queryParams = {
+      let queryParams = {
         'data': opts['data'],
         'merged': opts['merged']
       };
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = _RenderResponse["default"];
-      return this.apiClient.callApi('/render/{id}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = RenderResponse;
+      return this.apiClient.callApi(
+        '/render/{id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -134,13 +140,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {Boolean} opts.merged Used when data is set to true, it will show the [merge fields](#tocs_mergefield) merged in to the data response.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RenderResponse}
      */
-  }, {
-    key: "getRender",
-    value: function getRender(id, opts) {
-      return this.getRenderWithHttpInfo(id, opts).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    getRender(id, opts) {
+      return this.getRenderWithHttpInfo(id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Retrieve Template
@@ -148,25 +154,32 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {String} id The id of the template in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateDataResponse} and HTTP response
      */
-  }, {
-    key: "getTemplateWithHttpInfo",
-    value: function getTemplateWithHttpInfo(id) {
-      var postBody = null;
+    getTemplateWithHttpInfo(id) {
+      let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling getTemplate");
       }
-      var pathParams = {
+
+      let pathParams = {
         'id': id
       };
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = _TemplateDataResponse["default"];
-      return this.apiClient.callApi('/templates/{id}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = TemplateDataResponse;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -175,32 +188,40 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {String} id The id of the template in UUID format
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateDataResponse}
      */
-  }, {
-    key: "getTemplate",
-    value: function getTemplate(id) {
-      return this.getTemplateWithHttpInfo(id).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    getTemplate(id) {
+      return this.getTemplateWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * List Templates
      * Retrieve a list of templates stored against a users account and stage.  **Base URL:** <a href=\"#\">https://api.shotstack.io/edit/{version}</a> 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateListResponse} and HTTP response
      */
-  }, {
-    key: "getTemplatesWithHttpInfo",
-    value: function getTemplatesWithHttpInfo() {
-      var postBody = null;
-      var pathParams = {};
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = _TemplateListResponse["default"];
-      return this.apiClient.callApi('/templates', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+    getTemplatesWithHttpInfo() {
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = TemplateListResponse;
+      return this.apiClient.callApi(
+        '/templates', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -208,13 +229,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * Retrieve a list of templates stored against a users account and stage.  **Base URL:** <a href=\"#\">https://api.shotstack.io/edit/{version}</a> 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateListResponse}
      */
-  }, {
-    key: "getTemplates",
-    value: function getTemplates() {
-      return this.getTemplatesWithHttpInfo().then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    getTemplates() {
+      return this.getTemplatesWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Render Asset
@@ -222,23 +243,31 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Edit} edit The video, image or audio edit specified using JSON.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
      */
-  }, {
-    key: "postRenderWithHttpInfo",
-    value: function postRenderWithHttpInfo(edit) {
-      var postBody = edit;
+    postRenderWithHttpInfo(edit) {
+      let postBody = edit;
       // verify the required parameter 'edit' is set
       if (edit === undefined || edit === null) {
         throw new Error("Missing the required parameter 'edit' when calling postRender");
       }
-      var pathParams = {};
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = _QueuedResponse["default"];
-      return this.apiClient.callApi('/render', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = QueuedResponse;
+      return this.apiClient.callApi(
+        '/render', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -247,13 +276,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Edit} edit The video, image or audio edit specified using JSON.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
      */
-  }, {
-    key: "postRender",
-    value: function postRender(edit) {
-      return this.postRenderWithHttpInfo(edit).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    postRender(edit) {
+      return this.postRenderWithHttpInfo(edit)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Create Template
@@ -261,23 +290,31 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Template} template Create a template with a name and [Edit](#tocs_edit).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateResponse} and HTTP response
      */
-  }, {
-    key: "postTemplateWithHttpInfo",
-    value: function postTemplateWithHttpInfo(template) {
-      var postBody = template;
+    postTemplateWithHttpInfo(template) {
+      let postBody = template;
       // verify the required parameter 'template' is set
       if (template === undefined || template === null) {
         throw new Error("Missing the required parameter 'template' when calling postTemplate");
       }
-      var pathParams = {};
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = _TemplateResponse["default"];
-      return this.apiClient.callApi('/templates', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = TemplateResponse;
+      return this.apiClient.callApi(
+        '/templates', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -286,13 +323,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Template} template Create a template with a name and [Edit](#tocs_edit).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateResponse}
      */
-  }, {
-    key: "postTemplate",
-    value: function postTemplate(template) {
-      return this.postTemplateWithHttpInfo(template).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    postTemplate(template) {
+      return this.postTemplateWithHttpInfo(template)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Render Template
@@ -300,23 +337,31 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/TemplateRender} templateRender Render a template by template id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QueuedResponse} and HTTP response
      */
-  }, {
-    key: "postTemplateRenderWithHttpInfo",
-    value: function postTemplateRenderWithHttpInfo(templateRender) {
-      var postBody = templateRender;
+    postTemplateRenderWithHttpInfo(templateRender) {
+      let postBody = templateRender;
       // verify the required parameter 'templateRender' is set
       if (templateRender === undefined || templateRender === null) {
         throw new Error("Missing the required parameter 'templateRender' when calling postTemplateRender");
       }
-      var pathParams = {};
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = _QueuedResponse["default"];
-      return this.apiClient.callApi('/templates/render', 'POST', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = QueuedResponse;
+      return this.apiClient.callApi(
+        '/templates/render', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -325,13 +370,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/TemplateRender} templateRender Render a template by template id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QueuedResponse}
      */
-  }, {
-    key: "postTemplateRender",
-    value: function postTemplateRender(templateRender) {
-      return this.postTemplateRenderWithHttpInfo(templateRender).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    postTemplateRender(templateRender) {
+      return this.postTemplateRenderWithHttpInfo(templateRender)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Inspect Media
@@ -339,25 +384,32 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {String} url The URL of the media to inspect, must be **URL encoded**.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProbeResponse} and HTTP response
      */
-  }, {
-    key: "probeWithHttpInfo",
-    value: function probeWithHttpInfo(url) {
-      var postBody = null;
+    probeWithHttpInfo(url) {
+      let postBody = null;
       // verify the required parameter 'url' is set
       if (url === undefined || url === null) {
         throw new Error("Missing the required parameter 'url' when calling probe");
       }
-      var pathParams = {
+
+      let pathParams = {
         'url': url
       };
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = _ProbeResponse["default"];
-      return this.apiClient.callApi('/probe/{url}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ProbeResponse;
+      return this.apiClient.callApi(
+        '/probe/{url}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -366,13 +418,13 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {String} url The URL of the media to inspect, must be **URL encoded**.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProbeResponse}
      */
-  }, {
-    key: "probe",
-    value: function probe(url) {
-      return this.probeWithHttpInfo(url).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    probe(url) {
+      return this.probeWithHttpInfo(url)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
+
 
     /**
      * Update Template
@@ -381,10 +433,8 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Template} template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TemplateResponse} and HTTP response
      */
-  }, {
-    key: "putTemplateWithHttpInfo",
-    value: function putTemplateWithHttpInfo(id, template) {
-      var postBody = template;
+    putTemplateWithHttpInfo(id, template) {
+      let postBody = template;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
         throw new Error("Missing the required parameter 'id' when calling putTemplate");
@@ -393,17 +443,26 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
       if (template === undefined || template === null) {
         throw new Error("Missing the required parameter 'template' when calling putTemplate");
       }
-      var pathParams = {
+
+      let pathParams = {
         'id': id
       };
-      var queryParams = {};
-      var headerParams = {};
-      var formParams = {};
-      var authNames = ['DeveloperKey'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = _TemplateResponse["default"];
-      return this.apiClient.callApi('/templates/{id}', 'PUT', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null);
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['DeveloperKey'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = TemplateResponse;
+      return this.apiClient.callApi(
+        '/templates/{id}', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
     }
 
     /**
@@ -413,12 +472,12 @@ var EditApi = exports["default"] = /*#__PURE__*/function () {
      * @param {module:model/Template} template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TemplateResponse}
      */
-  }, {
-    key: "putTemplate",
-    value: function putTemplate(id, template) {
-      return this.putTemplateWithHttpInfo(id, template).then(function (response_and_data) {
-        return response_and_data.data;
-      });
+    putTemplate(id, template) {
+      return this.putTemplateWithHttpInfo(id, template)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
-  }]);
-}();
+
+
+}

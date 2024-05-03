@@ -1,20 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -26,119 +10,39 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+
 /**
  * The ShotstackTextToImageOptions model module.
  * @module model/ShotstackTextToImageOptions
  * @version 0.2.6
  */
-var ShotstackTextToImageOptions = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>ShotstackTextToImageOptions</code>.
-   * Options for the Shotstack text-to-image service. Set a text prompt to generate an image from. The output will be  generated as a PNG file available at the URL returned in the response.
-   * @alias module:model/ShotstackTextToImageOptions
-   * @param type {module:model/ShotstackTextToImageOptions.TypeEnum} The type of asset to generate - set to `text-to-image` for text-to-image.
-   * @param prompt {String} The text prompt to generate an image from.
-   * @param width {Number} The width of the image in pixels.
-   * @param height {Number} The height of the image in pixels.
-   */
-  function ShotstackTextToImageOptions(type, prompt, width, height) {
-    _classCallCheck(this, ShotstackTextToImageOptions);
-    ShotstackTextToImageOptions.initialize(this, type, prompt, width, height);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(ShotstackTextToImageOptions, [{
-    key: "getType",
-    value:
+class ShotstackTextToImageOptions {
     /**
-         * Returns The type of asset to generate - set to `text-to-image` for text-to-image.
-         * @return {module:model/ShotstackTextToImageOptions.TypeEnum}
-         */
-    function getType() {
-      return this.type;
-    }
-
-    /**
-     * Sets The type of asset to generate - set to `text-to-image` for text-to-image.
-     * @param {module:model/ShotstackTextToImageOptions.TypeEnum} type The type of asset to generate - set to `text-to-image` for text-to-image.
+     * Constructs a new <code>ShotstackTextToImageOptions</code>.
+     * Options for the Shotstack text-to-image service. Set a text prompt to generate an image from. The output will be  generated as a PNG file available at the URL returned in the response.
+     * @alias module:model/ShotstackTextToImageOptions
+     * @param type {module:model/ShotstackTextToImageOptions.TypeEnum} The type of asset to generate - set to `text-to-image` for text-to-image.
+     * @param prompt {String} The text prompt to generate an image from.
+     * @param width {Number} The width of the image in pixels.
+     * @param height {Number} The height of the image in pixels.
      */
-  }, {
-    key: "setType",
-    value: function setType(type) {
-      this['type'] = type;
-      return this;
-    }
-    /**
-         * Returns The text prompt to generate an image from.
-         * @return {String}
-         */
-  }, {
-    key: "getPrompt",
-    value: function getPrompt() {
-      return this.prompt;
+    constructor(type, prompt, width, height) { 
+        
+        ShotstackTextToImageOptions.initialize(this, type, prompt, width, height);
     }
 
     /**
-     * Sets The text prompt to generate an image from.
-     * @param {String} prompt The text prompt to generate an image from.
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setPrompt",
-    value: function setPrompt(prompt) {
-      this['prompt'] = prompt;
-      return this;
-    }
-    /**
-         * Returns The width of the image in pixels.
-         * @return {Number}
-         */
-  }, {
-    key: "getWidth",
-    value: function getWidth() {
-      return this.width;
-    }
-
-    /**
-     * Sets The width of the image in pixels.
-     * @param {Number} width The width of the image in pixels.
-     */
-  }, {
-    key: "setWidth",
-    value: function setWidth(width) {
-      this['width'] = width;
-      return this;
-    }
-    /**
-         * Returns The height of the image in pixels.
-         * @return {Number}
-         */
-  }, {
-    key: "getHeight",
-    value: function getHeight() {
-      return this.height;
-    }
-
-    /**
-     * Sets The height of the image in pixels.
-     * @param {Number} height The height of the image in pixels.
-     */
-  }, {
-    key: "setHeight",
-    value: function setHeight(height) {
-      this['height'] = height;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, type, prompt, width, height) {
-      obj['type'] = type || 'text-to-image';
-      obj['prompt'] = prompt;
-      obj['width'] = width;
-      obj['height'] = height;
+    static initialize(obj, type, prompt, width, height) { 
+        obj['type'] = type || 'text-to-image';
+        obj['prompt'] = prompt;
+        obj['width'] = width;
+        obj['height'] = height;
     }
 
     /**
@@ -148,25 +52,24 @@ var ShotstackTextToImageOptions = /*#__PURE__*/function () {
      * @param {module:model/ShotstackTextToImageOptions} obj Optional instance to populate.
      * @return {module:model/ShotstackTextToImageOptions} The populated <code>ShotstackTextToImageOptions</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new ShotstackTextToImageOptions();
-        if (data.hasOwnProperty('type')) {
-          obj['type'] = _ApiClient["default"].convertToType(data['type'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new ShotstackTextToImageOptions();
+
+            if (data.hasOwnProperty('type')) {
+                obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            }
+            if (data.hasOwnProperty('prompt')) {
+                obj['prompt'] = ApiClient.convertToType(data['prompt'], 'String');
+            }
+            if (data.hasOwnProperty('width')) {
+                obj['width'] = ApiClient.convertToType(data['width'], 'Number');
+            }
+            if (data.hasOwnProperty('height')) {
+                obj['height'] = ApiClient.convertToType(data['height'], 'Number');
+            }
         }
-        if (data.hasOwnProperty('prompt')) {
-          obj['prompt'] = _ApiClient["default"].convertToType(data['prompt'], 'String');
-        }
-        if (data.hasOwnProperty('width')) {
-          obj['width'] = _ApiClient["default"].convertToType(data['width'], 'Number');
-        }
-        if (data.hasOwnProperty('height')) {
-          obj['height'] = _ApiClient["default"].convertToType(data['height'], 'Number');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -174,36 +77,92 @@ var ShotstackTextToImageOptions = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>ShotstackTextToImageOptions</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(ShotstackTextToImageOptions.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of ShotstackTextToImageOptions.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
-        throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
-      }
-      // ensure the json data is a string
-      if (data['prompt'] && !(typeof data['prompt'] === 'string' || data['prompt'] instanceof String)) {
-        throw new Error("Expected the field `prompt` to be a primitive type in the JSON string but got " + data['prompt']);
-      }
-      return true;
+        if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
+            throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+        }
+        // ensure the json data is a string
+        if (data['prompt'] && !(typeof data['prompt'] === 'string' || data['prompt'] instanceof String)) {
+            throw new Error("Expected the field `prompt` to be a primitive type in the JSON string but got " + data['prompt']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The type of asset to generate - set to `text-to-image` for text-to-image.
+     * @return {module:model/ShotstackTextToImageOptions.TypeEnum}
+     */
+    getType() {
+        return this.type;
+    }
+
+    /**
+     * Sets The type of asset to generate - set to `text-to-image` for text-to-image.
+     * @param {module:model/ShotstackTextToImageOptions.TypeEnum} type The type of asset to generate - set to `text-to-image` for text-to-image.
+     */
+    setType(type) {
+        this['type'] = type;
+        return this;
+    }
+/**
+     * Returns The text prompt to generate an image from.
+     * @return {String}
+     */
+    getPrompt() {
+        return this.prompt;
+    }
+
+    /**
+     * Sets The text prompt to generate an image from.
+     * @param {String} prompt The text prompt to generate an image from.
+     */
+    setPrompt(prompt) {
+        this['prompt'] = prompt;
+        return this;
+    }
+/**
+     * Returns The width of the image in pixels.
+     * @return {Number}
+     */
+    getWidth() {
+        return this.width;
+    }
+
+    /**
+     * Sets The width of the image in pixels.
+     * @param {Number} width The width of the image in pixels.
+     */
+    setWidth(width) {
+        this['width'] = width;
+        return this;
+    }
+/**
+     * Returns The height of the image in pixels.
+     * @return {Number}
+     */
+    getHeight() {
+        return this.height;
+    }
+
+    /**
+     * Sets The height of the image in pixels.
+     * @param {Number} height The height of the image in pixels.
+     */
+    setHeight(height) {
+        this['height'] = height;
+        return this;
+    }
+
+}
+
 ShotstackTextToImageOptions.RequiredProperties = ["type", "prompt", "width", "height"];
 
 /**
@@ -231,16 +190,25 @@ ShotstackTextToImageOptions.prototype['width'] = undefined;
  */
 ShotstackTextToImageOptions.prototype['height'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>type</code> property.
  * @enum {String}
  * @readonly
  */
 ShotstackTextToImageOptions['TypeEnum'] = {
-  /**
-   * value: "text-to-image"
-   * @const
-   */
-  "text-to-image": "text-to-image"
+
+    /**
+     * value: "text-to-image"
+     * @const
+     */
+    "text-to-image": "text-to-image"
 };
-var _default = exports["default"] = ShotstackTextToImageOptions;
+
+
+
+export default ShotstackTextToImageOptions;
+

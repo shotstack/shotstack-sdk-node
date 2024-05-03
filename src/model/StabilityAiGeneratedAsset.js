@@ -1,21 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _StabilityAiGeneratedAssetOptions = _interopRequireDefault(require("./StabilityAiGeneratedAssetOptions"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -27,73 +10,36 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import StabilityAiGeneratedAssetOptions from './StabilityAiGeneratedAssetOptions';
+
 /**
  * The StabilityAiGeneratedAsset model module.
  * @module model/StabilityAiGeneratedAsset
  * @version 0.2.6
  */
-var StabilityAiGeneratedAsset = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>StabilityAiGeneratedAsset</code>.
-   * Generate assets using Stability AI. Stability AI provide a text-to-image service using Stable Diffusion. The Stability AI provider works on a bring-your-own-key basis, credentials are required and must be added via the  [dashboard](https://dashboard.shotstack.io/integrations/stability-ai), not in the request.
-   * @alias module:model/StabilityAiGeneratedAsset
-   * @param provider {module:model/StabilityAiGeneratedAsset.ProviderEnum} The name of the provider - set to `stability-ai` for Stability AI.
-   * @param options {module:model/StabilityAiGeneratedAssetOptions} 
-   */
-  function StabilityAiGeneratedAsset(provider, options) {
-    _classCallCheck(this, StabilityAiGeneratedAsset);
-    StabilityAiGeneratedAsset.initialize(this, provider, options);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(StabilityAiGeneratedAsset, [{
-    key: "getProvider",
-    value:
+class StabilityAiGeneratedAsset {
     /**
-         * Returns The name of the provider - set to `stability-ai` for Stability AI.
-         * @return {module:model/StabilityAiGeneratedAsset.ProviderEnum}
-         */
-    function getProvider() {
-      return this.provider;
-    }
-
-    /**
-     * Sets The name of the provider - set to `stability-ai` for Stability AI.
-     * @param {module:model/StabilityAiGeneratedAsset.ProviderEnum} provider The name of the provider - set to `stability-ai` for Stability AI.
+     * Constructs a new <code>StabilityAiGeneratedAsset</code>.
+     * Generate assets using Stability AI. Stability AI provide a text-to-image service using Stable Diffusion. The Stability AI provider works on a bring-your-own-key basis, credentials are required and must be added via the  [dashboard](https://dashboard.shotstack.io/integrations/stability-ai), not in the request.
+     * @alias module:model/StabilityAiGeneratedAsset
+     * @param provider {module:model/StabilityAiGeneratedAsset.ProviderEnum} The name of the provider - set to `stability-ai` for Stability AI.
+     * @param options {module:model/StabilityAiGeneratedAssetOptions} 
      */
-  }, {
-    key: "setProvider",
-    value: function setProvider(provider) {
-      this['provider'] = provider;
-      return this;
-    }
-    /**
-         * @return {module:model/StabilityAiGeneratedAssetOptions}
-         */
-  }, {
-    key: "getOptions",
-    value: function getOptions() {
-      return this.options;
+    constructor(provider, options) { 
+        
+        StabilityAiGeneratedAsset.initialize(this, provider, options);
     }
 
     /**
-     * @param {module:model/StabilityAiGeneratedAssetOptions} options
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setOptions",
-    value: function setOptions(options) {
-      this['options'] = options;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, provider, options) {
-      obj['provider'] = provider || 'stability-ai';
-      obj['options'] = options;
+    static initialize(obj, provider, options) { 
+        obj['provider'] = provider || 'stability-ai';
+        obj['options'] = options;
     }
 
     /**
@@ -103,19 +49,18 @@ var StabilityAiGeneratedAsset = /*#__PURE__*/function () {
      * @param {module:model/StabilityAiGeneratedAsset} obj Optional instance to populate.
      * @return {module:model/StabilityAiGeneratedAsset} The populated <code>StabilityAiGeneratedAsset</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new StabilityAiGeneratedAsset();
-        if (data.hasOwnProperty('provider')) {
-          obj['provider'] = _ApiClient["default"].convertToType(data['provider'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new StabilityAiGeneratedAsset();
+
+            if (data.hasOwnProperty('provider')) {
+                obj['provider'] = ApiClient.convertToType(data['provider'], 'String');
+            }
+            if (data.hasOwnProperty('options')) {
+                obj['options'] = StabilityAiGeneratedAssetOptions.constructFromObject(data['options']);
+            }
         }
-        if (data.hasOwnProperty('options')) {
-          obj['options'] = _StabilityAiGeneratedAssetOptions["default"].constructFromObject(data['options']);
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -123,37 +68,58 @@ var StabilityAiGeneratedAsset = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>StabilityAiGeneratedAsset</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(StabilityAiGeneratedAsset.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of StabilityAiGeneratedAsset.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['provider'] && !(typeof data['provider'] === 'string' || data['provider'] instanceof String)) {
-        throw new Error("Expected the field `provider` to be a primitive type in the JSON string but got " + data['provider']);
-      }
-      // validate the optional field `options`
-      if (data['options']) {
-        // data not null
-        _StabilityAiGeneratedAssetOptions["default"].validateJSON(data['options']);
-      }
-      return true;
+        if (data['provider'] && !(typeof data['provider'] === 'string' || data['provider'] instanceof String)) {
+            throw new Error("Expected the field `provider` to be a primitive type in the JSON string but got " + data['provider']);
+        }
+        // validate the optional field `options`
+        if (data['options']) { // data not null
+          StabilityAiGeneratedAssetOptions.validateJSON(data['options']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The name of the provider - set to `stability-ai` for Stability AI.
+     * @return {module:model/StabilityAiGeneratedAsset.ProviderEnum}
+     */
+    getProvider() {
+        return this.provider;
+    }
+
+    /**
+     * Sets The name of the provider - set to `stability-ai` for Stability AI.
+     * @param {module:model/StabilityAiGeneratedAsset.ProviderEnum} provider The name of the provider - set to `stability-ai` for Stability AI.
+     */
+    setProvider(provider) {
+        this['provider'] = provider;
+        return this;
+    }
+/**
+     * @return {module:model/StabilityAiGeneratedAssetOptions}
+     */
+    getOptions() {
+        return this.options;
+    }
+
+    /**
+     * @param {module:model/StabilityAiGeneratedAssetOptions} options
+     */
+    setOptions(options) {
+        this['options'] = options;
+        return this;
+    }
+
+}
+
 StabilityAiGeneratedAsset.RequiredProperties = ["provider", "options"];
 
 /**
@@ -168,16 +134,25 @@ StabilityAiGeneratedAsset.prototype['provider'] = 'stability-ai';
  */
 StabilityAiGeneratedAsset.prototype['options'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>provider</code> property.
  * @enum {String}
  * @readonly
  */
 StabilityAiGeneratedAsset['ProviderEnum'] = {
-  /**
-   * value: "stability-ai"
-   * @const
-   */
-  "stability-ai": "stability-ai"
+
+    /**
+     * value: "stability-ai"
+     * @const
+     */
+    "stability-ai": "stability-ai"
 };
-var _default = exports["default"] = StabilityAiGeneratedAsset;
+
+
+
+export default StabilityAiGeneratedAsset;
+

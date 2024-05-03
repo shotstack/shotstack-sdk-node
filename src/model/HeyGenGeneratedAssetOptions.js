@@ -1,20 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _HeyGenTextToAvatarOptions = _interopRequireDefault(require("./HeyGenTextToAvatarOptions"));
-var _HeyGenGeneratedAssetOptions;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -26,106 +10,105 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import HeyGenTextToAvatarOptions from './HeyGenTextToAvatarOptions';
+
 /**
  * The HeyGenGeneratedAssetOptions model module.
  * @module model/HeyGenGeneratedAssetOptions
  * @version 0.2.6
  */
-var HeyGenGeneratedAssetOptions = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>HeyGenGeneratedAssetOptions</code>.
-   * Generate assets using the third party HeyGen provider AI services.  The following AI generation services are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_heygentexttoavataroptions\&quot;&gt;HeyGenTextToAvatarOptions&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
-   * @alias module:model/HeyGenGeneratedAssetOptions
-   * @param {(module:model/HeyGenTextToAvatarOptions)} instance The actual instance to initialize HeyGenGeneratedAssetOptions.
-   */
-  function HeyGenGeneratedAssetOptions() {
-    var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    _classCallCheck(this, HeyGenGeneratedAssetOptions);
+class HeyGenGeneratedAssetOptions {
     /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
+     * Constructs a new <code>HeyGenGeneratedAssetOptions</code>.
+     * Generate assets using the third party HeyGen provider AI services.  The following AI generation services are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_heygentexttoavataroptions\&quot;&gt;HeyGenTextToAvatarOptions&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+     * @alias module:model/HeyGenGeneratedAssetOptions
+     * @param {(module:model/HeyGenTextToAvatarOptions)} instance The actual instance to initialize HeyGenGeneratedAssetOptions.
      */
-    _defineProperty(this, "toJSON", function () {
-      return this.getActualInstance();
-    });
-    if (instance === null) {
-      this.actualInstance = null;
-      return;
-    }
-    var match = 0;
-    var errorMessages = [];
-    try {
-      if (typeof instance === "HeyGenTextToAvatarOptions") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _HeyGenTextToAvatarOptions["default"].validateJSON(instance); // throw an exception if no match
-        // create HeyGenTextToAvatarOptions from JS object
-        this.actualInstance = _HeyGenTextToAvatarOptions["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into HeyGenTextToAvatarOptions
-      errorMessages.push("Failed to construct HeyGenTextToAvatarOptions: " + err);
-    }
-    if (match > 1) {
-      throw new Error("Multiple matches found constructing `HeyGenGeneratedAssetOptions` with oneOf schemas HeyGenTextToAvatarOptions. Input: " + JSON.stringify(instance));
-    } else if (match === 0) {
-      this.actualInstance = null; // clear the actual instance in case there are multiple matches
-      throw new Error("No match found constructing `HeyGenGeneratedAssetOptions` with oneOf schemas HeyGenTextToAvatarOptions. Details: " + errorMessages.join(", "));
-    } else {// only 1 match
-      // the input is valid
-    }
-  }
+    constructor(instance = null) {
+        if (instance === null) {
+            this.actualInstance = null;
+            return;
+        }
+        var match = 0;
+        var errorMessages = [];
+        try {
+            if (typeof instance === "HeyGenTextToAvatarOptions") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                HeyGenTextToAvatarOptions.validateJSON(instance); // throw an exception if no match
+                // create HeyGenTextToAvatarOptions from JS object
+                this.actualInstance = HeyGenTextToAvatarOptions.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into HeyGenTextToAvatarOptions
+            errorMessages.push("Failed to construct HeyGenTextToAvatarOptions: " + err)
+        }
 
-  /**
-   * Constructs a <code>HeyGenGeneratedAssetOptions</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/HeyGenGeneratedAssetOptions} obj Optional instance to populate.
-   * @return {module:model/HeyGenGeneratedAssetOptions} The populated <code>HeyGenGeneratedAssetOptions</code> instance.
-   */
-  return _createClass(HeyGenGeneratedAssetOptions, [{
-    key: "getActualInstance",
-    value:
+        if (match > 1) {
+            throw new Error("Multiple matches found constructing `HeyGenGeneratedAssetOptions` with oneOf schemas HeyGenTextToAvatarOptions. Input: " + JSON.stringify(instance));
+        } else if (match === 0) {
+            this.actualInstance = null; // clear the actual instance in case there are multiple matches
+            throw new Error("No match found constructing `HeyGenGeneratedAssetOptions` with oneOf schemas HeyGenTextToAvatarOptions. Details: " +
+                            errorMessages.join(", "));
+        } else { // only 1 match
+            // the input is valid
+        }
+    }
+
+    /**
+     * Constructs a <code>HeyGenGeneratedAssetOptions</code> from a plain JavaScript object, optionally creating a new instance.
+     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @param {module:model/HeyGenGeneratedAssetOptions} obj Optional instance to populate.
+     * @return {module:model/HeyGenGeneratedAssetOptions} The populated <code>HeyGenGeneratedAssetOptions</code> instance.
+     */
+    static constructFromObject(data, obj) {
+        return new HeyGenGeneratedAssetOptions(data);
+    }
+
     /**
      * Gets the actual instance, which can be <code>HeyGenTextToAvatarOptions</code>.
      * @return {(module:model/HeyGenTextToAvatarOptions)} The actual instance.
      */
-    function getActualInstance() {
-      return this.actualInstance;
+    getActualInstance() {
+        return this.actualInstance;
     }
 
     /**
      * Sets the actual instance, which can be <code>HeyGenTextToAvatarOptions</code>.
      * @param {(module:model/HeyGenTextToAvatarOptions)} obj The actual instance.
      */
-  }, {
-    key: "setActualInstance",
-    value: function setActualInstance(obj) {
-      this.actualInstance = HeyGenGeneratedAssetOptions.constructFromObject(obj).getActualInstance();
+    setActualInstance(obj) {
+       this.actualInstance = HeyGenGeneratedAssetOptions.constructFromObject(obj).getActualInstance();
     }
-  }], [{
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      return new HeyGenGeneratedAssetOptions(data);
+
+    /**
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
+     */
+    toJSON = function(){
+        return this.getActualInstance();
     }
-  }]);
-}();
+
+    /**
+     * Create an instance of HeyGenGeneratedAssetOptions from a JSON string.
+     * @param {string} json_string JSON string.
+     * @return {module:model/HeyGenGeneratedAssetOptions} An instance of HeyGenGeneratedAssetOptions.
+     */
+    static fromJSON = function(json_string){
+        return HeyGenGeneratedAssetOptions.constructFromObject(JSON.parse(json_string));
+    }
+}
+
 /**
  * The type of asset to generate - set to `text-to-avatar` for text-to-avatar.
  * @member {module:model/HeyGenGeneratedAssetOptions.TypeEnum} type
  */
-_HeyGenGeneratedAssetOptions = HeyGenGeneratedAssetOptions;
-/**
- * Create an instance of HeyGenGeneratedAssetOptions from a JSON string.
- * @param {string} json_string JSON string.
- * @return {module:model/HeyGenGeneratedAssetOptions} An instance of HeyGenGeneratedAssetOptions.
- */
-_defineProperty(HeyGenGeneratedAssetOptions, "fromJSON", function (json_string) {
-  return _HeyGenGeneratedAssetOptions.constructFromObject(JSON.parse(json_string));
-});
 HeyGenGeneratedAssetOptions.prototype['type'] = undefined;
 
 /**
@@ -169,5 +152,9 @@ HeyGenGeneratedAssetOptions.prototype['ratio'] = undefined;
  * @member {Boolean} test
  */
 HeyGenGeneratedAssetOptions.prototype['test'] = undefined;
+
+
 HeyGenGeneratedAssetOptions.OneOf = ["HeyGenTextToAvatarOptions"];
-var _default = exports["default"] = HeyGenGeneratedAssetOptions;
+
+export default HeyGenGeneratedAssetOptions;
+

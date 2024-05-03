@@ -1,21 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _Edit = _interopRequireDefault(require("./Edit"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -27,71 +10,34 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import Edit from './Edit';
+
 /**
  * The Template model module.
  * @module model/Template
  * @version 0.2.6
  */
-var Template = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Template</code>.
-   * A template is a saved [Edit](#tocs_edit) than can be loaded and re-used.
-   * @alias module:model/Template
-   * @param name {String} The template name
-   */
-  function Template(name) {
-    _classCallCheck(this, Template);
-    Template.initialize(this, name);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(Template, [{
-    key: "getName",
-    value:
+class Template {
     /**
-         * Returns The template name
-         * @return {String}
-         */
-    function getName() {
-      return this.name;
-    }
-
-    /**
-     * Sets The template name
-     * @param {String} name The template name
+     * Constructs a new <code>Template</code>.
+     * A template is a saved [Edit](#tocs_edit) than can be loaded and re-used.
+     * @alias module:model/Template
+     * @param name {String} The template name
      */
-  }, {
-    key: "setName",
-    value: function setName(name) {
-      this['name'] = name;
-      return this;
-    }
-    /**
-         * @return {module:model/Edit}
-         */
-  }, {
-    key: "getTemplate",
-    value: function getTemplate() {
-      return this.template;
+    constructor(name) { 
+        
+        Template.initialize(this, name);
     }
 
     /**
-     * @param {module:model/Edit} template
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setTemplate",
-    value: function setTemplate(template) {
-      this['template'] = template;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, name) {
-      obj['name'] = name;
+    static initialize(obj, name) { 
+        obj['name'] = name;
     }
 
     /**
@@ -101,19 +47,18 @@ var Template = /*#__PURE__*/function () {
      * @param {module:model/Template} obj Optional instance to populate.
      * @return {module:model/Template} The populated <code>Template</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new Template();
-        if (data.hasOwnProperty('name')) {
-          obj['name'] = _ApiClient["default"].convertToType(data['name'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Template();
+
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('template')) {
+                obj['template'] = Edit.constructFromObject(data['template']);
+            }
         }
-        if (data.hasOwnProperty('template')) {
-          obj['template'] = _Edit["default"].constructFromObject(data['template']);
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -121,37 +66,58 @@ var Template = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Template</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(Template.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of Template.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
-        throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
-      }
-      // validate the optional field `template`
-      if (data['template']) {
-        // data not null
-        _Edit["default"].validateJSON(data['template']);
-      }
-      return true;
+        if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
+            throw new Error("Expected the field `name` to be a primitive type in the JSON string but got " + data['name']);
+        }
+        // validate the optional field `template`
+        if (data['template']) { // data not null
+          Edit.validateJSON(data['template']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The template name
+     * @return {String}
+     */
+    getName() {
+        return this.name;
+    }
+
+    /**
+     * Sets The template name
+     * @param {String} name The template name
+     */
+    setName(name) {
+        this['name'] = name;
+        return this;
+    }
+/**
+     * @return {module:model/Edit}
+     */
+    getTemplate() {
+        return this.template;
+    }
+
+    /**
+     * @param {module:model/Edit} template
+     */
+    setTemplate(template) {
+        this['template'] = template;
+        return this;
+    }
+
+}
+
 Template.RequiredProperties = ["name"];
 
 /**
@@ -164,4 +130,11 @@ Template.prototype['name'] = undefined;
  * @member {module:model/Edit} template
  */
 Template.prototype['template'] = undefined;
-var _default = exports["default"] = Template;
+
+
+
+
+
+
+export default Template;
+

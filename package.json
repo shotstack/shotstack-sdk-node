@@ -3,7 +3,7 @@
   "version": "0.2.6",
   "description": "Official Node SDK for the Shotstack Cloud Video Editing API",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
     "prepare": "npm run build",

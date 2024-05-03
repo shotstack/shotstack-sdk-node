@@ -1,19 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _Destinations = _interopRequireDefault(require("./Destinations"));
-var _Outputs = _interopRequireDefault(require("./Outputs"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -25,107 +10,34 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import Destinations from './Destinations';
+import Outputs from './Outputs';
+
 /**
  * The Source model module.
  * @module model/Source
  * @version 0.2.6
  */
-var Source = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Source</code>.
-   * The details of the file to be ingested and any transformations to be applied. Once the source file has been ingested, new renditions can be created from it. The renditions are specified in the **outputs** property. A rendition is a new version, generated from the source. This can be used to create new sizes and aspect ratios tht serve different purposes within an application.
-   * @alias module:model/Source
-   */
-  function Source() {
-    _classCallCheck(this, Source);
-    Source.initialize(this);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(Source, [{
-    key: "getUrl",
-    value:
+class Source {
     /**
-         * Returns The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
-         * @return {String}
-         */
-    function getUrl() {
-      return this.url;
-    }
-
-    /**
-     * Sets The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
-     * @param {String} url The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
+     * Constructs a new <code>Source</code>.
+     * The details of the file to be ingested and any transformations to be applied. Once the source file has been ingested, new renditions can be created from it. The renditions are specified in the **outputs** property. A rendition is a new version, generated from the source. This can be used to create new sizes and aspect ratios tht serve different purposes within an application.
+     * @alias module:model/Source
      */
-  }, {
-    key: "setUrl",
-    value: function setUrl(url) {
-      this['url'] = url;
-      return this;
-    }
-    /**
-         * @return {module:model/Outputs}
-         */
-  }, {
-    key: "getOutputs",
-    value: function getOutputs() {
-      return this.outputs;
+    constructor() { 
+        
+        Source.initialize(this);
     }
 
     /**
-     * @param {module:model/Outputs} outputs
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setOutputs",
-    value: function setOutputs(outputs) {
-      this['outputs'] = outputs;
-      return this;
+    static initialize(obj) { 
     }
-    /**
-         * @return {module:model/Destinations}
-         */
-  }, {
-    key: "getDestinations",
-    value: function getDestinations() {
-      return this.destinations;
-    }
-
-    /**
-     * @param {module:model/Destinations} destinations
-     */
-  }, {
-    key: "setDestinations",
-    value: function setDestinations(destinations) {
-      this['destinations'] = destinations;
-      return this;
-    }
-    /**
-         * Returns An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
-         * @return {String}
-         */
-  }, {
-    key: "getCallback",
-    value: function getCallback() {
-      return this.callback;
-    }
-
-    /**
-     * Sets An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
-     * @param {String} callback An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
-     */
-  }, {
-    key: "setCallback",
-    value: function setCallback(callback) {
-      this['callback'] = callback;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj) {}
 
     /**
      * Constructs a <code>Source</code> from a plain JavaScript object, optionally creating a new instance.
@@ -134,25 +46,24 @@ var Source = /*#__PURE__*/function () {
      * @param {module:model/Source} obj Optional instance to populate.
      * @return {module:model/Source} The populated <code>Source</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new Source();
-        if (data.hasOwnProperty('url')) {
-          obj['url'] = _ApiClient["default"].convertToType(data['url'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Source();
+
+            if (data.hasOwnProperty('url')) {
+                obj['url'] = ApiClient.convertToType(data['url'], 'String');
+            }
+            if (data.hasOwnProperty('outputs')) {
+                obj['outputs'] = Outputs.constructFromObject(data['outputs']);
+            }
+            if (data.hasOwnProperty('destinations')) {
+                obj['destinations'] = Destinations.constructFromObject(data['destinations']);
+            }
+            if (data.hasOwnProperty('callback')) {
+                obj['callback'] = ApiClient.convertToType(data['callback'], 'String');
+            }
         }
-        if (data.hasOwnProperty('outputs')) {
-          obj['outputs'] = _Outputs["default"].constructFromObject(data['outputs']);
-        }
-        if (data.hasOwnProperty('destinations')) {
-          obj['destinations'] = _Destinations["default"].constructFromObject(data['destinations']);
-        }
-        if (data.hasOwnProperty('callback')) {
-          obj['callback'] = _ApiClient["default"].convertToType(data['callback'], 'String');
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -160,31 +71,92 @@ var Source = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Source</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // ensure the json data is a string
-      if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
-        throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
-      }
-      // validate the optional field `outputs`
-      if (data['outputs']) {
-        // data not null
-        _Outputs["default"].validateJSON(data['outputs']);
-      }
-      // validate the optional field `destinations`
-      if (data['destinations']) {
-        // data not null
-        _Destinations["default"].validateJSON(data['destinations']);
-      }
-      // ensure the json data is a string
-      if (data['callback'] && !(typeof data['callback'] === 'string' || data['callback'] instanceof String)) {
-        throw new Error("Expected the field `callback` to be a primitive type in the JSON string but got " + data['callback']);
-      }
-      return true;
+    static validateJSON(data) {
+        // ensure the json data is a string
+        if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
+            throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
+        }
+        // validate the optional field `outputs`
+        if (data['outputs']) { // data not null
+          Outputs.validateJSON(data['outputs']);
+        }
+        // validate the optional field `destinations`
+        if (data['destinations']) { // data not null
+          Destinations.validateJSON(data['destinations']);
+        }
+        // ensure the json data is a string
+        if (data['callback'] && !(typeof data['callback'] === 'string' || data['callback'] instanceof String)) {
+            throw new Error("Expected the field `callback` to be a primitive type in the JSON string but got " + data['callback']);
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
+     * @return {String}
+     */
+    getUrl() {
+        return this.url;
+    }
+
+    /**
+     * Sets The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
+     * @param {String} url The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
+     */
+    setUrl(url) {
+        this['url'] = url;
+        return this;
+    }
+/**
+     * @return {module:model/Outputs}
+     */
+    getOutputs() {
+        return this.outputs;
+    }
+
+    /**
+     * @param {module:model/Outputs} outputs
+     */
+    setOutputs(outputs) {
+        this['outputs'] = outputs;
+        return this;
+    }
+/**
+     * @return {module:model/Destinations}
+     */
+    getDestinations() {
+        return this.destinations;
+    }
+
+    /**
+     * @param {module:model/Destinations} destinations
+     */
+    setDestinations(destinations) {
+        this['destinations'] = destinations;
+        return this;
+    }
+/**
+     * Returns An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
+     * @return {String}
+     */
+    getCallback() {
+        return this.callback;
+    }
+
+    /**
+     * Sets An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
+     * @param {String} callback An optional webhook callback URL used to receive status notifications when sources are uploaded and renditions processed.
+     */
+    setCallback(callback) {
+        this['callback'] = callback;
+        return this;
+    }
+
+}
+
+
+
 /**
  * The URL of the file to be ingested. The URL must be publicly accessible or include credentials.
  * @member {String} url
@@ -206,4 +178,11 @@ Source.prototype['destinations'] = undefined;
  * @member {String} callback
  */
 Source.prototype['callback'] = undefined;
-var _default = exports["default"] = Source;
+
+
+
+
+
+
+export default Source;
+

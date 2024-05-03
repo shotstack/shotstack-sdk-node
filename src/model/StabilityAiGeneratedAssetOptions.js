@@ -1,20 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _StabilityAiTextToImageOptions = _interopRequireDefault(require("./StabilityAiTextToImageOptions"));
-var _StabilityAiGeneratedAssetOptions;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -26,107 +10,106 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import StabilityAiTextToImageOptions from './StabilityAiTextToImageOptions';
+
 /**
  * The StabilityAiGeneratedAssetOptions model module.
  * @module model/StabilityAiGeneratedAssetOptions
  * @version 0.2.6
  */
-var StabilityAiGeneratedAssetOptions = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>StabilityAiGeneratedAssetOptions</code>.
-   * Generate assets using Stability AI provider AI services.  The following AI generation services are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_stabilityaitexttoimageoptions\&quot;&gt;StabilityAiTextToImageOptions&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
-   * @alias module:model/StabilityAiGeneratedAssetOptions
-   * @param {(module:model/StabilityAiTextToImageOptions)} instance The actual instance to initialize StabilityAiGeneratedAssetOptions.
-   */
-  function StabilityAiGeneratedAssetOptions() {
-    var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    _classCallCheck(this, StabilityAiGeneratedAssetOptions);
+class StabilityAiGeneratedAssetOptions {
     /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
+     * Constructs a new <code>StabilityAiGeneratedAssetOptions</code>.
+     * Generate assets using Stability AI provider AI services.  The following AI generation services are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_stabilityaitexttoimageoptions\&quot;&gt;StabilityAiTextToImageOptions&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+     * @alias module:model/StabilityAiGeneratedAssetOptions
+     * @param {(module:model/StabilityAiTextToImageOptions)} instance The actual instance to initialize StabilityAiGeneratedAssetOptions.
      */
-    _defineProperty(this, "toJSON", function () {
-      return this.getActualInstance();
-    });
-    if (instance === null) {
-      this.actualInstance = null;
-      return;
-    }
-    var match = 0;
-    var errorMessages = [];
-    try {
-      if (typeof instance === "StabilityAiTextToImageOptions") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _StabilityAiTextToImageOptions["default"].validateJSON(instance); // throw an exception if no match
-        // create StabilityAiTextToImageOptions from JS object
-        this.actualInstance = _StabilityAiTextToImageOptions["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into StabilityAiTextToImageOptions
-      errorMessages.push("Failed to construct StabilityAiTextToImageOptions: " + err);
-    }
-    if (match > 1) {
-      throw new Error("Multiple matches found constructing `StabilityAiGeneratedAssetOptions` with oneOf schemas StabilityAiTextToImageOptions. Input: " + JSON.stringify(instance));
-    } else if (match === 0) {
-      this.actualInstance = null; // clear the actual instance in case there are multiple matches
-      throw new Error("No match found constructing `StabilityAiGeneratedAssetOptions` with oneOf schemas StabilityAiTextToImageOptions. Details: " + errorMessages.join(", "));
-    } else {// only 1 match
-      // the input is valid
-    }
-  }
+    constructor(instance = null) {
+        if (instance === null) {
+            this.actualInstance = null;
+            return;
+        }
+        var match = 0;
+        var errorMessages = [];
+        try {
+            if (typeof instance === "StabilityAiTextToImageOptions") {
+                this.actualInstance = instance;
+            } else {
+                // plain JS object
+                // validate the object
+                StabilityAiTextToImageOptions.validateJSON(instance); // throw an exception if no match
+                // create StabilityAiTextToImageOptions from JS object
+                this.actualInstance = StabilityAiTextToImageOptions.constructFromObject(instance);
+            }
+            match++;
+        } catch(err) {
+            // json data failed to deserialize into StabilityAiTextToImageOptions
+            errorMessages.push("Failed to construct StabilityAiTextToImageOptions: " + err)
+        }
 
-  /**
-   * Constructs a <code>StabilityAiGeneratedAssetOptions</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/StabilityAiGeneratedAssetOptions} obj Optional instance to populate.
-   * @return {module:model/StabilityAiGeneratedAssetOptions} The populated <code>StabilityAiGeneratedAssetOptions</code> instance.
-   */
-  return _createClass(StabilityAiGeneratedAssetOptions, [{
-    key: "getActualInstance",
-    value:
+        if (match > 1) {
+            throw new Error("Multiple matches found constructing `StabilityAiGeneratedAssetOptions` with oneOf schemas StabilityAiTextToImageOptions. Input: " + JSON.stringify(instance));
+        } else if (match === 0) {
+            this.actualInstance = null; // clear the actual instance in case there are multiple matches
+            throw new Error("No match found constructing `StabilityAiGeneratedAssetOptions` with oneOf schemas StabilityAiTextToImageOptions. Details: " +
+                            errorMessages.join(", "));
+        } else { // only 1 match
+            // the input is valid
+        }
+    }
+
+    /**
+     * Constructs a <code>StabilityAiGeneratedAssetOptions</code> from a plain JavaScript object, optionally creating a new instance.
+     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @param {module:model/StabilityAiGeneratedAssetOptions} obj Optional instance to populate.
+     * @return {module:model/StabilityAiGeneratedAssetOptions} The populated <code>StabilityAiGeneratedAssetOptions</code> instance.
+     */
+    static constructFromObject(data, obj) {
+        return new StabilityAiGeneratedAssetOptions(data);
+    }
+
     /**
      * Gets the actual instance, which can be <code>StabilityAiTextToImageOptions</code>.
      * @return {(module:model/StabilityAiTextToImageOptions)} The actual instance.
      */
-    function getActualInstance() {
-      return this.actualInstance;
+    getActualInstance() {
+        return this.actualInstance;
     }
 
     /**
      * Sets the actual instance, which can be <code>StabilityAiTextToImageOptions</code>.
      * @param {(module:model/StabilityAiTextToImageOptions)} obj The actual instance.
      */
-  }, {
-    key: "setActualInstance",
-    value: function setActualInstance(obj) {
-      this.actualInstance = StabilityAiGeneratedAssetOptions.constructFromObject(obj).getActualInstance();
+    setActualInstance(obj) {
+       this.actualInstance = StabilityAiGeneratedAssetOptions.constructFromObject(obj).getActualInstance();
     }
-  }], [{
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      return new StabilityAiGeneratedAssetOptions(data);
+
+    /**
+     * Returns the JSON representation of the actual instance.
+     * @return {string}
+     */
+    toJSON = function(){
+        return this.getActualInstance();
     }
-  }]);
-}();
+
+    /**
+     * Create an instance of StabilityAiGeneratedAssetOptions from a JSON string.
+     * @param {string} json_string JSON string.
+     * @return {module:model/StabilityAiGeneratedAssetOptions} An instance of StabilityAiGeneratedAssetOptions.
+     */
+    static fromJSON = function(json_string){
+        return StabilityAiGeneratedAssetOptions.constructFromObject(JSON.parse(json_string));
+    }
+}
+
 /**
  * The type of asset to generate - set to `text-to-image` for text-to-image.
  * @member {module:model/StabilityAiGeneratedAssetOptions.TypeEnum} type
  * @default 'text-to-image'
  */
-_StabilityAiGeneratedAssetOptions = StabilityAiGeneratedAssetOptions;
-/**
- * Create an instance of StabilityAiGeneratedAssetOptions from a JSON string.
- * @param {string} json_string JSON string.
- * @return {module:model/StabilityAiGeneratedAssetOptions} An instance of StabilityAiGeneratedAssetOptions.
- */
-_defineProperty(StabilityAiGeneratedAssetOptions, "fromJSON", function (json_string) {
-  return _StabilityAiGeneratedAssetOptions.constructFromObject(JSON.parse(json_string));
-});
 StabilityAiGeneratedAssetOptions.prototype['type'] = 'text-to-image';
 
 /**
@@ -180,5 +163,9 @@ StabilityAiGeneratedAssetOptions.prototype['cfgScale'] = 7;
  * @member {module:model/StabilityAiGeneratedAssetOptions.StylePresetEnum} stylePreset
  */
 StabilityAiGeneratedAssetOptions.prototype['stylePreset'] = undefined;
+
+
 StabilityAiGeneratedAssetOptions.OneOf = ["StabilityAiTextToImageOptions"];
-var _default = exports["default"] = StabilityAiGeneratedAssetOptions;
+
+export default StabilityAiGeneratedAssetOptions;
+

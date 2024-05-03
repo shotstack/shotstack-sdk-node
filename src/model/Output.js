@@ -1,25 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-var _Destinations = _interopRequireDefault(require("./Destinations"));
-var _Poster = _interopRequireDefault(require("./Poster"));
-var _Range = _interopRequireDefault(require("./Range"));
-var _Size = _interopRequireDefault(require("./Size"));
-var _Thumbnail = _interopRequireDefault(require("./Thumbnail"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
+/**
  * Shotstack
  * Official Node SDK for the Shotstack Cloud Video Editing API
  *
@@ -31,285 +10,38 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Do not edit the class manually.
  *
  */
+
+import ApiClient from '../ApiClient';
+import Destinations from './Destinations';
+import Poster from './Poster';
+import Range from './Range';
+import Size from './Size';
+import Thumbnail from './Thumbnail';
+
 /**
  * The Output model module.
  * @module model/Output
  * @version 0.2.6
  */
-var Output = /*#__PURE__*/function () {
-  /**
-   * Constructs a new <code>Output</code>.
-   * The output format, render range and type of media to generate.
-   * @alias module:model/Output
-   * @param format {module:model/Output.FormatEnum} The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
-   */
-  function Output(format) {
-    _classCallCheck(this, Output);
-    Output.initialize(this, format);
-  }
-
-  /**
-   * Initializes the fields of this object.
-   * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
-   * Only for internal use.
-   */
-  return _createClass(Output, [{
-    key: "getFormat",
-    value:
+class Output {
     /**
-         * Returns The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
-         * @return {module:model/Output.FormatEnum}
-         */
-    function getFormat() {
-      return this.format;
-    }
-
-    /**
-     * Sets The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
-     * @param {module:model/Output.FormatEnum} format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
+     * Constructs a new <code>Output</code>.
+     * The output format, render range and type of media to generate.
+     * @alias module:model/Output
+     * @param format {module:model/Output.FormatEnum} The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
      */
-  }, {
-    key: "setFormat",
-    value: function setFormat(format) {
-      this['format'] = format;
-      return this;
-    }
-    /**
-         * Returns The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
-         * @return {module:model/Output.ResolutionEnum}
-         */
-  }, {
-    key: "getResolution",
-    value: function getResolution() {
-      return this.resolution;
+    constructor(format) { 
+        
+        Output.initialize(this, format);
     }
 
     /**
-     * Sets The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
-     * @param {module:model/Output.ResolutionEnum} resolution The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
      */
-  }, {
-    key: "setResolution",
-    value: function setResolution(resolution) {
-      this['resolution'] = resolution;
-      return this;
-    }
-    /**
-         * Returns The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
-         * @return {module:model/Output.AspectRatioEnum}
-         */
-  }, {
-    key: "getAspectRatio",
-    value: function getAspectRatio() {
-      return this.aspectRatio;
-    }
-
-    /**
-     * Sets The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
-     * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
-     */
-  }, {
-    key: "setAspectRatio",
-    value: function setAspectRatio(aspectRatio) {
-      this['aspectRatio'] = aspectRatio;
-      return this;
-    }
-    /**
-         * @return {module:model/Size}
-         */
-  }, {
-    key: "getSize",
-    value: function getSize() {
-      return this.size;
-    }
-
-    /**
-     * @param {module:model/Size} size
-     */
-  }, {
-    key: "setSize",
-    value: function setSize(size) {
-      this['size'] = size;
-      return this;
-    }
-    /**
-         * Returns Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-         * @return {module:model/Output.FpsEnum}
-         */
-  }, {
-    key: "getFps",
-    value: function getFps() {
-      return this.fps;
-    }
-
-    /**
-     * Sets Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-     * @param {module:model/Output.FpsEnum} fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
-     */
-  }, {
-    key: "setFps",
-    value: function setFps(fps) {
-      this['fps'] = fps;
-      return this;
-    }
-    /**
-         * Returns Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
-         * @return {module:model/Output.ScaleToEnum}
-         */
-  }, {
-    key: "getScaleTo",
-    value: function getScaleTo() {
-      return this.scaleTo;
-    }
-
-    /**
-     * Sets Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
-     * @param {module:model/Output.ScaleToEnum} scaleTo Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
-     */
-  }, {
-    key: "setScaleTo",
-    value: function setScaleTo(scaleTo) {
-      this['scaleTo'] = scaleTo;
-      return this;
-    }
-    /**
-         * Returns Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
-         * @return {module:model/Output.QualityEnum}
-         */
-  }, {
-    key: "getQuality",
-    value: function getQuality() {
-      return this.quality;
-    }
-
-    /**
-     * Sets Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
-     * @param {module:model/Output.QualityEnum} quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
-     */
-  }, {
-    key: "setQuality",
-    value: function setQuality(quality) {
-      this['quality'] = quality;
-      return this;
-    }
-    /**
-         * Returns Loop settings for gif files. Set to `true` to loop, `false` to play only once.
-         * @return {Boolean}
-         */
-  }, {
-    key: "getRepeat",
-    value: function getRepeat() {
-      return this.repeat;
-    }
-
-    /**
-     * Sets Loop settings for gif files. Set to `true` to loop, `false` to play only once.
-     * @param {Boolean} repeat Loop settings for gif files. Set to `true` to loop, `false` to play only once.
-     */
-  }, {
-    key: "setRepeat",
-    value: function setRepeat(repeat) {
-      this['repeat'] = repeat;
-      return this;
-    }
-    /**
-         * Returns Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
-         * @return {Boolean}
-         */
-  }, {
-    key: "getMute",
-    value: function getMute() {
-      return this.mute;
-    }
-
-    /**
-     * Sets Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
-     * @param {Boolean} mute Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
-     */
-  }, {
-    key: "setMute",
-    value: function setMute(mute) {
-      this['mute'] = mute;
-      return this;
-    }
-    /**
-         * @return {module:model/Range}
-         */
-  }, {
-    key: "getRange",
-    value: function getRange() {
-      return this.range;
-    }
-
-    /**
-     * @param {module:model/Range} range
-     */
-  }, {
-    key: "setRange",
-    value: function setRange(range) {
-      this['range'] = range;
-      return this;
-    }
-    /**
-         * @return {module:model/Poster}
-         */
-  }, {
-    key: "getPoster",
-    value: function getPoster() {
-      return this.poster;
-    }
-
-    /**
-     * @param {module:model/Poster} poster
-     */
-  }, {
-    key: "setPoster",
-    value: function setPoster(poster) {
-      this['poster'] = poster;
-      return this;
-    }
-    /**
-         * @return {module:model/Thumbnail}
-         */
-  }, {
-    key: "getThumbnail",
-    value: function getThumbnail() {
-      return this.thumbnail;
-    }
-
-    /**
-     * @param {module:model/Thumbnail} thumbnail
-     */
-  }, {
-    key: "setThumbnail",
-    value: function setThumbnail(thumbnail) {
-      this['thumbnail'] = thumbnail;
-      return this;
-    }
-    /**
-         * Returns Specify the storage locations and hosting services to send rendered videos to.
-         * @return {Array.<module:model/Destinations>}
-         */
-  }, {
-    key: "getDestinations",
-    value: function getDestinations() {
-      return this.destinations;
-    }
-
-    /**
-     * Sets Specify the storage locations and hosting services to send rendered videos to.
-     * @param {Array.<module:model/Destinations>} destinations Specify the storage locations and hosting services to send rendered videos to.
-     */
-  }, {
-    key: "setDestinations",
-    value: function setDestinations(destinations) {
-      this['destinations'] = destinations;
-      return this;
-    }
-  }], [{
-    key: "initialize",
-    value: function initialize(obj, format) {
-      obj['format'] = format;
+    static initialize(obj, format) { 
+        obj['format'] = format;
     }
 
     /**
@@ -319,52 +51,51 @@ var Output = /*#__PURE__*/function () {
      * @param {module:model/Output} obj Optional instance to populate.
      * @return {module:model/Output} The populated <code>Output</code> instance.
      */
-  }, {
-    key: "constructFromObject",
-    value: function constructFromObject(data, obj) {
-      if (data) {
-        obj = obj || new Output();
-        if (data.hasOwnProperty('format')) {
-          obj['format'] = _ApiClient["default"].convertToType(data['format'], 'String');
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Output();
+
+            if (data.hasOwnProperty('format')) {
+                obj['format'] = ApiClient.convertToType(data['format'], 'String');
+            }
+            if (data.hasOwnProperty('resolution')) {
+                obj['resolution'] = ApiClient.convertToType(data['resolution'], 'String');
+            }
+            if (data.hasOwnProperty('aspectRatio')) {
+                obj['aspectRatio'] = ApiClient.convertToType(data['aspectRatio'], 'String');
+            }
+            if (data.hasOwnProperty('size')) {
+                obj['size'] = Size.constructFromObject(data['size']);
+            }
+            if (data.hasOwnProperty('fps')) {
+                obj['fps'] = ApiClient.convertToType(data['fps'], 'Number');
+            }
+            if (data.hasOwnProperty('scaleTo')) {
+                obj['scaleTo'] = ApiClient.convertToType(data['scaleTo'], 'String');
+            }
+            if (data.hasOwnProperty('quality')) {
+                obj['quality'] = ApiClient.convertToType(data['quality'], 'String');
+            }
+            if (data.hasOwnProperty('repeat')) {
+                obj['repeat'] = ApiClient.convertToType(data['repeat'], 'Boolean');
+            }
+            if (data.hasOwnProperty('mute')) {
+                obj['mute'] = ApiClient.convertToType(data['mute'], 'Boolean');
+            }
+            if (data.hasOwnProperty('range')) {
+                obj['range'] = Range.constructFromObject(data['range']);
+            }
+            if (data.hasOwnProperty('poster')) {
+                obj['poster'] = Poster.constructFromObject(data['poster']);
+            }
+            if (data.hasOwnProperty('thumbnail')) {
+                obj['thumbnail'] = Thumbnail.constructFromObject(data['thumbnail']);
+            }
+            if (data.hasOwnProperty('destinations')) {
+                obj['destinations'] = ApiClient.convertToType(data['destinations'], [Destinations]);
+            }
         }
-        if (data.hasOwnProperty('resolution')) {
-          obj['resolution'] = _ApiClient["default"].convertToType(data['resolution'], 'String');
-        }
-        if (data.hasOwnProperty('aspectRatio')) {
-          obj['aspectRatio'] = _ApiClient["default"].convertToType(data['aspectRatio'], 'String');
-        }
-        if (data.hasOwnProperty('size')) {
-          obj['size'] = _Size["default"].constructFromObject(data['size']);
-        }
-        if (data.hasOwnProperty('fps')) {
-          obj['fps'] = _ApiClient["default"].convertToType(data['fps'], 'Number');
-        }
-        if (data.hasOwnProperty('scaleTo')) {
-          obj['scaleTo'] = _ApiClient["default"].convertToType(data['scaleTo'], 'String');
-        }
-        if (data.hasOwnProperty('quality')) {
-          obj['quality'] = _ApiClient["default"].convertToType(data['quality'], 'String');
-        }
-        if (data.hasOwnProperty('repeat')) {
-          obj['repeat'] = _ApiClient["default"].convertToType(data['repeat'], 'Boolean');
-        }
-        if (data.hasOwnProperty('mute')) {
-          obj['mute'] = _ApiClient["default"].convertToType(data['mute'], 'Boolean');
-        }
-        if (data.hasOwnProperty('range')) {
-          obj['range'] = _Range["default"].constructFromObject(data['range']);
-        }
-        if (data.hasOwnProperty('poster')) {
-          obj['poster'] = _Poster["default"].constructFromObject(data['poster']);
-        }
-        if (data.hasOwnProperty('thumbnail')) {
-          obj['thumbnail'] = _Thumbnail["default"].constructFromObject(data['thumbnail']);
-        }
-        if (data.hasOwnProperty('destinations')) {
-          obj['destinations'] = _ApiClient["default"].convertToType(data['destinations'], [_Destinations["default"]]);
-        }
-      }
-      return obj;
+        return obj;
     }
 
     /**
@@ -372,89 +103,266 @@ var Output = /*#__PURE__*/function () {
      * @param {Object} data The plain JavaScript object bearing properties of interest.
      * @return {boolean} to indicate whether the JSON data is valid with respect to <code>Output</code>.
      */
-  }, {
-    key: "validateJSON",
-    value: function validateJSON(data) {
-      // check to make sure all required properties are present in the JSON string
-      var _iterator = _createForOfIteratorHelper(Output.RequiredProperties),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var property = _step.value;
-          if (!data.hasOwnProperty(property)) {
-            throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-          }
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of Output.RequiredProperties) {
+            if (!data.hasOwnProperty(property)) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
         }
         // ensure the json data is a string
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      if (data['format'] && !(typeof data['format'] === 'string' || data['format'] instanceof String)) {
-        throw new Error("Expected the field `format` to be a primitive type in the JSON string but got " + data['format']);
-      }
-      // ensure the json data is a string
-      if (data['resolution'] && !(typeof data['resolution'] === 'string' || data['resolution'] instanceof String)) {
-        throw new Error("Expected the field `resolution` to be a primitive type in the JSON string but got " + data['resolution']);
-      }
-      // ensure the json data is a string
-      if (data['aspectRatio'] && !(typeof data['aspectRatio'] === 'string' || data['aspectRatio'] instanceof String)) {
-        throw new Error("Expected the field `aspectRatio` to be a primitive type in the JSON string but got " + data['aspectRatio']);
-      }
-      // validate the optional field `size`
-      if (data['size']) {
-        // data not null
-        _Size["default"].validateJSON(data['size']);
-      }
-      // ensure the json data is a string
-      if (data['scaleTo'] && !(typeof data['scaleTo'] === 'string' || data['scaleTo'] instanceof String)) {
-        throw new Error("Expected the field `scaleTo` to be a primitive type in the JSON string but got " + data['scaleTo']);
-      }
-      // ensure the json data is a string
-      if (data['quality'] && !(typeof data['quality'] === 'string' || data['quality'] instanceof String)) {
-        throw new Error("Expected the field `quality` to be a primitive type in the JSON string but got " + data['quality']);
-      }
-      // validate the optional field `range`
-      if (data['range']) {
-        // data not null
-        _Range["default"].validateJSON(data['range']);
-      }
-      // validate the optional field `poster`
-      if (data['poster']) {
-        // data not null
-        _Poster["default"].validateJSON(data['poster']);
-      }
-      // validate the optional field `thumbnail`
-      if (data['thumbnail']) {
-        // data not null
-        _Thumbnail["default"].validateJSON(data['thumbnail']);
-      }
-      if (data['destinations']) {
-        // data not null
-        // ensure the json data is an array
-        if (!Array.isArray(data['destinations'])) {
-          throw new Error("Expected the field `destinations` to be an array in the JSON data but got " + data['destinations']);
+        if (data['format'] && !(typeof data['format'] === 'string' || data['format'] instanceof String)) {
+            throw new Error("Expected the field `format` to be a primitive type in the JSON string but got " + data['format']);
         }
-        // validate the optional field `destinations` (array)
-        var _iterator2 = _createForOfIteratorHelper(data['destinations']),
-          _step2;
-        try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var item = _step2.value;
-            _Destinations["default"].validateJSON(item);
-          }
-        } catch (err) {
-          _iterator2.e(err);
-        } finally {
-          _iterator2.f();
+        // ensure the json data is a string
+        if (data['resolution'] && !(typeof data['resolution'] === 'string' || data['resolution'] instanceof String)) {
+            throw new Error("Expected the field `resolution` to be a primitive type in the JSON string but got " + data['resolution']);
         }
-        ;
-      }
-      return true;
+        // ensure the json data is a string
+        if (data['aspectRatio'] && !(typeof data['aspectRatio'] === 'string' || data['aspectRatio'] instanceof String)) {
+            throw new Error("Expected the field `aspectRatio` to be a primitive type in the JSON string but got " + data['aspectRatio']);
+        }
+        // validate the optional field `size`
+        if (data['size']) { // data not null
+          Size.validateJSON(data['size']);
+        }
+        // ensure the json data is a string
+        if (data['scaleTo'] && !(typeof data['scaleTo'] === 'string' || data['scaleTo'] instanceof String)) {
+            throw new Error("Expected the field `scaleTo` to be a primitive type in the JSON string but got " + data['scaleTo']);
+        }
+        // ensure the json data is a string
+        if (data['quality'] && !(typeof data['quality'] === 'string' || data['quality'] instanceof String)) {
+            throw new Error("Expected the field `quality` to be a primitive type in the JSON string but got " + data['quality']);
+        }
+        // validate the optional field `range`
+        if (data['range']) { // data not null
+          Range.validateJSON(data['range']);
+        }
+        // validate the optional field `poster`
+        if (data['poster']) { // data not null
+          Poster.validateJSON(data['poster']);
+        }
+        // validate the optional field `thumbnail`
+        if (data['thumbnail']) { // data not null
+          Thumbnail.validateJSON(data['thumbnail']);
+        }
+        if (data['destinations']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['destinations'])) {
+                throw new Error("Expected the field `destinations` to be an array in the JSON data but got " + data['destinations']);
+            }
+            // validate the optional field `destinations` (array)
+            for (const item of data['destinations']) {
+                Destinations.validateJSON(item);
+            };
+        }
+
+        return true;
     }
-  }]);
-}();
+
+/**
+     * Returns The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
+     * @return {module:model/Output.FormatEnum}
+     */
+    getFormat() {
+        return this.format;
+    }
+
+    /**
+     * Sets The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
+     * @param {module:model/Output.FormatEnum} format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
+     */
+    setFormat(format) {
+        this['format'] = format;
+        return this;
+    }
+/**
+     * Returns The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
+     * @return {module:model/Output.ResolutionEnum}
+     */
+    getResolution() {
+        return this.resolution;
+    }
+
+    /**
+     * Sets The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
+     * @param {module:model/Output.ResolutionEnum} resolution The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
+     */
+    setResolution(resolution) {
+        this['resolution'] = resolution;
+        return this;
+    }
+/**
+     * Returns The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+     * @return {module:model/Output.AspectRatioEnum}
+     */
+    getAspectRatio() {
+        return this.aspectRatio;
+    }
+
+    /**
+     * Sets The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+     * @param {module:model/Output.AspectRatioEnum} aspectRatio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+     */
+    setAspectRatio(aspectRatio) {
+        this['aspectRatio'] = aspectRatio;
+        return this;
+    }
+/**
+     * @return {module:model/Size}
+     */
+    getSize() {
+        return this.size;
+    }
+
+    /**
+     * @param {module:model/Size} size
+     */
+    setSize(size) {
+        this['size'] = size;
+        return this;
+    }
+/**
+     * Returns Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     * @return {module:model/Output.FpsEnum}
+     */
+    getFps() {
+        return this.fps;
+    }
+
+    /**
+     * Sets Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     * @param {module:model/Output.FpsEnum} fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     */
+    setFps(fps) {
+        this['fps'] = fps;
+        return this;
+    }
+/**
+     * Returns Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     * @return {module:model/Output.ScaleToEnum}
+     */
+    getScaleTo() {
+        return this.scaleTo;
+    }
+
+    /**
+     * Sets Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     * @param {module:model/Output.ScaleToEnum} scaleTo Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     */
+    setScaleTo(scaleTo) {
+        this['scaleTo'] = scaleTo;
+        return this;
+    }
+/**
+     * Returns Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
+     * @return {module:model/Output.QualityEnum}
+     */
+    getQuality() {
+        return this.quality;
+    }
+
+    /**
+     * Sets Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
+     * @param {module:model/Output.QualityEnum} quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`verylow` - reduced quality, smallest file size</li>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li>   <li>`veryhigh` - highest quality, largest file size</li> </ul>
+     */
+    setQuality(quality) {
+        this['quality'] = quality;
+        return this;
+    }
+/**
+     * Returns Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+     * @return {Boolean}
+     */
+    getRepeat() {
+        return this.repeat;
+    }
+
+    /**
+     * Sets Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+     * @param {Boolean} repeat Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+     */
+    setRepeat(repeat) {
+        this['repeat'] = repeat;
+        return this;
+    }
+/**
+     * Returns Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+     * @return {Boolean}
+     */
+    getMute() {
+        return this.mute;
+    }
+
+    /**
+     * Sets Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+     * @param {Boolean} mute Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+     */
+    setMute(mute) {
+        this['mute'] = mute;
+        return this;
+    }
+/**
+     * @return {module:model/Range}
+     */
+    getRange() {
+        return this.range;
+    }
+
+    /**
+     * @param {module:model/Range} range
+     */
+    setRange(range) {
+        this['range'] = range;
+        return this;
+    }
+/**
+     * @return {module:model/Poster}
+     */
+    getPoster() {
+        return this.poster;
+    }
+
+    /**
+     * @param {module:model/Poster} poster
+     */
+    setPoster(poster) {
+        this['poster'] = poster;
+        return this;
+    }
+/**
+     * @return {module:model/Thumbnail}
+     */
+    getThumbnail() {
+        return this.thumbnail;
+    }
+
+    /**
+     * @param {module:model/Thumbnail} thumbnail
+     */
+    setThumbnail(thumbnail) {
+        this['thumbnail'] = thumbnail;
+        return this;
+    }
+/**
+     * Returns Specify the storage locations and hosting services to send rendered videos to.
+     * @return {Array.<module:model/Destinations>}
+     */
+    getDestinations() {
+        return this.destinations;
+    }
+
+    /**
+     * Sets Specify the storage locations and hosting services to send rendered videos to.
+     * @param {Array.<module:model/Destinations>} destinations Specify the storage locations and hosting services to send rendered videos to.
+     */
+    setDestinations(destinations) {
+        this['destinations'] = destinations;
+        return this;
+    }
+
+}
+
 Output.RequiredProperties = ["format"];
 
 /**
@@ -531,43 +439,54 @@ Output.prototype['thumbnail'] = undefined;
  */
 Output.prototype['destinations'] = undefined;
 
+
+
+
+
 /**
  * Allowed values for the <code>format</code> property.
  * @enum {String}
  * @readonly
  */
 Output['FormatEnum'] = {
-  /**
-   * value: "mp4"
-   * @const
-   */
-  "mp4": "mp4",
-  /**
-   * value: "gif"
-   * @const
-   */
-  "gif": "gif",
-  /**
-   * value: "mp3"
-   * @const
-   */
-  "mp3": "mp3",
-  /**
-   * value: "jpg"
-   * @const
-   */
-  "jpg": "jpg",
-  /**
-   * value: "png"
-   * @const
-   */
-  "png": "png",
-  /**
-   * value: "bmp"
-   * @const
-   */
-  "bmp": "bmp"
+
+    /**
+     * value: "mp4"
+     * @const
+     */
+    "mp4": "mp4",
+
+    /**
+     * value: "gif"
+     * @const
+     */
+    "gif": "gif",
+
+    /**
+     * value: "mp3"
+     * @const
+     */
+    "mp3": "mp3",
+
+    /**
+     * value: "jpg"
+     * @const
+     */
+    "jpg": "jpg",
+
+    /**
+     * value: "png"
+     * @const
+     */
+    "png": "png",
+
+    /**
+     * value: "bmp"
+     * @const
+     */
+    "bmp": "bmp"
 };
+
 
 /**
  * Allowed values for the <code>resolution</code> property.
@@ -575,37 +494,44 @@ Output['FormatEnum'] = {
  * @readonly
  */
 Output['ResolutionEnum'] = {
-  /**
-   * value: "preview"
-   * @const
-   */
-  "preview": "preview",
-  /**
-   * value: "mobile"
-   * @const
-   */
-  "mobile": "mobile",
-  /**
-   * value: "sd"
-   * @const
-   */
-  "sd": "sd",
-  /**
-   * value: "hd"
-   * @const
-   */
-  "hd": "hd",
-  /**
-   * value: "1080"
-   * @const
-   */
-  "1080": "1080",
-  /**
-   * value: "4k"
-   * @const
-   */
-  "4k": "4k"
+
+    /**
+     * value: "preview"
+     * @const
+     */
+    "preview": "preview",
+
+    /**
+     * value: "mobile"
+     * @const
+     */
+    "mobile": "mobile",
+
+    /**
+     * value: "sd"
+     * @const
+     */
+    "sd": "sd",
+
+    /**
+     * value: "hd"
+     * @const
+     */
+    "hd": "hd",
+
+    /**
+     * value: "1080"
+     * @const
+     */
+    "1080": "1080",
+
+    /**
+     * value: "4k"
+     * @const
+     */
+    "4k": "4k"
 };
+
 
 /**
  * Allowed values for the <code>aspectRatio</code> property.
@@ -613,32 +539,38 @@ Output['ResolutionEnum'] = {
  * @readonly
  */
 Output['AspectRatioEnum'] = {
-  /**
-   * value: "16:9"
-   * @const
-   */
-  "16:9": "16:9",
-  /**
-   * value: "9:16"
-   * @const
-   */
-  "9:16": "9:16",
-  /**
-   * value: "1:1"
-   * @const
-   */
-  "1:1": "1:1",
-  /**
-   * value: "4:5"
-   * @const
-   */
-  "4:5": "4:5",
-  /**
-   * value: "4:3"
-   * @const
-   */
-  "4:3": "4:3"
+
+    /**
+     * value: "16:9"
+     * @const
+     */
+    "16:9": "16:9",
+
+    /**
+     * value: "9:16"
+     * @const
+     */
+    "9:16": "9:16",
+
+    /**
+     * value: "1:1"
+     * @const
+     */
+    "1:1": "1:1",
+
+    /**
+     * value: "4:5"
+     * @const
+     */
+    "4:5": "4:5",
+
+    /**
+     * value: "4:3"
+     * @const
+     */
+    "4:3": "4:3"
 };
+
 
 /**
  * Allowed values for the <code>fps</code> property.
@@ -646,62 +578,74 @@ Output['AspectRatioEnum'] = {
  * @readonly
  */
 Output['FpsEnum'] = {
-  /**
-   * value: 12
-   * @const
-   */
-  "12": 12,
-  /**
-   * value: 15
-   * @const
-   */
-  "15": 15,
-  /**
-   * value: 23.976
-   * @const
-   */
-  "23.976": 23.976,
-  /**
-   * value: 24
-   * @const
-   */
-  "24": 24,
-  /**
-   * value: 25
-   * @const
-   */
-  "25": 25,
-  /**
-   * value: 29.97
-   * @const
-   */
-  "29.97": 29.97,
-  /**
-   * value: 30
-   * @const
-   */
-  "30": 30,
-  /**
-   * value: 48
-   * @const
-   */
-  "48": 48,
-  /**
-   * value: 50
-   * @const
-   */
-  "50": 50,
-  /**
-   * value: 59.94
-   * @const
-   */
-  "59.94": 59.94,
-  /**
-   * value: 60
-   * @const
-   */
-  "60": 60
+
+    /**
+     * value: 12
+     * @const
+     */
+    "12": 12,
+
+    /**
+     * value: 15
+     * @const
+     */
+    "15": 15,
+
+    /**
+     * value: 23.976
+     * @const
+     */
+    "23.976": 23.976,
+
+    /**
+     * value: 24
+     * @const
+     */
+    "24": 24,
+
+    /**
+     * value: 25
+     * @const
+     */
+    "25": 25,
+
+    /**
+     * value: 29.97
+     * @const
+     */
+    "29.97": 29.97,
+
+    /**
+     * value: 30
+     * @const
+     */
+    "30": 30,
+
+    /**
+     * value: 48
+     * @const
+     */
+    "48": 48,
+
+    /**
+     * value: 50
+     * @const
+     */
+    "50": 50,
+
+    /**
+     * value: 59.94
+     * @const
+     */
+    "59.94": 59.94,
+
+    /**
+     * value: 60
+     * @const
+     */
+    "60": 60
 };
+
 
 /**
  * Allowed values for the <code>scaleTo</code> property.
@@ -709,32 +653,38 @@ Output['FpsEnum'] = {
  * @readonly
  */
 Output['ScaleToEnum'] = {
-  /**
-   * value: "preview"
-   * @const
-   */
-  "preview": "preview",
-  /**
-   * value: "mobile"
-   * @const
-   */
-  "mobile": "mobile",
-  /**
-   * value: "sd"
-   * @const
-   */
-  "sd": "sd",
-  /**
-   * value: "hd"
-   * @const
-   */
-  "hd": "hd",
-  /**
-   * value: "1080"
-   * @const
-   */
-  "1080": "1080"
+
+    /**
+     * value: "preview"
+     * @const
+     */
+    "preview": "preview",
+
+    /**
+     * value: "mobile"
+     * @const
+     */
+    "mobile": "mobile",
+
+    /**
+     * value: "sd"
+     * @const
+     */
+    "sd": "sd",
+
+    /**
+     * value: "hd"
+     * @const
+     */
+    "hd": "hd",
+
+    /**
+     * value: "1080"
+     * @const
+     */
+    "1080": "1080"
 };
+
 
 /**
  * Allowed values for the <code>quality</code> property.
@@ -742,30 +692,39 @@ Output['ScaleToEnum'] = {
  * @readonly
  */
 Output['QualityEnum'] = {
-  /**
-   * value: "verylow"
-   * @const
-   */
-  "verylow": "verylow",
-  /**
-   * value: "low"
-   * @const
-   */
-  "low": "low",
-  /**
-   * value: "medium"
-   * @const
-   */
-  "medium": "medium",
-  /**
-   * value: "high"
-   * @const
-   */
-  "high": "high",
-  /**
-   * value: "veryhigh"
-   * @const
-   */
-  "veryhigh": "veryhigh"
+
+    /**
+     * value: "verylow"
+     * @const
+     */
+    "verylow": "verylow",
+
+    /**
+     * value: "low"
+     * @const
+     */
+    "low": "low",
+
+    /**
+     * value: "medium"
+     * @const
+     */
+    "medium": "medium",
+
+    /**
+     * value: "high"
+     * @const
+     */
+    "high": "high",
+
+    /**
+     * value: "veryhigh"
+     * @const
+     */
+    "veryhigh": "veryhigh"
 };
-var _default = exports["default"] = Output;
+
+
+
+export default Output;
+
