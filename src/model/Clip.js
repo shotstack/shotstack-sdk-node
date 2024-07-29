@@ -6,17 +6,20 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
 var _Asset = _interopRequireDefault(require("./Asset"));
+var _ClipLength = _interopRequireDefault(require("./ClipLength"));
+var _ClipOpacity = _interopRequireDefault(require("./ClipOpacity"));
+var _ClipStart = _interopRequireDefault(require("./ClipStart"));
 var _Offset = _interopRequireDefault(require("./Offset"));
 var _Transformation = _interopRequireDefault(require("./Transformation"));
 var _Transition = _interopRequireDefault(require("./Transition"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
@@ -33,7 +36,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 /**
  * The Clip model module.
  * @module model/Clip
- * @version 0.2.6
+ * @version 0.2.9
  */
 var Clip = /*#__PURE__*/function () {
   /**
@@ -41,8 +44,8 @@ var Clip = /*#__PURE__*/function () {
    * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
    * @alias module:model/Clip
    * @param asset {module:model/Asset} 
-   * @param start {Number} The start position of the Clip on the timeline, in seconds.
-   * @param length {Number} The length, in seconds, the Clip should play for.
+   * @param start {module:model/ClipStart} 
+   * @param length {module:model/ClipLength} 
    */
   function Clip(asset, start, length) {
     _classCallCheck(this, Clip);
@@ -74,8 +77,7 @@ var Clip = /*#__PURE__*/function () {
       return this;
     }
     /**
-         * Returns The start position of the Clip on the timeline, in seconds.
-         * @return {Number}
+         * @return {module:model/ClipStart}
          */
   }, {
     key: "getStart",
@@ -84,8 +86,7 @@ var Clip = /*#__PURE__*/function () {
     }
 
     /**
-     * Sets The start position of the Clip on the timeline, in seconds.
-     * @param {Number} start The start position of the Clip on the timeline, in seconds.
+     * @param {module:model/ClipStart} start
      */
   }, {
     key: "setStart",
@@ -94,8 +95,7 @@ var Clip = /*#__PURE__*/function () {
       return this;
     }
     /**
-         * Returns The length, in seconds, the Clip should play for.
-         * @return {Number}
+         * @return {module:model/ClipLength}
          */
   }, {
     key: "getLength",
@@ -104,8 +104,7 @@ var Clip = /*#__PURE__*/function () {
     }
 
     /**
-     * Sets The length, in seconds, the Clip should play for.
-     * @param {Number} length The length, in seconds, the Clip should play for.
+     * @param {module:model/ClipLength} length
      */
   }, {
     key: "setLength",
@@ -250,8 +249,7 @@ var Clip = /*#__PURE__*/function () {
       return this;
     }
     /**
-         * Returns Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
-         * @return {Number}
+         * @return {module:model/ClipOpacity}
          */
   }, {
     key: "getOpacity",
@@ -260,8 +258,7 @@ var Clip = /*#__PURE__*/function () {
     }
 
     /**
-     * Sets Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
-     * @param {Number} opacity Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+     * @param {module:model/ClipOpacity} opacity
      */
   }, {
     key: "setOpacity",
@@ -311,10 +308,10 @@ var Clip = /*#__PURE__*/function () {
           obj['asset'] = _Asset["default"].constructFromObject(data['asset']);
         }
         if (data.hasOwnProperty('start')) {
-          obj['start'] = _ApiClient["default"].convertToType(data['start'], 'Number');
+          obj['start'] = _ClipStart["default"].constructFromObject(data['start']);
         }
         if (data.hasOwnProperty('length')) {
-          obj['length'] = _ApiClient["default"].convertToType(data['length'], 'Number');
+          obj['length'] = _ClipLength["default"].constructFromObject(data['length']);
         }
         if (data.hasOwnProperty('fit')) {
           obj['fit'] = _ApiClient["default"].convertToType(data['fit'], 'String');
@@ -338,7 +335,7 @@ var Clip = /*#__PURE__*/function () {
           obj['filter'] = _ApiClient["default"].convertToType(data['filter'], 'String');
         }
         if (data.hasOwnProperty('opacity')) {
-          obj['opacity'] = _ApiClient["default"].convertToType(data['opacity'], 'Number');
+          obj['opacity'] = _ClipOpacity["default"].constructFromObject(data['opacity']);
         }
         if (data.hasOwnProperty('transform')) {
           obj['transform'] = _Transformation["default"].constructFromObject(data['transform']);
@@ -375,6 +372,16 @@ var Clip = /*#__PURE__*/function () {
         // data not null
         _Asset["default"].validateJSON(data['asset']);
       }
+      // validate the optional field `start`
+      if (data['start']) {
+        // data not null
+        _ClipStart["default"].validateJSON(data['start']);
+      }
+      // validate the optional field `length`
+      if (data['length']) {
+        // data not null
+        _ClipLength["default"].validateJSON(data['length']);
+      }
       // ensure the json data is a string
       if (data['fit'] && !(typeof data['fit'] === 'string' || data['fit'] instanceof String)) {
         throw new Error("Expected the field `fit` to be a primitive type in the JSON string but got " + data['fit']);
@@ -401,6 +408,11 @@ var Clip = /*#__PURE__*/function () {
       if (data['filter'] && !(typeof data['filter'] === 'string' || data['filter'] instanceof String)) {
         throw new Error("Expected the field `filter` to be a primitive type in the JSON string but got " + data['filter']);
       }
+      // validate the optional field `opacity`
+      if (data['opacity']) {
+        // data not null
+        _ClipOpacity["default"].validateJSON(data['opacity']);
+      }
       // validate the optional field `transform`
       if (data['transform']) {
         // data not null
@@ -418,14 +430,12 @@ Clip.RequiredProperties = ["asset", "start", "length"];
 Clip.prototype['asset'] = undefined;
 
 /**
- * The start position of the Clip on the timeline, in seconds.
- * @member {Number} start
+ * @member {module:model/ClipStart} start
  */
 Clip.prototype['start'] = undefined;
 
 /**
- * The length, in seconds, the Clip should play for.
- * @member {Number} length
+ * @member {module:model/ClipLength} length
  */
 Clip.prototype['length'] = undefined;
 
@@ -470,8 +480,7 @@ Clip.prototype['effect'] = undefined;
 Clip.prototype['filter'] = undefined;
 
 /**
- * Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
- * @member {Number} opacity
+ * @member {module:model/ClipOpacity} opacity
  */
 Clip.prototype['opacity'] = undefined;
 

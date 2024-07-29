@@ -5,14 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _AudioAssetVolume = _interopRequireDefault(require("./AudioAssetVolume"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
@@ -29,7 +30,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 /**
  * The AudioAsset model module.
  * @module model/AudioAsset
- * @version 0.2.6
+ * @version 0.2.9
  */
 var AudioAsset = /*#__PURE__*/function () {
   /**
@@ -111,8 +112,7 @@ var AudioAsset = /*#__PURE__*/function () {
       return this;
     }
     /**
-         * Returns Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-         * @return {Number}
+         * @return {module:model/AudioAssetVolume}
          */
   }, {
     key: "getVolume",
@@ -121,8 +121,7 @@ var AudioAsset = /*#__PURE__*/function () {
     }
 
     /**
-     * Sets Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     * @param {Number} volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param {module:model/AudioAssetVolume} volume
      */
   }, {
     key: "setVolume",
@@ -201,7 +200,7 @@ var AudioAsset = /*#__PURE__*/function () {
           obj['trim'] = _ApiClient["default"].convertToType(data['trim'], 'Number');
         }
         if (data.hasOwnProperty('volume')) {
-          obj['volume'] = _ApiClient["default"].convertToType(data['volume'], 'Number');
+          obj['volume'] = _AudioAssetVolume["default"].constructFromObject(data['volume']);
         }
         if (data.hasOwnProperty('speed')) {
           obj['speed'] = _ApiClient["default"].convertToType(data['speed'], 'Number');
@@ -244,6 +243,11 @@ var AudioAsset = /*#__PURE__*/function () {
       if (data['src'] && !(typeof data['src'] === 'string' || data['src'] instanceof String)) {
         throw new Error("Expected the field `src` to be a primitive type in the JSON string but got " + data['src']);
       }
+      // validate the optional field `volume`
+      if (data['volume']) {
+        // data not null
+        _AudioAssetVolume["default"].validateJSON(data['volume']);
+      }
       // ensure the json data is a string
       if (data['effect'] && !(typeof data['effect'] === 'string' || data['effect'] instanceof String)) {
         throw new Error("Expected the field `effect` to be a primitive type in the JSON string but got " + data['effect']);
@@ -274,8 +278,7 @@ AudioAsset.prototype['src'] = undefined;
 AudioAsset.prototype['trim'] = undefined;
 
 /**
- * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
- * @member {Number} volume
+ * @member {module:model/AudioAssetVolume} volume
  */
 AudioAsset.prototype['volume'] = undefined;
 

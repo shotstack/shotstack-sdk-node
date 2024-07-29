@@ -45,16 +45,70 @@ Object.defineProperty(exports, "AudioAsset", {
     return _AudioAsset["default"];
   }
 });
+Object.defineProperty(exports, "AudioAssetVolume", {
+  enumerable: true,
+  get: function get() {
+    return _AudioAssetVolume["default"];
+  }
+});
 Object.defineProperty(exports, "AudioEnhancement", {
   enumerable: true,
   get: function get() {
     return _AudioEnhancement["default"];
   }
 });
+Object.defineProperty(exports, "CaptionAsset", {
+  enumerable: true,
+  get: function get() {
+    return _CaptionAsset["default"];
+  }
+});
+Object.defineProperty(exports, "CaptionBackground", {
+  enumerable: true,
+  get: function get() {
+    return _CaptionBackground["default"];
+  }
+});
+Object.defineProperty(exports, "CaptionFont", {
+  enumerable: true,
+  get: function get() {
+    return _CaptionFont["default"];
+  }
+});
+Object.defineProperty(exports, "CaptionMargin", {
+  enumerable: true,
+  get: function get() {
+    return _CaptionMargin["default"];
+  }
+});
+Object.defineProperty(exports, "ChromaKey", {
+  enumerable: true,
+  get: function get() {
+    return _ChromaKey["default"];
+  }
+});
 Object.defineProperty(exports, "Clip", {
   enumerable: true,
   get: function get() {
     return _Clip["default"];
+  }
+});
+Object.defineProperty(exports, "ClipLength", {
+  enumerable: true,
+  get: function get() {
+    return _ClipLength["default"];
+  }
+});
+Object.defineProperty(exports, "ClipOpacity", {
+  enumerable: true,
+  get: function get() {
+    return _ClipOpacity["default"];
+  }
+});
+Object.defineProperty(exports, "ClipStart", {
+  enumerable: true,
+  get: function get() {
+    return _ClipStart["default"];
   }
 });
 Object.defineProperty(exports, "CreateApi", {
@@ -291,6 +345,18 @@ Object.defineProperty(exports, "Offset", {
     return _Offset["default"];
   }
 });
+Object.defineProperty(exports, "OffsetX", {
+  enumerable: true,
+  get: function get() {
+    return _OffsetX["default"];
+  }
+});
+Object.defineProperty(exports, "OffsetY", {
+  enumerable: true,
+  get: function get() {
+    return _OffsetY["default"];
+  }
+});
 Object.defineProperty(exports, "OpenAiGeneratedAsset", {
   enumerable: true,
   get: function get() {
@@ -399,6 +465,12 @@ Object.defineProperty(exports, "RotateTransformation", {
     return _RotateTransformation["default"];
   }
 });
+Object.defineProperty(exports, "RotateTransformationAngle", {
+  enumerable: true,
+  get: function get() {
+    return _RotateTransformationAngle["default"];
+  }
+});
 Object.defineProperty(exports, "S3Destination", {
   enumerable: true,
   get: function get() {
@@ -469,6 +541,18 @@ Object.defineProperty(exports, "SkewTransformation", {
   enumerable: true,
   get: function get() {
     return _SkewTransformation["default"];
+  }
+});
+Object.defineProperty(exports, "SkewTransformationX", {
+  enumerable: true,
+  get: function get() {
+    return _SkewTransformationX["default"];
+  }
+});
+Object.defineProperty(exports, "SkewTransformationY", {
+  enumerable: true,
+  get: function get() {
+    return _SkewTransformationY["default"];
   }
 });
 Object.defineProperty(exports, "Soundtrack", {
@@ -585,6 +669,30 @@ Object.defineProperty(exports, "TemplateResponseData", {
     return _TemplateResponseData["default"];
   }
 });
+Object.defineProperty(exports, "TextAlignment", {
+  enumerable: true,
+  get: function get() {
+    return _TextAlignment["default"];
+  }
+});
+Object.defineProperty(exports, "TextAsset", {
+  enumerable: true,
+  get: function get() {
+    return _TextAsset["default"];
+  }
+});
+Object.defineProperty(exports, "TextBackground", {
+  enumerable: true,
+  get: function get() {
+    return _TextBackground["default"];
+  }
+});
+Object.defineProperty(exports, "TextFont", {
+  enumerable: true,
+  get: function get() {
+    return _TextFont["default"];
+  }
+});
 Object.defineProperty(exports, "Thumbnail", {
   enumerable: true,
   get: function get() {
@@ -651,6 +759,12 @@ Object.defineProperty(exports, "Transition", {
     return _Transition["default"];
   }
 });
+Object.defineProperty(exports, "Tween", {
+  enumerable: true,
+  get: function get() {
+    return _Tween["default"];
+  }
+});
 Object.defineProperty(exports, "UploadResponse", {
   enumerable: true,
   get: function get() {
@@ -675,6 +789,30 @@ Object.defineProperty(exports, "VideoAsset", {
     return _VideoAsset["default"];
   }
 });
+Object.defineProperty(exports, "VideoAssetVolume", {
+  enumerable: true,
+  get: function get() {
+    return _VideoAssetVolume["default"];
+  }
+});
+Object.defineProperty(exports, "VimeoDestination", {
+  enumerable: true,
+  get: function get() {
+    return _VimeoDestination["default"];
+  }
+});
+Object.defineProperty(exports, "VimeoDestinationOptions", {
+  enumerable: true,
+  get: function get() {
+    return _VimeoDestinationOptions["default"];
+  }
+});
+Object.defineProperty(exports, "VimeoDestinationPrivacyOptions", {
+  enumerable: true,
+  get: function get() {
+    return _VimeoDestinationPrivacyOptions["default"];
+  }
+});
 var _ApiClient = _interopRequireDefault(require("./ApiClient"));
 var _Asset = _interopRequireDefault(require("./model/Asset"));
 var _AssetRenderResponse = _interopRequireDefault(require("./model/AssetRenderResponse"));
@@ -682,8 +820,17 @@ var _AssetResponse = _interopRequireDefault(require("./model/AssetResponse"));
 var _AssetResponseAttributes = _interopRequireDefault(require("./model/AssetResponseAttributes"));
 var _AssetResponseData = _interopRequireDefault(require("./model/AssetResponseData"));
 var _AudioAsset = _interopRequireDefault(require("./model/AudioAsset"));
+var _AudioAssetVolume = _interopRequireDefault(require("./model/AudioAssetVolume"));
 var _AudioEnhancement = _interopRequireDefault(require("./model/AudioEnhancement"));
+var _CaptionAsset = _interopRequireDefault(require("./model/CaptionAsset"));
+var _CaptionBackground = _interopRequireDefault(require("./model/CaptionBackground"));
+var _CaptionFont = _interopRequireDefault(require("./model/CaptionFont"));
+var _CaptionMargin = _interopRequireDefault(require("./model/CaptionMargin"));
+var _ChromaKey = _interopRequireDefault(require("./model/ChromaKey"));
 var _Clip = _interopRequireDefault(require("./model/Clip"));
+var _ClipLength = _interopRequireDefault(require("./model/ClipLength"));
+var _ClipOpacity = _interopRequireDefault(require("./model/ClipOpacity"));
+var _ClipStart = _interopRequireDefault(require("./model/ClipStart"));
 var _Crop = _interopRequireDefault(require("./model/Crop"));
 var _DIDGeneratedAsset = _interopRequireDefault(require("./model/DIDGeneratedAsset"));
 var _DIDGeneratedAssetOptions = _interopRequireDefault(require("./model/DIDGeneratedAssetOptions"));
@@ -720,6 +867,8 @@ var _MergeField = _interopRequireDefault(require("./model/MergeField"));
 var _MuxDestination = _interopRequireDefault(require("./model/MuxDestination"));
 var _MuxDestinationOptions = _interopRequireDefault(require("./model/MuxDestinationOptions"));
 var _Offset = _interopRequireDefault(require("./model/Offset"));
+var _OffsetX = _interopRequireDefault(require("./model/OffsetX"));
+var _OffsetY = _interopRequireDefault(require("./model/OffsetY"));
 var _OpenAiGeneratedAsset = _interopRequireDefault(require("./model/OpenAiGeneratedAsset"));
 var _OpenAiGeneratedAssetOptions = _interopRequireDefault(require("./model/OpenAiGeneratedAssetOptions"));
 var _OpenAiTextGeneratorOptions = _interopRequireDefault(require("./model/OpenAiTextGeneratorOptions"));
@@ -738,6 +887,7 @@ var _RenderResponseData = _interopRequireDefault(require("./model/RenderResponse
 var _Rendition = _interopRequireDefault(require("./model/Rendition"));
 var _RenditionResponseAttributes = _interopRequireDefault(require("./model/RenditionResponseAttributes"));
 var _RotateTransformation = _interopRequireDefault(require("./model/RotateTransformation"));
+var _RotateTransformationAngle = _interopRequireDefault(require("./model/RotateTransformationAngle"));
 var _S3Destination = _interopRequireDefault(require("./model/S3Destination"));
 var _S3DestinationOptions = _interopRequireDefault(require("./model/S3DestinationOptions"));
 var _ShotstackDestination = _interopRequireDefault(require("./model/ShotstackDestination"));
@@ -749,6 +899,8 @@ var _ShotstackTextToImageOptions = _interopRequireDefault(require("./model/Shots
 var _ShotstackTextToSpeechOptions = _interopRequireDefault(require("./model/ShotstackTextToSpeechOptions"));
 var _Size = _interopRequireDefault(require("./model/Size"));
 var _SkewTransformation = _interopRequireDefault(require("./model/SkewTransformation"));
+var _SkewTransformationX = _interopRequireDefault(require("./model/SkewTransformationX"));
+var _SkewTransformationY = _interopRequireDefault(require("./model/SkewTransformationY"));
 var _Soundtrack = _interopRequireDefault(require("./model/Soundtrack"));
 var _Source = _interopRequireDefault(require("./model/Source"));
 var _SourceListResponse = _interopRequireDefault(require("./model/SourceListResponse"));
@@ -768,6 +920,10 @@ var _TemplateListResponseItem = _interopRequireDefault(require("./model/Template
 var _TemplateRender = _interopRequireDefault(require("./model/TemplateRender"));
 var _TemplateResponse = _interopRequireDefault(require("./model/TemplateResponse"));
 var _TemplateResponseData = _interopRequireDefault(require("./model/TemplateResponseData"));
+var _TextAlignment = _interopRequireDefault(require("./model/TextAlignment"));
+var _TextAsset = _interopRequireDefault(require("./model/TextAsset"));
+var _TextBackground = _interopRequireDefault(require("./model/TextBackground"));
+var _TextFont = _interopRequireDefault(require("./model/TextFont"));
 var _Thumbnail = _interopRequireDefault(require("./model/Thumbnail"));
 var _Timeline = _interopRequireDefault(require("./model/Timeline"));
 var _TitleAsset = _interopRequireDefault(require("./model/TitleAsset"));
@@ -779,12 +935,17 @@ var _TransferResponseAttributes = _interopRequireDefault(require("./model/Transf
 var _TransferResponseData = _interopRequireDefault(require("./model/TransferResponseData"));
 var _Transformation = _interopRequireDefault(require("./model/Transformation"));
 var _Transition = _interopRequireDefault(require("./model/Transition"));
+var _Tween = _interopRequireDefault(require("./model/Tween"));
 var _UploadResponse = _interopRequireDefault(require("./model/UploadResponse"));
 var _UploadResponseAttributes = _interopRequireDefault(require("./model/UploadResponseAttributes"));
 var _UploadResponseData = _interopRequireDefault(require("./model/UploadResponseData"));
 var _VideoAsset = _interopRequireDefault(require("./model/VideoAsset"));
+var _VideoAssetVolume = _interopRequireDefault(require("./model/VideoAssetVolume"));
+var _VimeoDestination = _interopRequireDefault(require("./model/VimeoDestination"));
+var _VimeoDestinationOptions = _interopRequireDefault(require("./model/VimeoDestinationOptions"));
+var _VimeoDestinationPrivacyOptions = _interopRequireDefault(require("./model/VimeoDestinationPrivacyOptions"));
 var _CreateApi = _interopRequireDefault(require("./api/CreateApi"));
 var _EditApi = _interopRequireDefault(require("./api/EditApi"));
 var _IngestApi = _interopRequireDefault(require("./api/IngestApi"));
 var _ServeApi = _interopRequireDefault(require("./api/ServeApi"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
