@@ -5,11 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _OffsetX = _interopRequireDefault(require("./OffsetX"));
+var _OffsetY = _interopRequireDefault(require("./OffsetY"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
@@ -26,7 +28,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 /**
  * The Offset model module.
  * @module model/Offset
- * @version 0.2.6
+ * @version 0.2.9
  */
 var Offset = /*#__PURE__*/function () {
   /**
@@ -48,18 +50,14 @@ var Offset = /*#__PURE__*/function () {
     key: "getX",
     value:
     /**
-         * Returns Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
-         * minimum: -10
-         * maximum: 10
-         * @return {Number}
+         * @return {module:model/OffsetX}
          */
     function getX() {
       return this.x;
     }
 
     /**
-     * Sets Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
-     * @param {Number} x Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+     * @param {module:model/OffsetX} x
      */
   }, {
     key: "setX",
@@ -68,10 +66,7 @@ var Offset = /*#__PURE__*/function () {
       return this;
     }
     /**
-         * Returns Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
-         * minimum: -10
-         * maximum: 10
-         * @return {Number}
+         * @return {module:model/OffsetY}
          */
   }, {
     key: "getY",
@@ -80,8 +75,7 @@ var Offset = /*#__PURE__*/function () {
     }
 
     /**
-     * Sets Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
-     * @param {Number} y Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+     * @param {module:model/OffsetY} y
      */
   }, {
     key: "setY",
@@ -106,10 +100,10 @@ var Offset = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new Offset();
         if (data.hasOwnProperty('x')) {
-          obj['x'] = _ApiClient["default"].convertToType(data['x'], 'Number');
+          obj['x'] = _OffsetX["default"].constructFromObject(data['x']);
         }
         if (data.hasOwnProperty('y')) {
-          obj['y'] = _ApiClient["default"].convertToType(data['y'], 'Number');
+          obj['y'] = _OffsetY["default"].constructFromObject(data['y']);
         }
       }
       return obj;
@@ -123,19 +117,27 @@ var Offset = /*#__PURE__*/function () {
   }, {
     key: "validateJSON",
     value: function validateJSON(data) {
+      // validate the optional field `x`
+      if (data['x']) {
+        // data not null
+        _OffsetX["default"].validateJSON(data['x']);
+      }
+      // validate the optional field `y`
+      if (data['y']) {
+        // data not null
+        _OffsetY["default"].validateJSON(data['y']);
+      }
       return true;
     }
   }]);
 }();
 /**
- * Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
- * @member {Number} x
+ * @member {module:model/OffsetX} x
  */
 Offset.prototype['x'] = undefined;
 
 /**
- * Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
- * @member {Number} y
+ * @member {module:model/OffsetY} y
  */
 Offset.prototype['y'] = undefined;
 var _default = exports["default"] = Offset;

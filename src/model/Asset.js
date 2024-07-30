@@ -6,20 +6,27 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
 var _AudioAsset = _interopRequireDefault(require("./AudioAsset"));
+var _AudioAssetVolume = _interopRequireDefault(require("./AudioAssetVolume"));
+var _CaptionAsset = _interopRequireDefault(require("./CaptionAsset"));
+var _CaptionFont = _interopRequireDefault(require("./CaptionFont"));
+var _CaptionMargin = _interopRequireDefault(require("./CaptionMargin"));
+var _ChromaKey = _interopRequireDefault(require("./ChromaKey"));
 var _Crop = _interopRequireDefault(require("./Crop"));
 var _HtmlAsset = _interopRequireDefault(require("./HtmlAsset"));
 var _ImageAsset = _interopRequireDefault(require("./ImageAsset"));
 var _LumaAsset = _interopRequireDefault(require("./LumaAsset"));
 var _Offset = _interopRequireDefault(require("./Offset"));
+var _TextAlignment = _interopRequireDefault(require("./TextAlignment"));
+var _TextAsset = _interopRequireDefault(require("./TextAsset"));
 var _TitleAsset = _interopRequireDefault(require("./TitleAsset"));
 var _VideoAsset = _interopRequireDefault(require("./VideoAsset"));
 var _Asset;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /**
  * Shotstack
@@ -36,14 +43,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 /**
  * The Asset model module.
  * @module model/Asset
- * @version 0.2.6
+ * @version 0.2.9
  */
 var Asset = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>Asset</code>.
-   * The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+   * The type of asset to display for the duration of the Clip, i.e. a video clip or an image. Choose from one of the available asset types below.
    * @alias module:model/Asset
-   * @param {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} instance The actual instance to initialize Asset.
+   * @param {(module:model/AudioAsset|module:model/CaptionAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TextAsset|module:model/TitleAsset|module:model/VideoAsset)} instance The actual instance to initialize Asset.
    */
   function Asset() {
     var instance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -92,34 +99,19 @@ var Asset = /*#__PURE__*/function () {
       errorMessages.push("Failed to construct ImageAsset: " + err);
     }
     try {
-      if (typeof instance === "TitleAsset") {
+      if (typeof instance === "TextAsset") {
         this.actualInstance = instance;
       } else {
         // plain JS object
         // validate the object
-        _TitleAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create TitleAsset from JS object
-        this.actualInstance = _TitleAsset["default"].constructFromObject(instance);
+        _TextAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create TextAsset from JS object
+        this.actualInstance = _TextAsset["default"].constructFromObject(instance);
       }
       match++;
     } catch (err) {
-      // json data failed to deserialize into TitleAsset
-      errorMessages.push("Failed to construct TitleAsset: " + err);
-    }
-    try {
-      if (typeof instance === "HtmlAsset") {
-        this.actualInstance = instance;
-      } else {
-        // plain JS object
-        // validate the object
-        _HtmlAsset["default"].validateJSON(instance); // throw an exception if no match
-        // create HtmlAsset from JS object
-        this.actualInstance = _HtmlAsset["default"].constructFromObject(instance);
-      }
-      match++;
-    } catch (err) {
-      // json data failed to deserialize into HtmlAsset
-      errorMessages.push("Failed to construct HtmlAsset: " + err);
+      // json data failed to deserialize into TextAsset
+      errorMessages.push("Failed to construct TextAsset: " + err);
     }
     try {
       if (typeof instance === "AudioAsset") {
@@ -151,11 +143,56 @@ var Asset = /*#__PURE__*/function () {
       // json data failed to deserialize into LumaAsset
       errorMessages.push("Failed to construct LumaAsset: " + err);
     }
+    try {
+      if (typeof instance === "CaptionAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _CaptionAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create CaptionAsset from JS object
+        this.actualInstance = _CaptionAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into CaptionAsset
+      errorMessages.push("Failed to construct CaptionAsset: " + err);
+    }
+    try {
+      if (typeof instance === "HtmlAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _HtmlAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create HtmlAsset from JS object
+        this.actualInstance = _HtmlAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into HtmlAsset
+      errorMessages.push("Failed to construct HtmlAsset: " + err);
+    }
+    try {
+      if (typeof instance === "TitleAsset") {
+        this.actualInstance = instance;
+      } else {
+        // plain JS object
+        // validate the object
+        _TitleAsset["default"].validateJSON(instance); // throw an exception if no match
+        // create TitleAsset from JS object
+        this.actualInstance = _TitleAsset["default"].constructFromObject(instance);
+      }
+      match++;
+    } catch (err) {
+      // json data failed to deserialize into TitleAsset
+      errorMessages.push("Failed to construct TitleAsset: " + err);
+    }
     if (match > 1) {
-      throw new Error("Multiple matches found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Input: " + JSON.stringify(instance));
+      throw new Error("Multiple matches found constructing `Asset` with oneOf schemas AudioAsset, CaptionAsset, HtmlAsset, ImageAsset, LumaAsset, TextAsset, TitleAsset, VideoAsset. Input: " + JSON.stringify(instance));
     } else if (match === 0) {
       this.actualInstance = null; // clear the actual instance in case there are multiple matches
-      throw new Error("No match found constructing `Asset` with oneOf schemas AudioAsset, HtmlAsset, ImageAsset, LumaAsset, TitleAsset, VideoAsset. Details: " + errorMessages.join(", "));
+      throw new Error("No match found constructing `Asset` with oneOf schemas AudioAsset, CaptionAsset, HtmlAsset, ImageAsset, LumaAsset, TextAsset, TitleAsset, VideoAsset. Details: " + errorMessages.join(", "));
     } else {// only 1 match
       // the input is valid
     }
@@ -172,16 +209,16 @@ var Asset = /*#__PURE__*/function () {
     key: "getActualInstance",
     value:
     /**
-     * Gets the actual instance, which can be <code>AudioAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
-     * @return {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} The actual instance.
+     * Gets the actual instance, which can be <code>AudioAsset</code>, <code>CaptionAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TextAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
+     * @return {(module:model/AudioAsset|module:model/CaptionAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TextAsset|module:model/TitleAsset|module:model/VideoAsset)} The actual instance.
      */
     function getActualInstance() {
       return this.actualInstance;
     }
 
     /**
-     * Sets the actual instance, which can be <code>AudioAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
-     * @param {(module:model/AudioAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TitleAsset|module:model/VideoAsset)} obj The actual instance.
+     * Sets the actual instance, which can be <code>AudioAsset</code>, <code>CaptionAsset</code>, <code>HtmlAsset</code>, <code>ImageAsset</code>, <code>LumaAsset</code>, <code>TextAsset</code>, <code>TitleAsset</code>, <code>VideoAsset</code>.
+     * @param {(module:model/AudioAsset|module:model/CaptionAsset|module:model/HtmlAsset|module:model/ImageAsset|module:model/LumaAsset|module:model/TextAsset|module:model/TitleAsset|module:model/VideoAsset)} obj The actual instance.
      */
   }, {
     key: "setActualInstance",
@@ -196,9 +233,9 @@ var Asset = /*#__PURE__*/function () {
   }]);
 }();
 /**
- * The type of asset - set to `luma` for luma mattes.
+ * The type of asset - set to `title` for titles.
  * @member {String} type
- * @default 'luma'
+ * @default 'title'
  */
 _Asset = Asset;
 /**
@@ -209,34 +246,33 @@ _Asset = Asset;
 _defineProperty(Asset, "fromJSON", function (json_string) {
   return _Asset.constructFromObject(JSON.parse(json_string));
 });
-Asset.prototype['type'] = 'luma';
+Asset.prototype['type'] = 'title';
 
 /**
- * The luma matte source URL. The URL must be publicly accessible or include credentials.
+ * The URL to an SRT or VTT subtitles file. The URL must be publicly accessible or include credentials.
  * @member {String} src
  */
 Asset.prototype['src'] = undefined;
 
 /**
- * The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
+ * The start trim point of the captions, in seconds (defaults to 0). Remove the trim length from teh start of the captions and allow it to be synced with video or audio. The captions will play until the file ends or the Clip length is reached.
  * @member {Number} trim
  */
 Asset.prototype['trim'] = undefined;
 
 /**
- * Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
- * @member {Number} volume
+ * @member {module:model/AudioAssetVolume} volume
  */
 Asset.prototype['volume'] = undefined;
 
 /**
- * The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+ * Preset volume effects to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
  * @member {module:model/Asset.VolumeEffectEnum} volumeEffect
  */
 Asset.prototype['volumeEffect'] = undefined;
 
 /**
- * Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
+ * Adjust the playback speed of the captions between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire captions (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire captions (i.e. original length / 2).
  * @member {Number} speed
  */
 Asset.prototype['speed'] = undefined;
@@ -247,10 +283,72 @@ Asset.prototype['speed'] = undefined;
 Asset.prototype['crop'] = undefined;
 
 /**
+ * @member {module:model/ChromaKey} chromaKey
+ */
+Asset.prototype['chromaKey'] = undefined;
+
+/**
  * The title text string - i.e. \"My Title\".
  * @member {String} text
  */
 Asset.prototype['text'] = undefined;
+
+/**
+ * Set the width of the HTML asset bounding box in pixels. Text will wrap to fill the bounding box.
+ * @member {Number} width
+ */
+Asset.prototype['width'] = undefined;
+
+/**
+ * Set the width of the HTML asset bounding box in pixels. Text and elements will be masked if they exceed the  height of the bounding box.
+ * @member {Number} height
+ */
+Asset.prototype['height'] = undefined;
+
+/**
+ * @member {module:model/CaptionFont} font
+ */
+Asset.prototype['font'] = undefined;
+
+/**
+ * Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+ * @member {String} background
+ */
+Asset.prototype['background'] = undefined;
+
+/**
+ * @member {module:model/TextAlignment} alignment
+ */
+Asset.prototype['alignment'] = undefined;
+
+/**
+ * The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+ * @member {module:model/Asset.EffectEnum} effect
+ */
+Asset.prototype['effect'] = undefined;
+
+/**
+ * @member {module:model/CaptionMargin} margin
+ */
+Asset.prototype['margin'] = undefined;
+
+/**
+ * The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+ * @member {String} html
+ */
+Asset.prototype['html'] = undefined;
+
+/**
+ * The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
+ * @member {String} css
+ */
+Asset.prototype['css'] = undefined;
+
+/**
+ * Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+ * @member {module:model/Asset.PositionEnum} position
+ */
+Asset.prototype['position'] = undefined;
 
 /**
  * Uses a preset to apply font properties and styling to the title. <ul>   <li>`minimal`</li>   <li>`blockbuster`</li>   <li>`vogue`</li>   <li>`sketchy`</li>   <li>`skinny`</li>   <li>`chunk`</li>   <li>`chunkLight`</li>   <li>`marker`</li>   <li>`future`</li>   <li>`subtitle`</li> </ul>
@@ -271,50 +369,8 @@ Asset.prototype['color'] = undefined;
 Asset.prototype['size'] = undefined;
 
 /**
- * Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
- * @member {String} background
- */
-Asset.prototype['background'] = undefined;
-
-/**
- * Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
- * @member {module:model/Asset.PositionEnum} position
- */
-Asset.prototype['position'] = undefined;
-
-/**
  * @member {module:model/Offset} offset
  */
 Asset.prototype['offset'] = undefined;
-
-/**
- * The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
- * @member {String} html
- */
-Asset.prototype['html'] = undefined;
-
-/**
- * The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
- * @member {String} css
- */
-Asset.prototype['css'] = undefined;
-
-/**
- * Set the width of the HTML asset bounding box in pixels. Text will wrap to fill the bounding box.
- * @member {Number} width
- */
-Asset.prototype['width'] = undefined;
-
-/**
- * Set the width of the HTML asset bounding box in pixels. Text and elements will be masked if they exceed the  height of the bounding box.
- * @member {Number} height
- */
-Asset.prototype['height'] = undefined;
-
-/**
- * The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
- * @member {module:model/Asset.EffectEnum} effect
- */
-Asset.prototype['effect'] = undefined;
-Asset.OneOf = ["AudioAsset", "HtmlAsset", "ImageAsset", "LumaAsset", "TitleAsset", "VideoAsset"];
+Asset.OneOf = ["AudioAsset", "CaptionAsset", "HtmlAsset", "ImageAsset", "LumaAsset", "TextAsset", "TitleAsset", "VideoAsset"];
 var _default = exports["default"] = Asset;
