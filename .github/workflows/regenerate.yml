@@ -1,0 +1,20 @@
+name: Regenerate SDK
+
+on:
+  repository_dispatch:
+    types: [oas-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'OAS version to regenerate from (e.g. 1.9.10)'
+        required: true
+        type: string
+
+jobs:
+  regenerate:
+    uses: shotstack/oas-api-definition/.github/workflows/regenerate-sdk.yml@main
+    with:
+      oas-version: ${{ github.event.client_payload.version || inputs.version }}
+      language: node
+    secrets:
+      PR_TOKEN: ${{ secrets.SDK_PR_TOKEN }}
