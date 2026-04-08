@@ -1,12 +1,12 @@
 {
   "name": "shotstack-sdk",
-  "version": "0.2.9",
+  "version": "1.10.3",
   "description": "Official Node SDK for the Shotstack Cloud Video Editing API",
   "license": "MIT",
   "main": "src/index.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/shotstack/shotstack-sdk-node"
+    "type": "git",
+    "url": "https://github.com/shotstack/shotstack-sdk-node"
   },
   "keywords": [
     "video",
