@@ -1,0 +1,10 @@
+# Preserve custom files during SDK regeneration
+# Node SDK uses hey-api (not openapi-generator), but this file
+# documents which files are hand-maintained vs generated.
+README.md
+.github/**
+.openapi-generator-ignore
+.gitignore
+.oas-version
+package-lock.json
+scripts/**
