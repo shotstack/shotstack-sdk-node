@@ -2200,6 +2200,14 @@ export type RichtextpropertiesRichTextBackground = {
      * The border radius of the background box in pixels. Must be 0 or greater.
      */
     borderRadius?: number;
+    /**
+     * When true, the background pill shrinks to fit the rendered text bounding box plus the
+     * asset's padding (and stroke width, if present), producing a pill or badge effect. When
+     * false (default), the background fills the full asset content area. Available on
+     * rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     */
+    wrap?: boolean;
 };
 
 /**
