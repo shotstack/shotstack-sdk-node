@@ -50,6 +50,8 @@ export type TextToSpeechAsset = TexttospeechassetTextToSpeechAsset;
 
 export type HtmlAsset = HtmlassetHtmlAsset;
 
+export type Html5Asset = Html5AssetHtml5Asset;
+
 export type TitleAsset = TitleassetTitleAsset;
 
 export type SvgAsset = SvgassetSvgAsset;
@@ -276,6 +278,8 @@ export type AssetAsset = ({
 } & RichcaptionassetRichCaptionAsset) | ({
     type: 'htmlasset_HtmlAsset';
 } & HtmlassetHtmlAsset) | ({
+    type: 'html5asset_Html5Asset';
+} & Html5AssetHtml5Asset) | ({
     type: 'titleasset_TitleAsset';
 } & TitleassetTitleAsset) | ({
     type: 'shapeasset_ShapeAsset';
@@ -453,6 +457,10 @@ export type ChromakeyChromaKey = {
  * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
  */
 export type ClipClip = {
+    /**
+     * Optional client-generated identifier. Used by client SDKs (e.g. the Shotstack Studio SDK) to reference a clip across edits without relying on its position in the timeline. The render API does not use this field and it does not appear in render output.
+     */
+    id?: string;
     asset: AssetAsset;
     /**
      * The start position of the Clip on the timeline.
@@ -950,6 +958,30 @@ export type FontFont = {
      * The URL of the font file. The URL must be publicly accessible or include credentials.
      */
     src: string;
+};
+
+/**
+ * The Html5Asset renders full HTML5/CSS3/JS.
+ *
+ */
+export type Html5AssetHtml5Asset = {
+    /**
+     * The type of asset - set to `html5` for HTML5/CSS3/JS.
+     */
+    type: 'html5';
+    /**
+     * The HTML markup for the asset.
+     */
+    html: string;
+    /**
+     * The CSS string applied to the HTML.
+     */
+    css?: string;
+    /**
+     * Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically.
+     *
+     */
+    js?: string;
 };
 
 /**
@@ -1950,8 +1982,9 @@ export type TemplateresponsedataTemplateResponseData = {
 
 /**
  * The RichCaptionAsset provides word-level caption animations with rich-text styling. It supports
- * karaoke-style highlighting, word-by-word animations, and advanced typography. Use with SRT/VTT
- * files or auto-transcription via aliases.
+ * karaoke-style highlighting, word-by-word animations, and advanced typography. Captions can be
+ * sourced from SRT/VTT/TTML subtitle files, from audio/video media URLs (auto-transcribed), or
+ * from alias references to other clips in the same timeline.
  *
  */
 export type RichcaptionassetRichCaptionAsset = {
@@ -1960,7 +1993,7 @@ export type RichcaptionassetRichCaptionAsset = {
      */
     type: 'rich-caption';
     /**
-     * The URL to an SRT or VTT subtitles file, or an alias reference to auto-generate captions from an audio or video clip. For file URLs, the URL must be publicly accessible or include credentials. For auto-captioning, use the format `alias://clip-name` where clip-name is the alias of an audio, video, or text-to-speech clip.
+     * Source for the caption words. Accepts three formats: (1) the URL to a subtitle file (`.srt`, `.vtt`, `.ttml`, or `.dfxp`) which is parsed directly; (2) the URL to an audio or video media file (`.mp4`, `.mov`, `.webm`, `.mp3`, `.wav`, `.m4a`, `.flac`, `.aac`, `.ogg`, and related formats) which is auto-transcribed; (3) an alias reference in the form `alias://clip-name` where `clip-name` is the alias of another audio, video, or text-to-speech clip in the same timeline — the referenced clip's source is auto-transcribed. For file URLs, the URL must be publicly accessible or include credentials. Content is classified at runtime and unsupported content types (HTML, PDF, images, archives) are rejected with a structured error.
      */
     src: string;
     font?: RichcaptionpropertiesRichCaptionFont;
@@ -2200,6 +2233,14 @@ export type RichtextpropertiesRichTextBackground = {
      * The border radius of the background box in pixels. Must be 0 or greater.
      */
     borderRadius?: number;
+    /**
+     * When true, the background pill shrinks to fit the rendered text bounding box plus the
+     * asset's padding (and stroke width, if present), producing a pill or badge effect. When
+     * false (default), the background fills the full asset content area. Available on
+     * rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     */
+    wrap?: boolean;
 };
 
 /**
@@ -2731,6 +2772,10 @@ export type TextpropertiesTextBackground = {
      * The border radius of the background box in pixels for rounded corners.
      */
     borderRadius?: number;
+    /**
+     * Not supported on legacy `text` assets. Accepted here only so validators can emit a clear migration error pointing users to `rich-text` or `rich-caption`, which support background wrapping natively.
+     */
+    wrap?: boolean;
 };
 
 /**
