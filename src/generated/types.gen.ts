@@ -50,6 +50,8 @@ export type TextToSpeechAsset = TexttospeechassetTextToSpeechAsset;
 
 export type HtmlAsset = HtmlassetHtmlAsset;
 
+export type Html5Asset = Html5AssetHtml5Asset;
+
 export type TitleAsset = TitleassetTitleAsset;
 
 export type SvgAsset = SvgassetSvgAsset;
@@ -276,6 +278,8 @@ export type AssetAsset = ({
 } & RichcaptionassetRichCaptionAsset) | ({
     type: 'htmlasset_HtmlAsset';
 } & HtmlassetHtmlAsset) | ({
+    type: 'html5asset_Html5Asset';
+} & Html5AssetHtml5Asset) | ({
     type: 'titleasset_TitleAsset';
 } & TitleassetTitleAsset) | ({
     type: 'shapeasset_ShapeAsset';
@@ -290,7 +294,17 @@ export type AssetAsset = ({
 } & TexttospeechassetTextToSpeechAsset);
 
 /**
- * The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * The AudioAsset adds audio to a Clip. The audio can be sourced from a URL
+ * (`src`) or generated from a text prompt (`prompt`). Exactly one of `src` or
+ * `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to a publicly accessible audio URL (e.g. mp3).
+ * - **Generated speech:** set `prompt` to the spoken text and `voice` to a voice
+ * identifier (text-to-speech). Optionally set `language`/`newscaster`.
+ * - **Generated music or SFX:** set `prompt` describing the sound; omit `voice`.
+ * - Use `model` to choose the generator. The generated `src` is filled in
+ * automatically.
+ *
  */
 export type AudioassetAudioAsset = {
     /**
@@ -298,9 +312,29 @@ export type AudioassetAudioAsset = {
      */
     type: 'audio';
     /**
-     * The audio source URL. The URL must be publicly accessible or include credentials.
+     * The audio source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt. When `voice` is set, the prompt is the spoken text (text-to-speech). Without `voice`, the prompt describes generated music or sound effects. The generated `src` is filled in automatically.
+     */
+    prompt?: string;
+    /**
+     * Voice identifier for text-to-speech generation (e.g. `Matthew`, `Joanna`). Only meaningful when `prompt` is set.
+     */
+    voice?: string;
+    /**
+     * Optional BCP-47 language code (e.g. `en-US`) for text-to-speech. Only meaningful when `prompt` and `voice` are set.
+     */
+    language?: string;
+    /**
+     * Set to `true` to use the voice's newscaster mode when supported. Only meaningful when `prompt` and `voice` are set.
+     */
+    newscaster?: boolean;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `polly-neural`). Defaults to the platform's preferred generator if omitted.
+     */
+    model?: string;
     /**
      * The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
      */
@@ -310,7 +344,7 @@ export type AudioassetAudioAsset = {
      */
     volume?: number | Array<TweenTween>;
     /**
-     * Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
+     * Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
      */
     speed?: number;
     /**
@@ -453,6 +487,10 @@ export type ChromakeyChromaKey = {
  * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
  */
 export type ClipClip = {
+    /**
+     * Optional client-generated identifier. Used by client SDKs (e.g. the Shotstack Studio SDK) to reference a clip across edits without relying on its position in the timeline. The render API does not use this field and it does not appear in render output.
+     */
+    id?: string;
     asset: AssetAsset;
     /**
      * The start position of the Clip on the timeline.
@@ -953,6 +991,30 @@ export type FontFont = {
 };
 
 /**
+ * The Html5Asset renders full HTML5/CSS3/JS.
+ *
+ */
+export type Html5AssetHtml5Asset = {
+    /**
+     * The type of asset - set to `html5` for HTML5/CSS3/JS.
+     */
+    type: 'html5';
+    /**
+     * The HTML markup for the asset. Max 1,000,000 characters.
+     */
+    html: string;
+    /**
+     * The CSS string applied to the HTML. Max 500,000 characters.
+     */
+    css?: string;
+    /**
+     * Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     */
+    js?: string;
+};
+
+/**
  * **Notice: The HtmlAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**
  *
  * The HtmlAsset clip type lets you create text based layout and formatting using
@@ -1004,7 +1066,14 @@ export type HtmlassetHtmlAsset = {
 };
 
 /**
- * The ImageAsset is used to create video from images to compose an image. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
+ * The ImageAsset adds an image to a Clip. The image can be sourced from a URL
+ * (`src`) or generated from a text prompt (`prompt`). Exactly one of `src` or
+ * `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to the publicly accessible URL of a jpg or png file.
+ * - **Generated:** set `prompt` to describe the image; the engine generates it
+ * using the provider chosen by `model` and fills `src` in automatically.
+ *
  */
 export type ImageassetImageAsset = {
     /**
@@ -1012,14 +1081,30 @@ export type ImageassetImageAsset = {
      */
     type: 'image';
     /**
-     * The image source URL. The URL must be publicly accessible or include credentials.
+     * The image source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt to generate the image from. When set without `src`, the engine generates an image and fills `src` automatically. Use `model` to choose the generator.
+     */
+    prompt?: string;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `flux-schnell`). Defaults to the platform's preferred generator if omitted.
+     */
+    model?: string;
     crop?: CropCrop;
 };
 
 /**
+ * **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset)
+ * with `prompt` and `inputSrc` instead.** This type continues to function and is
+ * internally rewritten to VideoAsset; no behaviour change for existing
+ * integrations.
+ *
  * The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ *
+ *
+ * @deprecated
  */
 export type ImagetovideoassetImageToVideoAsset = {
     /**
@@ -1515,7 +1600,7 @@ export type OffsetOffset = {
 };
 
 /**
- * The output format, render range and type of media to generate.
+ * The output format, render range and type of media to generate. For all formats except `mp3`, either `resolution` or `size` (with both `width` and `height`) must be specified.
  */
 export type OutputOutput = {
     /**
@@ -1530,7 +1615,7 @@ export type OutputOutput = {
      */
     format: 'mp4' | 'gif' | 'mp3' | 'jpg' | 'png' | 'bmp';
     /**
-     * The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>
+     * The preset output resolution of the video or image. For custom sizes use the `size` property. Either `resolution` or `size` (with both `width` and `height`) must be specified for all formats except `mp3`. <ul>
      * <li>`preview` - 512px x 288px @ 15fps</li>
      * <li>`mobile` - 640px x 360px @ 25fps</li>
      * <li>`sd` - 1024px x 576px @ 25fps</li>
@@ -1950,8 +2035,9 @@ export type TemplateresponsedataTemplateResponseData = {
 
 /**
  * The RichCaptionAsset provides word-level caption animations with rich-text styling. It supports
- * karaoke-style highlighting, word-by-word animations, and advanced typography. Use with SRT/VTT
- * files or auto-transcription via aliases.
+ * karaoke-style highlighting, word-by-word animations, and advanced typography. Captions can be
+ * sourced from SRT/VTT/TTML subtitle files, from audio/video media URLs (auto-transcribed), or
+ * from alias references to other clips in the same timeline.
  *
  */
 export type RichcaptionassetRichCaptionAsset = {
@@ -1960,7 +2046,7 @@ export type RichcaptionassetRichCaptionAsset = {
      */
     type: 'rich-caption';
     /**
-     * The URL to an SRT or VTT subtitles file, or an alias reference to auto-generate captions from an audio or video clip. For file URLs, the URL must be publicly accessible or include credentials. For auto-captioning, use the format `alias://clip-name` where clip-name is the alias of an audio, video, or text-to-speech clip.
+     * Source for the caption words. Accepts three formats: (1) the URL to a subtitle file (`.srt`, `.vtt`, `.ttml`, or `.dfxp`) which is parsed directly; (2) the URL to an audio or video media file (`.mp4`, `.mov`, `.webm`, `.mp3`, `.wav`, `.m4a`, `.flac`, `.aac`, `.ogg`, and related formats) which is auto-transcribed; (3) an alias reference in the form `alias://clip-name` where `clip-name` is the alias of another audio, video, or text-to-speech clip in the same timeline — the referenced clip's source is auto-transcribed. For file URLs, the URL must be publicly accessible or include credentials. Content is classified at runtime and unsupported content types (HTML, PDF, images, archives) are rejected with a structured error.
      */
     src: string;
     font?: RichcaptionpropertiesRichCaptionFont;
@@ -2200,6 +2286,23 @@ export type RichtextpropertiesRichTextBackground = {
      * The border radius of the background box in pixels. Must be 0 or greater.
      */
     borderRadius?: number;
+    /**
+     * When true, the background pill shrinks to fit the rendered text bounding box plus the
+     * asset's padding (and stroke width, if present), producing a pill or badge effect. When
+     * false (default), the background fills the full asset content area. Available on
+     * rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     */
+    wrap?: boolean;
+    /**
+     * Inner padding in pixels between the wrap pill edge and the rendered text. Only takes
+     * effect when `wrap: true`. When omitted, the renderer applies a sensible default
+     * proportional to the font size (approximately 12% of the active page font size on
+     * rich-caption assets). Set to 0 for a pill that hugs the text exactly. Available on
+     * rich-text and rich-caption assets only.
+     *
+     */
+    padding?: number;
 };
 
 /**
@@ -2731,6 +2834,10 @@ export type TextpropertiesTextBackground = {
      * The border radius of the background box in pixels for rounded corners.
      */
     borderRadius?: number;
+    /**
+     * Not supported on legacy `text` assets. Accepted here only so validators can emit a clear migration error pointing users to `rich-text` or `rich-caption`, which support background wrapping natively.
+     */
+    wrap?: boolean;
 };
 
 /**
@@ -2778,7 +2885,14 @@ export type TextpropertiesTextStroke = {
 };
 
 /**
+ * **Notice: TextToImageAsset is deprecated. Use [ImageAsset](#tocs_imageasset)
+ * with `prompt` instead.** This type continues to function and is internally
+ * rewritten to ImageAsset; no behaviour change for existing integrations.
+ *
  * The TextToImageAsset lets you create a dynamic image from a text prompt.
+ *
+ *
+ * @deprecated
  */
 export type TexttoimageassetTextToImageAsset = {
     /**
@@ -2801,7 +2915,17 @@ export type TexttoimageassetTextToImageAsset = {
 };
 
 /**
- * The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service. The generated audio can be trimmed, faded and have its volume and speed adjusted using the same properties available on the AudioAsset.
+ * **Notice: TextToSpeechAsset is deprecated. Use [AudioAsset](#tocs_audioasset)
+ * with `prompt` (the spoken text) and `voice` instead.** This type continues to
+ * function and is internally rewritten to AudioAsset; no behaviour change for
+ * existing integrations.
+ *
+ * The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service.
+ * The generated audio can be trimmed, faded and have its volume and speed adjusted using the
+ * same properties available on the AudioAsset.
+ *
+ *
+ * @deprecated
  */
 export type TexttospeechassetTextToSpeechAsset = {
     /**
@@ -3075,7 +3199,16 @@ export type TweenTween = {
 };
 
 /**
- * The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+ * The VideoAsset adds a video to a Clip. The video can be sourced from a URL
+ * (`src`) or generated from a text prompt (`prompt`), optionally from a
+ * starting image (`inputSrc`). Exactly one of `src` or `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to the URL of an mp4 (or compatible) video file.
+ * - **Generated:** set `prompt` to describe the motion. Optionally set `inputSrc`
+ * to a starting image URL (image-to-video). Use `model` to choose the generator
+ * (e.g. `luma-ray-3`, `runpod-itv-mini`). The generated `src` is filled in
+ * automatically.
+ *
  */
 export type VideoassetVideoAsset = {
     /**
@@ -3083,9 +3216,27 @@ export type VideoassetVideoAsset = {
      */
     type: 'video';
     /**
-     * The video source URL. The URL must be publicly accessible or include credentials.
+     * The video source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt to generate the video from. When set without `src`, the engine generates a video and fills `src` automatically. Optionally pair with `inputSrc` for image-to-video. Use `model` to choose the generator.
+     */
+    prompt?: string;
+    /**
+     * Input image URL for image-to-video generation. The image is used as the starting frame; `prompt` describes the motion. Has no effect unless `prompt` is set.
+     */
+    inputSrc?: string;
+    /**
+     * **Deprecated — use `inputSrc`.** Legacy alias for the image-to-video input image URL, accepted and normalised to `inputSrc` on ingest. The name is misleading — industry-wide `seed` means an integer RNG sampling seed — and will be removed in a future major version.
+     *
+     * @deprecated
+     */
+    seed?: string;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `luma-ray-3`, `runpod-itv-mini`). Defaults to the platform's preferred generator if omitted.
+     */
+    model?: string;
     /**
      * Set to `true` to force re-encoding of the video during preprocessing. This can help resolve compatibility issues, fix rotation problems, synchronize audio, or convert formats. The video will be processed to ensure optimal compatibility with the rendering engine.
      */
@@ -3107,7 +3258,7 @@ export type VideoassetVideoAsset = {
      */
     volumeEffect?: 'none' | 'fadeIn' | 'fadeOut' | 'fadeInFadeOut';
     /**
-     * Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
      */
     speed?: number;
     crop?: CropCrop;
