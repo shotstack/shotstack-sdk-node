@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { DeleteAssetData, DeleteAssetResponses, DeleteSourceData, DeleteSourceResponses, DeleteTemplateData, DeleteTemplateResponses, GetAssetByRenderIdData, GetAssetByRenderIdResponses, GetAssetData, GetAssetResponses, GetRenderData, GetRenderResponses, GetSourceData, GetSourceResponses, GetSourcesData, GetSourcesResponses, GetTemplateData, GetTemplateResponses, GetTemplatesData, GetTemplatesResponses, GetUploadSignedUrlData, GetUploadSignedUrlResponses, PostRenderData, PostRenderResponses, PostServeAssetData, PostServeAssetResponses, PostSourceData, PostSourceErrors, PostSourceResponses, PostTemplateData, PostTemplateRenderData, PostTemplateRenderResponses, PostTemplateResponses, ProbeData, ProbeResponses, PutTemplateData, PutTemplateResponses } from './types.gen';
+import type { DeleteAssetData, DeleteAssetResponses, DeleteSourceData, DeleteSourceResponses, DeleteTemplateData, DeleteTemplateResponses, GetAssetByRenderIdData, GetAssetByRenderIdResponses, GetAssetData, GetAssetResponses, GetGenerateData, GetGenerateResponses, GetRenderData, GetRenderResponses, GetSourceData, GetSourceResponses, GetSourcesData, GetSourcesResponses, GetTemplateData, GetTemplateResponses, GetTemplatesData, GetTemplatesResponses, GetUploadSignedUrlData, GetUploadSignedUrlResponses, PostGenerateData, PostGenerateResponses, PostRenderData, PostRenderResponses, PostServeAssetData, PostServeAssetResponses, PostSourceData, PostSourceErrors, PostSourceResponses, PostTemplateData, PostTemplateRenderData, PostTemplateRenderResponses, PostTemplateResponses, ProbeData, ProbeResponses, PutTemplateData, PutTemplateResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -174,6 +174,46 @@ export const postTemplateRender = <ThrowOnError extends boolean = false>(options
 export const probe = <ThrowOnError extends boolean = false>(options: Options<ProbeData, ThrowOnError>) => (options.client ?? client).get<ProbeResponses, unknown, ThrowOnError>({
     security: [{ name: 'x-api-key', type: 'apiKey' }],
     url: '/probe/{url}',
+    ...options
+});
+
+/**
+ * Generate Asset
+ *
+ * Generate a single image, video or audio asset from a text prompt without
+ * rendering a full edit. Submit a prompt-bearing asset; the response is
+ * immediate when an identical asset has been generated before (results are
+ * cached by prompt, model and options), otherwise the job is queued and can
+ * be polled via the status endpoint.
+ *
+ * Generation is billed in credits per asset. Identical repeat requests
+ * resolve from the cache at no charge.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const postGenerate = <ThrowOnError extends boolean = false>(options?: Options<PostGenerateData, ThrowOnError>) => (options?.client ?? client).post<PostGenerateResponses, unknown, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/generate',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers
+    }
+});
+
+/**
+ * Get Generation Status
+ *
+ * Get the status of an on-demand asset generation job created with the
+ * generate endpoint. Jobs are owner-scoped.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const getGenerate = <ThrowOnError extends boolean = false>(options: Options<GetGenerateData, ThrowOnError>) => (options.client ?? client).get<GetGenerateResponses, unknown, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/generate/{id}',
     ...options
 });
 
