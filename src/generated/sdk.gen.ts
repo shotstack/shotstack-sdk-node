@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { DeleteAssetData, DeleteAssetResponses, DeleteSourceData, DeleteSourceResponses, DeleteTemplateData, DeleteTemplateResponses, GetAssetByRenderIdData, GetAssetByRenderIdResponses, GetAssetData, GetAssetResponses, GetRenderData, GetRenderResponses, GetSourceData, GetSourceResponses, GetSourcesData, GetSourcesResponses, GetTemplateData, GetTemplateResponses, GetTemplatesData, GetTemplatesResponses, GetUploadSignedUrlData, GetUploadSignedUrlResponses, PostRenderData, PostRenderResponses, PostServeAssetData, PostServeAssetResponses, PostSourceData, PostSourceErrors, PostSourceResponses, PostTemplateData, PostTemplateRenderData, PostTemplateRenderResponses, PostTemplateResponses, ProbeData, ProbeResponses, PutTemplateData, PutTemplateResponses } from './types.gen';
+import type { DeleteAssetData, DeleteAssetResponses, DeleteSourceData, DeleteSourceResponses, DeleteTemplateData, DeleteTemplateResponses, GetAssetByRenderIdData, GetAssetByRenderIdResponses, GetAssetData, GetAssetResponses, GetGenerateData, GetGenerateErrors, GetGenerateResponses, GetModelData, GetModelErrors, GetModelResponses, GetModelsData, GetModelsResponses, GetRenderData, GetRenderResponses, GetSourceData, GetSourceResponses, GetSourcesData, GetSourcesResponses, GetTemplateData, GetTemplateResponses, GetTemplatesData, GetTemplatesResponses, GetUploadSignedUrlData, GetUploadSignedUrlResponses, PostGenerateData, PostGenerateErrors, PostGenerateResponses, PostRenderData, PostRenderResponses, PostServeAssetData, PostServeAssetResponses, PostSourceData, PostSourceErrors, PostSourceResponses, PostTemplateData, PostTemplateRenderData, PostTemplateRenderResponses, PostTemplateResponses, ProbeData, ProbeResponses, PutTemplateData, PutTemplateResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -32,7 +32,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * **Video Preprocessing:**
  * Video assets undergo automatic preprocessing to ensure compatibility. You can force
- * preprocessing by setting `"transcode": true` on video assets. See [Preprocessing](#preprocessing)
+ * preprocessing by setting `"transcode": true` on video assets. See [VideoAsset](#tocs_videoasset)
  * for more details.
  *
  * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
@@ -178,6 +178,86 @@ export const probe = <ThrowOnError extends boolean = false>(options: Options<Pro
 });
 
 /**
+ * Generate Asset
+ *
+ * Generate a single image, video or audio asset from a text prompt without
+ * rendering a full edit. Submit a prompt-bearing asset; the response is
+ * immediate when an identical asset has been generated before (results are
+ * cached by prompt, model and options), otherwise the job is queued and can
+ * be polled via the status endpoint.
+ *
+ * Generation is billed in credits per asset. Identical repeat requests
+ * resolve from the cache at no charge.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const postGenerate = <ThrowOnError extends boolean = false>(options?: Options<PostGenerateData, ThrowOnError>) => (options?.client ?? client).post<PostGenerateResponses, PostGenerateErrors, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/generate',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers
+    }
+});
+
+/**
+ * Get Generation Status
+ *
+ * Get the status of an on-demand asset generation job created with the
+ * generate endpoint. Jobs are owner-scoped.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const getGenerate = <ThrowOnError extends boolean = false>(options: Options<GetGenerateData, ThrowOnError>) => (options.client ?? client).get<GetGenerateResponses, GetGenerateErrors, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/generate/{id}',
+    ...options
+});
+
+/**
+ * List Generation Models
+ *
+ * List the generation models available for `prompt`-bearing image, video and audio
+ * assets, with the options each accepts and what it costs in credits.
+ *
+ * Use this to populate a model picker and render its option fields, rather than
+ * hard coding a model list. A newly launched model appears here without any change
+ * on your side. Each entry carries the asset type it generates, so filter the list
+ * client side when a picker only needs one kind.
+ *
+ * Option schemas are omitted by default. Request them with `expand=options`.
+ *
+ * Each model's `available` reflects the plan of the account behind the calling API
+ * key, so offer only the models it marks available.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const getModels = <ThrowOnError extends boolean = false>(options?: Options<GetModelsData, ThrowOnError>) => (options?.client ?? client).get<GetModelsResponses, unknown, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/models',
+    ...options
+});
+
+/**
+ * Get Generation Model
+ *
+ * Get one generation model, including the JSON Schema for the options it accepts and
+ * what it costs in credits.
+ *
+ * **Base URL:** <a href="#">https://api.shotstack.io/edit/{version}</a>
+ *
+ */
+export const getModel = <ThrowOnError extends boolean = false>(options: Options<GetModelData, ThrowOnError>) => (options.client ?? client).get<GetModelResponses, GetModelErrors, ThrowOnError>({
+    security: [{ name: 'x-api-key', type: 'apiKey' }],
+    url: '/models/{id}',
+    ...options
+});
+
+/**
  * Delete Asset
  *
  * Delete an asset by its asset id. If a render creates multiple assets, such as thumbnail and poster images,
@@ -212,7 +292,7 @@ export const getAsset = <ThrowOnError extends boolean = false>(options: Options<
  * Get Asset by Render ID
  *
  * A render may generate more than one file, such as a video, thumbnail and poster image. When the assets are
- * created the only known id is the render id returned by the original [render request](#render-video), status
+ * created the only known id is the render id returned by the original [render request](#render-asset), status
  * request or webhook. This endpoint lets you look up one or more assets by the render id.
  *
  * **Base URL:** <a href="#">https://api.shotstack.io/serve/{version}</a>
@@ -310,7 +390,7 @@ export const getSource = <ThrowOnError extends boolean = false>(options: Options
  * Request a signed URL to upload a file to. The response returns a signed URL that you use to upload the file to.
  * The signed URL looks similar to:
  *
- * https://shotstack-ingest-api-stage-sources.s3.ap-southeast-2.amazonaws.com/5ca6hu7s9k/zzytey4v-32km-kq1z-aftr-3kcuqi0brad2/source?AWSAccessKeyId=ASIAWJV7UWDMGTZLHTXP&Expires=1677209777&Signature=PKR4dGDDdOuMTAQmDASzLGmLOeo%3D&x-amz-acl=public-read&x-amz-security-token=IQoJb3JpZ2luX2VjEGMaDmFwLX......56osBGByztm7WZdbmXzO09KR
+ * `https://shotstack-ingest-api-stage-sources.s3.ap-southeast-2.amazonaws.com/5ca6hu7s9k/zzytey4v-32km-kq1z-aftr-3kcuqi0brad2/source?AWSAccessKeyId=ASIAWJV7UWDMGTZLHTXP&Expires=1677209777&Signature=PKR4dGDDdOuMTAQmDASzLGmLOeo%3D&x-amz-acl=public-read&x-amz-security-token=IQoJb3JpZ2luX2VjEGMaDmFwLX......56osBGByztm7WZdbmXzO09KR`
  *
  * In a separate API call, use this signed URL to send a PUT request with the binary file. Using  cURL you can use
  * a command like:
