@@ -50,6 +50,8 @@ export type TextToSpeechAsset = TexttospeechassetTextToSpeechAsset;
 
 export type HtmlAsset = HtmlassetHtmlAsset;
 
+export type Html5Asset = Html5AssetHtml5Asset;
+
 export type TitleAsset = TitleassetTitleAsset;
 
 export type SvgAsset = SvgassetSvgAsset;
@@ -89,6 +91,10 @@ export type RichTextBackground = RichtextpropertiesRichTextBackground;
 export type RichTextAlignment = RichtextpropertiesRichTextAlignment;
 
 export type RichTextAnimation = RichtextpropertiesRichTextAnimation;
+
+export type RichTextBorder = RichtextpropertiesRichTextBorder;
+
+export type RichTextPadding = RichtextpropertiesRichTextPadding;
 
 export type CaptionFont = CaptionpropertiesCaptionFont;
 
@@ -161,6 +167,22 @@ export type DolbyEnhancement = DolbyEnhancementDolbyEnhancement;
 export type DolbyEnhancementOptions = DolbyEnhancementOptionsDolbyEnhancementOptions;
 
 export type Transfer = TransferTransfer;
+
+export type GenerationAsset = GenerationassetGenerationAsset;
+
+export type GenerationModel = GenerationmodelGenerationModel;
+
+export type GenerationRequest = GenerationrequestGenerationRequest;
+
+export type GenerationQuote = GenerationquoteGenerationQuote;
+
+export type GenerationModelListResponse = GenerationmodellistresponseGenerationModelListResponse;
+
+export type GenerationResponse = GenerationresponseGenerationResponse;
+
+export type GenerationErrorResponse = GenerationerrorresponseGenerationErrorResponse;
+
+export type GenerationModelErrorResponse = GenerationmodelerrorresponseGenerationModelErrorResponse;
 
 export type QueuedResponse = QueuedresponseQueuedResponse;
 
@@ -236,6 +258,16 @@ export type AssetsidRoot = unknown;
 
 export type AssetsrenderidRoot = unknown;
 
+export type GenerateRoot = unknown;
+
+export type GenerateidRoot = unknown;
+
+export type GeneratequoteRoot = unknown;
+
+export type ModelsRoot = unknown;
+
+export type ModelsidRoot = unknown;
+
 export type ProbeRoot = unknown;
 
 export type RenderRoot = unknown;
@@ -276,6 +308,8 @@ export type AssetAsset = ({
 } & RichcaptionassetRichCaptionAsset) | ({
     type: 'htmlasset_HtmlAsset';
 } & HtmlassetHtmlAsset) | ({
+    type: 'html5asset_Html5Asset';
+} & Html5AssetHtml5Asset) | ({
     type: 'titleasset_TitleAsset';
 } & TitleassetTitleAsset) | ({
     type: 'shapeasset_ShapeAsset';
@@ -290,7 +324,21 @@ export type AssetAsset = ({
 } & TexttospeechassetTextToSpeechAsset);
 
 /**
- * The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * The AudioAsset adds audio to a Clip. The audio can be sourced from a URL
+ * (`src`), generated from a text prompt (`prompt`), or both. At least one of
+ * `src` or `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to a publicly accessible audio URL (e.g. mp3).
+ * - **Generated speech:** set `prompt` to the spoken text and choose a
+ * text-to-speech `model`; set the voice via `options`.
+ * - **Generated music or SFX:** set `prompt` describing the sound and choose
+ * a music generation `model`.
+ * - **Both:** `src` acts as a preview placeholder while `prompt` drives
+ * generation — the audio is regenerated from the prompt at render time.
+ * Unchanged prompts and options resolve from the generation cache.
+ * - Use `model` to choose the generator and `options` to configure it. The
+ * generated `src` is filled in automatically.
+ *
  */
 export type AudioassetAudioAsset = {
     /**
@@ -298,9 +346,23 @@ export type AudioassetAudioAsset = {
      */
     type: 'audio';
     /**
-     * The audio source URL. The URL must be publicly accessible or include credentials.
+     * The audio source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the audio is regenerated from the prompt at render time.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt. For text-to-speech models the prompt is the spoken text; for music models it describes the sound to generate. The generated `src` is filled in automatically; an existing `src` is treated as a preview placeholder and replaced.
+     */
+    prompt?: string;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `polly-neural`, `elevenlabs-tts`, `elevenlabs-music`). Defaults to `elevenlabs-tts` (with a default voice) if omitted. Each model's available options are defined by the model registry.
+     */
+    model?: string;
+    /**
+     * Model-specific generation settings. Valid keys and values depend on the chosen `model` and are defined by the model registry. Omitted options use the model's defaults. Unknown or invalid options are rejected.
+     */
+    options?: {
+        [key: string]: unknown;
+    };
     /**
      * The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
      */
@@ -310,7 +372,7 @@ export type AudioassetAudioAsset = {
      */
     volume?: number | Array<TweenTween>;
     /**
-     * Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
+     * Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
      */
     speed?: number;
     /**
@@ -324,6 +386,8 @@ export type AudioassetAudioAsset = {
 };
 
 /**
+ * **Notice: The CaptionAsset is deprecated, use the [RichCaptionAsset](#tocs_richcaptionasset) instead.**
+ *
  * The CaptionAsset is used to add captions (subtitles) to a video. It uses a supplied SRT or VTT file which will
  * be read and burnt to the video.
  *
@@ -334,6 +398,8 @@ export type AudioassetAudioAsset = {
  * To sync captions with a video or audio file use a [Video](#tocs_videoasset) or [Audio](#tocs_audioasset) with
  * matching start and end time.
  *
+ *
+ * @deprecated
  */
 export type CaptionassetCaptionAsset = {
     /**
@@ -453,6 +519,10 @@ export type ChromakeyChromaKey = {
  * A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
  */
 export type ClipClip = {
+    /**
+     * Optional client-generated identifier. Used by client SDKs (e.g. the Shotstack Studio SDK) to reference a clip across edits without relying on its position in the timeline. The render API does not use this field and it does not appear in render output.
+     */
+    id?: string;
     asset: AssetAsset;
     /**
      * The start position of the Clip on the timeline.
@@ -584,7 +654,7 @@ export type DestinationsDestinations = ({
 } & AzureBlobStorageDestinationAzureBlobStorageDestination);
 
 /**
- * Send videos and assets to [Akamai NetStorage](https://techdocs.akamai.com/netstorage-usage/docs). Send files to your NetStorage upload directory with a custom path and filename. Akamai credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/akamai-netstorage), not in the request.
+ * Send videos and assets to [Akamai NetStorage](https://techdocs.akamai.com/netstorage/docs). Send files to your NetStorage upload directory with a custom path and filename. Akamai credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/akamai-netstorage), not in the request.
  */
 export type AkamaiNetStorageDestinationAkamaiNetStorageDestination = {
     /**
@@ -686,7 +756,7 @@ export type GoogleDriveDestinationGoogleDriveDestination = {
      * The destination to send assets to - set to `google-drive` for Google Drive.
      */
     provider: string;
-    options: GoogleDriveDestinationOptionsGoogleDriveDestinationOptions;
+    options?: GoogleDriveDestinationOptionsGoogleDriveDestinationOptions;
 };
 
 /**
@@ -694,9 +764,9 @@ export type GoogleDriveDestinationGoogleDriveDestination = {
  */
 export type GoogleDriveDestinationOptionsGoogleDriveDestinationOptions = {
     /**
-     * The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href="#">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+     * The Google Drive folder ID where the asset will be stored. If omitted, the asset is saved to the root of My Drive. The folder ID can be retrieved from the URL when logged in to Google Drive, e.g. <a href="#">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
      */
@@ -704,7 +774,10 @@ export type GoogleDriveDestinationOptionsGoogleDriveDestinationOptions = {
 };
 
 /**
- * Send videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux/) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations.
+ * Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ *
+ * @deprecated
  */
 export type MuxDestinationMuxDestination = {
     /**
@@ -715,7 +788,10 @@ export type MuxDestinationMuxDestination = {
 };
 
 /**
+ * **Notice: MuxDestinationOptions, like the Mux destination, is deprecated.** It continues to work, with no behaviour change for existing integrations.
  * Pass additional options to control how Mux processes video. Currently supports playback_policy and passthrough options.
+ *
+ * @deprecated
  */
 export type MuxDestinationOptionsMuxDestinationOptions = {
     /**
@@ -780,7 +856,10 @@ export type ShotstackDestinationShotstackDestination = {
 };
 
 /**
+ * **Notice: The TikTok destination is deprecated.** It continues to work, with no behaviour change for existing integrations.
  * Send videos to TikTok. TikTok credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/tiktok), not in the request.
+ *
+ * @deprecated
  */
 export type TiktokDestinationTiktokDestination = {
     /**
@@ -791,7 +870,10 @@ export type TiktokDestinationTiktokDestination = {
 };
 
 /**
+ * **Notice: TiktokDestinationOptions, like the TikTok destination, is deprecated.** It continues to work, with no behaviour change for existing integrations.
  * Pass additional options to control how TikTok publishes video.
+ *
+ * @deprecated
  */
 export type TiktokDestinationOptionsTiktokDestinationOptions = {
     /**
@@ -908,7 +990,7 @@ export type EditEdit = {
     /**
      * **Notice: This option is now deprecated and will be removed. Disk types are handled automatically. Setting a disk type has no effect.**
      *
-     * The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details.
+     * The disk type to use for storing footage and assets for each render.
      * <ul>
      * <li>`local` - optimized for high speed rendering with up to 512MB storage</li>
      * <li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li>
@@ -953,7 +1035,103 @@ export type FontFont = {
 };
 
 /**
- * **Notice: The HtmlAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**
+ * An asset to generate, from a text `prompt` or, for models that take one, a source `src`.
+ */
+export type GenerationassetGenerationAsset = {
+    /**
+     * The kind of asset to generate.
+     */
+    type: 'image' | 'video' | 'audio';
+    /**
+     * A description of the asset to generate. For text-to-speech models it is the text spoken.
+     */
+    prompt?: string;
+    /**
+     * The source file for models that take one instead of a prompt, such as `shotstack-music-analysis`. A public HTTPS URL.
+     */
+    src?: string;
+    /**
+     * The generation model. Defaults to `nano-banana-2` for images, `seedance-2.0-text-to-video` for video and `elevenlabs-multilingual-v2` for audio. `GET /models` lists the models for each type.
+     */
+    model?: string;
+    /**
+     * Settings for the chosen `model`. `GET /models` lists the options each model accepts; omitted options use the model's defaults and unknown or invalid options are rejected. A starting image for video goes in `startSrc` (`inputSrc` on the original image-to-video models) and a speech voice in `voice`.
+     */
+    options?: {
+        [key: string]: unknown;
+    };
+};
+
+/**
+ * A generation model available to image, video and audio assets generated from a prompt or, for some models, a source file, with the options it accepts. Use `POST /generate/quote` for a credit estimate. Render a model picker and its option fields from this rather than hard coding a model list, so a newly launched model is available without a client release.
+ */
+export type GenerationmodelGenerationModel = {
+    /**
+     * The identifier to set as the asset `model`. Carries no provider name, so routing can change without a public rename.
+     */
+    model: string;
+    /**
+     * The asset type this model generates.
+     */
+    type: 'image' | 'video' | 'audio';
+    /**
+     * The model's display name, for a model picker.
+     */
+    name?: string;
+    /**
+     * What the model is suited to, in a sentence or two.
+     */
+    description?: string;
+    /**
+     * JSON Schema for the model's `options` object. Only returned for a single model, or for a list requested with `expand=options`. Values outside this schema are rejected.
+     */
+    options?: {
+        [key: string]: unknown;
+    };
+    /**
+     * Whether the account behind the calling API key can generate with this model. Omitted when that cannot be determined; treat a missing value as unknown, not as available. Generation requests are checked either way.
+     */
+    available?: boolean;
+    /**
+     * Why `available` is false. `AiCapabilityNotIncluded`: the account's plan does not include this kind of generation. `AiDisabled`: AI generation is turned off for the account. `AiAccessUnavailable`: access could not be confirmed; try again later.
+     */
+    unavailableReason?: 'AiCapabilityNotIncluded' | 'AiDisabled' | 'AiAccessUnavailable';
+};
+
+export type GenerationrequestGenerationRequest = {
+    asset: GenerationassetGenerationAsset;
+    /**
+     * The length, in seconds, of the clip the asset fills. A model that generates to a duration takes it from this value in place of its own duration option. Other models ignore it.
+     */
+    length?: number;
+};
+
+/**
+ * The Html5Asset renders full HTML5/CSS3/JS.
+ *
+ */
+export type Html5AssetHtml5Asset = {
+    /**
+     * The type of asset - set to `html5` for HTML5/CSS3/JS.
+     */
+    type: 'html5';
+    /**
+     * The HTML markup for the asset. Max 1,000,000 characters.
+     */
+    html: string;
+    /**
+     * The CSS string applied to the HTML. Max 500,000 characters.
+     */
+    css?: string;
+    /**
+     * Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     */
+    js?: string;
+};
+
+/**
+ * **Notice: The HtmlAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.**
  *
  * The HtmlAsset clip type lets you create text based layout and formatting using
  * HTML and CSS. You can also set the height and width of a bounding box for the HTML
@@ -1004,7 +1182,18 @@ export type HtmlassetHtmlAsset = {
 };
 
 /**
- * The ImageAsset is used to create video from images to compose an image. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
+ * The ImageAsset adds an image to a Clip. The image can be sourced from a URL
+ * (`src`), generated from a text prompt (`prompt`), or both. At least one of
+ * `src` or `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to the publicly accessible URL of a jpg or png file.
+ * - **Generated:** set `prompt` to describe the image. Choose a generator with
+ * `model` and configure it with model-specific `options`; the engine fills
+ * `src` in automatically.
+ * - **Both:** `src` acts as a preview placeholder while `prompt` drives
+ * generation — the image is regenerated from the prompt at render time.
+ * Unchanged prompts and options resolve from the generation cache.
+ *
  */
 export type ImageassetImageAsset = {
     /**
@@ -1012,14 +1201,37 @@ export type ImageassetImageAsset = {
      */
     type: 'image';
     /**
-     * The image source URL. The URL must be publicly accessible or include credentials.
+     * The image source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the image is regenerated from the prompt at render time.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt to generate the image from. The engine generates an image at render time and fills `src` automatically; an existing `src` is treated as a preview placeholder and replaced. Use `model` to choose the generator and `options` to configure it.
+     */
+    prompt?: string;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `flux-schnell`, `nano-banana-2`). Defaults to `nano-banana-2` if omitted. Each model's available options are defined by the model registry.
+     */
+    model?: string;
+    /**
+     * Model-specific generation settings. Valid keys and values depend on the chosen `model` and are defined by the model registry. Omitted options use the model's defaults. Unknown or invalid options are rejected.
+     */
+    options?: {
+        [key: string]: unknown;
+    };
     crop?: CropCrop;
 };
 
 /**
+ * **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset)
+ * with `prompt`, a `model` that accepts a starting image, and that image in
+ * `options.startSrc` — for example `seedance-2.0-image-to-video`.** This type continues to
+ * function and is internally rewritten to VideoAsset; no behaviour change for
+ * existing integrations.
+ *
  * The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ *
+ *
+ * @deprecated
  */
 export type ImagetovideoassetImageToVideoAsset = {
     /**
@@ -1515,7 +1727,7 @@ export type OffsetOffset = {
 };
 
 /**
- * The output format, render range and type of media to generate.
+ * The output format, render range and type of media to generate. For all formats except `mp3`, either `resolution` or `size` (with both `width` and `height`) must be specified.
  */
 export type OutputOutput = {
     /**
@@ -1530,7 +1742,7 @@ export type OutputOutput = {
      */
     format: 'mp4' | 'gif' | 'mp3' | 'jpg' | 'png' | 'bmp';
     /**
-     * The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>
+     * The preset output resolution of the video or image. For custom sizes use the `size` property. Either `resolution` or `size` (with both `width` and `height`) must be specified for all formats except `mp3`. <ul>
      * <li>`preview` - 512px x 288px @ 15fps</li>
      * <li>`mobile` - 640px x 360px @ 25fps</li>
      * <li>`sd` - 1024px x 576px @ 25fps</li>
@@ -1666,7 +1878,7 @@ export type AssetresponseattributesAssetResponseAttributes = {
      */
     renderId?: string;
     /**
-     * The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+     * The third party id of an asset transferred to an external provider, such as Vimeo or S3. If the provider is Shotstack, the providerID is the same as the asset id.
      */
     providerId?: string;
     /**
@@ -1705,6 +1917,86 @@ export type AssetresponsedataAssetResponseData = {
      */
     type: string;
     attributes: AssetresponseattributesAssetResponseAttributes;
+};
+
+/**
+ * Why a generation request was not accepted or a job could not be found.
+ */
+export type GenerationerrorresponseGenerationErrorResponse = {
+    /**
+     * A human readable error message.
+     */
+    error: string;
+    /**
+     * Why access to AI generation was refused. `AiCapabilityNotIncluded`: the account's plan does not include this kind of generation. `FeatureNotIncluded`: the plan does not include a feature the asset uses. `AiDisabled`: AI generation is turned off for the account. `AiAccessUnavailable`: access could not be confirmed; try again later.
+     */
+    code?: string;
+    /**
+     * The credits the account has available. Present when it has too few.
+     */
+    available?: number;
+};
+
+/**
+ * Why a generation model could not be returned.
+ */
+export type GenerationmodelerrorresponseGenerationModelErrorResponse = {
+    error: {
+        /**
+         * `UnknownGenerationModel`: no model has this identifier. `WithdrawnGenerationModel`: the model is no longer listed, but edits that already use it still validate, bill and render.
+         */
+        name: 'UnknownGenerationModel' | 'WithdrawnGenerationModel';
+        /**
+         * A human readable error message.
+         */
+        message: string;
+    };
+};
+
+/**
+ * The generation models available to this account.
+ */
+export type GenerationmodellistresponseGenerationModelListResponse = {
+    /**
+     * The available models.
+     */
+    models: Array<GenerationmodelGenerationModel>;
+};
+
+/**
+ * Current credit estimate for a generation, calculated with the same rules as submission. Does not reserve credits or lock a price. A cached result costs nothing; final duration-based charges can be lower. Submit the same asset and length to generate it.
+ */
+export type GenerationquoteGenerationQuote = {
+    /**
+     * Estimated generation credits, rounded to four decimal places.
+     */
+    credits: number;
+    /**
+     * True when an unresolved duration uses the model's reservation allowance.
+     */
+    ceiling: boolean;
+};
+
+/**
+ * The status of an on-demand asset generation job. Completed jobs include the public URL of the generated asset.
+ */
+export type GenerationresponseGenerationResponse = {
+    /**
+     * The generation job id. Deterministic for a given owner and asset payload (or idempotency key), so identical requests return the same job and cached result.
+     */
+    id: string;
+    /**
+     * The status of the generation job.
+     */
+    status: 'queued' | 'processing' | 'done' | 'failed';
+    /**
+     * The public URL of the generated asset. Present only when `status` is `done`.
+     */
+    url?: string;
+    /**
+     * A human readable error message. Present only when `status` is `failed`.
+     */
+    error?: string;
 };
 
 /**
@@ -1793,12 +2085,13 @@ export type RenderresponsedataRenderResponseData = {
      * <li>`fetching` - assets are being fetched</li>
      * <li>`preprocessing` - video assets are being processed for compatibility</li>
      * <li>`rendering` - the asset is being rendered</li>
+     * <li>`generating` - AI/media generation is in progress</li>
      * <li>`saving` - the final asset is being saved to storage</li>
      * <li>`done` - the asset is ready to be downloaded</li>
      * <li>`failed` - there was an error rendering the asset</li>
      * </ul>
      */
-    status: 'queued' | 'fetching' | 'preprocessing' | 'rendering' | 'saving' | 'done' | 'failed';
+    status: 'queued' | 'fetching' | 'preprocessing' | 'rendering' | 'generating' | 'saving' | 'done' | 'failed';
     /**
      * An error message, only displayed if an error occurred.
      */
@@ -1950,8 +2243,9 @@ export type TemplateresponsedataTemplateResponseData = {
 
 /**
  * The RichCaptionAsset provides word-level caption animations with rich-text styling. It supports
- * karaoke-style highlighting, word-by-word animations, and advanced typography. Use with SRT/VTT
- * files or auto-transcription via aliases.
+ * karaoke-style highlighting, word-by-word animations, and advanced typography. Captions can be
+ * sourced from SRT/VTT/TTML subtitle files, from audio/video media URLs (auto-transcribed), or
+ * from alias references to other clips in the same timeline.
  *
  */
 export type RichcaptionassetRichCaptionAsset = {
@@ -1960,7 +2254,7 @@ export type RichcaptionassetRichCaptionAsset = {
      */
     type: 'rich-caption';
     /**
-     * The URL to an SRT or VTT subtitles file, or an alias reference to auto-generate captions from an audio or video clip. For file URLs, the URL must be publicly accessible or include credentials. For auto-captioning, use the format `alias://clip-name` where clip-name is the alias of an audio, video, or text-to-speech clip.
+     * Source for the caption words. Accepts three formats: (1) the URL to a subtitle file (`.srt`, `.vtt`, `.ttml`, or `.dfxp`) which is parsed directly; (2) the URL to an audio or video media file (`.mp4`, `.mov`, `.webm`, `.mp3`, `.wav`, `.m4a`, `.flac`, `.aac`, `.ogg`, and related formats) which is auto-transcribed; (3) an alias reference in the form `alias://clip-name` where `clip-name` is the alias of another audio, video, or text-to-speech clip in the same timeline — the referenced clip's source is auto-transcribed. For file URLs, the URL must be publicly accessible or include credentials. Content is classified at runtime and unsupported content types (HTML, PDF, images, archives) are rejected with a structured error.
      */
     src: string;
     font?: RichcaptionpropertiesRichCaptionFont;
@@ -2067,6 +2361,10 @@ export type RichcaptionpropertiesRichCaptionFont = {
      * The weight of the font. Can be a number (100-900) or a string ('normal', 'bold', etc.). 100 is lightest, 900 is heaviest (boldest).
      */
     weight?: unknown;
+    /**
+     * The font style.
+     */
+    style?: 'normal' | 'italic';
     /**
      * The text color using hexadecimal color notation.
      */
@@ -2200,6 +2498,23 @@ export type RichtextpropertiesRichTextBackground = {
      * The border radius of the background box in pixels. Must be 0 or greater.
      */
     borderRadius?: number;
+    /**
+     * When true, the background pill shrinks to fit the rendered text bounding box plus the
+     * asset's padding (and stroke width, if present), producing a pill or badge effect. When
+     * false (default), the background fills the full asset content area. Available on
+     * rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     */
+    wrap?: boolean;
+    /**
+     * Inner padding in pixels between the wrap pill edge and the rendered text. Only takes
+     * effect when `wrap: true`. When omitted, the renderer applies a sensible default
+     * proportional to the font size (approximately 12% of the active page font size on
+     * rich-caption assets). Set to 0 for a pill that hugs the text exactly. Available on
+     * rich-text and rich-caption assets only.
+     *
+     */
+    padding?: number;
 };
 
 /**
@@ -2240,6 +2555,10 @@ export type RichtextpropertiesRichTextFont = {
      * The weight of the font. Can be a number (100-900) or a string ('normal', 'bold', etc.). 100 is lightest, 900 is heaviest (boldest).
      */
     weight?: unknown;
+    /**
+     * The font style.
+     */
+    style?: 'normal' | 'italic';
     /**
      * The text color using hexadecimal color notation.
      */
@@ -2564,7 +2883,10 @@ export type SkewtransformationSkewTransformation = {
 };
 
 /**
+ * **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations.
  * A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ *
+ * @deprecated
  */
 export type SoundtrackSoundtrack = {
     /**
@@ -2641,9 +2963,14 @@ export type TemplaterenderTemplateRender = {
 };
 
 /**
+ * **Notice: The TextAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.** This type
+ * continues to function; no behaviour change for existing integrations.
+ *
  * The TextAsset is used to add text and titles to a video. The text can be styled with built in and custom
  * [Fonts](#tocs_font). You can also add a background bounding box used to control wrapping and overflow. Emoticons are also supported.
  *
+ *
+ * @deprecated
  */
 export type TextassetTextAsset = {
     /**
@@ -2731,6 +3058,10 @@ export type TextpropertiesTextBackground = {
      * The border radius of the background box in pixels for rounded corners.
      */
     borderRadius?: number;
+    /**
+     * Not supported on legacy `text` assets. Accepted here only so validators can emit a clear migration error pointing users to `rich-text` or `rich-caption`, which support background wrapping natively.
+     */
+    wrap?: boolean;
 };
 
 /**
@@ -2778,7 +3109,14 @@ export type TextpropertiesTextStroke = {
 };
 
 /**
+ * **Notice: TextToImageAsset is deprecated. Use [ImageAsset](#tocs_imageasset)
+ * with `prompt` instead.** This type continues to function and is internally
+ * rewritten to ImageAsset; no behaviour change for existing integrations.
+ *
  * The TextToImageAsset lets you create a dynamic image from a text prompt.
+ *
+ *
+ * @deprecated
  */
 export type TexttoimageassetTextToImageAsset = {
     /**
@@ -2801,7 +3139,17 @@ export type TexttoimageassetTextToImageAsset = {
 };
 
 /**
- * The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service. The generated audio can be trimmed, faded and have its volume and speed adjusted using the same properties available on the AudioAsset.
+ * **Notice: TextToSpeechAsset is deprecated. Use [AudioAsset](#tocs_audioasset)
+ * with `prompt` (the spoken text) and `voice` instead.** This type continues to
+ * function and is internally rewritten to AudioAsset; no behaviour change for
+ * existing integrations.
+ *
+ * The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service.
+ * The generated audio can be trimmed, faded and have its volume and speed adjusted using the
+ * same properties available on the AudioAsset.
+ *
+ *
+ * @deprecated
  */
 export type TexttospeechassetTextToSpeechAsset = {
     /**
@@ -2884,7 +3232,7 @@ export type TimelineTimeline = {
 };
 
 /**
- * **Notice: The TitleAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**
+ * **Notice: The TitleAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.**
  *
  * The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
  *
@@ -3075,7 +3423,21 @@ export type TweenTween = {
 };
 
 /**
- * The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+ * The VideoAsset adds a video to a Clip. The video can be sourced from a URL
+ * (`src`), generated from a text prompt (`prompt`), or both. At least one of
+ * `src` or `prompt` must be provided.
+ *
+ * - **Source URL:** set `src` to the URL of an mp4 (or compatible) video file.
+ * - **Generated:** set `prompt` to describe the motion. Choose a generator
+ * with `model` and configure it with model-specific `options`. Models that
+ * animate an image take it as `options.startSrc` (the original
+ * image-to-video models use `options.inputSrc`); the default model
+ * generates from the prompt alone. The generated `src` is filled in
+ * automatically.
+ * - **Both:** `src` acts as a preview placeholder while `prompt` drives
+ * generation — the video is regenerated from the prompt at render time.
+ * Unchanged prompts and options resolve from the generation cache.
+ *
  */
 export type VideoassetVideoAsset = {
     /**
@@ -3083,9 +3445,23 @@ export type VideoassetVideoAsset = {
      */
     type: 'video';
     /**
-     * The video source URL. The URL must be publicly accessible or include credentials.
+     * The video source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the video is regenerated from the prompt at render time.
      */
-    src: string;
+    src?: string;
+    /**
+     * A text prompt to generate the video from. The engine generates a video at render time and fills `src` automatically; an existing `src` is treated as a preview placeholder and replaced. Use `model` to choose the generator and `options` to configure it. A starting image goes in `options.startSrc` — or `options.inputSrc` on the original image-to-video models — on the models that accept one.
+     */
+    prompt?: string;
+    /**
+     * The generation model to use when `prompt` is set (e.g. `seedance-2.0-text-to-video`). Defaults to `seedance-2.0-text-to-video` if omitted. `GET /models` lists what is available and the options each accepts.
+     */
+    model?: string;
+    /**
+     * Model-specific generation settings. Valid keys and values depend on the chosen `model` and are defined by the model registry. Omitted options use the model's defaults. Unknown or invalid options are rejected.
+     */
+    options?: {
+        [key: string]: unknown;
+    };
     /**
      * Set to `true` to force re-encoding of the video during preprocessing. This can help resolve compatibility issues, fix rotation problems, synchronize audio, or convert formats. The video will be processed to ensure optimal compatibility with the rendering engine.
      */
@@ -3107,9 +3483,9 @@ export type VideoassetVideoAsset = {
      */
     volumeEffect?: 'none' | 'fadeIn' | 'fadeOut' | 'fadeInFadeOut';
     /**
-     * Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * Adjust the playback speed of the video clip. Use a number for a constant speed or an array of [Tween](./#tocs_tween) objects to change speed over time, for example easing from normal speed up to 3x.
      */
-    speed?: number;
+    speed?: number | Array<TweenTween>;
     crop?: CropCrop;
     chromaKey?: ChromakeyChromaKey;
 };
@@ -3303,6 +3679,186 @@ export type ProbeResponses = {
 };
 
 export type ProbeResponse2 = ProbeResponses[keyof ProbeResponses];
+
+export type PostGenerateData = {
+    /**
+     * The asset to generate and, for models that generate to a duration, the length of the clip it fills.
+     */
+    body: GenerationrequestGenerationRequest;
+    headers?: {
+        /**
+         * A key that makes this request its own generation. Retrying with the same key returns the job it first created instead of generating and billing again, and a new key generates afresh even when the asset matches an earlier one. Without a key, identical assets share one cached result. For 24 hours a key reused for a different asset is rejected; after that it returns its first result.
+         */
+        'Idempotency-Key'?: string;
+    };
+    path?: never;
+    query?: never;
+    url: '/generate';
+};
+
+export type PostGenerateErrors = {
+    /**
+     * The request is invalid, for example a missing asset or prompt, a disallowed URL or a `length` that is not positive.
+     */
+    400: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * The account has too few credits for this generation. `available` holds how many it has.
+     */
+    402: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * The account cannot use this generation. `code` says why.
+     */
+    403: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * The `Idempotency-Key` was already used for a different asset.
+     */
+    409: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * The account has reached its generation quota.
+     */
+    429: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * A service the request depends on is temporarily unavailable. `code` is `AiAccessUnavailable` when access to AI generation could not be confirmed.
+     */
+    503: GenerationerrorresponseGenerationErrorResponse;
+};
+
+export type PostGenerateError = PostGenerateErrors[keyof PostGenerateErrors];
+
+export type PostGenerateResponses = {
+    /**
+     * The asset was generated before: `done` with its URL, or `failed` with the error that ended it.
+     */
+    200: GenerationresponseGenerationResponse;
+    /**
+     * The generation job has been queued. Poll the status endpoint.
+     */
+    202: GenerationresponseGenerationResponse;
+};
+
+export type PostGenerateResponse = PostGenerateResponses[keyof PostGenerateResponses];
+
+export type PostGenerateQuoteData = {
+    body: GenerationrequestGenerationRequest;
+    path?: never;
+    query?: never;
+    url: '/generate/quote';
+};
+
+export type PostGenerateQuoteErrors = {
+    /**
+     * The request is invalid, for example a missing asset or prompt, a disallowed URL or a `length` that is not positive.
+     */
+    400: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * An API key is required.
+     */
+    401: unknown;
+    /**
+     * The account cannot use this generation. `code` says why.
+     */
+    403: GenerationerrorresponseGenerationErrorResponse;
+    /**
+     * A service the request depends on is temporarily unavailable. `code` is `AiAccessUnavailable` when access to AI generation could not be confirmed.
+     */
+    503: GenerationerrorresponseGenerationErrorResponse;
+};
+
+export type PostGenerateQuoteError = PostGenerateQuoteErrors[keyof PostGenerateQuoteErrors];
+
+export type PostGenerateQuoteResponses = {
+    /**
+     * The generation credit estimate.
+     */
+    200: GenerationquoteGenerationQuote;
+};
+
+export type PostGenerateQuoteResponse = PostGenerateQuoteResponses[keyof PostGenerateQuoteResponses];
+
+export type GetGenerateData = {
+    body?: never;
+    path: {
+        /**
+         * The generation job id returned by the generate endpoint.
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/generate/{id}';
+};
+
+export type GetGenerateErrors = {
+    /**
+     * No generation job with this id exists for the calling account.
+     */
+    404: GenerationerrorresponseGenerationErrorResponse;
+};
+
+export type GetGenerateError = GetGenerateErrors[keyof GetGenerateErrors];
+
+export type GetGenerateResponses = {
+    /**
+     * The generation job has finished (done or failed).
+     */
+    200: GenerationresponseGenerationResponse;
+    /**
+     * The generation job is still processing.
+     */
+    202: GenerationresponseGenerationResponse;
+};
+
+export type GetGenerateResponse = GetGenerateResponses[keyof GetGenerateResponses];
+
+export type GetModelsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Set to `options` to include each model's option schema in the list. Omitted by default to keep the response small.
+         */
+        expand?: 'options';
+    };
+    url: '/models';
+};
+
+export type GetModelsResponses = {
+    /**
+     * The available generation models.
+     */
+    200: GenerationmodellistresponseGenerationModelListResponse;
+};
+
+export type GetModelsResponse = GetModelsResponses[keyof GetModelsResponses];
+
+export type GetModelData = {
+    body?: never;
+    path: {
+        /**
+         * The model identifier, as returned by the list endpoint.
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/models/{id}';
+};
+
+export type GetModelErrors = {
+    /**
+     * No listed model has that identifier. `error.name` tells an unknown model from one that has been withdrawn.
+     */
+    404: GenerationmodelerrorresponseGenerationModelErrorResponse;
+};
+
+export type GetModelError = GetModelErrors[keyof GetModelErrors];
+
+export type GetModelResponses = {
+    /**
+     * The generation model, with its option schema.
+     */
+    200: GenerationmodelGenerationModel;
+};
+
+export type GetModelResponse = GetModelResponses[keyof GetModelResponses];
 
 export type DeleteAssetData = {
     body?: never;
